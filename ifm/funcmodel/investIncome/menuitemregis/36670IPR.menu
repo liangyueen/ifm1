@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="gbk"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<bean id="menuItem" class="nc.pubapp.pade.funcmodel.vo.MenuItem"><property name="dr" value="0"/>
+<property name="funModelFilePath" value="ifm/funcmodel/investIncome/funcregis/36670IPR.menu"/>
+<property name="funcode" value="36670IPR"/>
+<property name="ismenutype" value="false"/>
+<property name="menuitemcode" value="36670103"/>
+<property name="menuitemname" value="理财收益"/>
+<property name="pk_menuitem" value="0001Z61000000002M5GJ"/>
+<property name="resid" value="D36670103"/>
+<property name="ts" value="2018-09-01 22:37:44"/>
+</bean>
+
+</beans>
