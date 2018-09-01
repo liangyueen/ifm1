@@ -19,7 +19,5 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>com.yonyou.studio.udt.core.nature</nature>
-		<nature>com.yonyou.studio.ria.core.ModuleProjectNature</nature>
-		<nature>com.yonyou.studio.ria.core.BizCompProjectNature</nature>
 	</natures>
 </projectDescription>
