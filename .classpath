@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" output="nccloud/classes" path="nccloud/src/public"/>
+	<classpathentry kind="src" path="ifm/src/public"/>
+	<classpathentry kind="src" path="ifm/src/private"/>
+	<classpathentry kind="src" path="ifm/src/client"/>
 	<classpathentry kind="src" output="nccloud/classes" path="nccloud/src/client"/>
 	<classpathentry kind="src" output="nccloud/classes" path="nccloud/src/private"/>
 	<classpathentry kind="src" output="nccloud/classes" path="nccloud/src/test"/>
