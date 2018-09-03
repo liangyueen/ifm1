@@ -1,7 +1,7 @@
 package nc.bs.ifm.redeem.ace.bp;
 
 import nc.bs.ifm.redeem.plugin.bpplugin.InvestRedeemPluginPoint;
-import nc.vo.ifm.redeem.InvestRedeemVO;
+import nc.vo.ifm.redeem.AggInvestRedeemVO;
 
 import nc.impl.pubapp.pattern.data.bill.template.DeleteBPTemplate;
 import nc.impl.pubapp.pattern.rule.processer.AroundProcesser;
@@ -13,9 +13,9 @@ import nc.impl.pubapp.pattern.rule.IRule;
  */
 public class AceInvestRedeemDeleteBP {
 
-	public void delete(InvestRedeemVO[] bills) {
+	public void delete(AggInvestRedeemVO[] bills) {
 
-		DeleteBPTemplate<InvestRedeemVO> bp = new DeleteBPTemplate<InvestRedeemVO>(
+		DeleteBPTemplate<AggInvestRedeemVO> bp = new DeleteBPTemplate<AggInvestRedeemVO>(
 				InvestRedeemPluginPoint.DELETE);
 		// 增加执行前规则
 		this.addBeforeRule(bp.getAroundProcesser());
@@ -24,9 +24,9 @@ public class AceInvestRedeemDeleteBP {
 		bp.delete(bills);
 	}
 
-	private void addBeforeRule(AroundProcesser<InvestRedeemVO> processer) {
+	private void addBeforeRule(AroundProcesser<AggInvestRedeemVO> processer) {
 		// TODO 前规则
-		IRule<InvestRedeemVO> rule = null;
+		IRule<AggInvestRedeemVO> rule = null;
 		rule = new nc.bs.pubapp.pub.rule.BillDeleteStatusCheckRule();
 		processer.addBeforeRule(rule);
 	}
@@ -36,7 +36,7 @@ public class AceInvestRedeemDeleteBP {
 	 * 
 	 * @param processer
 	 */
-	private void addAfterRule(AroundProcesser<InvestRedeemVO> processer) {
+	private void addAfterRule(AroundProcesser<AggInvestRedeemVO> processer) {
 		// TODO 后规则
 
 	}

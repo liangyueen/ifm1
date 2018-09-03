@@ -1,32 +1,32 @@
 package nc.itf.ifm;
 
 import nc.ui.querytemplate.querytree.IQueryScheme;
-import nc.vo.ifm.income.InvestIncomeVO;
+import nc.vo.ifm.income.AggInvestIncomeVO;
 import nc.vo.pub.BusinessException;
 
 public interface IInvestIncomeMaintain {
 
-	public void delete(InvestIncomeVO[] clientFullVOs,
-			InvestIncomeVO[] originBills) throws BusinessException;
+	public void delete(AggInvestIncomeVO[] clientFullVOs,
+			AggInvestIncomeVO[] originBills) throws BusinessException;
 
-	public InvestIncomeVO[] insert(InvestIncomeVO[] clientFullVOs,
-			InvestIncomeVO[] originBills) throws BusinessException;
+	public AggInvestIncomeVO[] insert(AggInvestIncomeVO[] clientFullVOs,
+			AggInvestIncomeVO[] originBills) throws BusinessException;
 
-	public InvestIncomeVO[] update(InvestIncomeVO[] clientFullVOs,
-			InvestIncomeVO[] originBills) throws BusinessException;
+	public AggInvestIncomeVO[] update(AggInvestIncomeVO[] clientFullVOs,
+			AggInvestIncomeVO[] originBills) throws BusinessException;
 
-	public InvestIncomeVO[] query(IQueryScheme queryScheme)
+	public AggInvestIncomeVO[] query(IQueryScheme queryScheme)
 			throws BusinessException;
 
-	public InvestIncomeVO[] save(InvestIncomeVO[] clientFullVOs,
-			InvestIncomeVO[] originBills) throws BusinessException;
+	public AggInvestIncomeVO[] save(AggInvestIncomeVO[] clientFullVOs,
+			AggInvestIncomeVO[] originBills) throws BusinessException;
 
-	public InvestIncomeVO[] unsave(InvestIncomeVO[] clientFullVOs,
-			InvestIncomeVO[] originBills) throws BusinessException;
+	public AggInvestIncomeVO[] unsave(AggInvestIncomeVO[] clientFullVOs,
+			AggInvestIncomeVO[] originBills) throws BusinessException;
 
-	public InvestIncomeVO[] approve(InvestIncomeVO[] clientFullVOs,
-			InvestIncomeVO[] originBills) throws BusinessException;
+	public AggInvestIncomeVO[] approve(AggInvestIncomeVO[] clientFullVOs,
+			AggInvestIncomeVO[] originBills) throws BusinessException;
 
-	public InvestIncomeVO[] unapprove(InvestIncomeVO[] clientFullVOs,
-			InvestIncomeVO[] originBills) throws BusinessException;
+	public AggInvestIncomeVO[] unapprove(AggInvestIncomeVO[] clientFullVOs,
+			AggInvestIncomeVO[] originBills) throws BusinessException;
 }

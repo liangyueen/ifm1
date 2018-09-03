@@ -4,16 +4,16 @@ import nc.bs.ifm.redeem.plugin.bpplugin.InvestRedeemPluginPoint;
 import nc.impl.pubapp.pattern.data.bill.template.InsertBPTemplate;
 import nc.impl.pubapp.pattern.rule.processer.AroundProcesser;
 import nc.impl.pubapp.pattern.rule.IRule;
-import nc.vo.ifm.redeem.InvestRedeemVO;
+import nc.vo.ifm.redeem.AggInvestRedeemVO;
 
 /**
  * 标准单据新增BP
  */
 public class AceInvestRedeemInsertBP {
 
-	public InvestRedeemVO[] insert(InvestRedeemVO[] bills) {
+	public AggInvestRedeemVO[] insert(AggInvestRedeemVO[] bills) {
 
-		InsertBPTemplate<InvestRedeemVO> bp = new InsertBPTemplate<InvestRedeemVO>(
+		InsertBPTemplate<AggInvestRedeemVO> bp = new InsertBPTemplate<AggInvestRedeemVO>(
 				InvestRedeemPluginPoint.INSERT);
 		this.addBeforeRule(bp.getAroundProcesser());
 		this.addAfterRule(bp.getAroundProcesser());
@@ -26,9 +26,9 @@ public class AceInvestRedeemInsertBP {
 	 * 
 	 * @param processor
 	 */
-	private void addAfterRule(AroundProcesser<InvestRedeemVO> processor) {
+	private void addAfterRule(AroundProcesser<AggInvestRedeemVO> processor) {
 		// TODO 新增后规则
-		IRule<InvestRedeemVO> rule = null;
+		IRule<AggInvestRedeemVO> rule = null;
 		rule = new nc.bs.pubapp.pub.rule.BillCodeCheckRule();
 		((nc.bs.pubapp.pub.rule.BillCodeCheckRule) rule).setCbilltype("3642");
 		((nc.bs.pubapp.pub.rule.BillCodeCheckRule) rule)
@@ -44,9 +44,9 @@ public class AceInvestRedeemInsertBP {
 	 * 
 	 * @param processor
 	 */
-	private void addBeforeRule(AroundProcesser<InvestRedeemVO> processer) {
+	private void addBeforeRule(AroundProcesser<AggInvestRedeemVO> processer) {
 		// TODO 新增前规则
-		IRule<InvestRedeemVO> rule = null;
+		IRule<AggInvestRedeemVO> rule = null;
 		rule = new nc.bs.pubapp.pub.rule.FillInsertDataRule();
 		processer.addBeforeRule(rule);
 		rule = new nc.bs.pubapp.pub.rule.CreateBillCodeRule();

@@ -8,15 +8,15 @@ import nc.vo.pub.BusinessException;
 import nc.vo.pubapp.pattern.exception.ExceptionUtils;
 
 import nc.bs.ifm.redeem.plugin.bpplugin.InvestRedeemPluginPoint;
-import nc.vo.ifm.redeem.InvestRedeemVO;
+import nc.vo.ifm.redeem.AggInvestRedeemVO;
 import nc.itf.ifm.IInvestRedeemMaintain;
 
-public class N_3642_UNSAVEBILL extends AbstractPfAction<InvestRedeemVO> {
+public class N_3642_UNSAVEBILL extends AbstractPfAction<AggInvestRedeemVO> {
 
 	@Override
-	protected CompareAroundProcesser<InvestRedeemVO> getCompareAroundProcesserWithRules(
+	protected CompareAroundProcesser<AggInvestRedeemVO> getCompareAroundProcesserWithRules(
 			Object userObj) {
-		CompareAroundProcesser<InvestRedeemVO> processor = new CompareAroundProcesser<InvestRedeemVO>(
+		CompareAroundProcesser<AggInvestRedeemVO> processor = new CompareAroundProcesser<AggInvestRedeemVO>(
 				InvestRedeemPluginPoint.UNSEND_APPROVE);
 		// TODO 在此处添加前后规则
 		processor.addBeforeRule(new UncommitStatusCheckRule());
@@ -25,11 +25,11 @@ public class N_3642_UNSAVEBILL extends AbstractPfAction<InvestRedeemVO> {
 	}
 
 	@Override
-	protected InvestRedeemVO[] processBP(Object userObj,
-			InvestRedeemVO[] clientFullVOs, InvestRedeemVO[] originBills) {
+	protected AggInvestRedeemVO[] processBP(Object userObj,
+			AggInvestRedeemVO[] clientFullVOs, AggInvestRedeemVO[] originBills) {
 		IInvestRedeemMaintain operator = NCLocator.getInstance().lookup(
 				IInvestRedeemMaintain.class);
-		InvestRedeemVO[] bills = null;
+		AggInvestRedeemVO[] bills = null;
 		try {
 			bills = operator.unsave(clientFullVOs, originBills);
 		} catch (BusinessException e) {

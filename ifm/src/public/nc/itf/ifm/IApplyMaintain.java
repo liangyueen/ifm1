@@ -1,32 +1,32 @@
 package nc.itf.ifm;
 
 import nc.ui.querytemplate.querytree.IQueryScheme;
-import nc.vo.ifm.apply.InvestApplyVO;
+import nc.vo.ifm.apply.AggInvestApplyVO;
 import nc.vo.pub.BusinessException;
 
 public interface IApplyMaintain {
 
-	public void delete(InvestApplyVO[] clientFullVOs,
-			InvestApplyVO[] originBills) throws BusinessException;
+	public void delete(AggInvestApplyVO[] clientFullVOs,
+			AggInvestApplyVO[] originBills) throws BusinessException;
 
-	public InvestApplyVO[] insert(InvestApplyVO[] clientFullVOs,
-			InvestApplyVO[] originBills) throws BusinessException;
+	public AggInvestApplyVO[] insert(AggInvestApplyVO[] clientFullVOs,
+			AggInvestApplyVO[] originBills) throws BusinessException;
 
-	public InvestApplyVO[] update(InvestApplyVO[] clientFullVOs,
-			InvestApplyVO[] originBills) throws BusinessException;
+	public AggInvestApplyVO[] update(AggInvestApplyVO[] clientFullVOs,
+			AggInvestApplyVO[] originBills) throws BusinessException;
 
-	public InvestApplyVO[] query(IQueryScheme queryScheme)
+	public AggInvestApplyVO[] query(IQueryScheme queryScheme)
 			throws BusinessException;
 
-	public InvestApplyVO[] save(InvestApplyVO[] clientFullVOs,
-			InvestApplyVO[] originBills) throws BusinessException;
+	public AggInvestApplyVO[] save(AggInvestApplyVO[] clientFullVOs,
+			AggInvestApplyVO[] originBills) throws BusinessException;
 
-	public InvestApplyVO[] unsave(InvestApplyVO[] clientFullVOs,
-			InvestApplyVO[] originBills) throws BusinessException;
+	public AggInvestApplyVO[] unsave(AggInvestApplyVO[] clientFullVOs,
+			AggInvestApplyVO[] originBills) throws BusinessException;
 
-	public InvestApplyVO[] approve(InvestApplyVO[] clientFullVOs,
-			InvestApplyVO[] originBills) throws BusinessException;
+	public AggInvestApplyVO[] approve(AggInvestApplyVO[] clientFullVOs,
+			AggInvestApplyVO[] originBills) throws BusinessException;
 
-	public InvestApplyVO[] unapprove(InvestApplyVO[] clientFullVOs,
-			InvestApplyVO[] originBills) throws BusinessException;
+	public AggInvestApplyVO[] unapprove(AggInvestApplyVO[] clientFullVOs,
+			AggInvestApplyVO[] originBills) throws BusinessException;
 }

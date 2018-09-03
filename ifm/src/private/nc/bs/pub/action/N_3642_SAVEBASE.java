@@ -9,35 +9,35 @@ import nc.vo.pub.BusinessException;
 import nc.vo.pubapp.pattern.exception.ExceptionUtils;
 
 import nc.bs.ifm.redeem.plugin.bpplugin.InvestRedeemPluginPoint;
-import nc.vo.ifm.redeem.InvestRedeemVO;
+import nc.vo.ifm.redeem.AggInvestRedeemVO;
 import nc.itf.ifm.IInvestRedeemMaintain;
 
-public class N_3642_SAVEBASE extends AbstractPfAction<InvestRedeemVO> {
+public class N_3642_SAVEBASE extends AbstractPfAction<AggInvestRedeemVO> {
 
 	@Override
-	protected CompareAroundProcesser<InvestRedeemVO> getCompareAroundProcesserWithRules(
+	protected CompareAroundProcesser<AggInvestRedeemVO> getCompareAroundProcesserWithRules(
 			Object userObj) {
-		CompareAroundProcesser<InvestRedeemVO> processor = null;
-		InvestRedeemVO[] clientFullVOs = (InvestRedeemVO[]) this.getVos();
+		CompareAroundProcesser<AggInvestRedeemVO> processor = null;
+		AggInvestRedeemVO[] clientFullVOs = (AggInvestRedeemVO[]) this.getVos();
 		if (!StringUtil.isEmptyWithTrim(clientFullVOs[0].getParentVO()
 				.getPrimaryKey())) {
-			processor = new CompareAroundProcesser<InvestRedeemVO>(
+			processor = new CompareAroundProcesser<AggInvestRedeemVO>(
 					InvestRedeemPluginPoint.SCRIPT_UPDATE);
 		} else {
-			processor = new CompareAroundProcesser<InvestRedeemVO>(
+			processor = new CompareAroundProcesser<AggInvestRedeemVO>(
 					InvestRedeemPluginPoint.SCRIPT_INSERT);
 		}
 		// TODO 在此处添加前后规则
-		IRule<InvestRedeemVO> rule = null;
+		IRule<AggInvestRedeemVO> rule = null;
 
 		return processor;
 	}
 
 	@Override
-	protected InvestRedeemVO[] processBP(Object userObj,
-			InvestRedeemVO[] clientFullVOs, InvestRedeemVO[] originBills) {
+	protected AggInvestRedeemVO[] processBP(Object userObj,
+			AggInvestRedeemVO[] clientFullVOs, AggInvestRedeemVO[] originBills) {
 
-		InvestRedeemVO[] bills = null;
+		AggInvestRedeemVO[] bills = null;
 		try {
 			IInvestRedeemMaintain operator = NCLocator.getInstance()
 					.lookup(IInvestRedeemMaintain.class);

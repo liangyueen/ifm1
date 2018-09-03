@@ -9,35 +9,35 @@ import nc.vo.pub.BusinessException;
 import nc.vo.pubapp.pattern.exception.ExceptionUtils;
 
 import nc.bs.ifm.income.plugin.bpplugin.InvestIncomePluginPoint;
-import nc.vo.ifm.income.InvestIncomeVO;
+import nc.vo.ifm.income.AggInvestIncomeVO;
 import nc.itf.ifm.IInvestIncomeMaintain;
 
-public class N_3643_SAVEBASE extends AbstractPfAction<InvestIncomeVO> {
+public class N_3643_SAVEBASE extends AbstractPfAction<AggInvestIncomeVO> {
 
 	@Override
-	protected CompareAroundProcesser<InvestIncomeVO> getCompareAroundProcesserWithRules(
+	protected CompareAroundProcesser<AggInvestIncomeVO> getCompareAroundProcesserWithRules(
 			Object userObj) {
-		CompareAroundProcesser<InvestIncomeVO> processor = null;
-		InvestIncomeVO[] clientFullVOs = (InvestIncomeVO[]) this.getVos();
+		CompareAroundProcesser<AggInvestIncomeVO> processor = null;
+		AggInvestIncomeVO[] clientFullVOs = (AggInvestIncomeVO[]) this.getVos();
 		if (!StringUtil.isEmptyWithTrim(clientFullVOs[0].getParentVO()
 				.getPrimaryKey())) {
-			processor = new CompareAroundProcesser<InvestIncomeVO>(
+			processor = new CompareAroundProcesser<AggInvestIncomeVO>(
 					InvestIncomePluginPoint.SCRIPT_UPDATE);
 		} else {
-			processor = new CompareAroundProcesser<InvestIncomeVO>(
+			processor = new CompareAroundProcesser<AggInvestIncomeVO>(
 					InvestIncomePluginPoint.SCRIPT_INSERT);
 		}
 		// TODO 在此处添加前后规则
-		IRule<InvestIncomeVO> rule = null;
+		IRule<AggInvestIncomeVO> rule = null;
 
 		return processor;
 	}
 
 	@Override
-	protected InvestIncomeVO[] processBP(Object userObj,
-			InvestIncomeVO[] clientFullVOs, InvestIncomeVO[] originBills) {
+	protected AggInvestIncomeVO[] processBP(Object userObj,
+			AggInvestIncomeVO[] clientFullVOs, AggInvestIncomeVO[] originBills) {
 
-		InvestIncomeVO[] bills = null;
+		AggInvestIncomeVO[] bills = null;
 		try {
 			IInvestIncomeMaintain operator = NCLocator.getInstance()
 					.lookup(IInvestIncomeMaintain.class);

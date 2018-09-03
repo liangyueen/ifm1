@@ -1,8 +1,9 @@
 package nc.bs.ifm.apply.ace.bp;
 
 import nc.impl.pubapp.pattern.data.bill.BillUpdate;
-import nc.vo.pub.VOStatus;
+import nc.vo.ifm.apply.AggInvestApplyVO;
 import nc.vo.ifm.apply.InvestApplyVO;
+import nc.vo.pub.VOStatus;
 
 /**
  * 标准单据审核的BP
@@ -16,13 +17,13 @@ public class AceApplyApproveBP {
 	 * @param script
 	 * @return
 	 */
-	public InvestApplyVO[] approve(InvestApplyVO[] clientBills,
-			InvestApplyVO[] originBills) {
-		for (InvestApplyVO clientBill : clientBills) {
+	public AggInvestApplyVO[] approve(AggInvestApplyVO[] clientBills,
+			AggInvestApplyVO[] originBills) {
+		for (AggInvestApplyVO clientBill : clientBills) {
 			clientBill.getParentVO().setStatus(VOStatus.UPDATED);
 		}
-		BillUpdate<InvestApplyVO> update = new BillUpdate<InvestApplyVO>();
-		InvestApplyVO[] returnVos = update.update(clientBills, originBills);
+		BillUpdate<AggInvestApplyVO> update = new BillUpdate<AggInvestApplyVO>();
+		AggInvestApplyVO[] returnVos = update.update(clientBills, originBills);
 		return returnVos;
 	}
 

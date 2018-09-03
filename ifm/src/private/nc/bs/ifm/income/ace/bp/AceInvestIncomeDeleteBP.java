@@ -1,7 +1,7 @@
 package nc.bs.ifm.income.ace.bp;
 
 import nc.bs.ifm.income.plugin.bpplugin.InvestIncomePluginPoint;
-import nc.vo.ifm.income.InvestIncomeVO;
+import nc.vo.ifm.income.AggInvestIncomeVO;
 
 import nc.impl.pubapp.pattern.data.bill.template.DeleteBPTemplate;
 import nc.impl.pubapp.pattern.rule.processer.AroundProcesser;
@@ -13,9 +13,9 @@ import nc.impl.pubapp.pattern.rule.IRule;
  */
 public class AceInvestIncomeDeleteBP {
 
-	public void delete(InvestIncomeVO[] bills) {
+	public void delete(AggInvestIncomeVO[] bills) {
 
-		DeleteBPTemplate<InvestIncomeVO> bp = new DeleteBPTemplate<InvestIncomeVO>(
+		DeleteBPTemplate<AggInvestIncomeVO> bp = new DeleteBPTemplate<AggInvestIncomeVO>(
 				InvestIncomePluginPoint.DELETE);
 		// 增加执行前规则
 		this.addBeforeRule(bp.getAroundProcesser());
@@ -24,9 +24,9 @@ public class AceInvestIncomeDeleteBP {
 		bp.delete(bills);
 	}
 
-	private void addBeforeRule(AroundProcesser<InvestIncomeVO> processer) {
+	private void addBeforeRule(AroundProcesser<AggInvestIncomeVO> processer) {
 		// TODO 前规则
-		IRule<InvestIncomeVO> rule = null;
+		IRule<AggInvestIncomeVO> rule = null;
 		rule = new nc.bs.pubapp.pub.rule.BillDeleteStatusCheckRule();
 		processer.addBeforeRule(rule);
 	}
@@ -36,7 +36,7 @@ public class AceInvestIncomeDeleteBP {
 	 * 
 	 * @param processer
 	 */
-	private void addAfterRule(AroundProcesser<InvestIncomeVO> processer) {
+	private void addAfterRule(AroundProcesser<AggInvestIncomeVO> processer) {
 		// TODO 后规则
 
 	}

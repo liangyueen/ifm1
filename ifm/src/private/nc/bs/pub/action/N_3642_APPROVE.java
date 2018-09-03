@@ -9,28 +9,28 @@ import nc.vo.pub.BusinessException;
 import nc.vo.pubapp.pattern.exception.ExceptionUtils;
 
 import nc.bs.ifm.redeem.plugin.bpplugin.InvestRedeemPluginPoint;
-import nc.vo.ifm.redeem.InvestRedeemVO;
+import nc.vo.ifm.redeem.AggInvestRedeemVO;
 import nc.itf.ifm.IInvestRedeemMaintain;
 
-public class N_3642_APPROVE extends AbstractPfAction<InvestRedeemVO> {
+public class N_3642_APPROVE extends AbstractPfAction<AggInvestRedeemVO> {
 
 	public N_3642_APPROVE() {
 		super();
 	}
 
 	@Override
-	protected CompareAroundProcesser<InvestRedeemVO> getCompareAroundProcesserWithRules(
+	protected CompareAroundProcesser<AggInvestRedeemVO> getCompareAroundProcesserWithRules(
 			Object userObj) {
-		CompareAroundProcesser<InvestRedeemVO> processor = new CompareAroundProcesser<InvestRedeemVO>(
+		CompareAroundProcesser<AggInvestRedeemVO> processor = new CompareAroundProcesser<AggInvestRedeemVO>(
 				InvestRedeemPluginPoint.APPROVE);
 		processor.addBeforeRule(new ApproveStatusCheckRule());
 		return processor;
 	}
 
 	@Override
-	protected InvestRedeemVO[] processBP(Object userObj,
-			InvestRedeemVO[] clientFullVOs, InvestRedeemVO[] originBills) {
-		InvestRedeemVO[] bills = null;
+	protected AggInvestRedeemVO[] processBP(Object userObj,
+			AggInvestRedeemVO[] clientFullVOs, AggInvestRedeemVO[] originBills) {
+		AggInvestRedeemVO[] bills = null;
 		IInvestRedeemMaintain operator = NCLocator.getInstance().lookup(
 				IInvestRedeemMaintain.class);
 		try {

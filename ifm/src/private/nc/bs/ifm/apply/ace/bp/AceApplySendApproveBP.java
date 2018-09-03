@@ -1,7 +1,7 @@
 package nc.bs.ifm.apply.ace.bp;
 
 import nc.impl.pubapp.pattern.data.bill.BillUpdate;
-import nc.vo.ifm.apply.InvestApplyVO;
+import nc.vo.ifm.apply.AggInvestApplyVO;
 import nc.vo.pub.VOStatus;
 import nc.vo.pub.pf.BillStatusEnum;
 
@@ -19,15 +19,15 @@ public class AceApplySendApproveBP {
 	 * @return 送审后的单据VO数组
 	 */
 
-	public InvestApplyVO[] sendApprove(InvestApplyVO[] clientBills,
-			InvestApplyVO[] originBills) {
-		for (InvestApplyVO clientFullVO : clientBills) {
+	public AggInvestApplyVO[] sendApprove(AggInvestApplyVO[] clientBills,
+			AggInvestApplyVO[] originBills) {
+		for (AggInvestApplyVO clientFullVO : clientBills) {
 			clientFullVO.getParentVO().setAttributeValue("${vmObject.billstatus}",
 					BillStatusEnum.COMMIT.value());
 			clientFullVO.getParentVO().setStatus(VOStatus.UPDATED);
 		}
 		// 数据持久化
-		InvestApplyVO[] returnVos = new BillUpdate<InvestApplyVO>().update(
+		AggInvestApplyVO[] returnVos = new BillUpdate<AggInvestApplyVO>().update(
 				clientBills, originBills);
 		return returnVos;
 	}

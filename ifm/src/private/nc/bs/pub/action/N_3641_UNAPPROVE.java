@@ -9,15 +9,15 @@ import nc.vo.pub.VOStatus;
 import nc.vo.pubapp.pattern.exception.ExceptionUtils;
 
 import nc.bs.ifm.apply.plugin.bpplugin.ApplyPluginPoint;
-import nc.vo.ifm.apply.InvestApplyVO;
+import nc.vo.ifm.apply.AggInvestApplyVO;
 import nc.itf.ifm.IApplyMaintain;
 
-public class N_3641_UNAPPROVE extends AbstractPfAction<InvestApplyVO> {
+public class N_3641_UNAPPROVE extends AbstractPfAction<AggInvestApplyVO> {
 
 	@Override
-	protected CompareAroundProcesser<InvestApplyVO> getCompareAroundProcesserWithRules(
+	protected CompareAroundProcesser<AggInvestApplyVO> getCompareAroundProcesserWithRules(
 			Object userObj) {
-		CompareAroundProcesser<InvestApplyVO> processor = new CompareAroundProcesser<InvestApplyVO>(
+		CompareAroundProcesser<AggInvestApplyVO> processor = new CompareAroundProcesser<AggInvestApplyVO>(
 				ApplyPluginPoint.UNAPPROVE);
 		// TODO 在此处添加前后规则
 		processor.addBeforeRule(new UnapproveStatusCheckRule());
@@ -26,12 +26,12 @@ public class N_3641_UNAPPROVE extends AbstractPfAction<InvestApplyVO> {
 	}
 
 	@Override
-	protected InvestApplyVO[] processBP(Object userObj,
-			InvestApplyVO[] clientFullVOs, InvestApplyVO[] originBills) {
+	protected AggInvestApplyVO[] processBP(Object userObj,
+			AggInvestApplyVO[] clientFullVOs, AggInvestApplyVO[] originBills) {
 		for (int i = 0; clientFullVOs != null && i < clientFullVOs.length; i++) {
 			clientFullVOs[i].getParentVO().setStatus(VOStatus.UPDATED);
 		}
-		InvestApplyVO[] bills = null;
+		AggInvestApplyVO[] bills = null;
 		try {
 			IApplyMaintain operator = NCLocator.getInstance()
 					.lookup(IApplyMaintain.class);

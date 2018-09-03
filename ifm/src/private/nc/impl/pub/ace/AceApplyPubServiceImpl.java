@@ -10,22 +10,22 @@ import nc.bs.ifm.apply.ace.bp.AceApplyUnApproveBP;
 import nc.impl.pubapp.pattern.data.bill.BillLazyQuery;
 import nc.impl.pubapp.pattern.data.bill.tool.BillTransferTool;
 import nc.ui.querytemplate.querytree.IQueryScheme;
-import nc.vo.ifm.apply.InvestApplyVO;
+import nc.vo.ifm.apply.AggInvestApplyVO;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.VOStatus;
 import nc.vo.pubapp.pattern.exception.ExceptionUtils;
 
 public abstract class AceApplyPubServiceImpl {
 	// 新增
-	public InvestApplyVO[] pubinsertBills(InvestApplyVO[] clientFullVOs,
-			InvestApplyVO[] originBills) throws BusinessException {
+	public AggInvestApplyVO[] pubinsertBills(AggInvestApplyVO[] clientFullVOs,
+			AggInvestApplyVO[] originBills) throws BusinessException {
 		try {
 			// 数据库中数据和前台传递过来的差异VO合并后的结果
-			BillTransferTool<InvestApplyVO> transferTool = new BillTransferTool<InvestApplyVO>(
+			BillTransferTool<AggInvestApplyVO> transferTool = new BillTransferTool<AggInvestApplyVO>(
 					clientFullVOs);
 			// 调用BP
 			AceApplyInsertBP action = new AceApplyInsertBP();
-			InvestApplyVO[] retvos = action.insert(clientFullVOs);
+			AggInvestApplyVO[] retvos = action.insert(clientFullVOs);
 			// 构造返回数据
 			return transferTool.getBillForToClient(retvos);
 		} catch (Exception e) {
@@ -35,8 +35,8 @@ public abstract class AceApplyPubServiceImpl {
 	}
 
 	// 删除
-	public void pubdeleteBills(InvestApplyVO[] clientFullVOs,
-			InvestApplyVO[] originBills) throws BusinessException {
+	public void pubdeleteBills(AggInvestApplyVO[] clientFullVOs,
+			AggInvestApplyVO[] originBills) throws BusinessException {
 		try {
 			// 调用BP
 			new AceApplyDeleteBP().delete(clientFullVOs);
@@ -46,14 +46,14 @@ public abstract class AceApplyPubServiceImpl {
 	}
 
 	// 修改
-	public InvestApplyVO[] pubupdateBills(InvestApplyVO[] clientFullVOs,
-			InvestApplyVO[] originBills) throws BusinessException {
+	public AggInvestApplyVO[] pubupdateBills(AggInvestApplyVO[] clientFullVOs,
+			AggInvestApplyVO[] originBills) throws BusinessException {
 		try {
 			// 加锁 + 检查ts
-			BillTransferTool<InvestApplyVO> transferTool = new BillTransferTool<InvestApplyVO>(
+			BillTransferTool<AggInvestApplyVO> transferTool = new BillTransferTool<AggInvestApplyVO>(
 					clientFullVOs);
 			AceApplyUpdateBP bp = new AceApplyUpdateBP();
-			InvestApplyVO[] retvos = bp.update(clientFullVOs, originBills);
+			AggInvestApplyVO[] retvos = bp.update(clientFullVOs, originBills);
 			// 构造返回数据
 			return transferTool.getBillForToClient(retvos);
 		} catch (Exception e) {
@@ -62,13 +62,13 @@ public abstract class AceApplyPubServiceImpl {
 		return null;
 	}
 
-	public InvestApplyVO[] pubquerybills(IQueryScheme queryScheme)
+	public AggInvestApplyVO[] pubquerybills(IQueryScheme queryScheme)
 			throws BusinessException {
-		InvestApplyVO[] bills = null;
+		AggInvestApplyVO[] bills = null;
 		try {
 			this.preQuery(queryScheme);
-			BillLazyQuery<InvestApplyVO> query = new BillLazyQuery<InvestApplyVO>(
-					InvestApplyVO.class);
+			BillLazyQuery<AggInvestApplyVO> query = new BillLazyQuery<AggInvestApplyVO>(
+					AggInvestApplyVO.class);
 			bills = query.query(queryScheme, null);
 		} catch (Exception e) {
 			ExceptionUtils.marsh(e);
@@ -86,43 +86,43 @@ public abstract class AceApplyPubServiceImpl {
 	}
 
 	// 提交
-	public InvestApplyVO[] pubsendapprovebills(
-			InvestApplyVO[] clientFullVOs, InvestApplyVO[] originBills)
+	public AggInvestApplyVO[] pubsendapprovebills(
+			AggInvestApplyVO[] clientFullVOs, AggInvestApplyVO[] originBills)
 			throws BusinessException {
 		AceApplySendApproveBP bp = new AceApplySendApproveBP();
-		InvestApplyVO[] retvos = bp.sendApprove(clientFullVOs, originBills);
+		AggInvestApplyVO[] retvos = bp.sendApprove(clientFullVOs, originBills);
 		return retvos;
 	}
 
 	// 收回
-	public InvestApplyVO[] pubunsendapprovebills(
-			InvestApplyVO[] clientFullVOs, InvestApplyVO[] originBills)
+	public AggInvestApplyVO[] pubunsendapprovebills(
+			AggInvestApplyVO[] clientFullVOs, AggInvestApplyVO[] originBills)
 			throws BusinessException {
 		AceApplyUnSendApproveBP bp = new AceApplyUnSendApproveBP();
-		InvestApplyVO[] retvos = bp.unSend(clientFullVOs, originBills);
+		AggInvestApplyVO[] retvos = bp.unSend(clientFullVOs, originBills);
 		return retvos;
 	};
 
 	// 审批
-	public InvestApplyVO[] pubapprovebills(InvestApplyVO[] clientFullVOs,
-			InvestApplyVO[] originBills) throws BusinessException {
+	public AggInvestApplyVO[] pubapprovebills(AggInvestApplyVO[] clientFullVOs,
+			AggInvestApplyVO[] originBills) throws BusinessException {
 		for (int i = 0; clientFullVOs != null && i < clientFullVOs.length; i++) {
 			clientFullVOs[i].getParentVO().setStatus(VOStatus.UPDATED);
 		}
 		AceApplyApproveBP bp = new AceApplyApproveBP();
-		InvestApplyVO[] retvos = bp.approve(clientFullVOs, originBills);
+		AggInvestApplyVO[] retvos = bp.approve(clientFullVOs, originBills);
 		return retvos;
 	}
 
 	// 弃审
 
-	public InvestApplyVO[] pubunapprovebills(InvestApplyVO[] clientFullVOs,
-			InvestApplyVO[] originBills) throws BusinessException {
+	public AggInvestApplyVO[] pubunapprovebills(AggInvestApplyVO[] clientFullVOs,
+			AggInvestApplyVO[] originBills) throws BusinessException {
 		for (int i = 0; clientFullVOs != null && i < clientFullVOs.length; i++) {
 			clientFullVOs[i].getParentVO().setStatus(VOStatus.UPDATED);
 		}
 		AceApplyUnApproveBP bp = new AceApplyUnApproveBP();
-		InvestApplyVO[] retvos = bp.unApprove(clientFullVOs, originBills);
+		AggInvestApplyVO[] retvos = bp.unApprove(clientFullVOs, originBills);
 		return retvos;
 	}
 

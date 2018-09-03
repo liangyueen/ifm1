@@ -4,16 +4,16 @@ import nc.bs.ifm.income.plugin.bpplugin.InvestIncomePluginPoint;
 import nc.impl.pubapp.pattern.data.bill.template.InsertBPTemplate;
 import nc.impl.pubapp.pattern.rule.processer.AroundProcesser;
 import nc.impl.pubapp.pattern.rule.IRule;
-import nc.vo.ifm.income.InvestIncomeVO;
+import nc.vo.ifm.income.AggInvestIncomeVO;
 
 /**
  * 标准单据新增BP
  */
 public class AceInvestIncomeInsertBP {
 
-	public InvestIncomeVO[] insert(InvestIncomeVO[] bills) {
+	public AggInvestIncomeVO[] insert(AggInvestIncomeVO[] bills) {
 
-		InsertBPTemplate<InvestIncomeVO> bp = new InsertBPTemplate<InvestIncomeVO>(
+		InsertBPTemplate<AggInvestIncomeVO> bp = new InsertBPTemplate<AggInvestIncomeVO>(
 				InvestIncomePluginPoint.INSERT);
 		this.addBeforeRule(bp.getAroundProcesser());
 		this.addAfterRule(bp.getAroundProcesser());
@@ -26,9 +26,9 @@ public class AceInvestIncomeInsertBP {
 	 * 
 	 * @param processor
 	 */
-	private void addAfterRule(AroundProcesser<InvestIncomeVO> processor) {
+	private void addAfterRule(AroundProcesser<AggInvestIncomeVO> processor) {
 		// TODO 新增后规则
-		IRule<InvestIncomeVO> rule = null;
+		IRule<AggInvestIncomeVO> rule = null;
 		rule = new nc.bs.pubapp.pub.rule.BillCodeCheckRule();
 		((nc.bs.pubapp.pub.rule.BillCodeCheckRule) rule).setCbilltype("3643");
 		((nc.bs.pubapp.pub.rule.BillCodeCheckRule) rule)
@@ -44,9 +44,9 @@ public class AceInvestIncomeInsertBP {
 	 * 
 	 * @param processor
 	 */
-	private void addBeforeRule(AroundProcesser<InvestIncomeVO> processer) {
+	private void addBeforeRule(AroundProcesser<AggInvestIncomeVO> processer) {
 		// TODO 新增前规则
-		IRule<InvestIncomeVO> rule = null;
+		IRule<AggInvestIncomeVO> rule = null;
 		rule = new nc.bs.pubapp.pub.rule.FillInsertDataRule();
 		processer.addBeforeRule(rule);
 		rule = new nc.bs.pubapp.pub.rule.CreateBillCodeRule();

@@ -7,23 +7,23 @@ import nc.vo.pub.BusinessException;
 import nc.vo.pubapp.pattern.exception.ExceptionUtils;
 
 import nc.bs.ifm.income.plugin.bpplugin.InvestIncomePluginPoint;
-import nc.vo.ifm.income.InvestIncomeVO;
+import nc.vo.ifm.income.AggInvestIncomeVO;
 import nc.itf.ifm.IInvestIncomeMaintain;
 
-public class N_3643_DELETE extends AbstractPfAction<InvestIncomeVO> {
+public class N_3643_DELETE extends AbstractPfAction<AggInvestIncomeVO> {
 
 	@Override
-	protected CompareAroundProcesser<InvestIncomeVO> getCompareAroundProcesserWithRules(
+	protected CompareAroundProcesser<AggInvestIncomeVO> getCompareAroundProcesserWithRules(
 			Object userObj) {
-		CompareAroundProcesser<InvestIncomeVO> processor = new CompareAroundProcesser<InvestIncomeVO>(
+		CompareAroundProcesser<AggInvestIncomeVO> processor = new CompareAroundProcesser<AggInvestIncomeVO>(
 				InvestIncomePluginPoint.SCRIPT_DELETE);
 		// TODO 在此处添加前后规则
 		return processor;
 	}
 
 	@Override
-	protected InvestIncomeVO[] processBP(Object userObj,
-			InvestIncomeVO[] clientFullVOs, InvestIncomeVO[] originBills) {
+	protected AggInvestIncomeVO[] processBP(Object userObj,
+			AggInvestIncomeVO[] clientFullVOs, AggInvestIncomeVO[] originBills) {
 		IInvestIncomeMaintain operator = NCLocator.getInstance().lookup(
 				IInvestIncomeMaintain.class);
 		try {

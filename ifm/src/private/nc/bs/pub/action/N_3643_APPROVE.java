@@ -9,28 +9,28 @@ import nc.vo.pub.BusinessException;
 import nc.vo.pubapp.pattern.exception.ExceptionUtils;
 
 import nc.bs.ifm.income.plugin.bpplugin.InvestIncomePluginPoint;
-import nc.vo.ifm.income.InvestIncomeVO;
+import nc.vo.ifm.income.AggInvestIncomeVO;
 import nc.itf.ifm.IInvestIncomeMaintain;
 
-public class N_3643_APPROVE extends AbstractPfAction<InvestIncomeVO> {
+public class N_3643_APPROVE extends AbstractPfAction<AggInvestIncomeVO> {
 
 	public N_3643_APPROVE() {
 		super();
 	}
 
 	@Override
-	protected CompareAroundProcesser<InvestIncomeVO> getCompareAroundProcesserWithRules(
+	protected CompareAroundProcesser<AggInvestIncomeVO> getCompareAroundProcesserWithRules(
 			Object userObj) {
-		CompareAroundProcesser<InvestIncomeVO> processor = new CompareAroundProcesser<InvestIncomeVO>(
+		CompareAroundProcesser<AggInvestIncomeVO> processor = new CompareAroundProcesser<AggInvestIncomeVO>(
 				InvestIncomePluginPoint.APPROVE);
 		processor.addBeforeRule(new ApproveStatusCheckRule());
 		return processor;
 	}
 
 	@Override
-	protected InvestIncomeVO[] processBP(Object userObj,
-			InvestIncomeVO[] clientFullVOs, InvestIncomeVO[] originBills) {
-		InvestIncomeVO[] bills = null;
+	protected AggInvestIncomeVO[] processBP(Object userObj,
+			AggInvestIncomeVO[] clientFullVOs, AggInvestIncomeVO[] originBills) {
+		AggInvestIncomeVO[] bills = null;
 		IInvestIncomeMaintain operator = NCLocator.getInstance().lookup(
 				IInvestIncomeMaintain.class);
 		try {

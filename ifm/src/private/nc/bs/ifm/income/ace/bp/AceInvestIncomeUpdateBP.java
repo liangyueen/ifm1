@@ -4,7 +4,7 @@ import nc.bs.ifm.income.plugin.bpplugin.InvestIncomePluginPoint;
 import nc.impl.pubapp.pattern.data.bill.template.UpdateBPTemplate;
 import nc.impl.pubapp.pattern.rule.processer.CompareAroundProcesser;
 import nc.impl.pubapp.pattern.rule.IRule;
-import nc.vo.ifm.income.InvestIncomeVO;
+import nc.vo.ifm.income.AggInvestIncomeVO;
 
 /**
  * 修改保存的BP
@@ -12,10 +12,10 @@ import nc.vo.ifm.income.InvestIncomeVO;
  */
 public class AceInvestIncomeUpdateBP {
 
-	public InvestIncomeVO[] update(InvestIncomeVO[] bills,
-			InvestIncomeVO[] originBills) {
+	public AggInvestIncomeVO[] update(AggInvestIncomeVO[] bills,
+			AggInvestIncomeVO[] originBills) {
 		// 调用修改模板
-		UpdateBPTemplate<InvestIncomeVO> bp = new UpdateBPTemplate<InvestIncomeVO>(
+		UpdateBPTemplate<AggInvestIncomeVO> bp = new UpdateBPTemplate<AggInvestIncomeVO>(
 				InvestIncomePluginPoint.UPDATE);
 		// 执行前规则
 		this.addBeforeRule(bp.getAroundProcesser());
@@ -24,9 +24,9 @@ public class AceInvestIncomeUpdateBP {
 		return bp.update(bills, originBills);
 	}
 
-	private void addAfterRule(CompareAroundProcesser<InvestIncomeVO> processer) {
+	private void addAfterRule(CompareAroundProcesser<AggInvestIncomeVO> processer) {
 		// TODO 后规则
-		IRule<InvestIncomeVO> rule = null;
+		IRule<AggInvestIncomeVO> rule = null;
 		rule = new nc.bs.pubapp.pub.rule.BillCodeCheckRule();
 		((nc.bs.pubapp.pub.rule.BillCodeCheckRule) rule).setCbilltype("3643");
 		((nc.bs.pubapp.pub.rule.BillCodeCheckRule) rule)
@@ -38,12 +38,12 @@ public class AceInvestIncomeUpdateBP {
 
 	}
 
-	private void addBeforeRule(CompareAroundProcesser<InvestIncomeVO> processer) {
+	private void addBeforeRule(CompareAroundProcesser<AggInvestIncomeVO> processer) {
 		// TODO 前规则
-		IRule<InvestIncomeVO> rule = null;
+		IRule<AggInvestIncomeVO> rule = null;
 		rule = new nc.bs.pubapp.pub.rule.FillUpdateDataRule();
 		processer.addBeforeRule(rule);
-		nc.impl.pubapp.pattern.rule.ICompareRule<InvestIncomeVO> ruleCom = new nc.bs.pubapp.pub.rule.UpdateBillCodeRule();
+		nc.impl.pubapp.pattern.rule.ICompareRule<AggInvestIncomeVO> ruleCom = new nc.bs.pubapp.pub.rule.UpdateBillCodeRule();
 		((nc.bs.pubapp.pub.rule.UpdateBillCodeRule) ruleCom)
 				.setCbilltype("3643");
 		((nc.bs.pubapp.pub.rule.UpdateBillCodeRule) ruleCom)

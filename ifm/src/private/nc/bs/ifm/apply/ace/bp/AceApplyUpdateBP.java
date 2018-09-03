@@ -4,7 +4,7 @@ import nc.bs.ifm.apply.plugin.bpplugin.ApplyPluginPoint;
 import nc.impl.pubapp.pattern.data.bill.template.UpdateBPTemplate;
 import nc.impl.pubapp.pattern.rule.processer.CompareAroundProcesser;
 import nc.impl.pubapp.pattern.rule.IRule;
-import nc.vo.ifm.apply.InvestApplyVO;
+import nc.vo.ifm.apply.AggInvestApplyVO;
 
 /**
  * 修改保存的BP
@@ -12,10 +12,10 @@ import nc.vo.ifm.apply.InvestApplyVO;
  */
 public class AceApplyUpdateBP {
 
-	public InvestApplyVO[] update(InvestApplyVO[] bills,
-			InvestApplyVO[] originBills) {
+	public AggInvestApplyVO[] update(AggInvestApplyVO[] bills,
+			AggInvestApplyVO[] originBills) {
 		// 调用修改模板
-		UpdateBPTemplate<InvestApplyVO> bp = new UpdateBPTemplate<InvestApplyVO>(
+		UpdateBPTemplate<AggInvestApplyVO> bp = new UpdateBPTemplate<AggInvestApplyVO>(
 				ApplyPluginPoint.UPDATE);
 		// 执行前规则
 		this.addBeforeRule(bp.getAroundProcesser());
@@ -24,9 +24,9 @@ public class AceApplyUpdateBP {
 		return bp.update(bills, originBills);
 	}
 
-	private void addAfterRule(CompareAroundProcesser<InvestApplyVO> processer) {
+	private void addAfterRule(CompareAroundProcesser<AggInvestApplyVO> processer) {
 		// TODO 后规则
-		IRule<InvestApplyVO> rule = null;
+		IRule<AggInvestApplyVO> rule = null;
 		rule = new nc.bs.pubapp.pub.rule.BillCodeCheckRule();
 		((nc.bs.pubapp.pub.rule.BillCodeCheckRule) rule).setCbilltype("3641");
 		((nc.bs.pubapp.pub.rule.BillCodeCheckRule) rule)
@@ -38,12 +38,12 @@ public class AceApplyUpdateBP {
 
 	}
 
-	private void addBeforeRule(CompareAroundProcesser<InvestApplyVO> processer) {
+	private void addBeforeRule(CompareAroundProcesser<AggInvestApplyVO> processer) {
 		// TODO 前规则
-		IRule<InvestApplyVO> rule = null;
+		IRule<AggInvestApplyVO> rule = null;
 		rule = new nc.bs.pubapp.pub.rule.FillUpdateDataRule();
 		processer.addBeforeRule(rule);
-		nc.impl.pubapp.pattern.rule.ICompareRule<InvestApplyVO> ruleCom = new nc.bs.pubapp.pub.rule.UpdateBillCodeRule();
+		nc.impl.pubapp.pattern.rule.ICompareRule<AggInvestApplyVO> ruleCom = new nc.bs.pubapp.pub.rule.UpdateBillCodeRule();
 		((nc.bs.pubapp.pub.rule.UpdateBillCodeRule) ruleCom)
 				.setCbilltype("3641");
 		((nc.bs.pubapp.pub.rule.UpdateBillCodeRule) ruleCom)

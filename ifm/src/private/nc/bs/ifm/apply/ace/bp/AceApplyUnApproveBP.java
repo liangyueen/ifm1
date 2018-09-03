@@ -1,7 +1,7 @@
 package nc.bs.ifm.apply.ace.bp;
 
 import nc.impl.pubapp.pattern.data.bill.BillUpdate;
-import nc.vo.ifm.apply.InvestApplyVO;
+import nc.vo.ifm.apply.AggInvestApplyVO;
 import nc.vo.pub.VOStatus;
 
 /**
@@ -9,13 +9,13 @@ import nc.vo.pub.VOStatus;
  */
 public class AceApplyUnApproveBP {
 
-	public InvestApplyVO[] unApprove(InvestApplyVO[] clientBills,
-			InvestApplyVO[] originBills) {
-		for (InvestApplyVO clientBill : clientBills) {
+	public AggInvestApplyVO[] unApprove(AggInvestApplyVO[] clientBills,
+			AggInvestApplyVO[] originBills) {
+		for (AggInvestApplyVO clientBill : clientBills) {
 			clientBill.getParentVO().setStatus(VOStatus.UPDATED);
 		}
-		BillUpdate<InvestApplyVO> update = new BillUpdate<InvestApplyVO>();
-		InvestApplyVO[] returnVos = update.update(clientBills, originBills);
+		BillUpdate<AggInvestApplyVO> update = new BillUpdate<AggInvestApplyVO>();
+		AggInvestApplyVO[] returnVos = update.update(clientBills, originBills);
 		return returnVos;
 	}
 }

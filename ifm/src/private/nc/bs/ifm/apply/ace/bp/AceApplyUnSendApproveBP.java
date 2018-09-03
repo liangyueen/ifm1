@@ -1,7 +1,7 @@
 package nc.bs.ifm.apply.ace.bp;
 
 import nc.impl.pubapp.pattern.data.bill.BillUpdate;
-import nc.vo.ifm.apply.InvestApplyVO;
+import nc.vo.ifm.apply.AggInvestApplyVO;
 import nc.vo.pub.VOStatus;
 import nc.vo.pub.pf.BillStatusEnum;
 
@@ -10,17 +10,17 @@ import nc.vo.pub.pf.BillStatusEnum;
  */
 public class AceApplyUnSendApproveBP {
 
-	public InvestApplyVO[] unSend(InvestApplyVO[] clientBills,
-			InvestApplyVO[] originBills) {
+	public AggInvestApplyVO[] unSend(AggInvestApplyVO[] clientBills,
+			AggInvestApplyVO[] originBills) {
 		// 把VO持久化到数据库中
 		this.setHeadVOStatus(clientBills);
-		BillUpdate<InvestApplyVO> update = new BillUpdate<InvestApplyVO>();
-		InvestApplyVO[] returnVos = update.update(clientBills, originBills);
+		BillUpdate<AggInvestApplyVO> update = new BillUpdate<AggInvestApplyVO>();
+		AggInvestApplyVO[] returnVos = update.update(clientBills, originBills);
 		return returnVos;
 	}
 
-	private void setHeadVOStatus(InvestApplyVO[] clientBills) {
-		for (InvestApplyVO clientBill : clientBills) {
+	private void setHeadVOStatus(AggInvestApplyVO[] clientBills) {
+		for (AggInvestApplyVO clientBill : clientBills) {
 			clientBill.getParentVO().setAttributeValue("${vmObject.billstatus}",
 					BillStatusEnum.FREE.value());
 			clientBill.getParentVO().setStatus(VOStatus.UPDATED);

@@ -9,27 +9,27 @@ import nc.vo.pub.BusinessException;
 import nc.vo.pubapp.pattern.exception.ExceptionUtils;
 
 import nc.bs.ifm.income.plugin.bpplugin.InvestIncomePluginPoint;
-import nc.vo.ifm.income.InvestIncomeVO;
+import nc.vo.ifm.income.AggInvestIncomeVO;
 import nc.itf.ifm.IInvestIncomeMaintain;
 
-public class N_3643_SAVE extends AbstractPfAction<InvestIncomeVO> {
+public class N_3643_SAVE extends AbstractPfAction<AggInvestIncomeVO> {
 
-	protected CompareAroundProcesser<InvestIncomeVO> getCompareAroundProcesserWithRules(
+	protected CompareAroundProcesser<AggInvestIncomeVO> getCompareAroundProcesserWithRules(
 			Object userObj) {
-		CompareAroundProcesser<InvestIncomeVO> processor = new CompareAroundProcesser<InvestIncomeVO>(
+		CompareAroundProcesser<AggInvestIncomeVO> processor = new CompareAroundProcesser<AggInvestIncomeVO>(
 				InvestIncomePluginPoint.SEND_APPROVE);
 		// TODO 在此处添加审核前后规则
-		IRule<InvestIncomeVO> rule = new CommitStatusCheckRule();
+		IRule<AggInvestIncomeVO> rule = new CommitStatusCheckRule();
 		processor.addBeforeRule(rule);
 		return processor;
 	}
 
 	@Override
-	protected InvestIncomeVO[] processBP(Object userObj,
-			InvestIncomeVO[] clientFullVOs, InvestIncomeVO[] originBills) {
+	protected AggInvestIncomeVO[] processBP(Object userObj,
+			AggInvestIncomeVO[] clientFullVOs, AggInvestIncomeVO[] originBills) {
 		IInvestIncomeMaintain operator = NCLocator.getInstance().lookup(
 				IInvestIncomeMaintain.class);
-		InvestIncomeVO[] bills = null;
+		AggInvestIncomeVO[] bills = null;
 		try {
 			bills = operator.save(clientFullVOs, originBills);
 		} catch (BusinessException e) {
