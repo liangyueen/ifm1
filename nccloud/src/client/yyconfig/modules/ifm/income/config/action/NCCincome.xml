@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actions>
+	
+	<action>
+	  <name>ifm.income.save</name>
+	  <label>投资收益保存</label>
+	  <clazz>nccloud.web.ifm.income.action.IncomeSaveAction</clazz>
+	</action>
+	<action>
+	  <name>ifm.income.query</name>
+	  <label>投资收益查询</label>
+	  <clazz>nccloud.web.ifm.income.action.IncomeQueryAction</clazz>
+	</action>
+	<action>
+	  <name>ifm.income.cardquery</name>
+	  <label>投资收益查询</label>
+	  <clazz>nccloud.web.ifm.income.action.IncomeCardQueryAction</clazz>
+	</action>
+	<action>
+	  <name>ifm.income.querypage</name>
+	  <label>投资收益查询分页</label>
+	  <clazz>nccloud.web.ifm.income.action.IncomeQueryPageAction</clazz>
+	</action>
+	<action>
+	  <name>ifm.income.submit</name>
+	  <label>投资收益提交</label>
+	  <clazz>nccloud.web.ifm.income.action.IncomeSubmitAction</clazz>
+	</action>
+	<action>
+	  <name>ifm.income.delete</name>
+	  <label>投资收益删除</label>
+	  <clazz>nccloud.web.ifm.income.action.IncomeDeleteAction</clazz>
+	</action>
+	<action>
+	  <name>ifm.refer.IFMIncomeGridRef</name>
+	  <label>投资收益参照</label>
+	  <clazz>nccloud.web.ifm.ref.action.IFMIncomeGridRefAction</clazz>
+	</action>
+</actions>
