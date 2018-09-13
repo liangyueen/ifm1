@@ -50,8 +50,7 @@ public abstract class CommonListQueryAction<T extends AbstractBill> extends
 		// 后续操作
 		doAfter();
 		// 构建返回前端结果
-		Map<String, Object> result = this.buidFontResult(allPks, resultVOs,
-				queryParam);
+		Map<String, Object> result = this.buidFontResult(allPks, resultVOs,queryParam);
 		// 处理精度
 		processDigit();
 		return result;

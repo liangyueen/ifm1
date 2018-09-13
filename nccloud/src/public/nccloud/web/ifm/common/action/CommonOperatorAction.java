@@ -1,5 +1,7 @@
 package nccloud.web.ifm.common.action;
 
+import nc.vo.ifm.OperatorResult;
+import nc.vo.ifm.constants.TMIFMConst;
 import nc.vo.pubapp.pattern.model.entity.bill.AbstractBill;
 import nccloud.framework.core.exception.ExceptionUtils;
 import nccloud.framework.web.container.IRequest;
@@ -7,7 +9,6 @@ import nccloud.framework.web.convert.translate.Translator;
 import nccloud.framework.web.processor.template.ExtBillCardConvertProcessor;
 import nccloud.framework.web.ui.pattern.extbillcard.ExtBillCard;
 import nccloud.ifm.vo.OperatorParam;
-import nccloud.ifm.vo.OperatorResult;
 
 /**
  * 公共操作类，删除、提交、取消提交，前端传pk，后端先根据pk查询单据，再对查询结果做具体操作
@@ -26,7 +27,7 @@ public abstract class CommonOperatorAction<T extends AbstractBill> extends
 
 	private OperatorResult result;
 
-	private ExtBillCard[] billCards;
+	private ExtBillCard billCard;
 
 	@Override
 	public Object doAction(IRequest request) {
@@ -41,7 +42,7 @@ public abstract class CommonOperatorAction<T extends AbstractBill> extends
 		// 后续操作
 		doAfter();
 		// 卡片页面需要返回操作后的数据到前端，列表界面操作后，前端重新调用列表查询请求，无需返回操作后数据，所以此处按照卡片处理返回结果
-		billCards = this.buildFontResult(operaParam, resultVOs);
+		billCard = this.buildFontResult(operaParam, resultVOs);
 		// 精度处理
 		processDigit();
 		// 结果处理
@@ -95,23 +96,19 @@ public abstract class CommonOperatorAction<T extends AbstractBill> extends
 	 * @param resultVOs
 	 * @return
 	 */
-	protected ExtBillCard[] buildFontResult(OperatorParam operaParam,
+	protected ExtBillCard buildFontResult(OperatorParam operaParam,
 			T[] resultVOs) {
 		// 把结果进行封装返回
 		ExtBillCardConvertProcessor processor = new ExtBillCardConvertProcessor();
 		ExtBillCard billCard = new ExtBillCard();
 		if (resultVOs == null || resultVOs.length == 0) {
-			return new ExtBillCard[]{billCard};
+			return billCard;
 		}
-		ExtBillCard[] billCards = new ExtBillCard[resultVOs.length];
-		for (int i=0;i<resultVOs.length;i++) {
-			billCard = processor.convert(operaParam.getPageCode(), resultVOs[i]);
-			// 翻译
-			Translator translator = new Translator();
-			translator.translate(billCard);
-			billCards[i]=billCard;
-		}
-		return billCards;
+		billCard = processor.convert(operaParam.getPageCode(), resultVOs[0]);
+		// 翻译
+		Translator translator = new Translator();
+		translator.translate(billCard);
+		return billCard;
 	}
 
 	@Override
@@ -143,7 +140,10 @@ public abstract class CommonOperatorAction<T extends AbstractBill> extends
 		String[] error = this.getErrormessage();
 		result = OperatorResult.buildResult(operaVOs == null ? 0
 				: operaVOs.length, resultVOs == null ? 0 : resultVOs.length);
-		result.setBillCards(billCards);
+		// 删除操作直接返回null
+		if (!TMIFMConst.CONST_ACTION_DELETE.equals(this.getActionCode())) {
+			result.setBillCard(billCard);
+		}
 		result.setErrormessages(error);
 	}
 

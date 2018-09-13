@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding='gb2312'?>
+<module name="ifm">
+  <public>
+	<component remote="true" singleton="true"  tx="CMT">
+	  <interface>nc.itf.ifm.IInvestRedeemMaintain</interface>
+	  <implementation>nc.impl.ifm.InvestRedeemMaintainImpl</implementation>
+	</component>
+	
+	<component remote="true" singleton="true"  tx="CMT">
+	  <interface>nc.itf.ifm.IInvestRedeemQueryService</interface>
+	  <implementation>nc.impl.ifm.InvestRedeemQueryServiceImpl</implementation>
+	</component>
+  </public> 
+</module> 

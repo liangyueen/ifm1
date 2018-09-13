@@ -2,16 +2,17 @@ package nccloud.web.ifm.common.action;
 
 import java.util.Map;
 
+import nc.vo.ifm.OperatorParam;
 import nc.vo.pubapp.pattern.model.entity.bill.AbstractBill;
 import nccloud.framework.core.json.IJson;
 import nccloud.framework.web.container.IRequest;
 import nccloud.framework.web.json.JsonFactory;
 import nc.vo.pub.BusinessException;
+import nccloud.web.common.bean.CardOperatorParam;
 import nc.lightapp.pubapp.web.template.ref.util.StringUtils;
 import nccloud.pubitf.riart.pflow.CloudPFlowContext;
 import nc.bs.logging.Logger;
 import nccloud.framework.service.ServiceLocator;
-import nccloud.ifm.vo.OperatorParam;
 import nccloud.pubitf.riart.pflow.ICloudScriptPFlowService;
 import nc.vo.tmpub.util.ArrayUtil;
 /**

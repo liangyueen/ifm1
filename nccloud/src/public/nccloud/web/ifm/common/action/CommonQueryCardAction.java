@@ -1,11 +1,12 @@
 package nccloud.web.ifm.common.action;
 
+import nc.vo.ifm.OperatorParam;
 import nc.vo.pubapp.pattern.model.entity.bill.AbstractBill;
 import nccloud.framework.web.container.IRequest;
 import nccloud.framework.web.convert.translate.Translator;
 import nccloud.framework.web.processor.template.ExtBillCardConvertProcessor;
 import nccloud.framework.web.ui.pattern.extbillcard.ExtBillCard;
-import nccloud.ifm.vo.OperatorParam;
+import nccloud.web.common.bean.CardOperatorParam;
 
 /**
  * 卡片页面查询
@@ -39,6 +40,25 @@ public abstract class CommonQueryCardAction<T extends AbstractBill> extends Abst
 	 */
 	protected abstract T[] queryBillsByPk(String pk);
 	
+	/**
+	 * 构建前端返回结果
+	 * @param operaParam
+	 * @param resultVOs
+	 * @return
+	 */
+	protected ExtBillCard buildFontResult(CardOperatorParam operaParam, T[] resultVOs){
+		// 把结果进行封装返回
+		ExtBillCardConvertProcessor processor = new ExtBillCardConvertProcessor();
+		ExtBillCard billCard = new ExtBillCard();
+		if(resultVOs == null || resultVOs.length == 0){
+			return billCard;
+		}
+		billCard = processor.convert(operaParam.getPageCode(), resultVOs[0]);
+		//翻译
+		Translator translator = new Translator();
+		translator.translate(billCard);
+		return billCard;
+	}
 	/**
 	 * 构建前端返回结果
 	 * @param operaParam

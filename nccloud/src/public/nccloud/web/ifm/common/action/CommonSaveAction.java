@@ -1,20 +1,15 @@
 package nccloud.web.ifm.common.action;
 
 
-import nc.bs.logging.Logger;
-import nc.lightapp.pubapp.web.template.ref.util.StringUtils;
-import nc.vo.pub.BusinessException;
 import nc.vo.pubapp.pattern.model.entity.bill.AbstractBill;
-import nc.vo.tmpub.util.ArrayUtil;
-import nccloud.framework.service.ServiceLocator;
 import nccloud.framework.web.container.IRequest;
 import nccloud.framework.web.convert.translate.Translator;
 import nccloud.framework.web.processor.template.BillCardConvertProcessor;
+import nccloud.framework.web.processor.template.ExtBillCardConvertProcessor;
 import nccloud.framework.web.ui.pattern.billcard.BillCard;
 import nccloud.framework.web.ui.pattern.billcard.BillCardOperator;
 import nccloud.framework.web.ui.pattern.extbillcard.ExtBillCard;
-import nccloud.pubitf.riart.pflow.CloudPFlowContext;
-import nccloud.pubitf.riart.pflow.ICloudScriptPFlowService;
+import nccloud.framework.web.ui.pattern.extbillcard.ExtBillCardOperator;
 
 /**
  * 单据保存
@@ -92,42 +87,6 @@ public abstract class CommonSaveAction<T extends AbstractBill> extends AbstractP
 	@Override
 	protected void doAfter() {
 		
-	}
-	
-	/**
-	 * 调用动作脚本（单笔数据）
-	 * 
-	 * @param actionCode
-	 *            动作编码
-	 * @param billType
-	 *            单据类型
-	 * @param aggVO
-	 *            业务单据
-	 * @return
-	 * @throws BusinessException
-	 */
-	protected Object callActionScript(String actionCode, String billType,
-			T[] aggVOs) throws BusinessException {
-		if (StringUtils.isEmpty(actionCode) || aggVOs == null
-				|| aggVOs.length == 0) {
-			throw new BusinessException("调用动作脚本时动作名称和处理数据不能为空！");
-		}
-		CloudPFlowContext context = new CloudPFlowContext();
-		context.setActionName(actionCode);
-		context.setBillType(billType);
-		context.setBillVos(aggVOs);
-		Logger.debug("开始调用动作脚本 ActionName[" + actionCode + "] BillType["
-				+ billType + "]...");
-		ICloudScriptPFlowService service = ServiceLocator
-				.find(ICloudScriptPFlowService.class);
-		Object[] result = service.exeScriptPFlow(context);
-		Logger.debug("调用动作脚本 ActionName[" + actionCode + "] BillType["
-				+ billType + "]结束");
-		if (ArrayUtil.isNull(result)) {
-			return null;
-		} else {
-			return result[0];
-		}
 	}
 	
 	/**
