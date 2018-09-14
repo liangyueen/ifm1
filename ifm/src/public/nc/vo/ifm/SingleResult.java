@@ -1,5 +1,7 @@
 package nc.vo.ifm;
 
+import nccloud.ifm.vo.OperatorResult;
+
 
 
 /**

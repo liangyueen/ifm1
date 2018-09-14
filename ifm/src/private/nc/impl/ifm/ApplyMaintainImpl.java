@@ -1,9 +1,9 @@
 package nc.impl.ifm;
 
 import nc.impl.pub.ace.AceApplyPubServiceImpl;
+import nc.itf.ifm.IApplyMaintain;
 import nc.ui.querytemplate.querytree.IQueryScheme;
 import nc.vo.ifm.apply.AggInvestApplyVO;
-import nc.itf.ifm.IApplyMaintain;
 import nc.vo.pub.BusinessException;
 
 public class ApplyMaintainImpl extends AceApplyPubServiceImpl
@@ -56,5 +56,5 @@ public class ApplyMaintainImpl extends AceApplyPubServiceImpl
 			AggInvestApplyVO[] originBills) throws BusinessException {
 		return super.pubunapprovebills(clientFullVOs, originBills);
 	}
-
+	
 }

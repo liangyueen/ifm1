@@ -5,35 +5,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 import nc.itf.ifm.IIFMApplyQueryService;
-import nc.itf.ifm.IInvestRedeemQueryService;
-import nc.vo.ifm.OperatorParam;
 import nc.vo.ifm.RedeemStatusEnum;
 import nc.vo.ifm.apply.AggInvestApplyVO;
-import nc.vo.ifm.apply.InvestApplyVO;
 import nc.vo.ifm.redeem.AggInvestRedeemVO;
 import nc.vo.ifm.redeem.InvestRedeemVO;
 import nc.vo.pub.lang.UFDate;
 import nc.vo.pub.pf.BillStatusEnum;
-import nc.vo.pubapp.pattern.model.entity.bill.AbstractBill;
 import nccloud.framework.core.exception.ExceptionUtils;
 import nccloud.framework.core.json.IJson;
 import nccloud.framework.service.ServiceLocator;
 import nccloud.framework.web.action.itf.ICommonAction;
 import nccloud.framework.web.container.IRequest;
 import nccloud.framework.web.container.SessionContext;
-import nccloud.framework.web.convert.translate.Translator;
 import nccloud.framework.web.json.JsonFactory;
 import nccloud.framework.web.processor.template.BillCardConvertProcessor;
-import nccloud.framework.web.processor.template.ExtBillCardConvertProcessor;
 import nccloud.framework.web.ui.pattern.billcard.BillCard;
-import nccloud.framework.web.ui.pattern.billcard.BillCardFormulaHandler;
-import nccloud.web.common.bean.CardOperatorParam;
-import nccloud.web.ifm.common.action.CommonQueryCardAction;
-import nccloud.web.ifm.util.RedeemUtil;
-import nccloud.framework.web.ui.pattern.billcard.CardHeadAfterEditEvent;
-import nccloud.framework.web.ui.pattern.extbillcard.ExtBillCard;
-import nccloud.framework.web.ui.pattern.form.Form;
-import nccloud.framework.web.ui.pattern.grid.Grid;
 public class RedeemInitAction  implements ICommonAction {
 
 	@Override

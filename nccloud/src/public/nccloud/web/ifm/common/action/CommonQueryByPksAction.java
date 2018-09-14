@@ -3,7 +3,6 @@ package nccloud.web.ifm.common.action;
 import java.util.HashMap;
 import java.util.Map;
 
-import nc.vo.ifm.OperatorParam;
 import nc.vo.pubapp.pattern.model.entity.bill.AbstractBill;
 import nc.vo.pubapp.pattern.model.entity.bill.IBill;
 import nc.vo.scmpub.page.PageQueryVO;
@@ -11,7 +10,7 @@ import nccloud.framework.web.container.IRequest;
 import nccloud.framework.web.ui.model.GridModel;
 import nccloud.framework.web.ui.pattern.grid.Grid;
 import nccloud.framework.web.ui.pattern.grid.GridOperator;
-import nccloud.web.common.bean.CardOperatorParam;
+import nccloud.ifm.vo.OperatorParam;
 
 /**
  * 列表翻页查询， 前端直接将pks传到后台

@@ -222,5 +222,4 @@ public class QueryUtil {
 
 		return fetchPKsByCondtion(clazz, processor.getFinalFromWhere());
 	}
-
 }

@@ -1,6 +1,5 @@
 package nccloud.web.ifm.common.action;
 
-import nc.vo.ifm.OperatorResult;
 import nc.vo.ifm.constants.TMIFMConst;
 import nc.vo.pubapp.pattern.model.entity.bill.AbstractBill;
 import nccloud.framework.core.exception.ExceptionUtils;
@@ -9,6 +8,7 @@ import nccloud.framework.web.convert.translate.Translator;
 import nccloud.framework.web.processor.template.ExtBillCardConvertProcessor;
 import nccloud.framework.web.ui.pattern.extbillcard.ExtBillCard;
 import nccloud.ifm.vo.OperatorParam;
+import nccloud.ifm.vo.OperatorResult;
 
 /**
  * 公共操作类，删除、提交、取消提交，前端传pk，后端先根据pk查询单据，再对查询结果做具体操作

@@ -1,10 +1,6 @@
 package nc.bs.ifm.redeem.ace.bp;
 
-
-import nc.bs.ifm.pub.rule.CCCFillInsertDataRule;
 import nc.bs.ifm.redeem.plugin.bpplugin.InvestRedeemPluginPoint;
-import nc.bs.pub.rule.CCBillOrgVRule;
-import nc.bs.pubapp.pub.rule.FieldLengthCheckRule;
 import nc.impl.pubapp.pattern.data.bill.template.InsertBPTemplate;
 import nc.impl.pubapp.pattern.rule.processer.AroundProcesser;
 import nc.impl.pubapp.pattern.rule.IRule;
@@ -61,21 +57,5 @@ public class AceInvestRedeemInsertBP {
 				.setGroupItem("pk_group");
 		((nc.bs.pubapp.pub.rule.CreateBillCodeRule) rule).setOrgItem("pk_org");
 		processer.addBeforeRule(rule);
-		/*	// 补充默认值的规则
-		IRule<AggInvestRedeemVO> fillRule = new CCCFillInsertDataRule();
-		processer.addBeforeRule(fillRule);
-
-		// 单据字段长度检查规则
-		IRule<AggInvestRedeemVO> lengthCheckRule = new FieldLengthCheckRule();
-		processer.addBeforeRule(lengthCheckRule);
-
-		// 单据号规则验证
-		IRule<AggInvestRedeemVO> billCodeDuplicateRule = new ProtocolBillCodeCheckRule();
-		processer.addBeforeRule(billCodeDuplicateRule);
-
-		// 组织多版本
-		IRule<AggInvestRedeemVO> orgRule = new CCBillOrgVRule();
-		processer.addBeforeRule(orgRule);
-		processer.addBeforeRule(rule);*/
 	}
 }

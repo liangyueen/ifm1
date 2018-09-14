@@ -1,11 +1,11 @@
 package nccloud.web.ifm.common.action;
 
-import nc.vo.ifm.OperatorParam;
 import nc.vo.pubapp.pattern.model.entity.bill.AbstractBill;
 import nccloud.framework.web.container.IRequest;
 import nccloud.framework.web.convert.translate.Translator;
 import nccloud.framework.web.processor.template.ExtBillCardConvertProcessor;
 import nccloud.framework.web.ui.pattern.extbillcard.ExtBillCard;
+import nccloud.ifm.vo.OperatorParam;
 import nccloud.web.common.bean.CardOperatorParam;
 
 /**
