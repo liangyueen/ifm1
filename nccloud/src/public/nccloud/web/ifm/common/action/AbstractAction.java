@@ -1,5 +1,6 @@
 package nccloud.web.ifm.common.action;
 
+
 import nc.vo.pubapp.pattern.model.entity.bill.AbstractBill;
 import nccloud.framework.web.action.itf.ICommonAction;
 

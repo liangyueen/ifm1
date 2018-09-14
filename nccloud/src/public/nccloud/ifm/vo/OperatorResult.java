@@ -27,6 +27,16 @@ public class OperatorResult {
 	 * 返回数据
 	 */
 	private ExtBillCard[] billCards;
+	
+	private ExtBillCard billCard;
+	public ExtBillCard getBillCard() {
+		return billCard;
+	}
+
+	public void setBillCard(ExtBillCard billCard) {
+		this.billCard = billCard;
+	}
+
 	/**
 	 * 返回错误信息
 	 */
