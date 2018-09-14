@@ -1,9 +1,11 @@
 package nc.bs.ifm.income.ace.bp;
 
 import nc.bs.ifm.income.plugin.bpplugin.InvestIncomePluginPoint;
+import nc.bs.pub.rule.CCBillOrgVRule;
+import nc.bs.pubapp.pub.rule.FieldLengthCheckRule;
 import nc.impl.pubapp.pattern.data.bill.template.InsertBPTemplate;
-import nc.impl.pubapp.pattern.rule.processer.AroundProcesser;
 import nc.impl.pubapp.pattern.rule.IRule;
+import nc.impl.pubapp.pattern.rule.processer.AroundProcesser;
 import nc.vo.ifm.income.AggInvestIncomeVO;
 
 /**
@@ -57,5 +59,15 @@ public class AceInvestIncomeInsertBP {
 				.setGroupItem("pk_group");
 		((nc.bs.pubapp.pub.rule.CreateBillCodeRule) rule).setOrgItem("pk_org");
 		processer.addBeforeRule(rule);
+		
+//		// 单据字段长度检查规则
+//		IRule<AggInvestIncomeVO> lengthCheckRule = new FieldLengthCheckRule();
+//		processer.addBeforeRule(lengthCheckRule);
+//
+//
+//		// 组织多版本
+//		IRule<AggInvestIncomeVO> orgRule = new CCBillOrgVRule();
+//		processer.addBeforeRule(orgRule);
+//		
 	}
 }

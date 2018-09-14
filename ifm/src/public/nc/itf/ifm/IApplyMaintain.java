@@ -29,5 +29,4 @@ public interface IApplyMaintain {
 
 	public AggInvestApplyVO[] unapprove(AggInvestApplyVO[] clientFullVOs,
 			AggInvestApplyVO[] originBills) throws BusinessException;
-	
 }

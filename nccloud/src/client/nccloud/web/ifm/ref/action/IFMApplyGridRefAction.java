@@ -2,7 +2,7 @@ package nccloud.web.ifm.ref.action;
 
 import java.util.Map;
 
-import nc.vo.ifm.income.InvestIncomeVO;
+import nc.vo.ifm.apply.InvestApplyVO;
 import nc.vo.pf.pub.util.SQLUtil;
 import nc.vo.tmpub.util.StringUtil;
 import nccloud.framework.web.processor.refgrid.RefQueryInfo;
@@ -12,72 +12,67 @@ import nccloud.web.refer.DefaultGridRefAction;
 
 /**
  * 
- * 【投资理财投资收益】：参照
+ * 【投资收益】：参照
  * 
- * @author liglt
+ * @author shixin6
  * @version 1.0.0
  * @date 2018-9-9
  * 
  */
-public class IFMIncomeGridRefAction extends DefaultGridRefAction {
+public class IFMApplyGridRefAction extends DefaultGridRefAction {
 
 	@Override
 	public RefMeta getRefMeta(RefQueryInfo refQueryInfo) {
 		RefMeta refMeta = new RefMeta();
-		refMeta.setCodeField(InvestIncomeVO.PRODUCTCODE);
-		refMeta.setNameField(InvestIncomeVO.PRODUCTNAME);
-		refMeta.setPkField(InvestIncomeVO.PK_INCOME);
+		refMeta.setCodeField(InvestApplyVO.PRODUCTCODE);
+		refMeta.setNameField(InvestApplyVO.PRODUCTNAME);
+		refMeta.setPkField(InvestApplyVO.PK_APPLY);
 		refMeta.setExtraFields(getFieldCode());
 
 		StringBuffer sql = new StringBuffer();
 		sql.append("((");
-		sql.append(" select ifm_income.pk_income, ");
-		sql.append(" ifm_income.vbillno, ");
-		
-		// 结束日期
-		sql.append(" substr(ifm_income.enddate,0,10) as enddate, ");
-		sql.append(" ifm_income.dr as dr ");
-		sql.append(" from ifm_income ifm_income");
-		sql.append(" INNER JOIN bd_currtype on bd_currtype.pk_currtype = ifm_income.pk_currtype ");
-		sql.append(")　ifm_income)");
+		// 协议编号
+		sql.append(" select a.pk_apply as PK_APPLY ,a.pk_org as PK_ORG, a.productcode as PRODUCTCODE,a.productname as  PRODUCTNAME,a.enddate as ENDDATE from  ifm_apply a ");
+		sql.append(")　ifm_apply)");
 		refMeta.setTableName(sql.toString());
 		return refMeta;
 	}
 
 	private String[] getFieldCode() {
-		return new String[] { InvestIncomeVO.PRODUCTCODE,
-				InvestIncomeVO.PRODUCTNAME,InvestIncomeVO.ENDDATE, };
+		return new String[] {InvestApplyVO.PK_ORG,InvestApplyVO.PK_ORG, InvestApplyVO.PRODUCTCODE,
+				InvestApplyVO.PRODUCTNAME, InvestApplyVO.ENDDATE,
+				 };
 	}
 
 	@Override
 	public String getExtraSql(RefQueryInfo refQueryInfo, RefMeta refMeta) {
 		String pk_org = refQueryInfo.getQueryCondition().get(
-				InvestIncomeVO.PK_ORG);
+				InvestApplyVO.PK_ORG);
 		String productcode = refQueryInfo.getQueryCondition().get(
-				InvestIncomeVO.PRODUCTCODE);
+				InvestApplyVO.PRODUCTCODE);
 		String productname = refQueryInfo.getQueryCondition().get(
-				InvestIncomeVO.PRODUCTNAME);
+				InvestApplyVO.PRODUCTNAME);
 		String enddate = refQueryInfo.getQueryCondition().get(
-				InvestIncomeVO.ENDDATE);
+				InvestApplyVO.ENDDATE);
 		
 
-		StringBuffer wheresql = new StringBuffer(
-				" and isnull(ifm_income.dr, 0)=0 ");
+		StringBuffer wheresql = new StringBuffer("");
 		// 组织
 		if (!StringUtil.isNull(pk_org)) {
 			String[] pk_orgs = pk_org.split(",");
 			if (pk_orgs != null && pk_orgs.length > 0) {
 				wheresql.append(" and ").append(
-						SQLUtil.buildSqlForIn("ifm_income.pk_org",
+						SQLUtil.buildSqlForIn("ifm_apply.pk_org",
 								pk_orgs));
 			}
 		}
+		
 		// 产品编码
 		if (!StringUtil.isNull(productcode)) {
 			String[] productcodes = productcode.split(",");
 			if (productcodes != null && productcodes.length > 0) {
 				wheresql.append(" and ").append(
-						SQLUtil.buildSqlForIn("ifm_income.productcodes",
+						SQLUtil.buildSqlForIn("ifm_apply.productcodes",
 								productcodes));
 			}
 		}
@@ -87,15 +82,16 @@ public class IFMIncomeGridRefAction extends DefaultGridRefAction {
 			if (productnames != null && productnames.length > 0) {
 				wheresql.append(" and ").append(
 						SQLUtil.buildSqlForIn(
-								"ifm_income.productnames",
+								"ifm_apply.productnames",
 								productnames));
 			}
 		}
 		// 结束日期
 		if (!StringUtil.isNull(enddate)) {
-			wheresql.append(" and ifm_income.enddate <= '")
+			wheresql.append(" and ifm_apply.enddate <= '")
 					.append(enddate).append("' ");
 		}
+		
 		return wheresql.toString();
 	}
 

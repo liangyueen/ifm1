@@ -17,12 +17,29 @@
       <value>${ufdate.constructor_args.2}</value> 
     </constructor-arg> 
   </bean>  
-  <bean class="nc.vo.pub.lang.UFDateTime" id="ufdatetime">
+  <bean class="nc.vo.pub.lang.UFDateTime" id="ufdatetime"> 
+    <constructor-arg index="0"> 
+      <value>${ufdatetime.constructor_args.0}</value> 
+    </constructor-arg>  
+    <constructor-arg index="1"> 
+      <null/> 
+    </constructor-arg> 
+  </bean>  
+  <bean class="nc.vo.pub.lang.UFDouble" id="ufdouble"> 
+    <constructor-arg index="0"> 
+      <list/> 
+    </constructor-arg>  
+    <constructor-arg index="1"> 
+      <value>${ufdouble.constructor_args.1}</value> 
+    </constructor-arg>  
+    <constructor-arg index="2"> 
+      <value>${ufdouble.constructor_args.2}</value> 
+    </constructor-arg>  
+    <property name="trimZero" value="${ufdouble.trimZero}"/> 
+  </bean>  
+  <bean class="nc.vo.pub.lang.UFBoolean" id="ufboolean">
     <constructor-arg index="0">
-      <value>${ufdatetime.constructor_args.0}</value>
-    </constructor-arg>
-    <constructor-arg index="1">
-      <null/>
+      <value>${ufboolean.constructor_args.0}</value>
     </constructor-arg>
   </bean>
 </beans>

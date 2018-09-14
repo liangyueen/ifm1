@@ -12,6 +12,7 @@ import nc.vo.pub.SuperVO;
 import nc.vo.pubapp.pattern.model.entity.bill.AbstractBill;
 import nc.vo.pubapp.pattern.model.entity.bill.IBill;
 import nc.vo.scmpub.page.PageQueryVO;
+import nccloud.dto.baseapp.querytree.dataformat.Condition;
 import nccloud.dto.baseapp.querytree.dataformat.QueryTreeFormatVO;
 import nccloud.framework.core.exception.ExceptionUtils;
 import nccloud.framework.core.json.IJson;
@@ -39,7 +40,8 @@ public abstract class CommonListQueryAction<T extends AbstractBill> extends
 		// 获取前端请求参数
 		//Object queryParam = super.getRequestParam(request)
 		QueryTreeFormatVO queryParam = (QueryTreeFormatVO) this.getRequestParam(request);
-		
+		// 查询分组数据
+		Map<String, String> groupData = queryGroupData(queryParam);
 		// 前操作
 		doBefore();
 		List<String> allPks = this.qryAllPks(queryParam);
@@ -50,12 +52,22 @@ public abstract class CommonListQueryAction<T extends AbstractBill> extends
 		// 后续操作
 		doAfter();
 		// 构建返回前端结果
-		Map<String, Object> result = this.buidFontResult(allPks, resultVOs,queryParam);
+		Map<String, Object> result = this.buidFontResult(allPks, resultVOs,
+				queryParam,groupData);
 		// 处理精度
 		processDigit();
 		return result;
 	}
 
+	/**
+	 * 查询分组数据
+	 * 
+	 * @param queryScheme
+	 *            查询方案
+	 * @return 分组数据
+	 */
+	protected abstract Map<String, String> queryGroupData(QueryTreeFormatVO queryParam);
+	
 	@Override
 	protected Object getRequestParam(IRequest request) {
 		String str = request.read();
@@ -71,12 +83,14 @@ public abstract class CommonListQueryAction<T extends AbstractBill> extends
 				.find(INCCloudQueryService.class);
 		// info经过转变成为service可用的QueryScheme
 		IQueryScheme scheme = qservice.convertCondition(operaParam);
+		// 添加前台待审批页签查询条件
+		List<Condition> custConditions = operaParam.getCustcondition().getConditions();
 		List<String> allPks = null;
 		// 查询出所有满足条件的主键
 		try {
 			// 里面返回的实际是一个ArrayList，可以直接转
 			allPks = (List<String>) QueryUtil.fetchPKsByQueryScheme(
-					this.getVOClass(), scheme);
+					this.getVOClass(), scheme,custConditions);
 		} catch (BusinessException e) {
 			ExceptionUtils.wrapBusinessException("查询所有主键pk失败：" + e.getMessage());
 		}
@@ -125,7 +139,7 @@ public abstract class CommonListQueryAction<T extends AbstractBill> extends
 	 * @return
 	 */
 	protected Map<String, Object> buidFontResult(List<String> allPks,
-			T[] resultVOs, QueryTreeFormatVO queryParam) {
+			T[] resultVOs, QueryTreeFormatVO queryParam,Map<String, String> groupData) {
 		Map<String, Object> rtv = new HashMap<>();
 		Grid grid = new Grid();
 		PageInfo pageInfo = new PageInfo();
@@ -147,6 +161,7 @@ public abstract class CommonListQueryAction<T extends AbstractBill> extends
 		}
 		grid.getModel().setPageinfo(pageInfo);
 		rtv.put("grid", grid);
+		rtv.put("groupData", groupData);
 		return rtv;
 	}
 
@@ -225,5 +240,6 @@ public abstract class CommonListQueryAction<T extends AbstractBill> extends
 	protected T[] processRequestParam(IRequest request) {
 		return null;
 	}
-
+	
+	
 }

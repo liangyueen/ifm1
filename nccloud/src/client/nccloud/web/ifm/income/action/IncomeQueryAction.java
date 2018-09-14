@@ -1,11 +1,14 @@
 package nccloud.web.ifm.income.action;
 
+import java.util.Map;
+
 import nc.itf.ifm.IInvestIncomeQueryService;
 import nc.vo.ifm.constants.TMIFMConst;
 import nc.vo.ifm.income.AggInvestIncomeVO;
 import nc.vo.ifm.income.InvestIncomeVO;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.SuperVO;
+import nccloud.dto.baseapp.querytree.dataformat.QueryTreeFormatVO;
 import nccloud.framework.service.ServiceLocator;
 import nccloud.web.ifm.common.action.CommonListQueryAction;
 
@@ -31,6 +34,12 @@ public class IncomeQueryAction extends CommonListQueryAction<AggInvestIncomeVO> 
 	@Override
 	protected String getAreaCode() {
 		return TMIFMConst.CONST_AREACODE_INCOME_LIST_TABLE;
+	}
+
+	@Override
+	protected Map<String, String> queryGroupData(QueryTreeFormatVO queryParam) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

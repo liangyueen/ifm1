@@ -32,6 +32,7 @@ import nc.vo.pubapp.query2.sql.process.QuerySchemeProcessor;
 import nc.vo.tmpub.util.SqlUtil;
 import nc.vo.tmpub.util.StringUtil;
 import nc.vo.uap.busibean.exception.BusiBeanException;
+import nccloud.dto.baseapp.querytree.dataformat.Condition;
 
 public class QueryUtil {
 	public static <T extends AggregatedValueObject> Collection<T> sortBillsWithPksOrder(
@@ -45,7 +46,7 @@ public class QueryUtil {
 			AssertUtils
 					.assertValue(
 							map.containsKey(billpk),
-							"nc.vo.tmcfm.util.QueryUtil.sortBillsWithPksOrder(T[], String[])  map.containsKey(billpk)");
+							"nc.vo.cdmc.util.QueryUtil.sortBillsWithPksOrder(T[], String[])  map.containsKey(billpk)");
 
 			map.put(billpk, bill);
 		}
@@ -101,8 +102,8 @@ public class QueryUtil {
 	}
 
 	public static Collection<String> fetchPKsByCondtion(
-			Class<? extends SuperVO> clazz, String whereSql)
-			throws BusinessException {
+			Class<? extends SuperVO> clazz, String whereSql,
+			List<Condition> custConditions) throws BusinessException {
 		String pkName = null;
 		String tableName = null;
 		try {
@@ -138,24 +139,45 @@ public class QueryUtil {
 
 		StringBuilder sb = new StringBuilder();
 		sb.append(OrderByManager.getInstance().getOrderBySql(clazz));
-
+		whereSql = rebuiltWhereSql(whereSql, custConditions, tableName);
 		return fetchPKsByCondtion(tableName, pkName, whereSql, sb.toString());
 	}
 
+	public static String rebuiltWhereSql(String whereSql,
+			List<Condition> custConditions, String tableName) {
+		StringBuffer sql = new StringBuffer();
+		for (Condition con : custConditions) {
+			String field = con.getField();
+			String oprtype = con.getOprtype();
+			if (field != null && oprtype != null && oprtype.equals("=")
+					&& con.getValue() != null) {
+				String firstValue = con.getValue().getFirstvalue();
+				sql.append(" and ").append(tableName).append(".").append(field)
+						.append(oprtype).append("'").append(firstValue)
+						.append("'");
+			} else {
+				// bewteen暂时不存在这种操作符
+			}
+		}
+		return whereSql + sql.toString();
+	}
+
 	public static Collection<String> fetchPKsByQueryScheme(
-			Class<? extends SuperVO> clazz, IQueryScheme queryScheme)
-			throws BusinessException {
-		return fetchPKsByQuerySchemeAndOrgName(clazz, queryScheme, null);
+			Class<? extends SuperVO> clazz, IQueryScheme queryScheme,
+			List<Condition> custConditions) throws BusinessException {
+		return fetchPKsByQuerySchemeAndOrgName(clazz, queryScheme, null,
+				custConditions);
 	}
 
 	public static Collection<String> fetchPKsByQuerySchemeAndOrgName(
 			Class<? extends SuperVO> clazz, IQueryScheme queryScheme,
-			String orgName) throws BusinessException {
+			String orgName, List<Condition> custConditions)
+			throws BusinessException {
 		QuerySchemeProcessor processor = new QuerySchemeProcessor(queryScheme);
 
 		processor.appendFuncPermissionOrgSql(orgName);
 		Collection<String> pks = fetchPKsByCondtion(clazz,
-				processor.getFinalFromWhere());
+				processor.getFinalFromWhere(), custConditions);
 		return filterForApprove(queryScheme, pks, clazz);
 	}
 
@@ -220,6 +242,7 @@ public class QueryUtil {
 			processor.appendWhere(wherePart);
 		}
 
-		return fetchPKsByCondtion(clazz, processor.getFinalFromWhere());
+		return fetchPKsByCondtion(clazz, processor.getFinalFromWhere(), null);
 	}
+
 }
