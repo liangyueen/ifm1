@@ -9,8 +9,8 @@ public class TMIFMConst {
 	/**
 	 * 模块
 	 */
-	public static String CONST_MODULE="IFM";
-	public static String CONST_MODULE_CODE="3667";
+	public static String CONST_MODULE="TMCFM";
+	public static String CONST_MODULE_CODE="3661";
 	
 	// 资金管理
 	public static final String TM_FUNCODE = "36"; // 资金管理
@@ -18,24 +18,34 @@ public class TMIFMConst {
 	public static final String TM_FTS_FUNCODE = "3630";// 资金结算
 	public static final String FI_FIP_FUNCODE = "1017";// 会计平台
 	public static final String TBB_FUNCODE = "1050";// 预算
-	public static final String TM_IFM_FUNCODE = "3667";// 投资理财
 
 	/**
 	 * 单据类型常量
 	 */
+	
+	public static String CONST_BILLTYPE_REDEEM="3642";
+	public static String CONST_BILLTYPE_APPLY="3641";
 	public static String CONST_BILLTYPE_INCOME="3643";
-	
-	
 	/**
-	 * 常用动作
+	 * 资金赎回常用动作
 	 */
 	public static String CONST_ACTION_SAVEBASE="SAVEBASE"; // 保存
 	public static String CONST_ACTION_DELETE="DELETE"; // 删除
 	public static String CONST_ACTION_SAVE="SAVE"; // 提交
-	public static String CONST_ACTION_SUBMIT="SUBMIT"; // 提交下一层
 	public static String CONST_ACTION_UNSAVEBILL="UNSAVEBILL"; // 收回
 	public static String CONST_ACTION_APPROVE="APPROVE"; // 审批
 	public static String CONST_ACTION_UNAPPROVE="UNAPPROVE";  // 取消审批
+	
+	// 资金赎回列表页面编码
+	public static String CONST_PAGECODE_CONTRACT_LIST = "36670RED_LIST";
+	// 资金赎回卡片页面编码
+	public static String CONST_PAGECODE_CONTRACT_CARD = "36670RED_CARD";
+	// 资金赎回应用编码
+	public static String CONST_APPCODE_CONTRACT = "36670RED";
+	// 资金赎回列表页面区域编码
+	public static String CONST_AREACODE_REDEEM_LIST_TABLE = "table";
+	// 资金赎回查询区域编码
+	public static String CONST_AREACODE_CONTRACT_LIST_SEARCH = "search";
 	
 	// 投资收益列表页面编码
 	public static String CONST_PAGECODE_INCOME_LIST = "36670IPR_LIST";
@@ -62,6 +72,17 @@ public class TMIFMConst {
 	public static String FIELD_ORGMNY = "orgMnyField";
 	public static String FIELD_GROUPMNY = "groupMnyField";
 	public static String FIELD_GLOBALMNYFIELD = "globalMnyField";
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }

@@ -9,6 +9,6 @@ public class AggInvestRedeemVOMeta extends AbstractBillMeta{
 	}
 	
 	private void init() {
-		this.setParent(nc.vo.ifm.income.InvestIncomeVO.class);
+		this.setParent(nc.vo.ifm.redeem.InvestRedeemVO.class);
 	}
 }

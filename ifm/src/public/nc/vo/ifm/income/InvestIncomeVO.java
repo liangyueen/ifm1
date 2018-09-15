@@ -319,11 +319,6 @@ public static final String INCOMERATE="incomerate";
 */
 public static final String INCOMEMONEY="incomemoney";
 ;
-/**
- *来源
- */
-public static final String SOURCE="source";
-;
 public static final String BILLMAKEDATE = "billmakedate";
 public static final String BILLMAKETIME = "billmaketime";
 public static final String APPROVEDATE = "approvedate";
@@ -1496,23 +1491,6 @@ return (String) this.getAttributeValue( InvestIncomeVO.INCOMEMONEY);
 */
 public void setIncomemoney ( String incomemoney) {
 this.setAttributeValue( InvestIncomeVO.INCOMEMONEY,incomemoney);
-} 
-/**
- * 属性 source的Getter方法.属性名：来源
- *  创建日期:2018-9-6
- * @return java.lang.String
- */
-public String getSource() {
-	return (String) this.getAttributeValue( InvestIncomeVO.SOURCE);
-} 
-
-/**
- * 属性source的Setter方法.属性名：收益税额
- * 创建日期:2018-9-6
- * @param newsource java.lang.String
- */
-public void setSource ( String source) {
-	this.setAttributeValue( InvestIncomeVO.SOURCE,source);
 } 
  
 /**

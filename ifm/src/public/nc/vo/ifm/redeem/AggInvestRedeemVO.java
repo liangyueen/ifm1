@@ -5,7 +5,7 @@ import nc.vo.pubapp.pattern.model.entity.bill.AbstractBill;
 import nc.vo.pubapp.pattern.model.meta.entity.bill.BillMetaFactory;
 import nc.vo.pubapp.pattern.model.meta.entity.bill.IBillMeta;
 
-@nc.vo.annotation.AggVoInfo(parentVO = "nc.vo.ifm.income.InvestIncomeVO")
+@nc.vo.annotation.AggVoInfo(parentVO = "nc.vo.ifm.redeem.InvestRedeemVO")
 
 public class AggInvestRedeemVO extends AbstractBill {
 	
@@ -16,8 +16,8 @@ public class AggInvestRedeemVO extends AbstractBill {
 	  }
 	    
 	  @Override
-	  public InvestIncomeVO getParentVO(){
-	  	return (InvestIncomeVO)this.getParent();
+	  public InvestRedeemVO getParentVO(){
+	  	return (InvestRedeemVO)this.getParent();
 	  }
 	  
 }

@@ -19,7 +19,7 @@ import nccloud.web.refer.DefaultGridRefAction;
  * @date 2018-9-9
  * 
  */
-public class IFMApplyGridRefAction extends DefaultGridRefAction {
+public class IFMAPPLYGridRefAction extends DefaultGridRefAction {
 
 	@Override
 	public RefMeta getRefMeta(RefQueryInfo refQueryInfo) {
