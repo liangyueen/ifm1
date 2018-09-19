@@ -51,4 +51,14 @@
 		<label>授信协议参照</label>
 		<clazz>nccloud.web.ifm.ref.action.IFMAPPLYGridRefAction</clazz>
 	</action>
+	<action>
+		<name>ifm.redeem.querybypkapply</name>
+		<label>申请快捷按钮到赎回卡片</label>
+		<clazz>nccloud.web.ifm.redeem.action.RedeemCardQryByPkapplyAction</clazz>
+	</action>
+	<action>
+		<name>ifm.redeem.redeemcardafter</name>
+		<label>编辑产品代码后事件</label>
+		<clazz>nccloud.web.ifm.redeem.action.RedeemCardAfterEditAction</clazz>
+	</action>
 </actions>

@@ -14,6 +14,7 @@ import nc.vo.org.OrgVO;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.lang.UFDate;
 import nc.vo.pub.lang.UFDateTime;
+import nc.vo.pub.lang.UFDouble;
 import nc.vo.pub.pf.BillStatusEnum;
 import nccloud.framework.core.exception.ExceptionUtils;
 import nccloud.framework.service.ServiceLocator;
@@ -56,13 +57,15 @@ public class RedeemSaveSubmitAction extends CommonSaveAction<AggInvestRedeemVO> 
 		InvestRedeemVO vo=operaVO.getParentVO();
 		//设置审计信息
 		Integer vbillstatus = (Integer) BillStatusEnum.COMMIT.value();//提交
-		Integer billstatus =   (Integer) RedeemStatusEnum.NOAUIT.value();//待审核
+		Integer billstatus =   (Integer) RedeemStatusEnum.待审核.value();//待审核
 		vo.setAttributeValue("vbillstatus", vbillstatus);
 		vo.setAttributeValue("billstatus", billstatus);
 		vo.setPk_group(getGroupByOrg(vo.getPk_org()));
 		vo.setAttributeValue("creator",SessionContext.getInstance().getClientInfo().getUserid());
 		vo.setAttributeValue("creationtime",new UFDate(SessionContext.getInstance().getClientInfo().getBizDateTime()) );
-
+		if (vo.getHoldmoeny().sub(vo.getRedeemmoney()).compareTo(UFDouble.ZERO_DBL)<1) {
+			throw new BusinessException("持有金额小于赎回金额，您当前的持有金额为："+vo.getHoldmoeny()+"");
+		}
 	}
 	
 	/**

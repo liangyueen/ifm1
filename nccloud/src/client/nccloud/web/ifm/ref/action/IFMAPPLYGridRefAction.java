@@ -25,7 +25,7 @@ public class IFMAPPLYGridRefAction extends DefaultGridRefAction {
 	public RefMeta getRefMeta(RefQueryInfo refQueryInfo) {
 		RefMeta refMeta = new RefMeta();
 		refMeta.setCodeField(InvestApplyVO.PRODUCTCODE);
-		refMeta.setNameField(InvestApplyVO.PRODUCTNAME);
+		refMeta.setNameField(InvestApplyVO.PRODUCTCODE);
 		refMeta.setPkField(InvestApplyVO.PK_APPLY);
 		refMeta.setExtraFields(getFieldCode());
 
@@ -72,7 +72,7 @@ public class IFMAPPLYGridRefAction extends DefaultGridRefAction {
 			String[] productcodes = productcode.split(",");
 			if (productcodes != null && productcodes.length > 0) {
 				wheresql.append(" and ").append(
-						SQLUtil.buildSqlForIn("ifm_apply.productcodes",
+						SQLUtil.buildSqlForIn("ifm_apply.productcode",
 								productcodes));
 			}
 		}
@@ -82,7 +82,7 @@ public class IFMAPPLYGridRefAction extends DefaultGridRefAction {
 			if (productnames != null && productnames.length > 0) {
 				wheresql.append(" and ").append(
 						SQLUtil.buildSqlForIn(
-								"ifm_apply.productnames",
+								"ifm_apply.productname",
 								productnames));
 			}
 		}

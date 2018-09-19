@@ -27,10 +27,210 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 	public static final String PK_ORG = "pk_org";
 	public static final String PK_GROUP = "pk_group";
 	public static final String PK_REDEEM = "pk_redeem";
+	public static final String PK_APPLY = "pk_apply";
 	public static final String PRODUCTCODE = "productcode";
 	public static final String PRODUCTNAME = "productname";
 	public static final String VBILLTYPE = "vbilltype";
 	public static final String VBILLNO = "vbillno";
+	public static final String HOLDMONEY = "holdmoney";
+	public static final String VDEF1 = "vdef1";
+	public static final String VDEF2 = "vdef2";
+	public static final String VDEF3 = "vdef3";
+	public static final String VDEF4 = "vdef4";
+	public static final String VDEF5 = "vdef5";
+	public static final String VDEF6 = "vdef6";
+	public static final String VDEF7 = "vdef7";
+	public static final String VDEF10 = "vdef10";
+	public static final String VDEF11 = "vdef11";
+	public static final String VDEF12 = "vdef12";
+	public static final String VDEF13 = "vdef13";
+	public static final String VDEF14 = "vdef14";
+	public static final String VDEF15 = "vdef15";
+	public static final String VDEF16 = "vdef16";
+	public static final String VDEF17 = "vdef17";
+	public static final String VDEF18 = "vdef18";
+	public static final String VDEF19 = "vdef19";
+	public static final String VDEF20 = "vdef20";
+	public static final String OLCRATE = "olcrate";
+	public static final String GLCRATE = "glcrate";
+	public static final String GLLCRATE = "gllcrate";
+	public static final String OLCMNY = "olcmny";
+	public static final String GLCMNY = "glcmny";
+	public static final String GLLCMNY = "gllcmny";
+	public static final String BILLMAKER = "billmaker";
+	public static final String BILLMAKEDATE = "billmakedate";
+	public static final String BILLMAKETIME = "billmaketime";
+	public static final String APPROVER = "approver";
+	public static final String APPROVEDATE = "approvedate";
+	public static final String APPROVENOTE = "approvenote";
+	public static final String CREATOR = "creator";
+	public static final String CREATIONTIME = "creationtime";
+	public static final String MODIFIER = "modifier";
+	public static final String MODIFIEDTIME = "modifiedtime";
+	public static final String PK_BUSITYPE = "pk_busitype";
+	public static final String PK_BILLTYPEID = "pk_billtypeid";
+	public static final String PK_BILLTYPECODE = "pk_billtypecode";
+	public static final String INTERACTFIELD = "interactfield";
+	/**
+	 * 属性billmaketime的Getter方法.属性名：制单时间
+	 * 创建日期:
+	 * @return nc.vo.pub.lang.UFDateTime
+	 */
+	public nc.vo.pub.lang.UFDateTime getBillmaketime () {
+		return (nc.vo.pub.lang.UFDateTime)getAttributeValue("billmaketime");
+	}   
+	/**
+	 * 属性billmaketime的Setter方法.属性名：制单时间
+	 * 创建日期:
+	 * @param newBillmaketime nc.vo.pub.lang.UFDateTime
+	 */
+	public void setBillmaketime (nc.vo.pub.lang.UFDateTime newBillmaketime ) {
+	 	setAttributeValue("billmaketime", newBillmaketime);
+	} 	  
+	/**
+	 * 属性approver的Getter方法.属性名：审批人
+	 * 创建日期:
+	 * @return java.lang.String
+	 */
+	public java.lang.String getApprover () {
+		return (java.lang.String)getAttributeValue("approver");
+	}   
+	/**
+	 * 属性approver的Setter方法.属性名：审批人
+	 * 创建日期:
+	 * @param newApprover java.lang.String
+	 */
+	public void setApprover (java.lang.String newApprover ) {
+	 	setAttributeValue("approver", newApprover);
+	} 	  
+	/**
+	 * 属性approvedate的Getter方法.属性名：审批日期
+	 * 创建日期:
+	 * @return nc.vo.pub.lang.UFDate
+	 */
+	public nc.vo.pub.lang.UFDate getApprovedate () {
+		return (nc.vo.pub.lang.UFDate)getAttributeValue("approvedate");
+	}   
+	/**
+	 * 属性approvedate的Setter方法.属性名：审批日期
+	 * 创建日期:
+	 * @param newApprovedate nc.vo.pub.lang.UFDate
+	 */
+	public void setApprovedate (nc.vo.pub.lang.UFDate newApprovedate ) {
+	 	setAttributeValue("approvedate", newApprovedate);
+	} 	  
+	/**
+	 * 属性approvenote的Getter方法.属性名：审批批语
+	 * 创建日期:
+	 * @return java.lang.String
+	 */
+	public java.lang.String getApprovenote () {
+		return (java.lang.String)getAttributeValue("approvenote");
+	}   
+	/**
+	 * 属性approvenote的Setter方法.属性名：审批批语
+	 * 创建日期:
+	 * @param newApprovenote java.lang.String
+	 */
+	public void setApprovenote (java.lang.String newApprovenote ) {
+	 	setAttributeValue("approvenote", newApprovenote);
+	}
+	/**
+	 * 属性creator的Getter方法.属性名：创建人
+	 * 创建日期:
+	 * @return java.lang.String
+	 */
+	public java.lang.String getCreator () {
+		return (java.lang.String)getAttributeValue("creator");
+	}   
+	/**
+	 * 属性creator的Setter方法.属性名：创建人
+	 * 创建日期:
+	 * @param newCreator java.lang.String
+	 */
+	public void setCreator (java.lang.String newCreator ) {
+	 	setAttributeValue("creator", newCreator);
+	} 	  
+	/**
+	 * 属性creationtime的Getter方法.属性名：创建时间
+	 * 创建日期:
+	 * @return nc.vo.pub.lang.UFDateTime
+	 */
+	public nc.vo.pub.lang.UFDateTime getCreationtime () {
+		return (nc.vo.pub.lang.UFDateTime)getAttributeValue("creationtime");
+	}   
+	/**
+	 * 属性creationtime的Setter方法.属性名：创建时间
+	 * 创建日期:
+	 * @param newCreationtime nc.vo.pub.lang.UFDateTime
+	 */
+	public void setCreationtime (nc.vo.pub.lang.UFDateTime newCreationtime ) {
+	 	setAttributeValue("creationtime", newCreationtime);
+	} 	  
+	/**
+	 * 属性modifier的Getter方法.属性名：最后修改人
+	 * 创建日期:
+	 * @return java.lang.String
+	 */
+	public java.lang.String getModifier () {
+		return (java.lang.String)getAttributeValue("modifier");
+	}   
+	/**
+	 * 属性modifier的Setter方法.属性名：最后修改人
+	 * 创建日期:
+	 * @param newModifier java.lang.String
+	 */
+	public void setModifier (java.lang.String newModifier ) {
+	 	setAttributeValue("modifier", newModifier);
+	} 	  
+	/**
+	 * 属性modifiedtime的Getter方法.属性名：最后修改时间
+	 * 创建日期:
+	 * @return nc.vo.pub.lang.UFDateTime
+	 */
+	public nc.vo.pub.lang.UFDateTime getModifiedtime () {
+		return (nc.vo.pub.lang.UFDateTime)getAttributeValue("modifiedtime");
+	}   
+	/**
+	 * 属性modifiedtime的Setter方法.属性名：最后修改时间
+	 * 创建日期:
+	 * @param newModifiedtime nc.vo.pub.lang.UFDateTime
+	 */
+	public void setModifiedtime (nc.vo.pub.lang.UFDateTime newModifiedtime ) {
+	 	setAttributeValue("modifiedtime", newModifiedtime);
+	} 	  
+	/**
+	 * 属性billmakedate的Getter方法.属性名：制单日期
+	 * 创建日期:
+	 * @return nc.vo.pub.lang.UFDate
+	 */
+	public nc.vo.pub.lang.UFDate getBillmakedate () {
+		return (nc.vo.pub.lang.UFDate)getAttributeValue("billmakedate");
+	}   
+	/**
+	 * 属性billmakedate的Setter方法.属性名：制单日期
+	 * 创建日期:
+	 * @param newBillmakedate nc.vo.pub.lang.UFDate
+	 */
+	public void setBillmakedate (nc.vo.pub.lang.UFDate newBillmakedate ) {
+	 	setAttributeValue("billmakedate", newBillmakedate);
+	} 	  
+	/**
+	 * 属性pk_billtypecode的Getter方法.属性名：单据类型
+	 * 创建日期:
+	 * @return java.lang.String
+	 */
+	public java.lang.String getPk_billtypecode () {
+		return (java.lang.String)getAttributeValue("pk_billtypecode");
+	}   
+	/**
+	 * 属性pk_billtypecode的Setter方法.属性名：单据类型
+	 * 创建日期:
+	 * @param newPk_billtypecode java.lang.String
+	 */
+	public void setPk_billtypecode (java.lang.String newPk_billtypecode ) {
+	 	setAttributeValue("pk_billtypecode", newPk_billtypecode);
+	} 	
 	/**
 	 * 到期日期
 	 */
@@ -244,6 +444,26 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 	 */
 	public void setOlcmoney(String olcmoney) {
 		this.setAttributeValue(InvestRedeemVO.OLCMONEY, olcmoney);
+	}
+	
+	/**
+	 * 属性 glcmoeny的Getter方法.属性名：持有金额 创建日期:2018-9-3
+	 * 
+	 * @return nc.vo.pub.lang.UFDouble
+	 */
+	public UFDouble getHoldmoeny() {
+		return (nc.vo.pub.lang.UFDouble) this
+				.getAttributeValue(InvestRedeemVO.HOLDMONEY);
+	}
+
+	/**
+	 * 属性glcmoeny的Setter方法.属性名：持有金额 创建日期:2018-9-3
+	 * 
+	 * @param newGlcmoeny
+	 *            nc.vo.pub.lang.UFDouble
+	 */
+	public void setHoldmoeny(String holdmoney) {
+		this.setAttributeValue(InvestRedeemVO.HOLDMONEY, holdmoney);
 	}
 
 	/**
@@ -529,6 +749,14 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 
 	public void setPk_redeem(java.lang.String newPk_redeem) {
 		setAttributeValue(PK_REDEEM, newPk_redeem);
+	}
+	
+	public java.lang.String getPk_apply() {
+		return (java.lang.String) getAttributeValue(PK_APPLY);
+	}
+
+	public void setPk_apply(java.lang.String newPk_apply) {
+		setAttributeValue(PK_APPLY, newPk_apply);
 	}
 
 	/**

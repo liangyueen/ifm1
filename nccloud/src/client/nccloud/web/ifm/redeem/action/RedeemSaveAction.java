@@ -1,23 +1,44 @@
 package nccloud.web.ifm.redeem.action;
 
+import org.apache.commons.lang.StringUtils;
+
 import nc.bs.pub.action.N_3642_SAVE;
+import nc.itf.ifm.IIFMApplyQueryService;
+import nc.itf.ifm.IInvestRedeemQueryService;
 import nc.pubitf.org.cache.IOrgUnitPubService_C;
+import nc.ui.querytemplate.querytree.IQueryScheme;
+import nc.vo.ifm.apply.AggInvestApplyVO;
 import nc.vo.ifm.constants.TMIFMConst;
 import nc.vo.ifm.redeem.AggInvestRedeemVO;
 import nc.vo.ifm.redeem.InvestRedeemVO;
 import nc.vo.org.OrgVO;
 import nc.vo.pub.BusinessException;
+import nccloud.dto.baseapp.querytree.dataformat.QueryTreeFormatVO;
 import nccloud.framework.service.ServiceLocator;
+import nccloud.framework.web.container.ClientInfo;
 import nccloud.framework.web.container.SessionContext;
+import nccloud.pubitf.platform.query.INCCloudQueryService;
+import nccloud.pubitf.riart.pflow.ICloudScriptPFlowService;
 import nccloud.web.ifm.common.action.CommonSaveAction;
 import nccloud.framework.core.exception.ExceptionUtils;
 import nc.vo.pub.lang.UFDate;
+import nc.vo.pub.lang.UFDateTime;
+import nc.vo.pub.lang.UFDouble;
 /**
  * 贷款合同新增/修改保存
  * 
  * @author suxch
  */
 public class RedeemSaveAction extends CommonSaveAction<AggInvestRedeemVO> {
+	private static IInvestRedeemQueryService eQueryService = null;
+	
+	public static synchronized IInvestRedeemQueryService getEQueryService() {
+		if (eQueryService == null) {
+			eQueryService =  ServiceLocator.find(IInvestRedeemQueryService.class);
+		}
+		return eQueryService;
+	}
+	
 
 	@Override
 	protected AggInvestRedeemVO doBusinessSave(AggInvestRedeemVO operaVO) {
@@ -44,13 +65,46 @@ public class RedeemSaveAction extends CommonSaveAction<AggInvestRedeemVO> {
 	 * 
 	 * @param operaVO
 	 */
-	private void doBefore(AggInvestRedeemVO operaVO) throws BusinessException{
+	private AggInvestRedeemVO doBefore(AggInvestRedeemVO operaVO) throws BusinessException{
+		
+		if (operaVO == null) {
+			throw new BusinessException("保存的数据不能为空！");
+		}
 		InvestRedeemVO vo=operaVO.getParentVO();
-		//设置审计信息
-		vo.setPk_group(getGroupByOrg(vo.getPk_org()));
-		vo.setAttributeValue("creator",SessionContext.getInstance().getClientInfo().getUserid());
-		vo.setAttributeValue("creationtime",new UFDate(SessionContext.getInstance().getClientInfo().getBizDateTime()) );
-
+		// 基础必输项校验
+		
+		// 校验赎回额是否超过持有金额
+		AggInvestApplyVO[] resultVOs = null;
+		if (vo.getHoldmoeny().sub(vo.getRedeemmoney()).compareTo(UFDouble.ZERO_DBL)<1) {
+			throw new BusinessException("持有金额小于赎回金额，您当前的持有金额为："+vo.getHoldmoeny()+"");
+		}
+		ClientInfo clientInfo = SessionContext.getInstance().getClientInfo();
+		// 根据是否有主键信息判断是新增保存还是修改保存
+		if (StringUtils.isBlank(vo.getPk_redeem())) {
+			// 设置单据默认值
+			vo.setPk_billtypecode(getBillTypeCode());
+			vo.setPk_group(clientInfo.getPk_group());
+			vo.setBillmakedate(getBusiDate());
+			vo.setPk_billtypecode(TMIFMConst.CONST_BILLTYPE_REDEEM);
+			vo.setBillmaketime(new UFDateTime(SessionContext.getInstance().getClientInfo().getBizDateTime()));
+		} else {
+			// 校验申请编号
+			AggInvestRedeemVO[] oldvo = getEQueryService().queryRedeemByPks(new String[]{ vo.getPk_redeem() });
+			if (oldvo == null || oldvo.length < 1) {
+				throw new BusinessException("修改的单据已有其他操作，请刷新后再修改保存！");
+			}
+		}
+		/*vo.setAttributeValue("creator", SessionContext.getInstance()
+				.getClientInfo().getUserid());
+		vo.setAttributeValue("creationtime", new UFDate(SessionContext
+				.getInstance().getClientInfo().getBizDateTime()));
+		//制单人，制单时间
+		vo.setAttributeValue("billmaker", SessionContext.getInstance()
+				.getClientInfo().getUserid());
+		vo.setAttributeValue("billmakedate", new UFDate(SessionContext
+				.getInstance().getClientInfo().getBizDateTime()));
+		operaVO.setParent(vo);*/
+		return operaVO;
 	}
 	
 	/**
@@ -86,6 +140,12 @@ public class RedeemSaveAction extends CommonSaveAction<AggInvestRedeemVO> {
 	}
 		
 
-	
+	/**
+	 * 单据类型编码
+	 * @return
+	 */
+	protected String getBillTypeCode() {
+		return TMIFMConst.CONST_BILLTYPE_REDEEM;
+	}
 
 }

@@ -22,7 +22,7 @@ public class AceInvestRedeemSendApproveBP {
 	public AggInvestRedeemVO[] sendApprove(AggInvestRedeemVO[] clientBills,
 			AggInvestRedeemVO[] originBills) {
 		for (AggInvestRedeemVO clientFullVO : clientBills) {
-			clientFullVO.getParentVO().setAttributeValue("${vmObject.billstatus}",
+			clientFullVO.getParentVO().setAttributeValue("vbillstatus",
 					BillStatusEnum.COMMIT.value());
 			clientFullVO.getParentVO().setStatus(VOStatus.UPDATED);
 		}

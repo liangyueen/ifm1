@@ -11,6 +11,7 @@ import nc.vo.ifm.redeem.AggInvestRedeemVO;
 import nc.vo.ifm.redeem.InvestRedeemVO;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.lang.UFDateTime;
+import nc.vo.pub.lang.UFDouble;
 import nc.vo.pub.pf.BillStatusEnum;
 import nccloud.web.ifm.common.action.CommonCommitAction;
 import nccloud.web.ifm.util.RedeemUtil;
@@ -73,15 +74,23 @@ public class RedeemSubmitAction extends CommonCommitAction<AggInvestRedeemVO> {
 	private boolean doBefore(AggInvestRedeemVO vo) {
 		InvestRedeemVO head = vo.getParentVO();
 		
-		if (!head.getBillstatus().equals(RedeemStatusEnum.NOSUB.value())) {
+		if (!head.getBillstatus().equals(RedeemStatusEnum.待提交.value())) {
 			errList.add("协议编号：" + head.getVbillno() + "，不可以进行提交操作！");
 			return false;
 		}
 		Integer vbillstatus = (Integer) BillStatusEnum.COMMIT.value();//提交
-		Integer billstatus =   (Integer) RedeemStatusEnum.NOAUIT.value();//待审核
+		Integer billstatus =   (Integer) RedeemStatusEnum.待审核.value();//待审核
 		//如果没有审批流的话，状态为审核通过
 		head.setAttributeValue("vbillstatus", vbillstatus);
 		head.setAttributeValue("billstatus", billstatus);
+		if (head.getHoldmoeny().sub(head.getRedeemmoney()).compareTo(UFDouble.ZERO_DBL)<1) {
+			try {
+				throw new BusinessException("持有金额小于赎回金额，您当前的持有金额为："+head.getHoldmoeny()+"");
+			} catch (BusinessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		return true;
 	}
 	

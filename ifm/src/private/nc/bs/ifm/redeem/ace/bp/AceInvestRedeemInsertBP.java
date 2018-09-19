@@ -36,7 +36,7 @@ public class AceInvestRedeemInsertBP {
 		rule = new nc.bs.pubapp.pub.rule.BillCodeCheckRule();
 		((nc.bs.pubapp.pub.rule.BillCodeCheckRule) rule).setCbilltype("3642");
 		((nc.bs.pubapp.pub.rule.BillCodeCheckRule) rule)
-				.setCodeItem("vbillno");
+				.setCodeItem("redeemid");
 		((nc.bs.pubapp.pub.rule.BillCodeCheckRule) rule)
 				.setGroupItem("pk_group");
 		((nc.bs.pubapp.pub.rule.BillCodeCheckRule) rule).setOrgItem("pk_org");
@@ -52,11 +52,11 @@ public class AceInvestRedeemInsertBP {
 		// TODO 新增前规则
 		IRule<AggInvestRedeemVO> rule = null;
 		rule = new nc.bs.pubapp.pub.rule.FillInsertDataRule();
-		processer.addBeforeRule(rule);
+		//processer.addBeforeRule(rule);
 		rule = new nc.bs.pubapp.pub.rule.CreateBillCodeRule();
 		((nc.bs.pubapp.pub.rule.CreateBillCodeRule) rule).setCbilltype("3642");
 		((nc.bs.pubapp.pub.rule.CreateBillCodeRule) rule)
-				.setCodeItem("vbillno");
+				.setCodeItem("redeemid");
 		((nc.bs.pubapp.pub.rule.CreateBillCodeRule) rule)
 				.setGroupItem("pk_group");
 		((nc.bs.pubapp.pub.rule.CreateBillCodeRule) rule).setOrgItem("pk_org");

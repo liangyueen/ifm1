@@ -44,7 +44,7 @@ import nccloud.framework.web.ui.pattern.billcard.CardHeadAfterEditEvent;
 import nccloud.framework.web.ui.pattern.extbillcard.ExtBillCard;
 import nccloud.framework.web.ui.pattern.form.Form;
 import nccloud.framework.web.ui.pattern.grid.Grid;
-public class RedeemInitAction  implements ICommonAction {
+public class RedeemCardQryByPkapplyAction  implements ICommonAction {
 
 	@Override
 	public Object doAction(IRequest request) {
@@ -52,39 +52,22 @@ public class RedeemInitAction  implements ICommonAction {
 		try {
 			String read = request.read();
 			IJson json = JsonFactory.create();
-			
+
 			AggInvestApplyVO[] resultVOs = null;
-			AggInvestRedeemVO[] vos=null;
+			AggInvestRedeemVO[] vos = null;
 			AggInvestRedeemVO vo = new AggInvestRedeemVO();
-			String pageId= null;
-			// info经过转变成为service可用的QueryScheme
-			//IQueryScheme scheme = qservice.convertCondition(operaParam);
-			Map map = json.fromJson(read,HashMap.class);
-			if (map.get("newvalue") != null) {
-				String pk_apply = map.get("newvalue").toString();
-				Map page_id = (Map) map.get("form");
-				Map pk_org = (Map) map.get("pkorg");
-				String pkorg = pk_org.get("value").toString();
-				pageId = page_id.get("pageid").toString();
-				IIFMApplyQueryService service = ServiceLocator
-						.find(IIFMApplyQueryService.class);
-				resultVOs = service.queryApplyByPks(new String[] { pk_apply });
-				vo = setDefautValue(resultVOs);
-			}else{
-				InvestRedeemVO parentVO = new InvestRedeemVO();
-				OperatorParam operaParam  = json.fromJson(read, OperatorParam.class);
-				pageId = operaParam.getPageCode();
-				Integer vbillstatus = (Integer) BillStatusEnum.FREE.value();
-				Integer billstatus =   (Integer) RedeemStatusEnum.待提交.value();
-				parentVO.setAttributeValue("vbillstatus", vbillstatus);
-				parentVO.setAttributeValue("billstatus", billstatus);
-				vo.setParentVO(parentVO);
-				
-			}
-			//vos = new AggInvestRedeemVO[]{vo};
+			String pageId = null;
+			OperatorParam operaParam = json.fromJson(read, OperatorParam.class);
+			pageId = operaParam.getPageCode();
+			IIFMApplyQueryService service = ServiceLocator
+					.find(IIFMApplyQueryService.class);
+			resultVOs = service.queryApplyByPks(new String[] { operaParam
+					.getPk() });
+			vo = setDefautValue(resultVOs);
+
 			BillCardConvertProcessor processor = new BillCardConvertProcessor();
 			billCard = new BillCard();
-			if(vo == null ){
+			if (vo == null) {
 				return billCard;
 			}
 			billCard = processor.convert(pageId, vo);
@@ -109,7 +92,7 @@ public class RedeemInitAction  implements ICommonAction {
 		Integer vbillstatus = (Integer) BillStatusEnum.FREE.value();
 		//需要改一下
 		
-		//String issuebank = resultVOs[0].getParentVO().getIssuebank();
+		String issuebank = resultVOs[0].getParentVO().getIssuebank();
 		
 		Integer billstatus =   (Integer) RedeemStatusEnum.待提交.value();
 		UFDate billmakedate = new UFDate(SessionContext.getInstance().getClientInfo().getBizDateTime());

@@ -30,7 +30,7 @@ public class AceInvestRedeemUpdateBP {
 		rule = new nc.bs.pubapp.pub.rule.BillCodeCheckRule();
 		((nc.bs.pubapp.pub.rule.BillCodeCheckRule) rule).setCbilltype("3642");
 		((nc.bs.pubapp.pub.rule.BillCodeCheckRule) rule)
-				.setCodeItem("vbillno");
+				.setCodeItem("redeemid");
 		((nc.bs.pubapp.pub.rule.BillCodeCheckRule) rule)
 				.setGroupItem("pk_group");
 		((nc.bs.pubapp.pub.rule.BillCodeCheckRule) rule).setOrgItem("pk_org");
@@ -47,7 +47,7 @@ public class AceInvestRedeemUpdateBP {
 		((nc.bs.pubapp.pub.rule.UpdateBillCodeRule) ruleCom)
 				.setCbilltype("3642");
 		((nc.bs.pubapp.pub.rule.UpdateBillCodeRule) ruleCom)
-				.setCodeItem("vbillno");
+				.setCodeItem("redeemid");
 		((nc.bs.pubapp.pub.rule.UpdateBillCodeRule) ruleCom)
 				.setGroupItem("pk_group");
 		((nc.bs.pubapp.pub.rule.UpdateBillCodeRule) ruleCom)

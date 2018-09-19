@@ -3,6 +3,7 @@ package nc.itf.ifm;
 
 import nc.vo.ifm.redeem.AggInvestRedeemVO;
 import nc.vo.pub.BusinessException;
+import nc.vo.pub.SuperVO;
 
 public interface IInvestRedeemQueryService {
 	/**
@@ -24,4 +25,12 @@ public interface IInvestRedeemQueryService {
 	 * @throws BusinessException
 	 */
 	Boolean isBillNoDuplicate(String[] pk_redeemcol, String[] redeemcode) throws BusinessException;
+	
+	/**
+	 * 查询单个实体信息
+	 * @return
+	 * @throws BusinessException
+	 */
+	public SuperVO[] querySuperVOByCondition(String condition, Class voClass) throws BusinessException ;
+	
 }

@@ -76,12 +76,12 @@ public class RedeemUnSubmitAction extends CommonOperatorAction<AggInvestRedeemVO
 	
 	private boolean doBefore(AggInvestRedeemVO vo) {
 		InvestRedeemVO head = vo.getParentVO();
-		if (!head.getBillstatus().equals(RedeemStatusEnum.NOAUIT.value())) {
+		/*if (!head.get.equals(RedeemStatusEnum.待提交.value())) {
 			errList.add("协议编号：" + head.getVbillno() + "，不可以进行收回操作！");
 			return false;
-		}
+		}*/
 		Integer vbillstatus = (Integer) BillStatusEnum.FREE.value();//提交
-		Integer billstatus =   (Integer) RedeemStatusEnum.NOSUB.value();//待审核
+		Integer billstatus =   (Integer) RedeemStatusEnum.待提交.value();//待审核
 		head.setAttributeValue("vbillstatus", vbillstatus);
 		head.setAttributeValue("billstatus", billstatus);
 		head.setAttributeValue("modifier", null);
