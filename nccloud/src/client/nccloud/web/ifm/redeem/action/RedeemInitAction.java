@@ -11,7 +11,7 @@ import nc.itf.ifm.IIFMApplyQueryService;
 import nc.itf.ifm.IInvestRedeemQueryService;
 import nc.md.persist.framework.IMDPersistenceQueryService;
 import nc.ui.querytemplate.querytree.IQueryScheme;
-import nc.vo.ifm.OperatorParam;
+import nccloud.ifm.vo.OperatorParam;
 import nc.vo.ifm.RedeemStatusEnum;
 import nc.vo.ifm.apply.AggInvestApplyVO;
 import nc.vo.ifm.apply.InvestApplyVO;

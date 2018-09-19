@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import nc.pubitf.org.cache.IOrgUnitPubService_C;
-import nc.vo.ifm.OperatorParam;
+import nccloud.ifm.vo.OperatorParam;
 import nc.vo.ifm.RedeemStatusEnum;
 import nc.vo.ifm.constants.TMIFMConst;
 import nc.vo.ifm.redeem.AggInvestRedeemVO;
