@@ -12,6 +12,8 @@ public class AceInvestIncomeUnApproveBP {
 	public AggInvestIncomeVO[] unApprove(AggInvestIncomeVO[] clientBills,
 			AggInvestIncomeVO[] originBills) {
 		for (AggInvestIncomeVO clientBill : clientBills) {
+			clientBill.getParentVO().setAttributeValue("${vmObject.billstatus}",
+					0);
 			clientBill.getParentVO().setStatus(VOStatus.UPDATED);
 		}
 		BillUpdate<AggInvestIncomeVO> update = new BillUpdate<AggInvestIncomeVO>();

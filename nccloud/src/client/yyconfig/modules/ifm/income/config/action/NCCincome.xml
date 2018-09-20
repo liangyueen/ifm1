@@ -3,7 +3,7 @@
 	
 	<action>
 	  <name>ifm.income.init</name>
-	  <label>投资收益单据构造</label>
+	  <label>投资收益初始化</label>
 	  <clazz>nccloud.web.ifm.income.action.IncomeInitAction</clazz>
 	</action>
 	<action>
@@ -18,7 +18,7 @@
 	</action>
 	<action>
 	  <name>ifm.income.cardquery</name>
-	  <label>投资收益卡片查询</label>
+	  <label>投资收益查询</label>
 	  <clazz>nccloud.web.ifm.income.action.IncomeCardQueryAction</clazz>
 	</action>
 	<action>
@@ -30,6 +30,11 @@
 	  <name>ifm.income.submit</name>
 	  <label>投资收益提交</label>
 	  <clazz>nccloud.web.ifm.income.action.IncomeSubmitAction</clazz>
+	</action>
+	<action>
+	  <name>ifm.income.unsubmit</name>
+	  <label>投资收益收回</label>
+	  <clazz>nccloud.web.ifm.income.action.IncomeUnsubmitAction</clazz>
 	</action>
 	<action>
 	  <name>ifm.income.delete</name>

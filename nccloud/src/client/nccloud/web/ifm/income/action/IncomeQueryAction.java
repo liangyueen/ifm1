@@ -11,6 +11,7 @@ import nc.vo.pub.SuperVO;
 import nccloud.dto.baseapp.querytree.dataformat.QueryTreeFormatVO;
 import nccloud.framework.service.ServiceLocator;
 import nccloud.web.ifm.common.action.CommonListQueryAction;
+import nccloud.web.ifm.util.IncomeUtil;
 
 public class IncomeQueryAction extends CommonListQueryAction<AggInvestIncomeVO> {
 
@@ -38,8 +39,8 @@ public class IncomeQueryAction extends CommonListQueryAction<AggInvestIncomeVO> 
 
 	@Override
 	protected Map<String, String> queryGroupData(QueryTreeFormatVO queryParam) {
-		// TODO Auto-generated method stub
-		return null;
+		Map<String, String> map=IncomeUtil.getGroupData(queryParam);
+		return map;
 	}
 
 }

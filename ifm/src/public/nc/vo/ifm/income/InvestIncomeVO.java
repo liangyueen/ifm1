@@ -325,6 +325,7 @@ public static final String APPROVEDATE = "approvedate";
 public static final String CREATIONTIME = "creationtime";
 public static final String MODIFIEDTIME = "modifiedtime";
 public static final String ENDDATE = "enddate";
+public static final String SOURCE = "source";
 
 /**
 *时间戳
@@ -429,6 +430,23 @@ return (Integer) this.getAttributeValue( InvestIncomeVO.VBILLSTATUS);
 */
 public void setVbillstatus ( Integer vbillstatus) {
 this.setAttributeValue( InvestIncomeVO.VBILLSTATUS,vbillstatus);
+} 
+/**
+ * 属性 source的Getter方法.属性名：审批状态
+ *  创建日期:2018-9-6
+ * @return nc.vo.pub.pf.SourceEnum
+ */
+public Integer getSource() {
+	return (Integer) this.getAttributeValue( InvestIncomeVO.SOURCE);
+} 
+
+/**
+ * 属性source的Setter方法.属性名：审批状态
+ * 创建日期:2018-9-6
+ * @param source nc.vo.pub.pf.SourceEnum
+ */
+public void setSource ( Integer source) {
+	this.setAttributeValue( InvestIncomeVO.SOURCE,source);
 } 
 
 /**

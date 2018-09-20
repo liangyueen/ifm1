@@ -23,7 +23,7 @@ public class N_3643_APPROVE extends AbstractPfAction<AggInvestIncomeVO> {
 			Object userObj) {
 		CompareAroundProcesser<AggInvestIncomeVO> processor = new CompareAroundProcesser<AggInvestIncomeVO>(
 				InvestIncomePluginPoint.APPROVE);
-		processor.addBeforeRule(new ApproveStatusCheckRule());
+//		processor.addBeforeRule(new ApproveStatusCheckRule());
 		return processor;
 	}
 

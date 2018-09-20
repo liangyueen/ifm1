@@ -20,7 +20,7 @@ public class N_3643_UNAPPROVE extends AbstractPfAction<AggInvestIncomeVO> {
 		CompareAroundProcesser<AggInvestIncomeVO> processor = new CompareAroundProcesser<AggInvestIncomeVO>(
 				InvestIncomePluginPoint.UNAPPROVE);
 		// TODO 在此处添加前后规则
-		processor.addBeforeRule(new UnapproveStatusCheckRule());
+//		processor.addBeforeRule(new UnapproveStatusCheckRule());
 
 		return processor;
 	}

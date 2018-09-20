@@ -21,10 +21,10 @@ public class AceInvestIncomeSendApproveBP {
 
 	public AggInvestIncomeVO[] sendApprove(AggInvestIncomeVO[] clientBills,
 			AggInvestIncomeVO[] originBills) {
-		for (AggInvestIncomeVO clientFullVO : clientBills) {
-			clientFullVO.getParentVO().setAttributeValue("${vmObject.billstatus}",
-					BillStatusEnum.COMMIT.value());
-			clientFullVO.getParentVO().setStatus(VOStatus.UPDATED);
+		for (AggInvestIncomeVO clientBill : clientBills) {
+			clientBill.getParentVO().setAttributeValue("billstatus",
+					2);
+			clientBill.getParentVO().setStatus(VOStatus.UPDATED);
 		}
 		// 数据持久化
 		AggInvestIncomeVO[] returnVos = new BillUpdate<AggInvestIncomeVO>().update(

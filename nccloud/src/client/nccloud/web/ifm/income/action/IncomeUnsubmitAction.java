@@ -6,16 +6,14 @@ import java.util.Map;
 
 import nc.vo.ifm.constants.TMIFMConst;
 import nc.vo.ifm.income.AggInvestIncomeVO;
-import nc.vo.ifm.income.InvestIncomeVO;
-import nc.vo.ifm.redeem.AggInvestRedeemVO;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.lang.UFDateTime;
 import nccloud.ifm.vo.OperatorParam;
-import nccloud.web.ifm.common.action.CommonCommitAction;
+import nccloud.web.ifm.common.action.CommonOperatorAction;
 import nccloud.web.ifm.util.IncomeUtil;
 
-public class IncomeSubmitAction extends CommonCommitAction<AggInvestIncomeVO> {
-	
+public class IncomeUnsubmitAction extends CommonOperatorAction<AggInvestIncomeVO> {
+
 	private List<String> errList;
 	
 	@Override
@@ -27,7 +25,11 @@ public class IncomeSubmitAction extends CommonCommitAction<AggInvestIncomeVO> {
 	@Override
 	protected AggInvestIncomeVO[] queryBillsByParam(OperatorParam operaParam) {
 		Map<String, String> map = operaParam.getPkMapTs();
-		String[] newpks=map.keySet().toArray(new String[0]);
+		Object[] pks=map.keySet().toArray();
+		String[] newpks=new String[pks.length];
+		for (int i=0;i<pks.length;i++) {
+			newpks[i]=(String) pks[i];
+		}
 		AggInvestIncomeVO[] vos = IncomeUtil.getIncomeVO(newpks);
 		for (AggInvestIncomeVO vo : vos) {
 			vo.getParentVO().setTs(
@@ -45,15 +47,12 @@ public class IncomeSubmitAction extends CommonCommitAction<AggInvestIncomeVO> {
 				try {
 					// 调用动作脚本，执行保存
 					AggInvestIncomeVO operaVO = (AggInvestIncomeVO) callActionScript(
-							TMIFMConst.CONST_ACTION_SAVE,
+							getActionCode(),
 							TMIFMConst.CONST_BILLTYPE_INCOME,
 							new AggInvestIncomeVO[] { vo });
 					list.add(operaVO);
-//					Object result = super.doCommitProcess(new AggInvestIncomeVO[]{vo}, null);
-//					AggInvestIncomeVO[] vos = (AggInvestIncomeVO[]) result;
-//					list.add(vos[0]);
 				} catch (BusinessException e) {
-					errList.add("单据编号：" + vo.getParentVO().getVbillno()
+					errList.add("单据编号：" + vo.getParentVO().getPk_income()
 							+ e.getMessage());
 					continue;
 				}
@@ -64,26 +63,19 @@ public class IncomeSubmitAction extends CommonCommitAction<AggInvestIncomeVO> {
 
 	@Override
 	protected String getActionCode() {
-		return TMIFMConst.CONST_ACTION_SAVE;
+		return TMIFMConst.CONST_ACTION_UNSAVEBILL;
 	}
-
+	
 	@Override
 	protected String[] getErrormessage() {
 		return (String[]) errList.toArray(new String[0]);
 	}
 	
 	private boolean doBefore(AggInvestIncomeVO vo) {
-//		InvestIncomeVO head = vo.getParentVO();
-//		if (!head.getProtocolstatus().equals(ProtocolStatusEnum.NOCOMMIT.value())) {
-//			errList.add("协议编号：" + head.getProtocolcode() + "，不可以进行提交操作！");
-//			return false;
-//		}
+		/**/
 		return true;
 	}
+
 	
-	@Override
-	protected String getBillTypeCode() {
-		return TMIFMConst.CONST_BILLTYPE_INCOME;
-	}
 
 }
