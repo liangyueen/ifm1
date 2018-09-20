@@ -22,7 +22,7 @@ import nccloud.web.tmifm.common.action.CommonSaveAction;
  */
 public class ApplySaveCommitAction extends CommonSaveAction<AggInvestApplyVO> {
 	
-	ApplyCummitAction ac = new ApplyCummitAction();
+	ApplyCommitAction ac = new ApplyCommitAction();
 	
 	
 	@Override

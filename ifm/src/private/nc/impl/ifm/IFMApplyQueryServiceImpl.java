@@ -9,8 +9,7 @@ import nc.itf.ifm.IIFMApplyQueryService;
 import nc.ui.querytemplate.querytree.IQueryScheme;
 import nc.vo.ifm.apply.AggInvestApplyVO;
 import nc.vo.ifm.apply.InvestApplyVO;
-import nc.vo.ifm.constants.TMIFMConst;
-
+import nc.vo.imf.constants.TMIMFConst;
 import nc.vo.pub.BusinessException;
 import nc.vo.pubapp.bill.pagination.util.PaginationUtils;
 import nc.vo.pubapp.pattern.data.IRowSet;
@@ -36,19 +35,19 @@ public class IFMApplyQueryServiceImpl implements IIFMApplyQueryService {
 		QuerySchemeProcessor processor = new QuerySchemeProcessor(querySchema);
 		String mainAlias = processor.getMainTableAlias();
 		processor.appendFuncPermissionOrgSql();
-		sql.append(" select distinct ");
+		sql.append(" select  ");
 		sql.append(mainAlias);
 		sql.append(".");
-		sql.append("pk_apply");
+		sql.append("billstatus");
 		sql.append(processor.getFinalFromWhere());
-		sql.append(" and pk_billtypecode='3641' ");
+	
 		DataAccessUtils dao = new DataAccessUtils();
 		IRowSet rowset = dao.query(sql.toString());
 		String[] keys = rowset.toOneDimensionStringArray();
 		
 		// V63 增加待我审批查询方案
 		keys = TmpubQueryUtil.filterForApprove(querySchema, keys,
-				InvestApplyVO.class,  TMIFMConst.CONST_BILLTYPE_APPLY);
+				InvestApplyVO.class, TMIMFConst.CONST_BILLTYPE_APPLY);
 		return keys;
 	}
 

@@ -2,8 +2,8 @@ package nc.bs.ifm.apply.ace.bp;
 
 import nc.bs.ifm.apply.plugin.bpplugin.ApplyPluginPoint;
 import nc.impl.pubapp.pattern.data.bill.template.InsertBPTemplate;
-import nc.impl.pubapp.pattern.rule.processer.AroundProcesser;
 import nc.impl.pubapp.pattern.rule.IRule;
+import nc.impl.pubapp.pattern.rule.processer.AroundProcesser;
 import nc.vo.ifm.apply.AggInvestApplyVO;
 
 /**
@@ -13,7 +13,7 @@ public class AceApplyInsertBP {
 
 	public AggInvestApplyVO[] insert(AggInvestApplyVO[] bills) {
 
-		InsertBPTemplate<AggInvestApplyVO> bp = new InsertBPTemplate<AggInvestApplyVO>(
+ 		InsertBPTemplate<AggInvestApplyVO> bp = new InsertBPTemplate<AggInvestApplyVO>(
 				ApplyPluginPoint.INSERT);
 		this.addBeforeRule(bp.getAroundProcesser());
 		this.addAfterRule(bp.getAroundProcesser());
@@ -46,10 +46,7 @@ public class AceApplyInsertBP {
 	 */
 	private void addBeforeRule(AroundProcesser<AggInvestApplyVO> processer) {
 		// TODO 新增前规则
-		IRule<AggInvestApplyVO> rule = null;
-		rule = new nc.bs.pubapp.pub.rule.FillInsertDataRule();
-		processer.addBeforeRule(rule);
-		rule = new nc.bs.pubapp.pub.rule.CreateBillCodeRule();
+		IRule<AggInvestApplyVO> rule = new nc.bs.pubapp.pub.rule.CreateBillCodeRule();
 		((nc.bs.pubapp.pub.rule.CreateBillCodeRule) rule).setCbilltype("3641");
 		((nc.bs.pubapp.pub.rule.CreateBillCodeRule) rule)
 				.setCodeItem("vbillno");
@@ -57,5 +54,17 @@ public class AceApplyInsertBP {
 				.setGroupItem("pk_group");
 		((nc.bs.pubapp.pub.rule.CreateBillCodeRule) rule).setOrgItem("pk_org");
 		processer.addBeforeRule(rule);
+		
+//		// 补充默认值的规则
+//		IRule<AggInvestApplyVO> fillRule = new IFMFillInsertDataRule();
+//		processer.addBeforeRule(fillRule);
+//
+//		// 组织多版本
+//		IRule<AggInvestApplyVO> orgRule = new IFMBillOrgVRule();
+//		processer.addBeforeRule(orgRule);	
+//		
+//		rule = new nc.bs.pubapp.pub.rule.FillInsertDataRule();
+//		processer.addBeforeRule(rule);
+//		rule = new nc.bs.pubapp.pub.rule.CreateBillCodeRule();
 	}
 }

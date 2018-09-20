@@ -21,9 +21,10 @@ public class AceApplyUnSendApproveBP {
 
 	private void setHeadVOStatus(AggInvestApplyVO[] clientBills) {
 		for (AggInvestApplyVO clientBill : clientBills) {
-			clientBill.getParentVO().setAttributeValue("${vmObject.billstatus}",
+			clientBill.getParentVO().setAttributeValue("vbillstatus",
 					BillStatusEnum.FREE.value());
 			clientBill.getParentVO().setStatus(VOStatus.UPDATED);
+			clientBill.getParentVO().setAttributeValue("billstatus", 0);
 		}
 	}
 }
