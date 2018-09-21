@@ -33,4 +33,12 @@ public interface IInvestRedeemQueryService {
 	 */
 	public SuperVO[] querySuperVOByCondition(String condition, Class voClass) throws BusinessException ;
 	
+	
+	/**
+	 * 根据主键查询执行情况调整单
+	 * @return
+	 * @throws BusinessException
+	 */
+	public AggInvestRedeemVO[] getAggVOsByPKs(String... pks) throws BusinessException ;
+	
 }

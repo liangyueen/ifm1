@@ -61,5 +61,11 @@ public class InvestRedeemQueryServiceImpl implements IInvestRedeemQueryService{
 		return aceInvestRedeemQueryBP.querySuperVOByCondition(condition, voClass);
 	}
 	
+	@Override
+	public AggInvestRedeemVO[] getAggVOsByPKs(String... pks)
+			throws BusinessException {
+		return aceInvestRedeemQueryBP.getAggVOsByPKs(pks);
+	}
+	
 
 }

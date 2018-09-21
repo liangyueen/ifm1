@@ -7,6 +7,7 @@ import java.util.Map;
 import nccloud.ifm.vo.OperatorParam;
 import nc.vo.ifm.RedeemStatusEnum;
 import nc.vo.ifm.constants.TMIFMConst;
+import nc.vo.ifm.income.AggInvestIncomeVO;
 import nc.vo.ifm.redeem.AggInvestRedeemVO;
 import nc.vo.ifm.redeem.InvestRedeemVO;
 import nc.vo.pub.BusinessException;
@@ -44,7 +45,7 @@ public class RedeemSubmitAction extends CommonCommitAction<AggInvestRedeemVO> {
 		List<AggInvestRedeemVO> list = new ArrayList<AggInvestRedeemVO>();
 		for (AggInvestRedeemVO vo : operaVOs) {
 			if (this.doBefore(vo)) {
-				try {
+				/*try {
 					// 调用动作脚本，执行保存
 					AggInvestRedeemVO operaVO = (AggInvestRedeemVO) callActionScript(
 							TMIFMConst.CONST_ACTION_SAVE,
@@ -53,6 +54,23 @@ public class RedeemSubmitAction extends CommonCommitAction<AggInvestRedeemVO> {
 					list.add(operaVO);
 				} catch (BusinessException e) {
 					errList.add("单据编号：" + vo.getParentVO().getPk_redeem()
+							+ e.getMessage());
+					continue;
+				}*/
+				try {
+					AggInvestRedeemVO[] vos=new AggInvestRedeemVO[operaVOs.length];
+					
+					
+					Object result = super.doCommitProcess(new AggInvestRedeemVO[]{vo}, null);
+					if(result instanceof AggInvestRedeemVO){
+						AggInvestRedeemVO tempVo = (AggInvestRedeemVO) result;
+						vos[0]=tempVo;
+					}else{
+						vos = (AggInvestRedeemVO[]) result;
+					}
+					list.add(vos[0]);
+				} catch (BusinessException e) {
+					errList.add("单据编号：" + vo.getParentVO().getVbillno()
 							+ e.getMessage());
 					continue;
 				}
@@ -83,7 +101,8 @@ public class RedeemSubmitAction extends CommonCommitAction<AggInvestRedeemVO> {
 		//如果没有审批流的话，状态为审核通过
 		head.setAttributeValue("vbillstatus", vbillstatus);
 		head.setAttributeValue("billstatus", billstatus);
-		if (head.getHoldmoeny().sub(head.getRedeemmoney()).compareTo(UFDouble.ZERO_DBL)<1) {
+		//head.setAttributeValue("vbillno", getActionCode());
+		if (head.getHoldmoeny().sub(head.getRedeemmoney()).compareTo(UFDouble.ZERO_DBL)<1 && head.getHoldmoeny().compareTo(UFDouble.ZERO_DBL)>1) {
 			try {
 				throw new BusinessException("持有金额小于赎回金额，您当前的持有金额为："+head.getHoldmoeny()+"");
 			} catch (BusinessException e) {

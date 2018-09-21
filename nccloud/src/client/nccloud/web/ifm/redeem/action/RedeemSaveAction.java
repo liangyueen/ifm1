@@ -104,6 +104,7 @@ public class RedeemSaveAction extends CommonSaveAction<AggInvestRedeemVO> {
 		vo.setAttributeValue("billmakedate", new UFDate(SessionContext
 				.getInstance().getClientInfo().getBizDateTime()));
 		operaVO.setParent(vo);*/
+		operaVO.setParent(vo);
 		return operaVO;
 	}
 	

@@ -5,9 +5,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import nc.itf.ifm.IInvestRedeemQueryService;
+import nc.pubitf.org.cache.IOrgUnitPubService_C;
 import nc.ui.querytemplate.querytree.IQueryScheme;
 import nc.vo.ifm.redeem.AggInvestRedeemVO;
+import nc.vo.org.OrgVO;
 import nc.vo.pub.BusinessException;
+import nc.vo.pub.ISuperVO;
+import nc.vo.pub.lang.UFDate;
 import nccloud.dto.baseapp.querytree.dataformat.QueryTreeFormatVO;
 import nccloud.framework.core.exception.ExceptionUtils;
 import nccloud.framework.core.json.IJson;
@@ -74,4 +78,22 @@ public class RedeemUtil {
 		}
 		return map;
 	}
+	
+	/**
+	 * 查询财务组织所在集团
+	 * @param pk_org
+	 * @return
+	 */
+	public static String getGroupByOrg(String pk_org) throws BusinessException {
+		IOrgUnitPubService_C orgUnitQryService = ServiceLocator.find(IOrgUnitPubService_C.class);
+		String pk_group = null;
+		OrgVO[] orgVOs = orgUnitQryService.getOrgs(new String[] { pk_org }, new String[] { "pk_group" });
+		if(orgVOs == null || orgVOs.length <= 0){
+			ExceptionUtils.wrapBusinessException("获取财务组织对应的集团失败。");
+		}
+		pk_group = (String) orgVOs[0].getAttributeValue("pk_group");
+		return pk_group;
+	}
+	
+	
 }

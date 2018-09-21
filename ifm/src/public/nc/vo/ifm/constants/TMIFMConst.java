@@ -72,6 +72,12 @@ public class TMIFMConst {
 	public static String FIELD_ORGMNY = "orgMnyField";
 	public static String FIELD_GROUPMNY = "groupMnyField";
 	public static String FIELD_GLOBALMNYFIELD = "globalMnyField";
+	/**
+	 * 业务所需常量
+	 */
+	public static String CONST_PFLOW_ISRELOADBILL="IS_RELOADBILL";  
+	public static String CONST_PFLOW_CONTENT="content";
+	
 	
 	
 	
