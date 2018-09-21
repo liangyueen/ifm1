@@ -27,7 +27,7 @@
 	<action>
 		<name>ifm.apply.applycommit</name>
 		<label>提交</label>
-		<clazz>nccloud.web.ifm.investapply.action.ApplyCummitAction</clazz>
+		<clazz>nccloud.web.ifm.investapply.action.ApplyCommitAction</clazz>
 	</action>
 
 	<action>

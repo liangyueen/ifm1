@@ -19,8 +19,8 @@ public class N_3643_SAVE extends AbstractPfAction<AggInvestIncomeVO> {
 		CompareAroundProcesser<AggInvestIncomeVO> processor = new CompareAroundProcesser<AggInvestIncomeVO>(
 				InvestIncomePluginPoint.SEND_APPROVE);
 		// TODO 在此处添加审核前后规则
-		IRule<AggInvestIncomeVO> rule = new CommitStatusCheckRule();
-		processor.addBeforeRule(rule);
+//		IRule<AggInvestIncomeVO> rule = new CommitStatusCheckRule();
+//		processor.addBeforeRule(rule);
 		return processor;
 	}
 

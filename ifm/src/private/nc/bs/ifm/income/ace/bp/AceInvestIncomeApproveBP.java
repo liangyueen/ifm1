@@ -19,6 +19,8 @@ public class AceInvestIncomeApproveBP {
 	public AggInvestIncomeVO[] approve(AggInvestIncomeVO[] clientBills,
 			AggInvestIncomeVO[] originBills) {
 		for (AggInvestIncomeVO clientBill : clientBills) {
+			clientBill.getParentVO().setAttributeValue("${vmObject.billstatus}",
+					2);
 			clientBill.getParentVO().setStatus(VOStatus.UPDATED);
 		}
 		BillUpdate<AggInvestIncomeVO> update = new BillUpdate<AggInvestIncomeVO>();

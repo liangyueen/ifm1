@@ -35,12 +35,12 @@ public class InvestIncomeQueryServiceImpl implements IInvestIncomeQueryService{
 		QuerySchemeProcessor processor = new QuerySchemeProcessor(querySchema);
 		String mainAlias = processor.getMainTableAlias();
 		processor.appendFuncPermissionOrgSql();
-		sql.append(" select distinct ");
+		sql.append(" select ");
 		sql.append(mainAlias);
 		sql.append(".");
-		sql.append("pk_income");
+		sql.append("billstatus");
 		sql.append(processor.getFinalFromWhere());
-		sql.append(" and pk_billtypecode='3643' ");
+//		sql.append(" and pk_billtypecode='3643' ");
 		DataAccessUtils dao = new DataAccessUtils();
 		IRowSet rowset = dao.query(sql.toString());
 		String[] keys = rowset.toOneDimensionStringArray();

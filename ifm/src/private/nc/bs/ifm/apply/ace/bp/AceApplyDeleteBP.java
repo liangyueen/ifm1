@@ -18,8 +18,8 @@ public class AceApplyDeleteBP {
 		DeleteBPTemplate<AggInvestApplyVO> bp = new DeleteBPTemplate<AggInvestApplyVO>(
 				ApplyPluginPoint.DELETE);
 		// 增加执行前规则
-		this.addBeforeRule(bp.getAroundProcesser());
 		// 增加执行后业务规则
+		this.addBeforeRule(bp.getAroundProcesser());
 		this.addAfterRule(bp.getAroundProcesser());
 		bp.delete(bills);
 	}
@@ -32,7 +32,7 @@ public class AceApplyDeleteBP {
 	}
 
 	/**
-	 * 删除后业务规则
+	 * 删除后业务规则 
 	 * 
 	 * @param processer
 	 */

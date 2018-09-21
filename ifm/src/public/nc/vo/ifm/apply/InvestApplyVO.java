@@ -1,6 +1,6 @@
 package nc.vo.ifm.apply;
 
-import nc.vo.pub.*;
+import nc.vo.pub.IVOMeta;
 import nc.vo.pubapp.pattern.model.meta.entity.vo.VOMetaFactory;
 
 /**
@@ -84,6 +84,57 @@ public class InvestApplyVO extends nc.vo.pub.SuperVO{
     public static final String PAYTYPE = "paytype";
     public static final String PAYPERIOD = "payperiod";
     public static final String SETTLEDATE = "settledate";
+    
+    public static final String APPLYNUMBER = "applynumber";
+	public static final String UNITNETVALUE = "unitnetvalue";
+    public static final String CAPITALPROJECT = "capitalproject";
+    public static final String INVESTVARIETY = "investvariety";
+    public static final String LIMITDAY = "limitday";
+	
+    
+    public static String getApplynumber() {
+		return APPLYNUMBER;
+	}
+	public static String getUnitnetvalue() {
+		return UNITNETVALUE;
+	}
+	public static String getCapitalproject() {
+		return CAPITALPROJECT;
+	}
+	public static String getInvestvariety() {
+		return INVESTVARIETY;
+	}
+	public static String getLimitday() {
+		return LIMITDAY;
+	}
+  
+	public static String getPkApply() {
+		return PK_APPLY;
+	}
+	public static String getPkGroup() {
+		return PK_GROUP;
+	}
+	public static String getPkOrg() {
+		return PK_ORG;
+	}
+	public static String getPkOrgV() {
+		return PK_ORG_V;
+	}
+	public static String getPkCurrtype() {
+		return PK_CURRTYPE;
+	}
+	public static String getPkOlccurr() {
+		return PK_OLCCURR;
+	}
+	public static String getPkBusitype() {
+		return PK_BUSITYPE;
+	}
+	public static String getPkBilltypeid() {
+		return PK_BILLTYPEID;
+	}
+	public static String getPkBilltypecode() {
+		return PK_BILLTYPECODE;
+	}
 
 	/**
 	 * 属性 pk_apply的Getter方法.属性名：主键

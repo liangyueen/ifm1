@@ -22,8 +22,9 @@ public class AceApplySendApproveBP {
 	public AggInvestApplyVO[] sendApprove(AggInvestApplyVO[] clientBills,
 			AggInvestApplyVO[] originBills) {
 		for (AggInvestApplyVO clientFullVO : clientBills) {
-			clientFullVO.getParentVO().setAttributeValue("${vmObject.billstatus}",
+			clientFullVO.getParentVO().setAttributeValue("vbillstatus",
 					BillStatusEnum.COMMIT.value());
+			clientFullVO.getParentVO().setAttributeValue("billstatus", 1);
 			clientFullVO.getParentVO().setStatus(VOStatus.UPDATED);
 		}
 		// 数据持久化
