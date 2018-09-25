@@ -124,7 +124,13 @@ public class RedeemInitAction  implements ICommonAction {
 		parentVO.setAttributeValue("productname", resultVOs[0].getParentVO().getProductname());
 		parentVO.setAttributeValue("issuebank", resultVOs[0].getParentVO().getIssuebank());
 		parentVO.setAttributeValue("expectedrate", resultVOs[0].getParentVO().getExpectedrate());
-		parentVO.setAttributeValue("interestday", resultVOs[0].getParentVO().getInterestday());
+		Integer inday=0;
+		if(resultVOs[0].getParentVO().getInterestdate().equals("1")){
+			 inday = 365;
+		}else{
+			 inday = 360;
+		}
+		parentVO.setAttributeValue("interestday",inday);
 		parentVO.setAttributeValue("invest", resultVOs[0].getParentVO().getInvest());
 		parentVO.setAttributeValue("pk_currtype", resultVOs[0].getParentVO().getPk_currtype());
 		parentVO.setAttributeValue("olcrate", resultVOs[0].getParentVO().getOlcrate());

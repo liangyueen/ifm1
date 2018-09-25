@@ -85,7 +85,7 @@ public class IncomeInitAction  implements ICommonAction {
 		parentVO.setAttributeValue("billstatus", billstatus);
 		parentVO.setAttributeValue("expectedrate", resultVOs[0].getParentVO().getExpectedrate());//预期收益率
 		parentVO.setAttributeValue("expectedmoney", resultVOs[0].getParentVO().getExpectedmoney());//预期收益金额
-		parentVO.setAttributeValue("interestday", resultVOs[0].getParentVO().getLimitday());//期限天数（利息计算天数）
+		parentVO.setAttributeValue("interestday", 365);//期限天数（利息计算天数）
 		parentVO.setAttributeValue("invest", resultVOs[0].getParentVO().getInvest());//理财账户
 		parentVO.setAttributeValue("settleaccount", resultVOs[0].getParentVO().getSettleaccount());//结算账户（收款银行账户）
 		parentVO.setAttributeValue("pk_currtype", resultVOs[0].getParentVO().getPk_currtype());//币种

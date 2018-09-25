@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import nc.vo.ifm.IncomeBillStatusEnum;
+import nc.vo.ifm.RedeemStatusEnum;
 import nc.vo.ifm.constants.TMIFMConst;
 import nc.vo.ifm.income.AggInvestIncomeVO;
 import nc.vo.ifm.income.InvestIncomeVO;
 import nc.vo.ifm.redeem.AggInvestRedeemVO;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.lang.UFDateTime;
+import nc.vo.pub.pf.BillStatusEnum;
 import nccloud.ifm.vo.OperatorParam;
 import nccloud.web.ifm.common.action.CommonCommitAction;
 import nccloud.web.ifm.util.IncomeUtil;
@@ -73,11 +76,17 @@ public class IncomeSubmitAction extends CommonCommitAction<AggInvestIncomeVO> {
 	}
 	
 	private boolean doBefore(AggInvestIncomeVO vo) {
-//		InvestIncomeVO head = vo.getParentVO();
+		InvestIncomeVO head = vo.getParentVO();
 //		if (!head.getProtocolstatus().equals(ProtocolStatusEnum.NOCOMMIT.value())) {
 //			errList.add("协议编号：" + head.getProtocolcode() + "，不可以进行提交操作！");
 //			return false;
 //		}
+		Integer vbillstatus =1;//提交
+		Integer billstatus = 2;//待审核
+		//如果没有审批流的话，状态为审核通过
+		head.setAttributeValue("vbillstatus", vbillstatus);
+		head.setAttributeValue("billstatus", billstatus);
+		vo.setParentVO(head);
 		return true;
 	}
 	

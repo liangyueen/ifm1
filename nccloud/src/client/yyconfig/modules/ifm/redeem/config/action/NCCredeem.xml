@@ -61,4 +61,9 @@
 		<label>编辑产品代码后事件</label>
 		<clazz>nccloud.web.ifm.redeem.action.RedeemCardAfterEditAction</clazz>
 	</action>
+	<action>
+		<name>ifm.redeem.print</name>
+		<label>打印</label>
+		<clazz>nccloud.web.ifm.redeem.action.RedeemPrintAction</clazz>
+	</action>
 </actions>

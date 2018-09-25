@@ -19,8 +19,8 @@ public class N_3642_SAVE extends AbstractPfAction<AggInvestRedeemVO> {
 		CompareAroundProcesser<AggInvestRedeemVO> processor = new CompareAroundProcesser<AggInvestRedeemVO>(
 				InvestRedeemPluginPoint.SEND_APPROVE);
 		// TODO 在此处添加审核前后规则
-		//IRule<AggInvestRedeemVO> rule = new CommitStatusCheckRule();
-		//processor.addBeforeRule(rule);
+		IRule<AggInvestRedeemVO> rule = new CommitStatusCheckRule();
+		processor.addBeforeRule(rule);
 		return processor;
 	}
 

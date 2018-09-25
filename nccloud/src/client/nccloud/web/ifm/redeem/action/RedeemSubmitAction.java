@@ -96,11 +96,11 @@ public class RedeemSubmitAction extends CommonCommitAction<AggInvestRedeemVO> {
 			errList.add("协议编号：" + head.getVbillno() + "，不可以进行提交操作！");
 			return false;
 		}
-		Integer vbillstatus = (Integer) BillStatusEnum.COMMIT.value();//提交
-		Integer billstatus =   (Integer) RedeemStatusEnum.待审核.value();//待审核
+		//Integer vbillstatus = (Integer) BillStatusEnum.COMMIT.value();//提交
+		//Integer billstatus =   (Integer) RedeemStatusEnum.待审核.value();//待审核
 		//如果没有审批流的话，状态为审核通过
-		head.setAttributeValue("vbillstatus", vbillstatus);
-		head.setAttributeValue("billstatus", billstatus);
+		//head.setAttributeValue("vbillstatus", vbillstatus);
+		//head.setAttributeValue("billstatus", billstatus);
 		//head.setAttributeValue("vbillno", getActionCode());
 		if (head.getHoldmoeny().sub(head.getRedeemmoney()).compareTo(UFDouble.ZERO_DBL)<1 && head.getHoldmoeny().compareTo(UFDouble.ZERO_DBL)>1) {
 			try {
