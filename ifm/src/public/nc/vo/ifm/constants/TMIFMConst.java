@@ -9,8 +9,8 @@ public class TMIFMConst {
 	/**
 	 * 模块
 	 */
-	public static String CONST_MODULE="TMCFM";
-	public static String CONST_MODULE_CODE="3661";
+	public static String CONST_MODULE="ifm";
+	public static String CONST_MODULE_CODE="3667";
 	
 	// 资金管理
 	public static final String TM_FUNCODE = "36"; // 资金管理

@@ -71,6 +71,25 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 	public static final String PK_BILLTYPEID = "pk_billtypeid";
 	public static final String PK_BILLTYPECODE = "pk_billtypecode";
 	public static final String INTERACTFIELD = "interactfield";
+	public static final String REMARK = "remark";
+	public static final String ISINITIAL = "isinitial";
+	 public static final String VBILLSTATUS = "vbillstatus";
+	 public java.lang.Integer getVbillstatus () {
+			return (java.lang.Integer) getAttributeValue(VBILLSTATUS);
+		}   
+		public void setVbillstatus (java.lang.Integer newVbillstatus ) {
+			setAttributeValue(VBILLSTATUS, newVbillstatus);
+		}
+	public UFBoolean getIsinitial()
+	   {
+	      return (UFBoolean)getAttributeValue("isinitial");
+	    }
+	   
+	 
+	public void setIsinitial(UFBoolean newIsinitial)
+	   {
+	     setAttributeValue("isinitial", newIsinitial);
+	   }
 	/**
 	 * 属性billmaketime的Getter方法.属性名：制单时间
 	 * 创建日期:
@@ -100,14 +119,21 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 	 * 创建日期:
 	 * @param newApprover java.lang.String
 	 */
+	public void setRemark (java.lang.String newRemark ) {
+	 	setAttributeValue("remark", newRemark);
+	} 	
+	public java.lang.String getRemark () {
+		return (java.lang.String)getAttributeValue("remark");
+	}   
+	/**
+	 * 属性approver的Setter方法.属性名：审批人
+	 * 创建日期:
+	 * @param newApprover java.lang.String
+	 */
 	public void setApprover (java.lang.String newApprover ) {
 	 	setAttributeValue("approver", newApprover);
 	} 	  
-	/**
-	 * 属性approvedate的Getter方法.属性名：审批日期
-	 * 创建日期:
-	 * @return nc.vo.pub.lang.UFDate
-	 */
+	
 	public nc.vo.pub.lang.UFDate getApprovedate () {
 		return (nc.vo.pub.lang.UFDate)getAttributeValue("approvedate");
 	}   

@@ -102,7 +102,7 @@ public class RedeemSubmitAction extends CommonCommitAction<AggInvestRedeemVO> {
 		//head.setAttributeValue("vbillstatus", vbillstatus);
 		//head.setAttributeValue("billstatus", billstatus);
 		//head.setAttributeValue("vbillno", getActionCode());
-		if (head.getHoldmoeny().sub(head.getRedeemmoney()).compareTo(UFDouble.ZERO_DBL)<1 && head.getHoldmoeny().compareTo(UFDouble.ZERO_DBL)>1) {
+		if (head.getHoldmoeny().sub(head.getRedeemmoney()).compareTo(UFDouble.ZERO_DBL)<=1 && head.getHoldmoeny().compareTo(UFDouble.ZERO_DBL)>=1) {
 			try {
 				throw new BusinessException("持有金额小于赎回金额，您当前的持有金额为："+head.getHoldmoeny()+"");
 			} catch (BusinessException e) {

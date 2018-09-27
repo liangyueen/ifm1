@@ -153,7 +153,7 @@ public class RedeemSaveSubmitAction  implements ICommonAction {
 			Integer billstatus =   (Integer) RedeemStatusEnum.待审核.value();//待审核
 		//	vo.setAttributeValue("vbillstatus", vbillstatus);
 			vo.setAttributeValue("billstatus", billstatus);
-			if (vo.getHoldmoeny().sub(vo.getRedeemmoney()).compareTo(UFDouble.ZERO_DBL)<1 && vo.getHoldmoeny().compareTo(UFDouble.ZERO_DBL)>1) {
+			if (vo.getHoldmoeny().sub(vo.getRedeemmoney()).compareTo(UFDouble.ZERO_DBL)<=1 && vo.getHoldmoeny().compareTo(UFDouble.ZERO_DBL)>=1) {
 				try {
 					throw new BusinessException("持有金额小于赎回金额，您当前的持有金额为："+vo.getHoldmoeny()+"");
 				} catch (BusinessException e) {

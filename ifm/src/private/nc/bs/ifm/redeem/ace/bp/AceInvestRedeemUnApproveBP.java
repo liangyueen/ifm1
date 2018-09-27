@@ -1,8 +1,12 @@
 package nc.bs.ifm.redeem.ace.bp;
 
+import nc.bs.ifm.redeem.rule.TallySendRedeemProcessVoucherRule;
 import nc.impl.pubapp.pattern.data.bill.BillUpdate;
+import nc.impl.pubapp.pattern.rule.IRule;
 import nc.vo.ifm.redeem.AggInvestRedeemVO;
+import nc.vo.ifm.redeem.InvestRedeemVO;
 import nc.vo.pub.VOStatus;
+import nc.vo.pub.pf.BillStatusEnum;
 
 /**
  * 标准单据弃审的BP
@@ -16,6 +20,23 @@ public class AceInvestRedeemUnApproveBP {
 		}
 		BillUpdate<AggInvestRedeemVO> update = new BillUpdate<AggInvestRedeemVO>();
 		AggInvestRedeemVO[] returnVos = update.update(clientBills, originBills);
+		this.addAfterRule(clientBills);
 		return returnVos;
+	}
+	
+	/**
+	 * 修改后规则
+	 * 
+	 * @param processor
+	 */
+	private void addAfterRule(AggInvestRedeemVO[] vos) {
+		IRule<AggInvestRedeemVO> rule = null;
+		rule = new TallySendRedeemProcessVoucherRule();
+		for (AggInvestRedeemVO clientBill : vos) {
+			InvestRedeemVO vo = clientBill.getParentVO();
+			if(vo.getVbilltype().equals(BillStatusEnum.APPROVED.value())){
+				rule.process(vos);
+			}
+		}
 	}
 }
