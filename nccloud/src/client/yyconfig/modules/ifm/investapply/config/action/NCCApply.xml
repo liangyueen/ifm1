@@ -48,11 +48,15 @@
 		<label>收回</label>
 		<clazz>nccloud.web.ifm.investapply.action.ApplyUnCommitAction</clazz>
 	</action>
-	
 	<action>
 		<name>ifm.apply.cardeditafter</name>
 		<label>编辑后事件</label>
 		<clazz>nccloud.web.ifm.investapply.action.ApplyCardAfterAction</clazz>
+	</action>
+	<action>
+		<name>ifm.apply.print</name>
+		<label>打印</label>
+		<clazz>nccloud.web.ifm.investapply.action.ApplyPrintAction</clazz>
 	</action>
 
 </actions>

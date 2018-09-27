@@ -44,8 +44,13 @@ public class ApplyCommitAction extends CommonCommitAction<AggInvestApplyVO> {
 			if (this.doBefore(vo)) {
 				try {
 					Object result = super.doCommitProcess(new AggInvestApplyVO[]{vo}, null);
-					AggInvestApplyVO[] vos = (AggInvestApplyVO[]) result;
-					list.add(vos[0]);
+					if(result instanceof AggInvestApplyVO){
+						AggInvestApplyVO tempvo = (AggInvestApplyVO) result;
+						list.add(tempvo);
+					}else{
+						AggInvestApplyVO[] vos = (AggInvestApplyVO[]) result;
+						list.add(vos[0]);
+					}
 				} catch (BusinessException e) {
 					errList.add("µ¥¾Ý±àºÅ£º" + vo.getParentVO().getVbillno()
 							+ e.getMessage());

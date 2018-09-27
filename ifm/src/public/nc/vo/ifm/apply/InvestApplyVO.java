@@ -85,6 +85,7 @@ public class InvestApplyVO extends nc.vo.pub.SuperVO{
     public static final String PAYPERIOD = "payperiod";
     public static final String SETTLEDATE = "settledate";
     
+    
     public static final String APPLYNUMBER = "applynumber";
 	public static final String UNITNETVALUE = "unitnetvalue";
     public static final String CAPITALPROJECT = "capitalproject";

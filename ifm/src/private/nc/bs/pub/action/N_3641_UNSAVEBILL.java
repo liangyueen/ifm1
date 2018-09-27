@@ -19,7 +19,7 @@ public class N_3641_UNSAVEBILL extends AbstractPfAction<AggInvestApplyVO> {
 		CompareAroundProcesser<AggInvestApplyVO> processor = new CompareAroundProcesser<AggInvestApplyVO>(
 				ApplyPluginPoint.UNSEND_APPROVE);
 		// TODO 在此处添加前后规则
-		processor.addBeforeRule(new UncommitStatusCheckRule());
+		//processor.addBeforeRule(new UncommitStatusCheckRule());
 
 		return processor;
 	}

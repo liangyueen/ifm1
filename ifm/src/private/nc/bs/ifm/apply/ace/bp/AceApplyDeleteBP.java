@@ -19,7 +19,7 @@ public class AceApplyDeleteBP {
 				ApplyPluginPoint.DELETE);
 		// 增加执行前规则
 		// 增加执行后业务规则
-		this.addBeforeRule(bp.getAroundProcesser());
+		//this.addBeforeRule(bp.getAroundProcesser());
 		this.addAfterRule(bp.getAroundProcesser());
 		bp.delete(bills);
 	}

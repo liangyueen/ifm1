@@ -1,7 +1,7 @@
 set SRC=%~dp0yyconfig
 
 :: NChome中resource文件夹的位置 
-set DEST=D:\mwq0828v1\hotwebs\nccloud\WEB-INF\extend\yyconfig
+set DEST=D:\NCCloud\mwq0828v1\hotwebs\nccloud\WEB-INF\extend\yyconfig
 
 echo 当前bat文件路径：%~dp0
  

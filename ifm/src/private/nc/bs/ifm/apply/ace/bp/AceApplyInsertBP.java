@@ -58,7 +58,7 @@ public class AceApplyInsertBP {
 //		// 补充默认值的规则
 //		IRule<AggInvestApplyVO> fillRule = new IFMFillInsertDataRule();
 //		processer.addBeforeRule(fillRule);
-//
+// 
 //		// 组织多版本
 //		IRule<AggInvestApplyVO> orgRule = new IFMBillOrgVRule();
 //		processer.addBeforeRule(orgRule);	

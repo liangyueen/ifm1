@@ -72,16 +72,8 @@ public class ApplyQueryUtil {
 			IIFMApplyQueryService service = ServiceLocator
 					.find(IIFMApplyQueryService.class);
 			String[] status = service.queryIFMApplyBySchema(scheme);
-			int  numSPZ = 0, numDTJ = 0;
+			int  numSPZ = 0, numDTJ = 0, numSPWC = 0, numYCD = 0;
 			for (int i = 0; i < status.length; i++) {
-//				if (status[i].equals("NOEXECUTE") ) {// 未执行
-//					numWZX++;
-//					continue;
-//				}
-//				if (status[i].equals("EXECUTING")) {// 执行中
-//					numZXZ++;
-//					continue;
-//				}
 				if (status[i].equals("1")) {// 审批中
 					numSPZ++;
 					continue;
