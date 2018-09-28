@@ -3,6 +3,7 @@ package nccloud.web.ifm.investapply.action;
 import nc.vo.ifm.RedeemStatusEnum;
 import nc.vo.ifm.apply.AggInvestApplyVO;
 import nc.vo.ifm.apply.InvestApplyVO;
+import nc.vo.pub.lang.UFDate;
 import nc.vo.pub.pf.BillStatusEnum;
 import nccloud.framework.core.exception.ExceptionUtils;
 import nccloud.framework.core.json.IJson;
@@ -12,6 +13,7 @@ import nccloud.framework.web.convert.translate.Translator;
 import nccloud.framework.web.json.JsonFactory;
 import nccloud.framework.web.processor.template.BillCardConvertProcessor;
 import nccloud.framework.web.ui.pattern.billcard.BillCard;
+import nccloud.framework.web.container.SessionContext;
 import nccloud.ifm.vo.OperatorParam;
 
 public class ApplyCardAfterAction implements ICommonAction {
@@ -32,7 +34,11 @@ public class ApplyCardAfterAction implements ICommonAction {
 			Integer billstatus = 0;
 			parentVO.setAttributeValue("vbillstatus", vbillstatus);
 			parentVO.setAttributeValue("billstatus", billstatus);
-			
+			//制单人，制单时间
+			parentVO.setAttributeValue("billmaker", SessionContext.getInstance()
+					.getClientInfo().getUserid());
+			parentVO.setAttributeValue("billmakedate", new UFDate(SessionContext
+					.getInstance().getClientInfo().getBizDateTime()));
 			vo.setParentVO(parentVO);
 
 			BillCardConvertProcessor processor = new BillCardConvertProcessor();

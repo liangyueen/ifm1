@@ -56,7 +56,8 @@ public class ApplySaveAction extends CommonSaveAction<AggInvestApplyVO> {
 					.getClientInfo().getUserid());
 			headVO.setAttributeValue("creationtime", new UFDate(SessionContext
 					.getInstance().getClientInfo().getBizDateTime()));
-			headVO.setAttributeValue("version", 1);
+			headVO.setAttributeValue("pk_org_v", 1);
+			headVO.setAttributeValue("pk_billtypecode", 3641);
 			headVO.setAttributeValue("versiontime", new UFDate(SessionContext
 					.getInstance().getClientInfo().getBizDateTime()));
 			headVO.setPk_group(getGroupByOrg(headVO.getPk_org()));
