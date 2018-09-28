@@ -1,36 +1,36 @@
-package nc.vo.ifm;
+/*package nc.vo.ifm;
 
 
 
-/**
+*//**
  * 单行操作结果
  * @author futao3
  * Aug 27, 2018
- */
+ *//*
 public class SingleResult {
-	/**
+	*//**
 	 * 执行标志
-	 */
+	 *//*
 	private int state;
-	/**
+	*//**
 	 * 消息
-	 */
+	 *//*
 	private String msg;
-	/**
+	*//**
 	 * 处理结果
-	 */
+	 *//*
 	private Object result;
-	/**
+	*//**
 	 * 主键
-	 */
+	 *//*
 	private String pk;
-	/**
+	*//**
 	 * 单据编号
-	 */
+	 *//*
 	private String vbillno;
-	/**
+	*//**
 	 * 行号
-	 */
+	 *//*
 	private Integer rowIndex;
 
 	public int getState() {
@@ -96,7 +96,7 @@ public class SingleResult {
 		super();
 	}
 
-	/**
+	*//**
 	 * 构建成功的单笔操作结果
 	 * 
 	 * @param pk
@@ -108,14 +108,14 @@ public class SingleResult {
 	 * @param result
 	 *            操作结果
 	 * @return
-	 */
+	 *//*
 	public static SingleResult buildSuccessResult(String pk, String vbillno,
 			Integer rowIndex, Object result) {
 		return new SingleResult(OperatorResult.ResultState.SUCCESS, "成功",
 				result, pk, vbillno, rowIndex);
 	}
 
-	/**
+	*//**
 	 * 构建失败的单笔操作结果
 	 * 
 	 * @param pk
@@ -127,10 +127,10 @@ public class SingleResult {
 	 * @param msg
 	 *            操作消息
 	 * @return
-	 */
+	 *//*
 	public static SingleResult buildErrResult(String pk, String vbillno,
 			Integer rowIndex, String msg) {
 		return new SingleResult(OperatorResult.ResultState.FAIL, msg, null, pk,
 				vbillno, rowIndex);
 	}
-}
+}*/
