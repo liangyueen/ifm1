@@ -60,10 +60,8 @@ public class AceInvestRedeemApproveBP {
 	private void addAfterRule(AggInvestRedeemVO[] vos) {
 		IRule<AggInvestRedeemVO> rule = null;
 		rule = new TallySendRedeemProcessVoucherRule();
-		for (AggInvestRedeemVO clientBill : vos) {
-			InvestRedeemVO vo = clientBill.getParentVO();
-			rule.process(vos);
-		}
+		rule.process(vos);
+		
 	}
 	/*private void addAfterRule(CompareAroundProcesser<AggInvestRedeemVO> processer) {
 		

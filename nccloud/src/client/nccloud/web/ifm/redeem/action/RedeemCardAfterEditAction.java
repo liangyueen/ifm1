@@ -1,4 +1,4 @@
-package nccloud.web.ifm.redeem.action;
+/*package nccloud.web.ifm.redeem.action;
 
 import nc.bs.logging.Logger;
 import nc.lightapp.pubapp.web.template.ref.util.StringUtils;
@@ -14,17 +14,17 @@ import nccloud.web.tmpub.action.CommonAfterEditAction;
 import nccloud.web.tmpub.afteredit.bean.UIProp;
 import nccloud.web.tmpub.handler.AbstractCommonAfterEditHandler;
 
-/**  
+*//**  
  * @Description: 授信执行调整-卡片编辑后事件
  * @author wangjias 
  * @date 2018-09-13
  * @version V1.0  
- */ 
+ *//* 
 public class RedeemCardAfterEditAction extends CommonAfterEditAction {
 	
-	/**
+	*//**
 	 * 保存新增事件
-	 */
+	 *//*
 	private final String EVENT_SAVEADD = "saveadd";
 
 	protected Object handleBillCardAfterEditEvent(CardHeadAfterEditEvent event, UIProp uiProp) throws BusinessException {
@@ -72,14 +72,14 @@ public class RedeemCardAfterEditAction extends CommonAfterEditAction {
 		return null;
 	}
 	
-	/**
+	*//**
 	 * 获取请求参数
 	 * 
 	 * @param request
 	 *            请求对象
 	 * @return 请求参数
 	 * @throws BusinessException
-	 */
+	 *//*
 	private CardHeadAfterEditEvent getReqParam(IRequest request) throws BusinessException {
 		String read = request.read();
 		if (StringUtils.isEmpty(read)) {
@@ -94,14 +94,14 @@ public class RedeemCardAfterEditAction extends CommonAfterEditAction {
 		return reqParam;
 	}
 	
-	/**
+	*//**
 	 * 处理编辑后事件
 	 * 
 	 * @param reqParam
 	 *            前端请求数据
 	 * @return 处理结果
 	 * @throws BusinessException
-	 */
+	 *//*
 	private Object handleAfterEditEvent(CardHeadAfterEditEvent reqParam) throws BusinessException {
 		UIProp uiProp = new UIProp();
 		Logger.debug("编辑后事件[" + reqParam + "]");
@@ -111,3 +111,4 @@ public class RedeemCardAfterEditAction extends CommonAfterEditAction {
 	}
 
 }
+*/

@@ -66,4 +66,10 @@
 		<label>打印</label>
 		<clazz>nccloud.web.ifm.redeem.action.RedeemPrintAction</clazz>
 	</action>
+	
+	<action>
+		<name>ifm.cash.appregisterurlquery</name>
+		<label>查询小应用URL</label>
+		<clazz>nccloud.web.ifm.redeem.action.AppregisterUrlQueryAction</clazz>
+	</action>
 </actions>
