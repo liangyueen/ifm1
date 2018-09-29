@@ -37,9 +37,6 @@ public class RedeemProcessVoucherBS {
 		for(AggregatedValueObject vo: vos){
 			try {
 				int vbillstatus=-1;
-				if (vo.getParentVO().getAttributeValue("vbillstatus")==null){
-					vbillstatus=1;
-				}
 				if (vo.getParentVO().getAttributeValue("vbillstatus")!=null&&
 						((Integer)vo.getParentVO().getAttributeValue("vbillstatus")).intValue() == BillStatusEnum.APPROVED.toIntValue()) {
 					vbillstatus=1;

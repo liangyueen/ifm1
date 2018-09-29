@@ -58,7 +58,8 @@ public class VoucherUtil {
 //			throw new BusinessException("该单据已经被他人修改，请刷新界面，重做业务");
 //		}
 		Integer vbillstatus=(Integer)headvo.getAttributeValue("vbillstatus");
-		if(vbillstatus!=null&&vbillstatus.intValue()!=IBillStatus.CHECKPASS&&!pk_tradetype.equalsIgnoreCase(TMIFMConst.CONST_BILLTYPE_REDEEM)){
+		if(vbillstatus!=null&&vbillstatus.intValue()!=IBillStatus.CHECKPASS&&!pk_tradetype.equalsIgnoreCase(TMIFMConst.CONST_BILLTYPE_REDEEM)
+				&&!pk_tradetype.equalsIgnoreCase(TMIFMConst.CONST_BILLTYPE_APPLY)&&!pk_tradetype.equalsIgnoreCase(TMIFMConst.CONST_BILLTYPE_INCOME)){
 //			throw new BusinessException("该单据已经被他人修改，请刷新界面，重做业务");
 			return null;
 		}
