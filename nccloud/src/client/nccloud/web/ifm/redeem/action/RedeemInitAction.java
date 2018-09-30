@@ -131,11 +131,12 @@ public class RedeemInitAction  implements ICommonAction {
 			 inday = 360;
 		}
 		parentVO.setAttributeValue("interestday",inday);
-		parentVO.setAttributeValue("invest", resultVOs[0].getParentVO().getInvest());
+		parentVO.setAttributeValue("investaccount", resultVOs[0].getParentVO().getInvest());
 		parentVO.setAttributeValue("pk_currtype", resultVOs[0].getParentVO().getPk_currtype());
 		parentVO.setAttributeValue("olcrate", resultVOs[0].getParentVO().getOlcrate());
 		parentVO.setAttributeValue("olcmoney", resultVOs[0].getParentVO().getOlcmoney());
-		
+		parentVO.setAttributeValue("glcrate", resultVOs[0].getParentVO().getGlcrate());
+		parentVO.setAttributeValue("gllcrate", resultVOs[0].getParentVO().getGllcrate());
 		//计算选择产品的持有金额(理财金额-赎回总额)
 		UFDouble holdMoney = isApplyNoExists(resultVOs[0].getParentVO().getProductcode(),resultVOs[0].getParentVO().getMoney());
 		parentVO.setAttributeValue("holdmoney", holdMoney);

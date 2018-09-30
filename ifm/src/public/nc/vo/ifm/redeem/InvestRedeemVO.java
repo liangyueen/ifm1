@@ -72,9 +72,119 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 	public static final String PK_BILLTYPECODE = "pk_billtypecode";
 	public static final String INTERACTFIELD = "interactfield";
 	public static final String REMARK = "remark";
-	public static final String ISINITIAL = "isinitial";
 	 public static final String VBILLSTATUS = "vbillstatus";
-	 public java.lang.Integer getVbillstatus () {
+	 //pk_currtype
+	 public static final String PK_CURRTYPE = "pk_currtype";
+	 
+	 
+	 
+	 public static String getPkOrg() {
+		return PK_ORG;
+	}
+	public static String getPkGroup() {
+		return PK_GROUP;
+	}
+	public static String getPkRedeem() {
+		return PK_REDEEM;
+	}
+	public static String getPkApply() {
+		return PK_APPLY;
+	}
+	public static String getHoldmoney() {
+		return HOLDMONEY;
+	}
+	public static String getVdef1() {
+		return VDEF1;
+	}
+	public static String getVdef2() {
+		return VDEF2;
+	}
+	public static String getVdef3() {
+		return VDEF3;
+	}
+	public static String getVdef4() {
+		return VDEF4;
+	}
+	public static String getVdef5() {
+		return VDEF5;
+	}
+	public static String getVdef6() {
+		return VDEF6;
+	}
+	public static String getVdef7() {
+		return VDEF7;
+	}
+	public static String getVdef10() {
+		return VDEF10;
+	}
+	public static String getVdef11() {
+		return VDEF11;
+	}
+	public static String getVdef12() {
+		return VDEF12;
+	}
+	public static String getVdef13() {
+		return VDEF13;
+	}
+	public static String getVdef14() {
+		return VDEF14;
+	}
+	public static String getVdef15() {
+		return VDEF15;
+	}
+	public static String getVdef16() {
+		return VDEF16;
+	}
+	public static String getVdef17() {
+		return VDEF17;
+	}
+	public static String getVdef18() {
+		return VDEF18;
+	}
+	public static String getVdef19() {
+		return VDEF19;
+	}
+	public static String getVdef20() {
+		return VDEF20;
+	}
+	public static String getOlcrate() {
+		return OLCRATE;
+	}
+	public static String getGlcrate() {
+		return GLCRATE;
+	}
+	public static String getGllcrate() {
+		return GLLCRATE;
+	}
+	public static String getOlcmny() {
+		return OLCMNY;
+	}
+	public static String getGlcmny() {
+		return GLCMNY;
+	}
+	public static String getGllcmny() {
+		return GLLCMNY;
+	}
+	public static String getBillmaker() {
+		return BILLMAKER;
+	}
+	
+	public static String getPkBusitype() {
+		return PK_BUSITYPE;
+	}
+	public static String getPkBilltypeid() {
+		return PK_BILLTYPEID;
+	}
+	public static String getPkBilltypecode() {
+		return PK_BILLTYPECODE;
+	}
+	public static String getInteractfield() {
+		return INTERACTFIELD;
+	}
+	public String getPk_currtype() {
+		return (String) this.getAttributeValue( InvestRedeemVO.PK_CURRTYPE);
+		} 
+	public java.lang.Integer getVbillstatus () {
 			return (java.lang.Integer) getAttributeValue(VBILLSTATUS);
 		}   
 		public void setVbillstatus (java.lang.Integer newVbillstatus ) {
@@ -119,20 +229,20 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 	 * 创建日期:
 	 * @param newApprover java.lang.String
 	 */
+	public void setApprover (java.lang.String newApprover ) {
+		setAttributeValue("approver", newApprover);
+	} 	  
+	/**
+	 * 属性approver的Setter方法.属性名：审批人
+	 * 创建日期:
+	 * @param newApprover java.lang.String
+	 */
 	public void setRemark (java.lang.String newRemark ) {
 	 	setAttributeValue("remark", newRemark);
 	} 	
 	public java.lang.String getRemark () {
 		return (java.lang.String)getAttributeValue("remark");
 	}   
-	/**
-	 * 属性approver的Setter方法.属性名：审批人
-	 * 创建日期:
-	 * @param newApprover java.lang.String
-	 */
-	public void setApprover (java.lang.String newApprover ) {
-	 	setAttributeValue("approver", newApprover);
-	} 	  
 	
 	public nc.vo.pub.lang.UFDate getApprovedate () {
 		return (nc.vo.pub.lang.UFDate)getAttributeValue("approvedate");
@@ -340,7 +450,8 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 	/**
 	 * 实际与预期差额
 	 */
-	public static final String BALANCE = "balance";;
+	public static final String BALANCE = "balance";
+	public static final String ISINITIAL = "isinitial";
 	/**
 	 * 时间戳
 	 */

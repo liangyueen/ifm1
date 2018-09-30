@@ -83,6 +83,7 @@ public class RedeemSaveAction extends CommonSaveAction<AggInvestRedeemVO> {
 		if (StringUtils.isBlank(vo.getPk_redeem())) {
 			// 设置单据默认值
 			vo.setPk_billtypecode(getBillTypeCode());
+			
 			vo.setPk_group(clientInfo.getPk_group());
 			vo.setBillmakedate(getBusiDate());
 			vo.setPk_billtypecode(TMIFMConst.CONST_BILLTYPE_REDEEM);
@@ -104,6 +105,7 @@ public class RedeemSaveAction extends CommonSaveAction<AggInvestRedeemVO> {
 		vo.setAttributeValue("billmakedate", new UFDate(SessionContext
 				.getInstance().getClientInfo().getBizDateTime()));
 		operaVO.setParent(vo);*/
+		vo.setAttributeValue("pk_org_v", 1);
 		operaVO.setParent(vo);
 		return operaVO;
 	}

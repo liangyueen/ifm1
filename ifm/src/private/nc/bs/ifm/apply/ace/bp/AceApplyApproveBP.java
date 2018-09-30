@@ -52,6 +52,7 @@ public class AceApplyApproveBP {
 		aroundProcesser.addAfterRule(rwRule);
 		
 	}
+
 	private void addAfterRule(AggInvestApplyVO[] vos) {
 		IRule<AggInvestApplyVO> rule = null;
 		rule = new TallySendApplyProcessVoucherRule();

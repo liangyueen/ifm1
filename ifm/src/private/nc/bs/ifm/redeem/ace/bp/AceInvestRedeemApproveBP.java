@@ -1,6 +1,7 @@
 package nc.bs.ifm.redeem.ace.bp;
 
 import nc.bs.ifm.redeem.plugin.bpplugin.InvestRedeemPluginPoint;
+import nc.bs.ifm.redeem.rule.RegisterWriteBankAccAfterRule;
 import nc.bs.ifm.redeem.rule.TallySendRedeemProcessVoucherRule;
 import nc.bs.pub.payreceipt.rule.PayReceiptVoucherRule;
 import nc.bs.pubapp.pub.rule.FieldLengthCheckRule;
@@ -35,7 +36,7 @@ public class AceInvestRedeemApproveBP {
 	 */
 	public AggInvestRedeemVO[] approve(AggInvestRedeemVO[] clientBills,
 			AggInvestRedeemVO[] originBills) {
-		//UpdateBPTemplate<AggInvestRedeemVO> bp = new UpdateBPTemplate<AggInvestRedeemVO>(InvestRedeemPluginPoint.APPROVE);
+		UpdateBPTemplate<AggInvestRedeemVO> bp = new UpdateBPTemplate<AggInvestRedeemVO>(InvestRedeemPluginPoint.APPROVE);
 		for (AggInvestRedeemVO clientBill : clientBills) {
 			InvestRedeemVO vo = clientBill.getParentVO();
 			Integer billstatus =   (Integer) RedeemStatusEnum.部分赎回.value();//待审核
@@ -43,14 +44,33 @@ public class AceInvestRedeemApproveBP {
 				billstatus = (Integer) RedeemStatusEnum.全部赎回.value();
 			}
 			clientBill.getParentVO().setAttributeValue("billstatus", billstatus);
-			clientBill.getParentVO().setStatus(VOStatus.UPDATED);
+			clientBill.getParentVO().setBillstatus(VOStatus.NEW);
 		}
-		BillUpdate<AggInvestRedeemVO> update = new BillUpdate<AggInvestRedeemVO>();
-		AggInvestRedeemVO[] returnVos = update.update(clientBills, originBills);
+//		BillUpdate<AggInvestRedeemVO> update = new BillUpdate<AggInvestRedeemVO>();
+//		AggInvestRedeemVO[] returnVos = update.update(clientBills, originBills);
+		this.addAfterRule(bp.getAroundProcesser());
+		AggInvestRedeemVO[] returnVos =bp.update(clientBills, originBills);
 		this.addAfterRule(clientBills);
-		//this.addAfterRule(bp.getAroundProcesser());
 		return returnVos;
 	}
+	
+	
+	
+	private void addAfterRule(
+			CompareAroundProcesser<AggInvestRedeemVO> aroundProcesser) {
+		IRule<AggInvestRedeemVO> rwRule = new RegisterWriteBankAccAfterRule();
+		aroundProcesser.addAfterRule(rwRule);
+		
+	}
+	
+	
+	
+	/*private void addAfterRule(
+			CompareAroundProcesser<AggInvestRedeemVO> aroundProcesser) {
+		IRule<AggInvestRedeemVO> rwRule = new RegisterWriteBankAccAfterRule();
+		aroundProcesser.addAfterRule(rwRule);
+		
+	}*/
 
 	/**
 	 * 修改后规则
