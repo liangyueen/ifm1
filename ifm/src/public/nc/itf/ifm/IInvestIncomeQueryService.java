@@ -1,5 +1,7 @@
 package nc.itf.ifm;
 
+import com.alibaba.fastjson.JSONObject;
+
 import nc.vo.ifm.income.AggInvestIncomeVO;
 import nc.vo.pub.BusinessException;
 
@@ -23,4 +25,12 @@ public interface IInvestIncomeQueryService {
 	 * @throws BusinessException
 	 */
 	Boolean isBillNoDuplicate(String[] pk_income, String[] vbillno) throws BusinessException;
+	/**
+	 * 联查计划预算
+	 * @param paramString
+	 * @return
+	 * @throws BusinessException
+	 */
+	public abstract JSONObject linkqueryPlan(String paramString)
+		    throws BusinessException;
 }

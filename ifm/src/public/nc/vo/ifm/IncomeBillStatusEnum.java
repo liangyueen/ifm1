@@ -19,13 +19,13 @@ public class IncomeBillStatusEnum extends MDEnum{
 
 	
 	
-	public static final IncomeBillStatusEnum 待提交 = MDEnum.valueOf(IncomeBillStatusEnum.class, String.valueOf("1"));
+	public static final IncomeBillStatusEnum NOSUB = MDEnum.valueOf(IncomeBillStatusEnum.class, String.valueOf("1"));
 	
 	
-	public static final IncomeBillStatusEnum 待审批 = MDEnum.valueOf(IncomeBillStatusEnum.class, String.valueOf("2"));
+	public static final IncomeBillStatusEnum NOAUDIT = MDEnum.valueOf(IncomeBillStatusEnum.class, String.valueOf("2"));
 	
 	
-	public static final IncomeBillStatusEnum 已完成 = MDEnum.valueOf(IncomeBillStatusEnum.class, String.valueOf("3"));
+	public static final IncomeBillStatusEnum FINISHED = MDEnum.valueOf(IncomeBillStatusEnum.class, String.valueOf("3"));
 	
 
 }

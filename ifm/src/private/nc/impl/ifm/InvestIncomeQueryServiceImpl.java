@@ -2,19 +2,33 @@ package nc.impl.ifm;
 
 import java.util.Collection;
 
+import com.alibaba.fastjson.JSONObject;
+
 import nc.bs.dao.BaseDAO;
+import nc.bs.framework.common.NCLocator;
 import nc.impl.pubapp.pattern.data.bill.BillQuery;
 import nc.impl.pubapp.pattern.database.DataAccessUtils;
 import nc.itf.ifm.IInvestIncomeQueryService;
+import nc.itf.ifm.pub.tbb.IIFM4TbbConst;
 import nc.ui.querytemplate.querytree.IQueryScheme;
+import nc.vo.cmp.apply.tbb.ApplyTbbCommonUtil;
 import nc.vo.ifm.constants.TMIFMConst;
 import nc.vo.ifm.income.AggInvestIncomeVO;
 import nc.vo.ifm.income.InvestIncomeVO;
+import nc.vo.ifm.income.tbb.Income2TbbAccessableBusiVO;
+import nc.vo.ifm.pub.tbb.IFMToTbbAccessableBusiVO;
 import nc.vo.pub.BusinessException;
+import nc.vo.pub.CircularlyAccessibleValueObject;
+import nc.vo.pub.SuperVO;
+import nc.vo.pub.pf.BillStatusEnum;
 import nc.vo.pubapp.bill.pagination.util.PaginationUtils;
 import nc.vo.pubapp.pattern.data.IRowSet;
+import nc.vo.pubapp.pattern.model.entity.bill.AbstractBill;
 import nc.vo.pubapp.query2.sql.process.QuerySchemeProcessor;
+import nc.vo.tm.pub.TMBusConstant;
+import nc.vo.tm.pub.TMPublicUtil;
 import nc.vo.tmpub.util.TmpubQueryUtil;
+import nccloud.pubitf.tbb.ctrl.ICtrlNccloud;
 
 public class InvestIncomeQueryServiceImpl implements IInvestIncomeQueryService{
 
@@ -92,6 +106,42 @@ public class InvestIncomeQueryServiceImpl implements IInvestIncomeQueryService{
 		return codeIn.toString();
 	}
 
+	@Override
+	public JSONObject linkqueryPlan(String pk)
+			throws BusinessException {
+		AggInvestIncomeVO[] aggvo = queryIncomeByPks(new String[]{pk});
+		
+		if (aggvo == null) {
+			throw new BusinessException("当前没有选中单据！");
+		}
 
+		// 判断预算产品是否安装
+		SuperVO parentVO = (SuperVO) aggvo[0].getParentVO();
+		TMPublicUtil.isTBBEnable((String) parentVO.getAttributeValue(TMBusConstant.PK_GROUP));
+
+		CircularlyAccessibleValueObject[] bvos = null;
+
+		bvos = (CircularlyAccessibleValueObject[])((AbstractBill) aggvo[0]).getChildren(InvestIncomeVO.class).clone();
+		IFMToTbbAccessableBusiVO[] busivos = new Income2TbbAccessableBusiVO[] {};
+
+		if (busivos != null && busivos.length > 0) {
+			for (IFMToTbbAccessableBusiVO busivo : busivos) {
+				Integer billstatus = -1;
+				if(busivo.getAttributesValue("vbillstatus")!=null){
+					billstatus =Integer.parseInt(busivo.getAttributesValue("vbillstatus"));
+				}
+				if(billstatus.equals(BillStatusEnum.APPROVED.value())){
+					busivo.setDataType(ApplyTbbCommonUtil.UFIND);
+				}else {
+					busivo.setDataType(ApplyTbbCommonUtil.PREFIND);
+				}
+
+			}
+		}
+		
+		ICtrlNccloud ICtrlNccloud = NCLocator.getInstance().lookup(ICtrlNccloud.class);
+		JSONObject jSONObject = ICtrlNccloud.getLinkQueryMessJson(busivos);
+		return jSONObject;
+	}
 
 }

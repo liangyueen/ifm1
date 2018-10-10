@@ -67,7 +67,7 @@ public class IncomeInitAction  implements ICommonAction {
 				.getPk_group();
 
 		// 设置单据状态、日期默认值、制单人
-		Integer vbillstatus = 0;
+		Integer vbillstatus = -1;
 //		Integer vbillstatus = (Integer)(nc.vo.ifm.VBillStatusEnum.自由.value());
 		Integer billstatus = 1;
 //		Integer billstatus =   (Integer) nc.vo.ifm.IncomeBillStatusEnum.待提交.value();
@@ -77,27 +77,27 @@ public class IncomeInitAction  implements ICommonAction {
 		String issuebank = resultVOs[0].getParentVO().getIssuebank();
 		
 	
-		parentVO.setAttributeValue(parentVO.PK_ORG, resultVOs[0].getParentVO().getPk_org());
-		parentVO.setAttributeValue(parentVO.PRODUCTCODE, resultVOs[0].getParentVO().getProductcode());
-		parentVO.setAttributeValue(parentVO.PRODUCTNAME, resultVOs[0].getParentVO().getProductname());
+		parentVO.setAttributeValue(InvestIncomeVO.PK_ORG, resultVOs[0].getParentVO().getPk_org());
+		parentVO.setAttributeValue(InvestIncomeVO.PRODUCTCODE, resultVOs[0].getParentVO().getProductcode());
+		parentVO.setAttributeValue(InvestIncomeVO.PRODUCTNAME, resultVOs[0].getParentVO().getProductname());
 		parentVO.setAttributeValue("issuebank", resultVOs[0].getParentVO().getIssuebank());//发行银行
 		parentVO.setAttributeValue(InvestIncomeVO.VBILLSTATUS, vbillstatus);
 		parentVO.setAttributeValue("billstatus", billstatus);
 		parentVO.setAttributeValue("expectedrate", resultVOs[0].getParentVO().getExpectedrate());//预期收益率
 		parentVO.setAttributeValue("expectedmoney", resultVOs[0].getParentVO().getExpectedmoney());//预期收益金额
 		parentVO.setAttributeValue("interestday", 365);//期限天数（利息计算天数）
-		parentVO.setAttributeValue("invest", resultVOs[0].getParentVO().getInvest());//理财账户
-		parentVO.setAttributeValue("settleaccount", resultVOs[0].getParentVO().getSettleaccount());//结算账户（收款银行账户）
+		parentVO.setAttributeValue("investaccount", resultVOs[0].getParentVO().getInvest());//理财账户
+		parentVO.setAttributeValue("gathering", resultVOs[0].getParentVO().getSettleaccount());//结算账户（收款银行账户）
 		parentVO.setAttributeValue("pk_currtype", resultVOs[0].getParentVO().getPk_currtype());//币种
-		//parentVO.setAttributeValue(parentVO.ENDDATE, billmakedate);//到账日期(默认为当前日期)
+		parentVO.setAttributeValue(InvestIncomeVO.ENDDATE, billmakedate);//到账日期(默认为当前日期)
 		
 		//组织本币汇率
 		//组织本币金额
-		parentVO.setAttributeValue(parentVO.BILLMAKEDATE, billmakedate);
-		parentVO.setAttributeValue(parentVO.BILLMAKER, billmaker);
-		parentVO.setAttributeValue(parentVO.SOURCE, 0);
-		parentVO.setAttributeValue(parentVO.OLCRATE, resultVOs[0].getParentVO().getOlcrate());//组织本币汇率
-		parentVO.setAttributeValue(parentVO.OLCMOENY, resultVOs[0].getParentVO().getOlcmoney());//组织本币金额
+		parentVO.setAttributeValue(InvestIncomeVO.BILLMAKEDATE, billmakedate);
+		parentVO.setAttributeValue(InvestIncomeVO.BILLMAKER, billmaker);
+		parentVO.setAttributeValue(InvestIncomeVO.SOURCE, 0);
+		parentVO.setAttributeValue(InvestIncomeVO.OLCRATE, resultVOs[0].getParentVO().getOlcrate());//组织本币汇率
+		parentVO.setAttributeValue(InvestIncomeVO.OLCMOENY, resultVOs[0].getParentVO().getOlcmoney());//组织本币金额
 		
 		aggVO.setParentVO(parentVO);
 		return aggVO;

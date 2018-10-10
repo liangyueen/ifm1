@@ -319,6 +319,12 @@ public static final String INCOMERATE="incomerate";
 */
 public static final String INCOMEMONEY="incomemoney";
 ;
+/**
+ *到账日期
+ */
+public static final String GATHERINGDATE="gatheringdate";
+;
+
 public static final String BILLMAKEDATE = "billmakedate";
 public static final String BILLMAKETIME = "billmaketime";
 public static final String APPROVEDATE = "approvedate";
@@ -326,6 +332,9 @@ public static final String CREATIONTIME = "creationtime";
 public static final String MODIFIEDTIME = "modifiedtime";
 public static final String ENDDATE = "enddate";
 public static final String SOURCE = "source";
+public static final String INCOMEFUNDPLANPRO = "incomefundplanpro";
+public static final String TAXFUNDPLANPRO = "taxfundplanpro";
+public static final String INVESTVARIETY = "Investvariety";
 
 /**
 *时间戳
@@ -958,8 +967,8 @@ this.setAttributeValue( InvestIncomeVO.OLCRATE,olcrate);
 *  创建日期:2018-9-6
 * @return nc.vo.pub.lang.UFDouble
 */
-public String getOlcmoeny() {
-return (String) this.getAttributeValue( InvestIncomeVO.OLCMOENY);
+public UFDouble getOlcmoeny() {
+	return (nc.vo.pub.lang.UFDouble) this.getAttributeValue( InvestIncomeVO.OLCMOENY);
 } 
 
 /**
@@ -994,8 +1003,8 @@ this.setAttributeValue( InvestIncomeVO.GLCRATE,glcrate);
 *  创建日期:2018-9-6
 * @return nc.vo.pub.lang.UFDouble
 */
-public String getGlcmoeny() {
-return (String) this.getAttributeValue( InvestIncomeVO.GLCMOENY);
+public UFDouble getGlcmoeny() {
+	return (nc.vo.pub.lang.UFDouble) this.getAttributeValue( InvestIncomeVO.GLCMOENY);
 } 
 
 /**
@@ -1030,8 +1039,8 @@ this.setAttributeValue( InvestIncomeVO.GLLCRATE,gllcrate);
 *  创建日期:2018-9-6
 * @return nc.vo.pub.lang.UFDouble
 */
-public String getGllmoeny() {
-return (String) this.getAttributeValue( InvestIncomeVO.GLLMOENY);
+public UFDouble getGllmoeny() {
+return (UFDouble) this.getAttributeValue( InvestIncomeVO.GLLMOENY);
 } 
 
 /**
@@ -1131,6 +1140,13 @@ return (nc.vo.pub.lang.UFDate) this.getAttributeValue( InvestIncomeVO.APPROVEDAT
 */
 public void setApprovedate ( UFDate approvedate) {
 this.setAttributeValue( InvestIncomeVO.APPROVEDATE,approvedate);
+} 
+public UFDate getGatheringdate() {
+	return (nc.vo.pub.lang.UFDate) this.getAttributeValue( InvestIncomeVO.GATHERINGDATE);
+} 
+
+public void setGatheringdate ( UFDate gatheringdate) {
+	this.setAttributeValue( InvestIncomeVO.GATHERINGDATE,gatheringdate);
 } 
  
 /**
@@ -1462,8 +1478,8 @@ this.setAttributeValue( InvestIncomeVO.ENDDATE,enddate);
 *  创建日期:2018-9-6
 * @return nc.vo.pub.lang.UFDouble
 */
-public String getActualmoeny() {
-return (String) this.getAttributeValue( InvestIncomeVO.ACTUALMOENY);
+public nc.vo.pub.lang.UFDouble getActualmoeny() {
+return (nc.vo.pub.lang.UFDouble) this.getAttributeValue( InvestIncomeVO.ACTUALMOENY);
 } 
 
 /**
@@ -1510,6 +1526,33 @@ return (String) this.getAttributeValue( InvestIncomeVO.INCOMEMONEY);
 public void setIncomemoney ( String incomemoney) {
 this.setAttributeValue( InvestIncomeVO.INCOMEMONEY,incomemoney);
 } 
+/**
+* 收益资金计划项目
+*/
+public String getIncomefundplanpro() {
+	return (java.lang.String) this.getAttributeValue( InvestIncomeVO.INCOMEFUNDPLANPRO);
+} 
+public void setIncomefundplanpro ( String incomefundplanpro) {
+	this.setAttributeValue( InvestIncomeVO.INCOMEFUNDPLANPRO,incomefundplanpro);
+} 
+/**
+* 税额资金计划项目
+*/
+public String getTaxfundplanpro() {
+	return (java.lang.String) this.getAttributeValue( InvestIncomeVO.TAXFUNDPLANPRO);
+} 
+public void setTaxfundplanpro ( String taxfundplanpro) {
+	this.setAttributeValue( InvestIncomeVO.TAXFUNDPLANPRO,taxfundplanpro);
+} 
+/**
+ * 投资品种
+ */
+public String getInvestvariety() {
+	return (java.lang.String) this.getAttributeValue( InvestIncomeVO.INVESTVARIETY);
+} 
+public void setInvestvariety ( String investvariety) {
+	this.setAttributeValue( InvestIncomeVO.INVESTVARIETY,investvariety);
+} 
  
 /**
 * 属性 生成时间戳的Getter方法.属性名：时间戳
@@ -1532,5 +1575,6 @@ this.ts=ts;
     public IVOMeta getMetaData() {
     return VOMetaFactory.getInstance().getVOMeta("ifm.InvestIncomeVO");
     }
+
    }
     
