@@ -3,6 +3,7 @@ package nc.bs.ifm.redeem.ace.bp;
 import nc.bs.ifm.apply.plugin.bpplugin.ApplyPluginPoint;
 import nc.bs.ifm.redeem.rule.RegisterUnWriteBankAccAfterRule;
 import nc.bs.ifm.redeem.rule.TallySendRedeemProcessVoucherRule;
+import nc.bs.ifm.redeem.rule.TallyUnSendRedeemProcessVoucherRule;
 import nc.impl.pubapp.pattern.data.bill.BillUpdate;
 import nc.impl.pubapp.pattern.data.bill.template.UpdateBPTemplate;
 import nc.impl.pubapp.pattern.rule.IRule;
@@ -28,25 +29,23 @@ public class AceInvestRedeemUnApproveBP {
 //		AggInvestRedeemVO[] returnVos = update.update(clientBills, originBills);
 		this.addAfterRule(bp.getAroundProcesser());
 		AggInvestRedeemVO[] returnVos =bp.update(clientBills, originBills);
-		//this.addAfterRule(clientBills);
+		this.addAfterRule(clientBills);
 		return returnVos;
 	}
 	
-//	/**
-//	 * 修改后规则
-//	 * 
-//	 * @param processor
-//	 */
-//	private void addAfterRule(AggInvestRedeemVO[] vos) {
-//		IRule<AggInvestRedeemVO> rule = null;
-//		rule = new TallySendRedeemProcessVoucherRule();
-//		for (AggInvestRedeemVO clientBill : vos) {
-//			InvestRedeemVO vo = clientBill.getParentVO();
-//			if(vo.getVbilltype().equals(BillStatusEnum.APPROVED.value())){
-//				rule.process(vos);
-//			}
-//		}
-//	}
+	/**
+	 * 修改后规则
+	 * 
+	 * @param processor
+	 */
+	private void addAfterRule(AggInvestRedeemVO[] vos) {
+		IRule<AggInvestRedeemVO> rule = null;
+		rule = new TallyUnSendRedeemProcessVoucherRule();
+		for (AggInvestRedeemVO clientBill : vos) {
+			InvestRedeemVO vo = clientBill.getParentVO();
+			rule.process(vos);
+		}
+	}
 	
 	/**
 	 * 新增后规则

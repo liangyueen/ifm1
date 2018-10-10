@@ -42,10 +42,10 @@ public class VoucherUtil {
 	public static AggregatedValueObject sendDAPMessge(AggregatedValueObject bill)
 			throws BusinessException {
 		SuperVO headvo = (SuperVO) bill.getParentVO();
-		UFBoolean isinitial = (UFBoolean) headvo.getAttributeValue("isinitial");
+		/*UFBoolean isinitial = (UFBoolean) headvo.getAttributeValue("isinitial");
 		if(isinitial!=null&&UFBoolean.TRUE.equals(isinitial)){
 			return null;
-		}
+		}*/
 //		FbmPublicUtil.lockFbmbillno(new String[]{(String)headvo .getAttributeValue("vbillno")});
 		CircularlyAccessibleValueObject[] childrenvos=bill.getChildrenVO();
 		UFDate dvoucherdate= ((UFDate)headvo.getAttributeValue("dvoucherdate"));

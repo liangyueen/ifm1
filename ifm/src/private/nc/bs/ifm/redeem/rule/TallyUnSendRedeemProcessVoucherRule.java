@@ -23,7 +23,7 @@ public class TallyUnSendRedeemProcessVoucherRule implements
 		AggInvestRedeemVO bill = vos[0];
 		// 起初合同不生成凭证
 		//if (bill.getParentVO().getBinit().booleanValue() == false) {
-			if (bill.getParentVO().getBillstatus() == 2) {
+			if (bill.getParentVO().getBillstatus() == 2 || bill.getParentVO().getBillstatus() == 3) {
 				RedeemProcessVoucherBS bs = new RedeemProcessVoucherBS();
 				bs.completeContStatusDel(vos);
 			}

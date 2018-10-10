@@ -36,19 +36,19 @@ public class RedeemProcessVoucherBS {
 	public void completeContStatusDel(AggregatedValueObject[] vos){
 		for(AggregatedValueObject vo: vos){
 			try {
-				int vbillstatus=-1;
+				/*int vbillstatus=-1;
 				if (vo.getParentVO().getAttributeValue("vbillstatus")!=null&&
 						((Integer)vo.getParentVO().getAttributeValue("vbillstatus")).intValue() == BillStatusEnum.APPROVED.toIntValue()) {
 					vbillstatus=1;
 				}
-				if(vbillstatus==1){
+				if(vbillstatus==1){*/
 					//期初不处理
 					UFBoolean isinitial = (UFBoolean) vo.getParentVO().getAttributeValue(InvestRedeemVO.ISINITIAL);
 					if(isinitial != null && isinitial.booleanValue() == true){
 						continue;
 					}
 					VoucherUtil.sendDAPMessge_del(vo);
-				}				
+				//}				
 				
 			} catch (BusinessException e) {
 				Logger.error(e);

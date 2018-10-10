@@ -60,11 +60,11 @@ public class RedeemUtil {
 			String[] status = service.queryRedeemBySchema(scheme);
 			int numWZX = 0, numZXZ = 0;
 			for (int i = 0; i < status.length; i++) {
-				if (status[i].equals("-1") ) {// 未执行
+				if (status[i].equals("0") ) {// 未执行
 					numWZX++;
 					continue;
 				}
-				if (status[i].equals("0")) {// 执行中
+				if (status[i].equals("1")) {// 执行中
 					numZXZ++;
 					continue;
 				}

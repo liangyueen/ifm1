@@ -41,7 +41,7 @@ public class InvestRedeemQueryServiceImpl implements IInvestRedeemQueryService{
 		sql.append(" select  ");
 		sql.append(mainAlias);
 		sql.append(".");
-		sql.append("vbillstatus");
+		sql.append("billstatus");
 		sql.append(processor.getFinalFromWhere());
 		DataAccessUtils dao = new DataAccessUtils();
 		IRowSet rowset = dao.query(sql.toString());

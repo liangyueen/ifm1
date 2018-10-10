@@ -29,7 +29,7 @@ public class AceInvestRedeemQueryBP {
 			condition = "1 = 1";
 		}
 		Collection<?> results = NCLocator.getInstance().lookup(IMDPersistenceQueryService.class)
-				.queryBillOfVOByCond(voClass, condition + " and isnull(dr,0) = 0 ", false);
+				.queryBillOfVOByCond(voClass, condition + " and isnull(dr,0) = 0 order by redeemdate asc ", false);
 		if(results==null){
 			return null;
 		}

@@ -28,6 +28,7 @@ import nccloud.framework.core.exception.ExceptionUtils;
 import nccloud.framework.core.json.IJson;
 import nccloud.framework.service.ServiceLocator;
 import nccloud.framework.web.action.itf.ICommonAction;
+import nccloud.framework.web.container.ClientInfo;
 import nccloud.framework.web.container.IRequest;
 import nccloud.framework.web.container.SessionContext;
 import nccloud.framework.web.convert.translate.Translator;
@@ -78,6 +79,8 @@ public class RedeemInitAction  implements ICommonAction {
 				Integer billstatus =   (Integer) RedeemStatusEnum.待提交.value();
 				parentVO.setAttributeValue("vbillstatus", vbillstatus);
 				parentVO.setAttributeValue("billstatus", billstatus);
+				ClientInfo clientInfo = SessionContext.getInstance().getClientInfo();
+				parentVO.setAttributeValue("pk_org", "0001A110000000003BSM");
 				vo.setParentVO(parentVO);
 				
 			}
@@ -120,6 +123,7 @@ public class RedeemInitAction  implements ICommonAction {
 		parentVO.setAttributeValue("billstatus", billstatus);
 		parentVO.setAttributeValue("billmakedate", billmakedate);
 		parentVO.setAttributeValue("billmaker", billmaker);
+		
 		parentVO.setAttributeValue("productcode", resultVOs[0].getParentVO().getProductcode());
 		parentVO.setAttributeValue("productname", resultVOs[0].getParentVO().getProductname());
 		parentVO.setAttributeValue("issuebank", resultVOs[0].getParentVO().getIssuebank());
@@ -138,7 +142,7 @@ public class RedeemInitAction  implements ICommonAction {
 		parentVO.setAttributeValue("glcrate", resultVOs[0].getParentVO().getGlcrate());
 		parentVO.setAttributeValue("gllcrate", resultVOs[0].getParentVO().getGllcrate());
 		//计算选择产品的持有金额(理财金额-赎回总额)
-		UFDouble holdMoney = isApplyNoExists(resultVOs[0].getParentVO().getProductcode(),resultVOs[0].getParentVO().getMoney());
+		UFDouble holdMoney = isApplyNoExists(parentVO,resultVOs[0].getParentVO().getProductcode(),resultVOs[0].getParentVO().getMoney());
 		parentVO.setAttributeValue("holdmoney", holdMoney);
 		
 		aggVO.setParentVO(parentVO);
@@ -153,7 +157,7 @@ public class RedeemInitAction  implements ICommonAction {
 	 * @return
 	 * @throws BusinessException
 	 */
-	private UFDouble isApplyNoExists(String applycode, UFDouble money) throws BusinessException {
+	private UFDouble isApplyNoExists(InvestRedeemVO parentVO,String applycode, UFDouble money) throws BusinessException {
 	
 		IInvestRedeemQueryService serviceRedeem=ServiceLocator.find(IInvestRedeemQueryService.class);
 		String condition = "productcode = '" + applycode + "'";
@@ -167,6 +171,7 @@ public class RedeemInitAction  implements ICommonAction {
 				if(vo.getRedeemmoney()!=null){
 					ALL_DBL=vo.getRedeemmoney().add(ALL_DBL);
 				}
+				parentVO.setAttributeValue("lastdate",vo.getRedeemdate());
 			}
 			if(money.sub(ALL_DBL) != null){
 				holdMoney =allmoney.sub(ALL_DBL);
