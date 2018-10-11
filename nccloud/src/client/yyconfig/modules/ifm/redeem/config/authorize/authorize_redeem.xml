@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<authorizes>
+	<authorize>
+	<!--投资赎回-->
+		<appcode>36670RED</appcode>
+		<actions>
+			<action>ifm.redeem.init</action>
+			<action>ifm.redeem.redeemsave</action>
+			<action>ifm.redeem.savecommit</action>
+			<action>ifm.redeem.querybypk</action>
+			<action>ifm.redeem.querylist</action>
+			<action>ifm.redeem.querypage</action>
+			<action>ifm.redeem.delete</action>
+			<action>ifm.redeem.commit</action>
+			<action>ifm.redeem.uncommit</action>
+			<action>ifm.redeem.IFMAPPLYGridRef</action>
+			<action>ifm.redeem.querybypkapply</action>
+			<action>ifm.redeem.redeemcardafter</action>
+			<action>ifm.redeem.print</action>
+			<action>ifm.cash.appregisterurlquery</action>
+		</actions>
+	</authorize>
+</authorizes>
