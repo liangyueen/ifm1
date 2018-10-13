@@ -7,8 +7,13 @@
 	</component>
 	
 	<component remote="true" singleton="true" supportAlias="false" tx="CMT">
-	  <interface>nc.itf.ifm.IIFMApplyQueryService</interface>
-	  <implementation>nc.impl.ifm.IFMApplyQueryServiceImpl</implementation>
+	  <interface>nc.itf.ifm.IInvestApplyQueryService</interface>
+	  <implementation>nc.impl.ifm.InvestApplyQueryServiceImpl</implementation>
+	</component>
+	
+	<component remote="true" singleton="true" supportAlias="false" tx="CMT">
+	  <interface>nc.itf.ifm.IInvestApplyPrecisionService</interface>
+	  <implementation>nc.impl.ifm.InvestApplyPrecisionServiceImpl</implementation>
 	</component>
   </public> 
 </module> 

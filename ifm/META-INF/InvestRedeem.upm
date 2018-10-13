@@ -10,5 +10,10 @@
 	  <interface>nc.itf.ifm.IInvestRedeemQueryService</interface>
 	  <implementation>nc.impl.ifm.InvestRedeemQueryServiceImpl</implementation>
 	</component>
+	
+	<component remote="true" singleton="true"  tx="CMT">
+	  <interface>nc.itf.ifm.IFMRedeemPrecisionService</interface>
+	  <implementation>nc.impl.ifm.IFMRedeemPrecisionServiceImpl</implementation>
+	</component>
   </public> 
 </module> 
