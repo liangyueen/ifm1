@@ -75,6 +75,16 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 	 public static final String VBILLSTATUS = "vbillstatus";
 	 //pk_currtype
 	 public static final String PK_CURRTYPE = "pk_currtype";
+	 public static String getPkCurrtype() {
+		return PK_CURRTYPE;
+	}
+	 public void setPk_currtype(java.lang.String newPk_currtype) {
+			setAttributeValue("pk_currtype", newPk_currtype);
+		}
+	public static String getInvestvariety() {
+		return INVESTVARIETY;
+	}
+	public static final String INVESTVARIETY = "investvariety";
 	 
 	 
 	 

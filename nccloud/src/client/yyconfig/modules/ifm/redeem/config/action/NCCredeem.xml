@@ -48,7 +48,7 @@
 	</action>
 	<action>
 		<name>ifm.redeem.IFMAPPLYGridRef</name>
-		<label>授信协议参照</label>
+		<label>投资产品参照</label>
 		<clazz>nccloud.web.ifm.ref.action.IFMAPPLYGridRefAction</clazz>
 	</action>
 	<action>

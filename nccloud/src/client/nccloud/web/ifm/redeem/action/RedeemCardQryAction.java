@@ -5,7 +5,8 @@ import nc.vo.ifm.redeem.AggInvestRedeemVO;
 import nc.vo.pub.BusinessException;
 import nccloud.framework.service.ServiceLocator;
 import nccloud.web.ifm.common.action.CommonQueryCardAction;
-
+import nccloud.base.exception.ExceptionUtils;
+import nc.bs.logging.Logger;
 public class RedeemCardQryAction extends CommonQueryCardAction<AggInvestRedeemVO> {
 
 	@Override
@@ -15,7 +16,8 @@ public class RedeemCardQryAction extends CommonQueryCardAction<AggInvestRedeemVO
 			IInvestRedeemQueryService service=ServiceLocator.find(IInvestRedeemQueryService.class);
 			vos=service.queryRedeemByPks(new String[]{pk});
 		} catch (BusinessException e) {
-			e.printStackTrace();
+			Logger.error(e.getMessage(), e);
+			ExceptionUtils.wrapBusinessException(e.getMessage(), e);
 		}
 		return vos;
 	}

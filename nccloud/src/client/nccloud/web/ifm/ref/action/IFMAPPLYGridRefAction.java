@@ -52,6 +52,8 @@ public class IFMAPPLYGridRefAction extends DefaultGridRefAction {
 				InvestApplyVO.PRODUCTCODE);
 		String productname = refQueryInfo.getQueryCondition().get(
 				InvestApplyVO.PRODUCTNAME);
+		String billtype = refQueryInfo.getQueryCondition().get(
+				"billtype");
 		String enddate = refQueryInfo.getQueryCondition().get(
 				InvestApplyVO.ENDDATE);
 		

@@ -7,6 +7,7 @@ import nc.vo.ifm.constants.TMIFMConst;
 import nc.vo.ifm.redeem.AggInvestRedeemVO;
 import nc.vo.ifm.redeem.InvestRedeemVO;
 import nccloud.dto.baseapp.querytree.dataformat.QueryTreeFormatVO;
+import nccloud.framework.core.exception.ExceptionUtils;
 import nccloud.framework.service.ServiceLocator;
 import nccloud.web.ifm.common.action.CommonListQueryAction;
 import nccloud.web.ifm.util.RedeemUtil;
@@ -25,7 +26,7 @@ public class RedeemListQueryAction extends CommonListQueryAction<AggInvestRedeem
 			IInvestRedeemQueryService service=ServiceLocator.find(IInvestRedeemQueryService.class);
 			vos=service.queryRedeemByPks(currPagePks);
 			} catch (BusinessException e) {
-			e.printStackTrace();
+				ExceptionUtils.wrapBusinessException(e.getMessage());
 		}
 		return vos;
 	}

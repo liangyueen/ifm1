@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding='gb2312'?>
-	<items docType="SDP_SCRIPT_ITEM">	
-	
-    <item>
+<items docType="SDP_SCRIPT_ITEM">
+
+	<item>
 		<itemKey>0001</itemKey>
 		<itemName>系统类型</itemName>
 		<itemRule>dap_dapsystem</itemRule>
@@ -10,7 +10,7 @@
 		<grpField>systypecode</grpField>
 		<fixedWhere>systypecode in ('IFM')</fixedWhere>
 	</item>
-	
+
 	<item>
 		<itemKey>BD190</itemKey>
 		<itemName>元数据</itemName>
@@ -29,7 +29,7 @@
 		<grpField></grpField>
 		<fixedWhere>modulename in ('IFM')</fixedWhere>
 	</item>
-	
+
 	<item>
 		<itemKey>0001</itemKey>
 		<itemName>单据类型</itemName>
@@ -37,7 +37,10 @@
 		<sysField>systemcode</sysField>
 		<corpField></corpField>
 		<grpField>pk_billtypecode</grpField>
-		<fixedWhere>systemcode in ('IFM') and ((pk_group = 'global00000000000000' and istransaction='Y') or (pk_group='~' and istransaction='N')) and bd_billtype.pk_billtypecode in ( '3641','3642','3643') </fixedWhere>
+		<fixedWhere>systemcode in ('IFM') and ((pk_group =
+			'global00000000000000' and istransaction='Y') or (pk_group='~' and
+			istransaction='N')) and bd_billtype.pk_billtypecode in (
+			'3641','3642','3643') </fixedWhere>
 	</item>
 
 	<item>
@@ -48,8 +51,8 @@
 		<corpField></corpField>
 		<grpField></grpField>
 		<fixedWhere> code in ( '3641','3642','3643') </fixedWhere>
-	</item>	
-	
+	</item>
+
 	<item>
 		<itemKey>BD556</itemKey>
 		<itemName>预算接口实现类注册</itemName>
@@ -58,8 +61,8 @@
 		<corpField></corpField>
 		<grpField></grpField>
 		<fixedWhere>sysid = 'IFM'</fixedWhere>
-	</item>	
-	
+	</item>
+
 	<item>
 		<itemKey>BD557</itemKey>
 		<itemName>预算接口字段注册</itemName>
@@ -67,7 +70,40 @@
 		<sysField></sysField>
 		<corpField></corpField>
 		<grpField></grpField>
-		<fixedWhere>busisys_id= 'IFM' and ntb_id_bdcontrast.bill_type in ( '3641','3642','3643') </fixedWhere>
+		<fixedWhere>busisys_id= 'IFM' and ntb_id_bdcontrast.bill_type in (
+			'3641','3642','3643') </fixedWhere>
 	</item>
-	
+
+	<item>
+		<itemKey>pub_msgtemp_type</itemKey>
+		<itemName>消息类型</itemName>
+		<itemRule>pub_msgtemp_type</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>tempcode like '364%' and pk_temptype like '____4%'
+		</fixedWhere>
+	</item>
+	<item>
+		<itemKey>pub_msgtemp</itemKey>
+		<itemName>预警消息模板</itemName>
+		<itemRule>pub_msgtemp</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>tempcode like '364%' and pk_temptype like '____4%'
+		</fixedWhere>
+	</item>
+	<item>
+		<itemKey>pub_workitemconfig</itemKey>
+		<itemName>默认消息模板 </itemName>
+		<itemRule>pub_workitemconfig</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>tempcode like '364%' and pk_temptype like '____4%'
+		</fixedWhere>
+	</item>
+
+
 </items>

@@ -2,11 +2,13 @@ package nccloud.web.ifm.redeem.action;
 
 import org.apache.commons.lang.StringUtils;
 
+import nc.bs.logging.Logger;
 import nc.bs.pub.action.N_3642_SAVE;
 import nc.itf.ifm.IIFMApplyQueryService;
 import nc.itf.ifm.IInvestRedeemQueryService;
 import nc.pubitf.org.cache.IOrgUnitPubService_C;
 import nc.ui.querytemplate.querytree.IQueryScheme;
+import nc.vo.cc.execadj.ExecAdjVO;
 import nc.vo.ifm.apply.AggInvestApplyVO;
 import nc.vo.ifm.constants.TMIFMConst;
 import nc.vo.ifm.redeem.AggInvestRedeemVO;
@@ -20,6 +22,7 @@ import nccloud.framework.web.container.SessionContext;
 import nccloud.pubitf.platform.query.INCCloudQueryService;
 import nccloud.pubitf.riart.pflow.ICloudScriptPFlowService;
 import nccloud.web.ifm.common.action.CommonSaveAction;
+import nccloud.web.ifm.util.RedeemUtil;
 import nccloud.framework.core.exception.ExceptionUtils;
 import nc.vo.pub.lang.UFDate;
 import nc.vo.pub.lang.UFDateTime;
@@ -75,7 +78,7 @@ public class RedeemSaveAction extends CommonSaveAction<AggInvestRedeemVO> {
 		
 		// 校验赎回额是否超过持有金额
 		AggInvestApplyVO[] resultVOs = null;
-		if (vo.getHoldmoeny().sub(vo.getRedeemmoney()).compareTo(UFDouble.ZERO_DBL)<1) {
+		if (vo.getHoldmoeny().sub(vo.getRedeemmoney()).compareTo(UFDouble.ZERO_DBL)<0) {
 			throw new BusinessException("持有金额小于赎回金额，您当前的持有金额为："+vo.getHoldmoeny()+"");
 		}
 		ClientInfo clientInfo = SessionContext.getInstance().getClientInfo();
@@ -95,18 +98,9 @@ public class RedeemSaveAction extends CommonSaveAction<AggInvestRedeemVO> {
 				throw new BusinessException("修改的单据已有其他操作，请刷新后再修改保存！");
 			}
 		}
-		/*vo.setAttributeValue("creator", SessionContext.getInstance()
-				.getClientInfo().getUserid());
-		vo.setAttributeValue("creationtime", new UFDate(SessionContext
-				.getInstance().getClientInfo().getBizDateTime()));
-		//制单人，制单时间
-		vo.setAttributeValue("billmaker", SessionContext.getInstance()
-				.getClientInfo().getUserid());
-		vo.setAttributeValue("billmakedate", new UFDate(SessionContext
-				.getInstance().getClientInfo().getBizDateTime()));
-		operaVO.setParent(vo);*/
 		vo.setAttributeValue("pk_org_v", 1);
 		operaVO.setParent(vo);
+		operaVO = this.processDigit(operaVO);
 		return operaVO;
 	}
 	
@@ -150,5 +144,23 @@ public class RedeemSaveAction extends CommonSaveAction<AggInvestRedeemVO> {
 	protected String getBillTypeCode() {
 		return TMIFMConst.CONST_BILLTYPE_REDEEM;
 	}
+	/**
+	 * 金额及精度处理
+	 * @param vos
+	 * @return
+	 * @throws BusinessException
+	 */
+	protected AggInvestRedeemVO processDigit(AggInvestRedeemVO vos) throws BusinessException {
+		try {
+			InvestRedeemVO vo = vos.getParentVO();
+			vo = (InvestRedeemVO)RedeemUtil.processPrecision(vo, true, getBusiDate());
+			vos.setParentVO(vo);
+			return vos;
+		} catch (BusinessException e) {
+			Logger.error(e.getMessage(), e);
+			throw new BusinessException("金额或精度处理错误！");
+		}
+	}
+	
 
 }

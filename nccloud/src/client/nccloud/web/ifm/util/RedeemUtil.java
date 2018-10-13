@@ -4,10 +4,13 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
+import nc.itf.ifm.IFMRedeemPrecisionService;
 import nc.itf.ifm.IInvestRedeemQueryService;
 import nc.pubitf.org.cache.IOrgUnitPubService_C;
 import nc.ui.querytemplate.querytree.IQueryScheme;
+import nc.vo.ifm.constants.TMIFMConst;
 import nc.vo.ifm.redeem.AggInvestRedeemVO;
+import nc.vo.ifm.redeem.InvestRedeemVO;
 import nc.vo.org.OrgVO;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.ISuperVO;
@@ -94,6 +97,80 @@ public class RedeemUtil {
 		pk_group = (String) orgVOs[0].getAttributeValue("pk_group");
 		return pk_group;
 	}
+	/**
+	 * 处理原币本币金额及精度
+	 * @param vo
+	 * @param isRecaculate
+	 * @param busiDate
+	 * @return
+	 * @throws BusinessException
+	 */
+	public static ISuperVO processPrecision(ISuperVO vo, boolean isRecaculate, UFDate busiDate) throws BusinessException {
+		ISuperVO newvo = getEPrecService().processPrecision(vo, true, getFieldMap(), busiDate);
+		return newvo;
+	}
 	
 	
+	private static IFMRedeemPrecisionService ePrecService = null;
+	
+	public static synchronized IFMRedeemPrecisionService getEPrecService() {
+		if (ePrecService == null) {
+			ePrecService =  ServiceLocator.find(IFMRedeemPrecisionService.class);
+		}
+		return ePrecService;
+	}
+	
+	/**
+	 * 获取需要计算精度的属性名称map
+	 * @return
+	 */
+	private static HashMap<String, String> getFieldMap() {
+		HashMap<String, String> field = new HashMap<String, String>();
+		// 币种
+		field.put(TMIFMConst.FIELD_PK_CURRTYPE, InvestRedeemVO.PK_CURRTYPE);
+		// 原币金额属性名称
+		// String mnyField = field.get("mnyField");
+		//field.put(TMIFMConst.FIELD_MONEY, InvestRedeemVO.CCAMOUNT);
+		// 组织本币汇率属性名称
+		field.put(TMIFMConst.FIELD_ORGRATE, InvestRedeemVO.OLCRATE);
+		// 组织本币金额属性名称
+		field.put(TMIFMConst.FIELD_ORGMNY, InvestRedeemVO.OLCMNY);
+		// 集团本币汇率属性名称
+		field.put(TMIFMConst.FIELD_GROUPRATE, InvestRedeemVO.GLCRATE);
+		// 集团本币金额属性名称
+		field.put(TMIFMConst.FIELD_GROUPMNY, InvestRedeemVO.GLCMNY);
+		// 全局本币汇率属性名称
+		field.put(TMIFMConst.FIELD_GLOBALRATE, InvestRedeemVO.GLLCRATE);
+		// 全局本币金额属性名称
+		field.put(TMIFMConst.FIELD_GLOBALMNYFIELD, InvestRedeemVO.GLLCMNY);
+		// 赎回金额
+		field.put(TMIFMConst.FIELD_REDEEMMONEY, InvestRedeemVO.REDEEMMONEY);
+		
+		field.put(TMIFMConst.FIELD_PK_ORG, InvestRedeemVO.PK_ORG);
+		field.put(TMIFMConst.FIELD_PK_GROUP, InvestRedeemVO.PK_GROUP);
+		return field;
+	}
+	
+	/**
+	 * 查询用户默认的主组织
+	 * 
+	 * @return
+	 * @throws BusinessException
+	 */
+	public static String getUserDefaultOrgUnit() throws BusinessException {
+		return ServiceLocator.find(IInvestRedeemQueryService.class)
+				.getDefaultOrgUnit();
+	}
+	/**
+	 * 根据组织主键获取组织默认币种
+	 * 
+	 * @param pk_org
+	 * @return
+	 * @throws BusinessException
+	 */
+	public static String getOrgStandardCurrtype(String pk_org)
+			throws BusinessException {
+		String pk_currtype = getEPrecService().getOrgStandardCurrtype(pk_org);
+		return pk_currtype;
+	}
 }

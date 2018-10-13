@@ -53,11 +53,13 @@ public class RedeemInitAction  implements ICommonAction {
 		try {
 			String read = request.read();
 			IJson json = JsonFactory.create();
-			
+			// 判断登录用户是否有默认组织
+				
 			AggInvestApplyVO[] resultVOs = null;
 			AggInvestRedeemVO[] vos=null;
 			AggInvestRedeemVO vo = new AggInvestRedeemVO();
 			String pageId= null;
+			
 			// info经过转变成为service可用的QueryScheme
 			//IQueryScheme scheme = qservice.convertCondition(operaParam);
 			Map map = json.fromJson(read,HashMap.class);
@@ -80,10 +82,14 @@ public class RedeemInitAction  implements ICommonAction {
 				parentVO.setAttributeValue("vbillstatus", vbillstatus);
 				parentVO.setAttributeValue("billstatus", billstatus);
 				ClientInfo clientInfo = SessionContext.getInstance().getClientInfo();
-				parentVO.setAttributeValue("pk_org", "0001A110000000003BSM");
+				//parentVO.setAttributeValue("pk_org", "0001A110000000003BSM");
 				vo.setParentVO(parentVO);
 				
 			}
+			String defaultOrgUnit = RedeemUtil.getUserDefaultOrgUnit();
+			if (defaultOrgUnit != null) {
+				setOrgRelatedValue(vo, defaultOrgUnit);
+			}	
 			//vos = new AggInvestRedeemVO[]{vo};
 			BillCardConvertProcessor processor = new BillCardConvertProcessor();
 			billCard = new BillCard();
@@ -181,6 +187,32 @@ public class RedeemInitAction  implements ICommonAction {
 			return	holdMoney =allmoney.sub(ALL_DBL);
 		}
 	}
+	/**
+	 * 设置默认组织相关字段
+	 * 
+	 * @param card
+	 * @param uiState
+	 * @throws BusinessException
+	 */
+	private void setOrgRelatedValue(AggInvestRedeemVO vo, String pk_org)
+			throws BusinessException {
+		InvestRedeemVO headVO = vo.getParentVO();
+		headVO.setPk_org(pk_org);
+		headVO.setPk_group(RedeemUtil.getGroupByOrg(pk_org));
+		headVO.setPk_currtype(RedeemUtil.getOrgStandardCurrtype(pk_org));
+		headVO = (InvestRedeemVO) RedeemUtil.processPrecision(headVO, true,
+				getBusiDate());
+		vo.setParentVO(headVO);
+	}
 	
+	/**
+	 * 获取当前业务时间
+	 * 
+	 * @return
+	 */
+	private UFDate getBusiDate() {
+		return new UFDate(SessionContext.getInstance().getClientInfo()
+				.getBizDateTime());
+	}
 
 }
