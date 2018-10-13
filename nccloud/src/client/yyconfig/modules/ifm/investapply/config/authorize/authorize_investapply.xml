@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<authorizes>
+	<authorize>
+	<!--投资申购-->
+		<appcode>36670AP</appcode>
+		<actions>
+			<action>ifm.apply.applysave</action>
+			<action>ifm.apply.applylistqry</action>
+			<action>ifm.apply.applydelete</action>
+			<action>ifm.apply.applypageqry</action>
+			<action>ifm.apply.applycommit</action>
+			<action>ifm.apply.applycardqry</action>
+			<action>ifm.apply.savecommit</action>
+			<action>ifm.apply.applyuncommit</action>
+			<action>ifm.apply.print</action>
+			<action>ifm.apply.cardeditafter</action>
+		</actions>
+	</authorize>
+</authorizes>

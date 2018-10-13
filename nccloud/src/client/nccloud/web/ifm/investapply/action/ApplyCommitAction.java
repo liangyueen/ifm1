@@ -3,7 +3,6 @@ package nccloud.web.ifm.investapply.action;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import nc.vo.ifm.apply.AggInvestApplyVO;
 import nc.vo.imf.constants.TMIMFConst;
 import nc.vo.pub.BusinessException;

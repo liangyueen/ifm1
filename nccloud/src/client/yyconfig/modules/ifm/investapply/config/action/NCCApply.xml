@@ -35,12 +35,11 @@
 		<label>卡片查询</label>
 		<clazz>nccloud.web.ifm.investapply.action.ApplyCardQueryAction</clazz>
 	</action>
-
+	
 	<action>
 		<name>ifm.apply.savecommit</name>
 		<label>保存提交</label>
-		<clazz>nccloud.web.ifm.investapply.action.ApplySaveCommitAction
-		</clazz>
+		<clazz>nccloud.web.ifm.investapply.action.ApplySaveCommitAction</clazz>
 	</action>
 
 	<action>
@@ -48,16 +47,24 @@
 		<label>收回</label>
 		<clazz>nccloud.web.ifm.investapply.action.ApplyUnCommitAction</clazz>
 	</action>
-	<action>
-		<name>ifm.apply.cardeditafter</name>
-		<label>编辑后事件</label>
-		<clazz>nccloud.web.ifm.investapply.action.ApplyCardAfterAction</clazz>
-	</action>
+	
 	<action>
 		<name>ifm.apply.print</name>
 		<label>打印</label>
 		<clazz>nccloud.web.ifm.investapply.action.ApplyPrintAction</clazz>
 	</action>
-
+	
+	<action>
+		<name>ifm.apply.cardeditafter</name>
+		<label>编辑后事件</label>
+		<clazz>nccloud.web.ifm.investapply.action.ApplyCardAfterAction</clazz>
+	</action>
+	
+	<action>
+		<name>ifm.apply.init</name>
+		<label>初始化</label>
+		<clazz>nccloud.web.ifm.investapply.action.ApplyInitAction</clazz>
+	</action>
+	
 </actions>
 
