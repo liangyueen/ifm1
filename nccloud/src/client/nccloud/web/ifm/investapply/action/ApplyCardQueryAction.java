@@ -1,6 +1,6 @@
 package nccloud.web.ifm.investapply.action;
 
-import nc.itf.ifm.IIFMApplyQueryService;
+import nc.itf.ifm.IInvestApplyQueryService;
 import nc.vo.ifm.apply.AggInvestApplyVO;
 import nccloud.framework.service.ServiceLocator;
 import nccloud.web.tmifm.common.action.CommonQueryCardAction;
@@ -12,7 +12,7 @@ public class ApplyCardQueryAction extends CommonQueryCardAction<AggInvestApplyVO
 	protected AggInvestApplyVO[] queryBillsByPk(String pk) {
 		AggInvestApplyVO[] vos=null;
 		try {
-			IIFMApplyQueryService service=ServiceLocator.find(IIFMApplyQueryService.class);
+			IInvestApplyQueryService service=ServiceLocator.find(IInvestApplyQueryService.class);
 			vos=service.queryApplyByPks(new String[]{pk});
 		} catch (BusinessException e) {
 			e.printStackTrace();

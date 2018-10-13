@@ -43,7 +43,7 @@ public class ApplyUnCommitAction extends CommonOperatorAction<AggInvestApplyVO> 
 
 	@Override
 	protected AggInvestApplyVO[] doBusinessProcess(AggInvestApplyVO[] operaVOs) {
-		errList = new ArrayList<String>();
+ 		errList = new ArrayList<String>();
 		List<AggInvestApplyVO> list = new ArrayList<AggInvestApplyVO>();
 		for (AggInvestApplyVO vo : operaVOs) {
 			if (this.doBefore(vo)) {

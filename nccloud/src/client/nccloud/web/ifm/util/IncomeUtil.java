@@ -56,12 +56,12 @@ public class IncomeUtil {
 			String[] status = service.queryCCIncomeBySchema(scheme);
 			int numSPZ = 0, numDTJ = 0;
 			for (int i = 0; i < status.length; i++) {
-				if (status[i].equals("1")) {// 审批中
-					numSPZ++;
+				if (status[i].equals("1")) {// 待提交
+					numDTJ++;
 					continue;
 				}
-				if (status[i].equals("0")) {// 待提交
-					numDTJ++;
+				if (status[i].equals("2")) {// 待审批(即审批状态的审批中)
+					numSPZ++;
 					continue;
 				}
 			}

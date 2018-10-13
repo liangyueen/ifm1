@@ -1,6 +1,7 @@
 package nc.bs.ifm.income.ace.bp;
 
 import nc.impl.pubapp.pattern.data.bill.BillUpdate;
+import nc.vo.ifm.IncomeBillStatusEnum;
 import nc.vo.ifm.income.AggInvestIncomeVO;
 import nc.vo.pub.VOStatus;
 import nc.vo.pub.pf.BillStatusEnum;
@@ -23,8 +24,10 @@ public class AceInvestIncomeSendApproveBP {
 			AggInvestIncomeVO[] originBills) {
 		for (AggInvestIncomeVO clientBill : clientBills) {
 			clientBill.getParentVO().setAttributeValue("billstatus",
-					2);
-			clientBill.getParentVO().setStatus(VOStatus.UPDATED);
+					IncomeBillStatusEnum.NOAUDIT.value());//待审批
+			/*clientBill.getParentVO().setAttributeValue("vbillstatus",
+					BillStatusEnum.APPROVING.value());//正在审批
+*/			clientBill.getParentVO().setStatus(VOStatus.UPDATED);
 		}
 		// 数据持久化
 		AggInvestIncomeVO[] returnVos = new BillUpdate<AggInvestIncomeVO>().update(

@@ -1,7 +1,7 @@
 package nc.impl.ifm.apply;
 
 import nc.bs.framework.common.NCLocator;
-import nc.itf.ifm.IIFMApplyQueryService;
+import nc.itf.ifm.IInvestApplyQueryService;
 import nc.ui.pub.print.IMetaDataDataSource;
 import nc.vo.ifm.apply.AggInvestApplyVO;
 import nc.vo.ifm.apply.InvestApplyVO;
@@ -49,8 +49,8 @@ public class ApplyPrintDataSource implements IMetaDataDataSource {
 
 		AggInvestApplyVO[] vos = null;
 		try {
-			IIFMApplyQueryService service = NCLocator.getInstance()
-					.lookup(IIFMApplyQueryService.class);
+			IInvestApplyQueryService service = NCLocator.getInstance()
+					.lookup(IInvestApplyQueryService.class);
 
 			vos = service.queryApplyByPks(oids);
 //			for(AggInvestApplyVO vo:vos){

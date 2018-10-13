@@ -13,6 +13,10 @@
 	  <interface>nc.itf.ifm.IInvestIncomeQuerypageService</interface>
 	  <implementation>nc.impl.ifm.InvestIncomeQuerypageServiceImpl</implementation>
 	</component>
+	<component remote="true" singleton="true" supportAlias="false" tx="CMT">
+	  <interface>nccloud.pubitf.ifm.pub.IIFMPubLinkPlanService4NCC</interface>
+	  <implementation>nc.bs.ifm.pub.tbb.IFMPubLinkPlanService4NCCImpl</implementation>
+	</component>
 
   </public> 
 </module> 

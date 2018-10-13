@@ -5,14 +5,18 @@ import nc.pubitf.org.cache.IOrgUnitPubService_C;
 import nc.vo.ifm.apply.AggInvestApplyVO;
 import nc.vo.ifm.apply.InvestApplyVO;
 import nc.vo.imf.constants.TMIMFConst;
-import nccloud.web.tmifm.common.action.CommonSaveAction;
+import nc.vo.jcom.lang.StringUtil;
 import nc.vo.org.OrgVO;
 import nc.vo.pub.BusinessException;
+import nc.vo.pub.ISuperVO;
 import nc.vo.pub.lang.UFDate;
 import nccloud.framework.core.exception.ExceptionUtils;
-import nc.vo.jcom.lang.StringUtil;
 import nccloud.framework.service.ServiceLocator;
 import nccloud.framework.web.container.SessionContext;
+import nccloud.framework.web.ui.pattern.extbillcard.ExtBillCard;
+import nccloud.ifm.vo.OperatorParam;
+import nccloud.web.ifm.investapply.util.ApplyQueryUtil;
+import nccloud.web.tmifm.common.action.CommonSaveAction;
 
 
 public class ApplySaveAction extends CommonSaveAction<AggInvestApplyVO> {
@@ -23,7 +27,7 @@ public class ApplySaveAction extends CommonSaveAction<AggInvestApplyVO> {
 			this.doBefore(operaVO);
 		} catch (BusinessException e1) {
 			e1.printStackTrace();
-		}
+		} 
 		try {
 			// 调用动作脚本，执行保存
 			operaVO = (AggInvestApplyVO) callActionScript(
@@ -81,6 +85,34 @@ public class ApplySaveAction extends CommonSaveAction<AggInvestApplyVO> {
 		return pk_group;
 	}
 	
+	 
 	
+	/**
+	 * 金额及精度处理
+	 * @param vos
+	 * @return
+	 * @throws BusinessException
+	 */
+	@Override
+	protected AggInvestApplyVO processDigit(AggInvestApplyVO operaVO) {
+		InvestApplyVO vo = operaVO.getParentVO();
+		
+		try {
+			vo = (InvestApplyVO)ApplyQueryUtil.processPrecision(vo, true, getBusiDate());
+			operaVO.setParentVO(vo);
+		} catch (BusinessException e) {
+			e.printStackTrace();
+		}
+		return operaVO;
+	}
+
 	
+	/**
+	 * 获取当前登录用户主键
+	 * @return
+	 */
+	private UFDate getBusiDate() {
+		return new UFDate(SessionContext.getInstance().getClientInfo().getBizDateTime());
+	}
+
 }

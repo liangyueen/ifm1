@@ -42,8 +42,28 @@
 	  <clazz>nccloud.web.ifm.income.action.IncomeDeleteAction</clazz>
 	</action>
 	<action>
-	  <name>ifm.refer.IFMApplyGridRef</name>
-	  <label>投资收益参照</label>
-	  <clazz>nccloud.web.ifm.ref.action.IFMApplyGridRefAction</clazz>
+	  <name>ifm.refer.IFMRedeemGridRef</name>
+	  <label>投资收益参照赎回</label>
+	  <clazz>nccloud.web.ifm.ref.action.IFMRedeemGridRefAction</clazz>
+	</action>
+	<action>
+	  <name>ifm.income.print</name>
+	  <label>投资收益打印</label>
+	  <clazz>nccloud.web.ifm.income.action.IncomePrintAction</clazz>
+	</action>
+	<action>
+		<name>ifm.income.linkntb</name>
+		<label>联查计划预算</label>
+		<clazz>nccloud.web.ifm.income.action.IncomeLinkNtbPlanAction</clazz>
+	</action>
+	<action>
+		<name>ifm.income.voucherbill</name>
+		<label>联查凭证</label>
+		<clazz>nccloud.web.ifm.income.action.IncomeLinkNtbPlanAction</clazz>
+	</action>
+	<action>
+		<name>ifm.cash.appregisterurlquery</name>
+		<label>查询小应用URL</label>
+		<clazz>nccloud.web.ifm.redeem.action.AppregisterUrlQueryAction</clazz>
 	</action>
 </actions>

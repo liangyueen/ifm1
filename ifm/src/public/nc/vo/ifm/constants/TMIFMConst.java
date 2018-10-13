@@ -9,8 +9,8 @@ public class TMIFMConst {
 	/**
 	 * 模块
 	 */
-	public static String CONST_MODULE="ifm";
-	public static String CONST_MODULE_CODE="3667";
+	public static String CONST_MODULE="TMCFM";
+	public static String CONST_MODULE_CODE="3661";
 	
 	// 资金管理
 	public static final String TM_FUNCODE = "36"; // 资金管理
@@ -80,16 +80,33 @@ public class TMIFMConst {
 	public static String CONST_PFLOW_ISRELOADBILL="IS_RELOADBILL";  
 	public static String CONST_PFLOW_CONTENT="content";
 	
+	/**
+	 * 预算所需属性
+	 */
+	public static String HeadTableName_apply="ifm_apply";
+	public static String HeadTableName_redeem="ifm_redeem";
+	public static String HeadTableName_income="ifm_income";
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	/**
+	 * 申购单据状态
+	 */
+	public static Integer BS_APPLY_WAITCOMMIT = 0; // 待提交
+	public static Integer BS_APPLY_WAITAPPROVE = 1; // 待审批
+	public static Integer BS_APPLY_APPROVED = 2; // 审批完成
+	public static Integer BS_APPLY_CANCELED = 3; // 已撤单
+	/**
+	 * 赎回单据状态
+	 */
+	public static Integer BS_REDEEM_WAITCOMMIT = 0; // 待提交
+	public static Integer BS_REDEEM_WAITAPPROVE = 1; // 待审批
+	public static Integer BS_REDEEM_ALL = 2; // 全部赎回
+	public static Integer BS_REDEEM_SUB = 3; // 部分赎回
+	/**
+	 * 收益单据状态
+	 */
+	public static Integer BS_INCOME_WAITCOMMIT = 1; // 待提交
+	public static Integer BS_INCOME_WAITAPPROVE = 2; // 待审批
+	public static Integer BS_INCOME_FINSHED = 3; // 全部赎回
 	
 	
 	

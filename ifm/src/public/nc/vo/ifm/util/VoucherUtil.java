@@ -101,9 +101,12 @@ public class VoucherUtil {
 			UFDouble sendmoney=UFDouble.ZERO_DBL;
 			if(headvo.getAttributeValue("redeemmoney")!=null){
 				sendmoney=(UFDouble)(headvo.getAttributeValue("redeemmoney"));
+			}else if(headvo.getAttributeValue("actualmoeny")!=null){
+				sendmoney=(UFDouble)(headvo.getAttributeValue("actualmoeny"));
 			}else{
 				sendmoney=new UFDouble(300);
 			}
+			
 			sendmoney=sendmoney.setScale(currdigit, UFDouble.ROUND_HALF_UP);
 			reVO.setFreedef3(sendmoney.toString());
 			reVO.setFreedef4("vuserdef4");
@@ -195,6 +198,8 @@ public class VoucherUtil {
 			UFDouble sendmoney=UFDouble.ZERO_DBL;
 			if(headvo.getAttributeValue("redeemmoney")!=null){
 				sendmoney=(UFDouble)(headvo.getAttributeValue("redeemmoney"));
+			}else if(headvo.getAttributeValue("actualmoeny")!=null){
+				sendmoney=(UFDouble)(headvo.getAttributeValue("actualmoeny"));
 			}else{
 				sendmoney=new UFDouble(300);
 			}

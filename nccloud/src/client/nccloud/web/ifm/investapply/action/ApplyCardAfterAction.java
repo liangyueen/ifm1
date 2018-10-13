@@ -1,90 +1,107 @@
 package nccloud.web.ifm.investapply.action;
 
-import nc.vo.ifm.RedeemStatusEnum;
-import nc.vo.ifm.apply.AggInvestApplyVO;
 import nc.vo.ifm.apply.InvestApplyVO;
-import nc.vo.pub.lang.UFDate;
-import nc.vo.pub.pf.BillStatusEnum;
-import nccloud.framework.core.exception.ExceptionUtils;
+import nc.vo.pub.BusinessException;
+import nc.lightapp.pubapp.web.template.ref.util.StringUtils;
+import nccloud.web.ifm.apply.handler.ApplyAmountAfterEditHandler;
+import nccloud.web.ifm.apply.handler.ApplyCurrtypeEditAfterHandler;
+import nccloud.web.ifm.apply.handler.ApplyOrgChangeEditAfterHandler;
+import nccloud.web.tmpub.action.CommonAfterEditAction;
+import nccloud.web.tmpub.afteredit.bean.UIProp;
+import nccloud.web.tmpub.handler.AbstractCommonAfterEditHandler;
 import nccloud.framework.core.json.IJson;
-import nccloud.framework.web.action.itf.ICommonAction;
 import nccloud.framework.web.container.IRequest;
-import nccloud.framework.web.convert.translate.Translator;
-import nccloud.framework.web.json.JsonFactory;
-import nccloud.framework.web.processor.template.BillCardConvertProcessor;
+import nccloud.framework.web.ui.pattern.billcard.CardHeadAfterEditEvent;
 import nccloud.framework.web.ui.pattern.billcard.BillCard;
-import nccloud.framework.web.container.SessionContext;
-import nccloud.ifm.vo.OperatorParam;
+import nc.bs.logging.Logger;
+import nccloud.base.exception.ExceptionUtils;
+import nccloud.framework.web.json.JsonFactory;
 
-public class ApplyCardAfterAction implements ICommonAction {
+public class ApplyCardAfterAction extends CommonAfterEditAction{
+	
+	/**
+	 * 保存新增事件
+	 */
+	private final String EVENT_SAVEADD = "SaveAdd";
 
+	protected Object handleBillCardAfterEditEvent(CardHeadAfterEditEvent event, UIProp uiProp) throws BusinessException {
+		AbstractCommonAfterEditHandler<CardHeadAfterEditEvent, BillCard> handler = null;
+		switch (event.getAttrcode()) {
+		// 财务组织
+		case InvestApplyVO.PK_ORG:
+			handler = new ApplyOrgChangeEditAfterHandler();
+			break;
+		// 币种
+		case InvestApplyVO.PK_CURRTYPE:
+			handler = new ApplyCurrtypeEditAfterHandler();
+			break;
+		// 金额
+		case InvestApplyVO.MONEY:
+			handler = new ApplyAmountAfterEditHandler();
+			break;
+		//保存新增
+		case EVENT_SAVEADD:
+			handler = new ApplyOrgChangeEditAfterHandler();
+			break;
+		default:
+			break;
+		}
+		if(handler == null){
+			return event.getCard();
+		}
+		return handler.doAfterEdit(event, uiProp);
+	}
+	
+	
 	@Override
 	public Object doAction(IRequest request) {
-		BillCard billCard = null;
 		try {
-			String read = request.read();
-			IJson json = JsonFactory.create();
-			AggInvestApplyVO vo = new AggInvestApplyVO();
-
-			String pageId = null;
-			InvestApplyVO parentVO = new InvestApplyVO();
-			OperatorParam operaParam = json.fromJson(read, OperatorParam.class);
-			pageId = operaParam.getPageCode();
-			Integer vbillstatus = (Integer) BillStatusEnum.FREE.value();
-			Integer billstatus = 0;
-			parentVO.setAttributeValue("vbillstatus", vbillstatus);
-			parentVO.setAttributeValue("billstatus", billstatus);
-			//制单人，制单时间
-			parentVO.setAttributeValue("billmaker", SessionContext.getInstance()
-					.getClientInfo().getUserid());
-			parentVO.setAttributeValue("billmakedate", new UFDate(SessionContext
-					.getInstance().getClientInfo().getBizDateTime()));
-			vo.setParentVO(parentVO);
-
-			BillCardConvertProcessor processor = new BillCardConvertProcessor();
-			billCard = new BillCard();
-			billCard = processor.convert(pageId, vo);
-			// 翻译
-			Translator translator = new Translator();
-			translator.translate(billCard);
-
-		} catch (Exception e) {
-			ExceptionUtils.wrapException(e);
+			CardHeadAfterEditEvent reqParam = getReqParam(request);
+			Object card = handleAfterEditEvent(reqParam);
+			return card;
+		} catch (BusinessException e) {
+			Logger.error(e.getMessage(), e);
+			ExceptionUtils.wrapBusinessException(e.getMessage(), e);
 		}
-		return billCard;
+		return null;
 	}
-
+	
+	
+	/**
+	 * 处理编辑后事件
+	 * 
+	 * @param reqParam
+	 *            前端请求数据
+	 * @return 处理结果
+	 * @throws BusinessException
+	 */
+	private Object handleAfterEditEvent(CardHeadAfterEditEvent reqParam) throws BusinessException {
+		UIProp uiProp = new UIProp();
+		Logger.debug("编辑后事件[" + reqParam + "]");
+		Object resultObj = null;
+		resultObj = handleBillCardAfterEditEvent(reqParam, uiProp);
+		return resultObj;
+	}
+	
+	/**
+	 * 获取请求参数
+	 * 
+	 * @param request
+	 *            请求对象
+	 * @return 请求参数
+	 * @throws BusinessException
+	 */
+	private CardHeadAfterEditEvent getReqParam(IRequest request) throws BusinessException {
+		String read = request.read();
+		if (StringUtils.isEmpty(read)) {
+			throw new BusinessException("前端请求为空！");
+		}
+		Logger.debug("前端请求[" + read + "]");
+		IJson json = JsonFactory.create();
+		CardHeadAfterEditEvent reqParam = json.fromJson(read, CardHeadAfterEditEvent.class);
+		if (reqParam == null) {
+			throw new BusinessException("前端请求数据不规范！");
+		}
+		return reqParam;
+	}
 }
-
-// public class ApplyCardAfterAction extends CommonAfterEditAction{
-//
-// protected Form handleFormCardHeadAfterEditEvent(
-// FormAfterEditEvent event) throws BusinessException {
-// AbstractCommonAfterEditHandler<FormAfterEditEvent, Form> handler = null;
-// switch (event.getAttrcode()) {
-// // 资金组织
-// case InvestApplyVO.PK_ORG:
-// handler = new ApplyOrgChangeEditAfterHandler();
-// break;
-// // 币种
-// case ExecAdjVO.PK_CURRTYPE:
-// handler = new ExecAdjCurrtypeEditAfterHandler();
-// break;
-// // 注册金额
-// case ExecAdjVO.CCAMOUNT:
-// handler = new ExecAdjAmountAfterEditHandler();
-// break;
-// //保存新增
-// case EVENT_SAVEADD:
-// handler = new ExecAdjOrgChangeEditAfterHandler();
-// break;
-// default:
-// break;
-// }
-// if(handler == null){
-// return event.getForm();
-// }
-// return handler.doAfterEdit(event, getUiProp());
-// }
-//
-// }
