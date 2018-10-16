@@ -16,7 +16,7 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-			<name>nc.uap.mde.ModuleBuilder</name>
+			<name>com.yonyou.ria.g2.riabuilder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
@@ -26,6 +26,6 @@
 		<nature>com.yonyou.studio.udt.core.nature</nature>
 		<nature>com.yonyou.studio.ria.core.ModuleProjectNature</nature>
 		<nature>com.yonyou.studio.ria.core.BizCompProjectNature</nature>
-		<nature>nc.uap.mde.ModuleProjectNature</nature>
+		<nature>com.yonyou.ria.g2.rianature</nature>
 	</natures>
 </projectDescription>
