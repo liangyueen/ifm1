@@ -102,7 +102,7 @@ public class RegisterWriteBankAccAfterRule extends IFACIFMAccSuper implements
 		// 付款本币金额
 		detailVO.setPaymoney(headvo.getOlcmoney());
 		// 记账人
-		detailVO.setTallyperson(headvo.getBillmaker());
+		detailVO.setTallyperson((String) headvo.getBillmaker());
 		// 记账时间
 		detailVO.setTallytime(new UFDate(headvo.getBillmaketime().toLocalString()));
 		// 记账日期

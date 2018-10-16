@@ -1,6 +1,7 @@
 package nccloud.web.ifm.income.action;
 
 import nc.bs.logging.Logger;
+import nc.itf.ifm.IInvestIncomeQueryService;
 import nc.vo.ifm.constants.TMIFMConst;
 import nc.vo.ifm.income.AggInvestIncomeVO;
 import nc.vo.pub.BusinessException;
@@ -32,9 +33,10 @@ public class IncomeLinkNtbPlanAction extends AbstractCommonAction<AggInvestIncom
 			if (StringUtil.isNull(pk)) {
 				throw new BusinessException("前端请求参数缺失[pk]不能为空！");
 			}
-			jsonObject = getFTSNtbService().linkNtbPlan(
-					AggInvestIncomeVO.class.getName(), pk,
-					TMIFMConst.CONST_BILLTYPE_INCOME);
+			jsonObject = getFTSNtbService().linkqueryPlan(pk);
+//			jsonObject = getFTSNtbService().linkNtbPlan(
+//					AggInvestIncomeVO.class.getName(), pk,
+//					TMIFMConst.CONST_BILLTYPE_INCOME);
 		} catch (BusinessException e) {
 			Logger.error(e);
 			ExceptionUtils.wrapException(e);
@@ -53,7 +55,10 @@ public class IncomeLinkNtbPlanAction extends AbstractCommonAction<AggInvestIncom
 	 * 
 	 * @return
 	 */
-	private IIFMPubLinkPlanService4NCC getFTSNtbService() {
-		return ServiceLocator.find(IIFMPubLinkPlanService4NCC.class);
+	private IInvestIncomeQueryService getFTSNtbService() {
+		return ServiceLocator.find(IInvestIncomeQueryService.class);
 	}
+//	private IIFMPubLinkPlanService4NCC getFTSNtbService() {
+//		return ServiceLocator.find(IIFMPubLinkPlanService4NCC.class);
+//	}
 }

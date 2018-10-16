@@ -32,7 +32,10 @@ public class IFMAPPLYGridRefAction extends DefaultGridRefAction {
 		StringBuffer sql = new StringBuffer();
 		sql.append("((");
 		// 协议编号
-		sql.append(" select a.pk_apply as PK_APPLY ,a.pk_org as PK_ORG, a.productcode as PRODUCTCODE,a.productname as  PRODUCTNAME,a.enddate as ENDDATE from  ifm_apply a ");
+		sql.append(" select a.pk_apply as PK_APPLY ,a.pk_org as PK_ORG, a.productcode as PRODUCTCODE,a.productname as  PRODUCTNAME,a.enddate as ENDDATE from  ifm_apply a " +
+				" where a.billstatus=2" +
+				" and a.productcode is not null" +
+				" and a.dr = 0 ");
 		sql.append(")　ifm_apply)");
 		refMeta.setTableName(sql.toString());
 		return refMeta;
@@ -52,13 +55,24 @@ public class IFMAPPLYGridRefAction extends DefaultGridRefAction {
 				InvestApplyVO.PRODUCTCODE);
 		String productname = refQueryInfo.getQueryCondition().get(
 				InvestApplyVO.PRODUCTNAME);
-		String billtype = refQueryInfo.getQueryCondition().get(
-				"billtype");
 		String enddate = refQueryInfo.getQueryCondition().get(
 				InvestApplyVO.ENDDATE);
+		String billtype = refQueryInfo.getQueryCondition().get(
+				"billtype");
 		
 
 		StringBuffer wheresql = new StringBuffer("");
+		//根据单据类型判断参照过滤条件
+		//参照对应财务组织购买过的状态为购买成功的产品，未全部赎回的
+		if(!StringUtil.isNull(billtype) && "3643".equals(billtype)){
+			wheresql.append(
+				" and exists(SELECT * from" +
+					" ifm_redeem b  " +
+					" WHERE ifm_apply.productcode = b.productcode" +
+					" and ifm_apply.pk_org = b.pk_org " +
+					" and b.billstatus =3" +
+					" and b.dr=0)" );
+		}
 		// 组织
 		if (!StringUtil.isNull(pk_org)) {
 			String[] pk_orgs = pk_org.split(",");

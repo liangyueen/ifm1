@@ -7,14 +7,12 @@ import nc.bs.ifm.redeem.ace.bp.AceInvestRedeemQueryBP;
 import nc.impl.pubapp.pattern.data.bill.BillQuery;
 import nc.impl.pubapp.pattern.database.DataAccessUtils;
 import nc.itf.ifm.IInvestRedeemQueryService;
-import nc.pubitf.setting.defaultdata.OrgSettingAccessor;
 import nc.ui.querytemplate.querytree.IQueryScheme;
 import nc.vo.ifm.redeem.AggInvestRedeemVO;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.SuperVO;
 import nc.vo.pubapp.bill.pagination.util.PaginationUtils;
 import nc.vo.pubapp.pattern.data.IRowSet;
-import nc.vo.pubapp.pattern.exception.ExceptionUtils;
 import nc.vo.pubapp.query2.sql.process.QuerySchemeProcessor;
 import nc.vo.tmpub.util.TmpubQueryUtil;
 
@@ -43,7 +41,7 @@ public class InvestRedeemQueryServiceImpl implements IInvestRedeemQueryService{
 		sql.append(" select  ");
 		sql.append(mainAlias);
 		sql.append(".");
-		sql.append("billstatus");
+		sql.append("vbillstatus");
 		sql.append(processor.getFinalFromWhere());
 		DataAccessUtils dao = new DataAccessUtils();
 		IRowSet rowset = dao.query(sql.toString());
@@ -68,14 +66,6 @@ public class InvestRedeemQueryServiceImpl implements IInvestRedeemQueryService{
 			throws BusinessException {
 		return aceInvestRedeemQueryBP.getAggVOsByPKs(pks);
 	}
-	@Override
-	public String getDefaultOrgUnit() {
-		try {
-			return OrgSettingAccessor.getDefaultOrgUnit();
-		} catch (Exception e) {
-			ExceptionUtils.wrappBusinessException(e.getMessage());
-		}
-		return null;
-	}
+	
 
 }

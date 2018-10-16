@@ -85,7 +85,6 @@ public class InvestApplyVO extends nc.vo.pub.SuperVO{
     public static final String PAYPERIOD = "payperiod";
     public static final String SETTLEDATE = "settledate";
     
-    
     public static final String APPLYNUMBER = "applynumber";
 	public static final String UNITNETVALUE = "unitnetvalue";
     public static final String CAPITALPROJECT = "capitalproject";
@@ -966,5 +965,23 @@ public class InvestApplyVO extends nc.vo.pub.SuperVO{
 		return VOMetaFactory.getInstance().getVOMeta("ifm.InvestApplyVO");
 		
    	}
-     
+	public static final String TBBMESSAGE = "tbbmessage";
+	/**
+	 * 获取预算提示信息
+	 * 
+	 * @return 预算提示信息
+	 */
+	public String getTbbmessage() {
+		return (String) this.getAttributeValue("tbbmessage");
+	}
+
+	/**
+	 * 设置预算提示信息
+	 * 
+	 * @param tbbmessage
+	 *            预算提示信息
+	 */
+	public void setTbbmessage(String tbbmessage) {
+		this.setAttributeValue("tbbmessage", tbbmessage);
+	}
 }

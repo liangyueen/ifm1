@@ -1,15 +1,12 @@
 package nc.bs.ifm.apply.ace.bp;
 
 import nc.bs.ifm.apply.plugin.bpplugin.ApplyPluginPoint;
-import nc.bs.ifm.apply.rule.TallySendApplyProcessVoucherRule;
-import nc.bs.ifm.pub.rule.RegisterWriteBankAccAfterRule;
-import nc.bs.ifm.redeem.rule.TallySendRedeemProcessVoucherRule;
+import nc.bs.ifm.apply.rule.InvestApplyApproveTbbRule;
 import nc.impl.pubapp.pattern.data.bill.BillUpdate;
 import nc.impl.pubapp.pattern.data.bill.template.UpdateBPTemplate;
 import nc.impl.pubapp.pattern.rule.IRule;
 import nc.impl.pubapp.pattern.rule.processer.CompareAroundProcesser;
 import nc.vo.ifm.apply.AggInvestApplyVO;
-import nc.vo.ifm.redeem.AggInvestRedeemVO;
 import nc.vo.pub.VOStatus;
 
 /**
@@ -26,37 +23,27 @@ public class AceApplyApproveBP {
 	 */
 	public AggInvestApplyVO[] approve(AggInvestApplyVO[] clientBills,
 			AggInvestApplyVO[] originBills) {
-		
+		for (AggInvestApplyVO clientBill : clientBills) {
+			clientBill.getParentVO().setStatus(VOStatus.UPDATED);
+		}
+		BillUpdate<AggInvestApplyVO> update = new BillUpdate<AggInvestApplyVO>();
+		AggInvestApplyVO[] returnVos = update.update(clientBills, originBills);
 		UpdateBPTemplate<AggInvestApplyVO> bp = new UpdateBPTemplate<AggInvestApplyVO>(
 				ApplyPluginPoint.APPROVE);
-		for (AggInvestApplyVO clientBill : clientBills) {
-			clientBill.getParentVO().setBillstatus(VOStatus.NEW);
-			//clientBill.getParentVO().setAttributeValue("billstatus", 1);
-		}
-		// 执行后规则
-		this.addAfterRule(bp.getAroundProcesser());
-		this.addAfterRule(clientBills);
-		AggInvestApplyVO[] returnVos =bp.update(clientBills, originBills);
+		this.addBeforeRule(bp.getAroundProcesser());
 		return returnVos;
 	}
-
 	/**
-	 * 新增后规则
+	 * 执行前规则
 	 * 
-	 * @param processor
+	 * @param aroundProcesser
 	 */
-
-	private void addAfterRule(
+	private void addBeforeRule(
 			CompareAroundProcesser<AggInvestApplyVO> aroundProcesser) {
-		IRule<AggInvestApplyVO> rwRule = new RegisterWriteBankAccAfterRule();
-		aroundProcesser.addAfterRule(rwRule);
-		
-	}
-
-	private void addAfterRule(AggInvestApplyVO[] vos) {
-		IRule<AggInvestApplyVO> rule = null;
-		rule = new TallySendApplyProcessVoucherRule();
-		rule.process(vos);
-		
+		/** 进行预算控制，释放预占数,进行预算控制，回写登记单执行数 **/
+		IRule<AggInvestApplyVO> tbbRule = new InvestApplyApproveTbbRule();
+		aroundProcesser.addBeforeRule(tbbRule);
+	
+	
 	}
 }

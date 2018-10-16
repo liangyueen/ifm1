@@ -107,7 +107,6 @@ public class IFMToTbbDMO extends DataManageObject {
 			con = getConnection();
 			stmt = con.prepareStatement(sqlbuilder.toString());
 			rs = stmt.executeQuery();
-
 			if (rs.next()) {
 				for(int i = 0; i < ilength; i++) {
 					//sumºÍ

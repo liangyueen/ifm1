@@ -62,8 +62,8 @@
 		<clazz>nccloud.web.ifm.income.action.IncomeLinkNtbPlanAction</clazz>
 	</action>
 	<action>
-		<name>ifm.cash.appregisterurlquery</name>
+		<name>ifm.income.appregisterurlquery</name>
 		<label>查询小应用URL</label>
-		<clazz>nccloud.web.ifm.redeem.action.AppregisterUrlQueryAction</clazz>
+		<clazz>nccloud.web.ifm.income.action.AppregisterUrlQueryAction</clazz>
 	</action>
 </actions>

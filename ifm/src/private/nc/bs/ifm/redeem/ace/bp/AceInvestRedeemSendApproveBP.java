@@ -1,7 +1,6 @@
 package nc.bs.ifm.redeem.ace.bp;
 
 import nc.impl.pubapp.pattern.data.bill.BillUpdate;
-import nc.vo.ifm.RedeemStatusEnum;
 import nc.vo.ifm.redeem.AggInvestRedeemVO;
 import nc.vo.pub.VOStatus;
 import nc.vo.pub.pf.BillStatusEnum;
@@ -23,8 +22,8 @@ public class AceInvestRedeemSendApproveBP {
 	public AggInvestRedeemVO[] sendApprove(AggInvestRedeemVO[] clientBills,
 			AggInvestRedeemVO[] originBills) {
 		for (AggInvestRedeemVO clientFullVO : clientBills) {
-			clientFullVO.getParentVO().setAttributeValue("billstatus",
-					RedeemStatusEnum.待审核.value());
+			clientFullVO.getParentVO().setAttributeValue("vbillstatus",
+					BillStatusEnum.COMMIT.value());
 			clientFullVO.getParentVO().setStatus(VOStatus.UPDATED);
 		}
 		// 数据持久化

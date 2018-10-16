@@ -8,11 +8,12 @@ import nc.itf.ifm.pub.tbb.IIFM4TbbConst;
 import nc.vo.ifm.apply.InvestApplyVO;
 import nc.vo.ifm.constants.TMIFMConst;
 import nc.vo.ifm.pub.tbb.IFMToTbbQueryVO;
+import nc.vo.pub.ValidationException;
 import nc.vo.pub.pf.IPfRetCheckInfo;
 import nc.vo.tmpub.util.StringUtil;
 
 /**
- * 投资收益-预算VO转换类
+ * 投资申购-预算VO转换类
  */
 public class Apply2TbbQueryVO extends IFMToTbbQueryVO{
 
@@ -22,9 +23,9 @@ public class Apply2TbbQueryVO extends IFMToTbbQueryVO{
 	 */
 	private static final long serialVersionUID = -7776075437540439463L;
 	// 财务组织
-	private String pk_org;
+//	private String pk_org;
 	// 币种
-	private String pk_currtype;
+//	private String pk_currtype;
 	// 资金计划项目
 	private String[] incomefundplanpro;
 	// 发行银行
@@ -145,7 +146,7 @@ public class Apply2TbbQueryVO extends IFMToTbbQueryVO{
 	}
 	public  String getUfindOrPrefindPart(){
 		if(getFlag_readyorrun().equals(IIFM4TbbConst.Flag_Ufind)){
-			return " 1 = 2 ";
+			return " ifm_apply.vbillstatus = 1 ";//没有预占数怎么也走这里？？？？？？？？？
 		}
 		else{
 			return getHeadTableName() + DISPOINT + InvestApplyVO.VBILLSTATUS + " <> " +
@@ -207,13 +208,13 @@ public class Apply2TbbQueryVO extends IFMToTbbQueryVO{
 		String[] selectkeys = null;
 		
 		selectkeys = new String[4];
-		selectkeys[0] = "  isnull(" + getHeadTableName() + DISPOINT + InvestApplyVO.MONEY + ",0) ";//apply理财金额
+		selectkeys[0] = " sum( isnull(" + getHeadTableName() + DISPOINT + InvestApplyVO.MONEY + ",0))";//apply理财金额
 		
-		selectkeys[1] = "  isnull(" + getHeadTableName() + DISPOINT + InvestApplyVO.OLCMONEY + ",0)";
+		selectkeys[1] = " sum( isnull(" + getHeadTableName() + DISPOINT + InvestApplyVO.OLCMONEY + ",0))";
 		
-		selectkeys[2] = "  isnull(" + getHeadTableName() + DISPOINT + InvestApplyVO.GLCMONEY + ",0)";
+		selectkeys[2] = " sum( isnull(" + getHeadTableName() + DISPOINT + InvestApplyVO.GLCMONEY + ",0))";
 		
-		selectkeys[3] = "  isnull(" + getBodyTableName() + DISPOINT + InvestApplyVO.GLLMONEY+ ",0)";
+		selectkeys[3] = " sum( isnull(" + getHeadTableName() + DISPOINT + InvestApplyVO.GLLMONEY+ ",0))";
 		
 		return selectkeys;
 	}
@@ -229,36 +230,36 @@ public class Apply2TbbQueryVO extends IFMToTbbQueryVO{
 	/**
 	 * @return the pk_org
 	 */
-	public String getPk_org() {
-		return pk_org;
-	}
+//	public String getPk_org() {
+//		return pk_org;
+//	}
 
 
 
 	/**
 	 * @param pk_org the pk_org to set
 	 */
-	public void setPk_org(String pk_org) {
-		this.pk_org = pk_org;
-	}
+//	public void setPk_org(String pk_org) {
+//		this.pk_org = pk_org;
+//	}
 
 
 
 	/**
 	 * @return the pk_currtype
 	 */
-	public String getPk_currtype() {
-		return pk_currtype;
-	}
+//	public String getPk_currtype() {
+//		return pk_currtype;
+//	}
 
 
 
 	/**
 	 * @param pk_currtype the pk_currtype to set
 	 */
-	public void setPk_currtype(String pk_currtype) {
-		this.pk_currtype = pk_currtype;
-	}
+//	public void setPk_currtype(String pk_currtype) {
+//		this.pk_currtype = pk_currtype;
+//	}
 
 
 
@@ -340,7 +341,6 @@ public class Apply2TbbQueryVO extends IFMToTbbQueryVO{
 	public static String getPkFundplanKey() {
 		return PK_FUNDPLAN_KEY;
 	}
-
 
 
 	

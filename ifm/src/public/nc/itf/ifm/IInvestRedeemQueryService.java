@@ -41,10 +41,4 @@ public interface IInvestRedeemQueryService {
 	 */
 	public AggInvestRedeemVO[] getAggVOsByPKs(String... pks) throws BusinessException ;
 	
-	/**
-	 * 用户默认组织
-	 * @return
-	 */
-	public abstract String getDefaultOrgUnit();
-	
 }

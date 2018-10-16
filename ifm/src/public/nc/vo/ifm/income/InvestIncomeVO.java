@@ -335,6 +335,7 @@ public static final String SOURCE = "source";
 public static final String INCOMEFUNDPLANPRO = "incomefundplanpro";
 public static final String TAXFUNDPLANPRO = "taxfundplanpro";
 public static final String INVESTVARIETY = "Investvariety";
+public static final String PK_REDEEM = "pk_redeem";//赎回主键，接口用
 
 /**
 *时间戳
@@ -1553,7 +1554,36 @@ public String getInvestvariety() {
 public void setInvestvariety ( String investvariety) {
 	this.setAttributeValue( InvestIncomeVO.INVESTVARIETY,investvariety);
 } 
- 
+/**
+ * 赎回主键
+ */
+public String getk_redeem() {
+	return (java.lang.String) this.getAttributeValue( InvestIncomeVO.PK_REDEEM);
+} 
+public void setk_redeem ( String pk_redeem) {
+	this.setAttributeValue( InvestIncomeVO.PK_REDEEM,pk_redeem);
+} 
+
+
+public static final String TBBMESSAGE = "tbbmessage";
+/**
+ * 获取预算提示信息
+ * 
+ * @return 预算提示信息
+ */
+public String getTbbmessage() {
+	return (String) this.getAttributeValue("tbbmessage");
+}
+
+/**
+ * 设置预算提示信息
+ * 
+ * @param tbbmessage
+ *            预算提示信息
+ */
+public void setTbbmessage(String tbbmessage) {
+	this.setAttributeValue("tbbmessage", tbbmessage);
+}
 /**
 * 属性 生成时间戳的Getter方法.属性名：时间戳
 *  创建日期:2018-9-6

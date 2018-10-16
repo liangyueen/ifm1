@@ -71,145 +71,8 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 	public static final String PK_BILLTYPEID = "pk_billtypeid";
 	public static final String PK_BILLTYPECODE = "pk_billtypecode";
 	public static final String INTERACTFIELD = "interactfield";
-	public static final String REMARK = "remark";
-	 public static final String VBILLSTATUS = "vbillstatus";
-	 //pk_currtype
-	 public static final String PK_CURRTYPE = "pk_currtype";
-	 public static String getPkCurrtype() {
-		return PK_CURRTYPE;
-	}
-	 public void setPk_currtype(java.lang.String newPk_currtype) {
-			setAttributeValue("pk_currtype", newPk_currtype);
-		}
-	public static String getInvestvariety() {
-		return INVESTVARIETY;
-	}
+	public static final String CAPITALPROJECT = "capitalproject";
 	public static final String INVESTVARIETY = "investvariety";
-	 
-	 
-	 
-	 public static String getPkOrg() {
-		return PK_ORG;
-	}
-	public static String getPkGroup() {
-		return PK_GROUP;
-	}
-	public static String getPkRedeem() {
-		return PK_REDEEM;
-	}
-	public static String getPkApply() {
-		return PK_APPLY;
-	}
-	public static String getHoldmoney() {
-		return HOLDMONEY;
-	}
-	public static String getVdef1() {
-		return VDEF1;
-	}
-	public static String getVdef2() {
-		return VDEF2;
-	}
-	public static String getVdef3() {
-		return VDEF3;
-	}
-	public static String getVdef4() {
-		return VDEF4;
-	}
-	public static String getVdef5() {
-		return VDEF5;
-	}
-	public static String getVdef6() {
-		return VDEF6;
-	}
-	public static String getVdef7() {
-		return VDEF7;
-	}
-	public static String getVdef10() {
-		return VDEF10;
-	}
-	public static String getVdef11() {
-		return VDEF11;
-	}
-	public static String getVdef12() {
-		return VDEF12;
-	}
-	public static String getVdef13() {
-		return VDEF13;
-	}
-	public static String getVdef14() {
-		return VDEF14;
-	}
-	public static String getVdef15() {
-		return VDEF15;
-	}
-	public static String getVdef16() {
-		return VDEF16;
-	}
-	public static String getVdef17() {
-		return VDEF17;
-	}
-	public static String getVdef18() {
-		return VDEF18;
-	}
-	public static String getVdef19() {
-		return VDEF19;
-	}
-	public static String getVdef20() {
-		return VDEF20;
-	}
-	public static String getOlcrate() {
-		return OLCRATE;
-	}
-	public static String getGlcrate() {
-		return GLCRATE;
-	}
-	public static String getGllcrate() {
-		return GLLCRATE;
-	}
-	public static String getOlcmny() {
-		return OLCMNY;
-	}
-	public static String getGlcmny() {
-		return GLCMNY;
-	}
-	public static String getGllcmny() {
-		return GLLCMNY;
-	}
-	public static String getBillmaker() {
-		return BILLMAKER;
-	}
-	
-	public static String getPkBusitype() {
-		return PK_BUSITYPE;
-	}
-	public static String getPkBilltypeid() {
-		return PK_BILLTYPEID;
-	}
-	public static String getPkBilltypecode() {
-		return PK_BILLTYPECODE;
-	}
-	public static String getInteractfield() {
-		return INTERACTFIELD;
-	}
-	public String getPk_currtype() {
-		return (String) this.getAttributeValue( InvestRedeemVO.PK_CURRTYPE);
-		} 
-	public java.lang.Integer getVbillstatus () {
-			return (java.lang.Integer) getAttributeValue(VBILLSTATUS);
-		}   
-		public void setVbillstatus (java.lang.Integer newVbillstatus ) {
-			setAttributeValue(VBILLSTATUS, newVbillstatus);
-		}
-	public UFBoolean getIsinitial()
-	   {
-	      return (UFBoolean)getAttributeValue("isinitial");
-	    }
-	   
-	 
-	public void setIsinitial(UFBoolean newIsinitial)
-	   {
-	     setAttributeValue("isinitial", newIsinitial);
-	   }
 	/**
 	 * 属性billmaketime的Getter方法.属性名：制单时间
 	 * 创建日期:
@@ -240,20 +103,13 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 	 * @param newApprover java.lang.String
 	 */
 	public void setApprover (java.lang.String newApprover ) {
-		setAttributeValue("approver", newApprover);
+	 	setAttributeValue("approver", newApprover);
 	} 	  
 	/**
-	 * 属性approver的Setter方法.属性名：审批人
+	 * 属性approvedate的Getter方法.属性名：审批日期
 	 * 创建日期:
-	 * @param newApprover java.lang.String
+	 * @return nc.vo.pub.lang.UFDate
 	 */
-	public void setRemark (java.lang.String newRemark ) {
-	 	setAttributeValue("remark", newRemark);
-	} 	
-	public java.lang.String getRemark () {
-		return (java.lang.String)getAttributeValue("remark");
-	}   
-	
 	public nc.vo.pub.lang.UFDate getApprovedate () {
 		return (nc.vo.pub.lang.UFDate)getAttributeValue("approvedate");
 	}   
@@ -410,6 +266,10 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 	 */
 	public static final String BILLSTATUS = "billstatus";;
 	/**
+	 * 赎回状态
+	 */
+	public static final String VBILLSTATUS = "vbillstatus";;
+	/**
 	 * 收款账户
 	 */
 	public static final String GATHERINGACCOUNT = "gatheringaccount";;
@@ -448,7 +308,8 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 	/**
 	 * 到账日期
 	 */
-	public UFDate incomedate;
+//	public static UFDate INCOMEDATE;
+	public static String INCOMEDATE;
 	/**
 	 * 收益税率
 	 */
@@ -462,6 +323,7 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 	 */
 	public static final String BALANCE = "balance";
 	public static final String ISINITIAL = "isinitial";
+	public static final String REALREANING = "realreaning";
 	/**
 	 * 时间戳
 	 */
@@ -689,6 +551,24 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 	 */
 	public void setBillstatus(Integer billstatus) {
 		this.setAttributeValue(InvestRedeemVO.BILLSTATUS, billstatus);
+	}
+	/**
+	 * 属性 billstatus的Getter方法.属性名：赎回状态 创建日期:2018-9-3
+	 * 
+	 * @return nc.vo.ifm.RedeemStatusEnum
+	 */
+	public Integer getVBillstatus() {
+		return (Integer) this.getAttributeValue(InvestRedeemVO.VBILLSTATUS);
+	}
+	
+	/**
+	 * 属性billstatus的Setter方法.属性名：赎回状态 创建日期:2018-9-3
+	 * 
+	 * @param newBillstatus
+	 *            nc.vo.ifm.RedeemStatusEnum
+	 */
+	public void setVBillstatus(Integer vbillstatus) {
+		this.setAttributeValue(InvestRedeemVO.VBILLSTATUS, vbillstatus);
 	}
 
 	/**
@@ -954,6 +834,28 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 	public void setIncomemoney(String incomemoney) {
 		this.setAttributeValue(InvestRedeemVO.INCOMEMONEY, incomemoney);
 	}
+	/**
+	 * 资金计划项目
+	 * @return
+	 */
+	public String getCapitalproject() {
+		return  (String) this.getAttributeValue(InvestRedeemVO.CAPITALPROJECT);
+	}
+	
+	public void setCapitalproject(String capitalproject) {
+		this.setAttributeValue(InvestRedeemVO.CAPITALPROJECT, capitalproject);
+	}
+	/**
+	 * 投资品种
+	 * @return
+	 */
+	public String getInvestvariety() {
+		return  (String) this.getAttributeValue(InvestRedeemVO.INVESTVARIETY);
+	}
+	
+	public void setInvestvariety(String investvariety) {
+		this.setAttributeValue(InvestRedeemVO.INVESTVARIETY, investvariety);
+	}
 
 	/**
 	 * 属性 pk_org的Getter方法.属性名：所属组织 创建日期:2018-8-27
@@ -1092,5 +994,36 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 			CircularlyAccessibleValueObject[] paramArrayOfCircularlyAccessibleValueObject) {
 		// TODO Auto-generated method stub
 
+	}
+	public String getRemark() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public String getPk_currtype() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public Object getBillmaker() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public static final String TBBMESSAGE = "tbbmessage";
+	/**
+	 * 获取预算提示信息
+	 * 
+	 * @return 预算提示信息
+	 */
+	public String getTbbmessage() {
+		return (String) this.getAttributeValue("tbbmessage");
+	}
+
+	/**
+	 * 设置预算提示信息
+	 * 
+	 * @param tbbmessage
+	 *            预算提示信息
+	 */
+	public void setTbbmessage(String tbbmessage) {
+		this.setAttributeValue("tbbmessage", tbbmessage);
 	}
 }

@@ -2,20 +2,18 @@ package nc.impl.ifm;
 
 import java.util.Collection;
 
-import com.alibaba.fastjson.JSONObject;
-
 import nc.bs.dao.BaseDAO;
 import nc.bs.framework.common.NCLocator;
 import nc.impl.pubapp.pattern.data.bill.BillQuery;
 import nc.impl.pubapp.pattern.database.DataAccessUtils;
 import nc.itf.ifm.IInvestIncomeQueryService;
-import nc.itf.ifm.pub.tbb.IIFM4TbbConst;
+import nc.pubitf.setting.defaultdata.OrgSettingAccessor;
 import nc.ui.querytemplate.querytree.IQueryScheme;
 import nc.vo.cmp.apply.tbb.ApplyTbbCommonUtil;
 import nc.vo.ifm.constants.TMIFMConst;
 import nc.vo.ifm.income.AggInvestIncomeVO;
 import nc.vo.ifm.income.InvestIncomeVO;
-import nc.vo.ifm.income.tbb.Income2TbbAccessableBusiVO;
+import nc.vo.ifm.pub.tbb.IFMTbbCommonUtil;
 import nc.vo.ifm.pub.tbb.IFMToTbbAccessableBusiVO;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.CircularlyAccessibleValueObject;
@@ -23,12 +21,15 @@ import nc.vo.pub.SuperVO;
 import nc.vo.pub.pf.BillStatusEnum;
 import nc.vo.pubapp.bill.pagination.util.PaginationUtils;
 import nc.vo.pubapp.pattern.data.IRowSet;
+import nc.vo.pubapp.pattern.exception.ExceptionUtils;
 import nc.vo.pubapp.pattern.model.entity.bill.AbstractBill;
 import nc.vo.pubapp.query2.sql.process.QuerySchemeProcessor;
 import nc.vo.tm.pub.TMBusConstant;
 import nc.vo.tm.pub.TMPublicUtil;
 import nc.vo.tmpub.util.TmpubQueryUtil;
 import nccloud.pubitf.tbb.ctrl.ICtrlNccloud;
+
+import com.alibaba.fastjson.JSONObject;
 
 public class InvestIncomeQueryServiceImpl implements IInvestIncomeQueryService{
 
@@ -122,7 +123,8 @@ public class InvestIncomeQueryServiceImpl implements IInvestIncomeQueryService{
 		CircularlyAccessibleValueObject[] bvos = null;
 
 		bvos = (CircularlyAccessibleValueObject[])((AbstractBill) aggvo[0]).getChildren(InvestIncomeVO.class).clone();
-		IFMToTbbAccessableBusiVO[] busivos = new Income2TbbAccessableBusiVO[] {};
+//		IFMToTbbAccessableBusiVO[] busivos = new Income2TbbAccessableBusiVO[] {};
+		IFMToTbbAccessableBusiVO[] busivos = IFMTbbCommonUtil.getBillAccessableBusiVO(parentVO, bvos);
 
 		if (busivos != null && busivos.length > 0) {
 			for (IFMToTbbAccessableBusiVO busivo : busivos) {
@@ -144,4 +146,13 @@ public class InvestIncomeQueryServiceImpl implements IInvestIncomeQueryService{
 		return jSONObject;
 	}
 
+	@Override
+	public String getDefaultOrgUnit() {
+		try {
+			return OrgSettingAccessor.getDefaultOrgUnit();
+		} catch (Exception e) {
+			ExceptionUtils.wrappBusinessException(e.getMessage());
+		}
+		return null;
+	}
 }

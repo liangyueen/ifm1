@@ -33,4 +33,9 @@ public interface IInvestIncomeQueryService {
 	 */
 	public abstract JSONObject linkqueryPlan(String paramString)
 		    throws BusinessException;
+	/**
+	 * 用户默认组织
+	 * @return
+	 */
+	public abstract String getDefaultOrgUnit();
 }

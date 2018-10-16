@@ -36,8 +36,15 @@ public abstract class IFMToTbbAccessableBusiVO implements Serializable, IAccessa
 	private CircularlyAccessibleValueObject childVO;
 	// 预占数或者执行数,先只加执行数，不加预占数
 	private String dataType = "UFIND"; 
+	public boolean m_Isconverse = false; // 是否为逆向操作：逆向操作为true
 	private int direction;
+	public boolean isIsconverse() {
+		return m_Isconverse;
+	}
 
+	public void setIsconverse(boolean newIsconverse) {
+		m_Isconverse = newIsconverse;
+	}
 	// 根据注册字段名称，该字段对应的基础数据pk 查找所有上级PK
 	@Override
 	public String[] getAllUpLevels(String fieldname, String pk)

@@ -33,11 +33,9 @@ public class TMIMFConst {
 	/**
 	 * 常用属性名称
 	 */
-	public static String FIELD_PK = "pk";
-	public static String FIELD_PKS = "pks";
 	public static String FIELD_PK_ORG = "pk_org";
 	public static String FIELD_PK_GROUP = "pk_group";
-	public static String FIELD_PK_CURRTYPE = "pk_currtype";
+	public static String FIELD_PK_CURRTYPE = "pk_currtype  ";
 	public static String FIELD_MONEY = "mnyField";
 	public static String FIELD_ORGRATE = "orgRateField";
 	public static String FIELD_GROUPRATE = "groupRateField";

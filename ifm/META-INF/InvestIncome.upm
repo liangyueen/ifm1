@@ -17,6 +17,9 @@
 	  <interface>nccloud.pubitf.ifm.pub.IIFMPubLinkPlanService4NCC</interface>
 	  <implementation>nc.bs.ifm.pub.tbb.IFMPubLinkPlanService4NCCImpl</implementation>
 	</component>
-
+	<component remote="true" singleton="true" supportAlias="false" tx="CMT">
+	  <interface>nc.itf.ifm.IIFMPrecisionService</interface>
+	  <implementation>nc.impl.ifm.IFMPrecisionServiceImpl</implementation>
+	</component>
   </public> 
 </module> 
