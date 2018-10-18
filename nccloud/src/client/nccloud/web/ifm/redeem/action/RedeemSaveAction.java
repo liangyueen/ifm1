@@ -1,32 +1,25 @@
 package nccloud.web.ifm.redeem.action;
 
-import org.apache.commons.lang.StringUtils;
-
 import nc.bs.logging.Logger;
-import nc.bs.pub.action.N_3642_SAVE;
-import nc.itf.ifm.IIFMApplyQueryService;
 import nc.itf.ifm.IInvestRedeemQueryService;
 import nc.pubitf.org.cache.IOrgUnitPubService_C;
-import nc.ui.querytemplate.querytree.IQueryScheme;
-import nc.vo.cc.execadj.ExecAdjVO;
 import nc.vo.ifm.apply.AggInvestApplyVO;
 import nc.vo.ifm.constants.TMIFMConst;
 import nc.vo.ifm.redeem.AggInvestRedeemVO;
 import nc.vo.ifm.redeem.InvestRedeemVO;
 import nc.vo.org.OrgVO;
 import nc.vo.pub.BusinessException;
-import nccloud.dto.baseapp.querytree.dataformat.QueryTreeFormatVO;
-import nccloud.framework.service.ServiceLocator;
-import nccloud.framework.web.container.ClientInfo;
-import nccloud.framework.web.container.SessionContext;
-import nccloud.pubitf.platform.query.INCCloudQueryService;
-import nccloud.pubitf.riart.pflow.ICloudScriptPFlowService;
-import nccloud.web.ifm.common.action.CommonSaveAction;
-import nccloud.web.ifm.util.RedeemUtil;
-import nccloud.framework.core.exception.ExceptionUtils;
 import nc.vo.pub.lang.UFDate;
 import nc.vo.pub.lang.UFDateTime;
 import nc.vo.pub.lang.UFDouble;
+import nccloud.framework.core.exception.ExceptionUtils;
+import nccloud.framework.service.ServiceLocator;
+import nccloud.framework.web.container.ClientInfo;
+import nccloud.framework.web.container.SessionContext;
+import nccloud.web.ifm.common.action.CommonSaveAction;
+import nccloud.web.ifm.util.RedeemUtil;
+
+import org.apache.commons.lang.StringUtils;
 /**
  * 贷款合同新增/修改保存
  * 
@@ -74,12 +67,24 @@ public class RedeemSaveAction extends CommonSaveAction<AggInvestRedeemVO> {
 			throw new BusinessException("保存的数据不能为空！");
 		}
 		InvestRedeemVO vo=operaVO.getParentVO();
-		// 基础必输项校验
-		
-		// 校验赎回额是否超过持有金额
+		// 校验赎回金额是否超过持有金额,若有赎回份数，判断赎回份数是否大于持有份数
 		AggInvestApplyVO[] resultVOs = null;
-		if (vo.getHoldmoeny().sub(vo.getRedeemmoney()).compareTo(UFDouble.ZERO_DBL)<0) {
-			throw new BusinessException("持有金额小于赎回金额，您当前的持有金额为："+vo.getHoldmoeny()+"");
+		if(vo.getRedeemnumber()!=null){
+			Integer lastNum =vo.getApplynumber()-vo.getRedeemnumber();
+			if(lastNum<0){
+				throw new BusinessException("赎回份数大于您的申购份数，您当前的持有份数为为："+vo.getApplynumber()+"");
+			}
+			
+			UFDouble UFlastNum = new UFDouble(vo.getRedeemmoney());
+			if(vo.getRedeemmoney()==null){
+				vo.setRedeemmoney(UFlastNum.multiply(vo.getUnitnetvalue()).toString());
+			}
+		}
+		else if (vo.getHoldmoeny()!=null) {
+			if(vo.getHoldmoeny().sub(vo.getRedeemmoney()).compareTo(UFDouble.ZERO_DBL)<0){
+				throw new BusinessException("持有金额小于赎回金额，您当前的持有金额为："+vo.getHoldmoeny()+"");
+			}
+			
 		}
 		ClientInfo clientInfo = SessionContext.getInstance().getClientInfo();
 		// 根据是否有主键信息判断是新增保存还是修改保存

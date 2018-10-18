@@ -1,30 +1,20 @@
 package nccloud.web.ifm.redeem.action;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang.StringUtils;
-import nccloud.base.exception.ExceptionUtils;
 import nc.bs.logging.Logger;
 import nc.itf.ifm.IInvestRedeemQueryService;
-import nc.pubitf.org.cache.IOrgUnitPubService_C;
-import nccloud.ifm.vo.OperatorParam;
-import nccloud.pubitf.riart.pflow.CloudPFlowContext;
-import nccloud.pubitf.riart.pflow.ICloudScriptPFlowService;
-import nc.vo.cc.execadj.ExecAdjVO;
 import nc.vo.ifm.RedeemStatusEnum;
 import nc.vo.ifm.constants.TMIFMConst;
 import nc.vo.ifm.redeem.AggInvestRedeemVO;
 import nc.vo.ifm.redeem.InvestRedeemVO;
-import nc.vo.org.OrgVO;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.lang.UFDate;
 import nc.vo.pub.lang.UFDateTime;
 import nc.vo.pub.lang.UFDouble;
-import nc.vo.pub.pf.BillStatusEnum;
 import nc.vo.uap.pf.PfProcessBatchRetObject;
+import nccloud.base.exception.ExceptionUtils;
 import nccloud.framework.core.json.IJson;
 import nccloud.framework.service.ServiceLocator;
 import nccloud.framework.web.action.itf.ICommonAction;
@@ -35,10 +25,12 @@ import nccloud.framework.web.json.JsonFactory;
 import nccloud.framework.web.processor.template.BillCardConvertProcessor;
 import nccloud.framework.web.ui.pattern.billcard.BillCard;
 import nccloud.framework.web.ui.pattern.billcard.BillCardFormulaHandler;
-import nccloud.web.ifm.common.action.CommonCommitAction;
-import nccloud.web.ifm.common.action.CommonSaveAction;
+import nccloud.pubitf.riart.pflow.CloudPFlowContext;
+import nccloud.pubitf.riart.pflow.ICloudScriptPFlowService;
 import nccloud.web.ifm.util.RedeemUtil;
 import nccloud.web.workflow.approve.util.NCCFlowUtils;
+
+import org.apache.commons.lang.StringUtils;
 
 public class RedeemSaveSubmitAction implements ICommonAction {
 	private static IInvestRedeemQueryService eQueryService = null;
@@ -155,10 +147,23 @@ public class RedeemSaveSubmitAction implements ICommonAction {
 		}
 		try {
 			InvestRedeemVO vo = vos[0].getParentVO();
-			// 基础必输项校验
-
-			// 校验是否超过占用授信额度
-
+			if(vo.getRedeemnumber()!=null){
+				Integer lastNum =vo.getApplynumber()-vo.getRedeemnumber();
+				if(lastNum<0){
+					throw new BusinessException("赎回份数大于您的申购份数，您当前的持有份数为为："+vo.getApplynumber()+"");
+				}
+				UFDouble UFlastNum = new UFDouble(vo.getRedeemmoney());
+				if(vo.getRedeemmoney()==null){
+					vo.setRedeemmoney(UFlastNum.multiply(vo.getUnitnetvalue()).toString());
+				}
+			}
+			else if(vo.getHoldmoeny()!=null){
+				if (vo.getHoldmoeny().sub(vo.getRedeemmoney()).compareTo(UFDouble.ZERO_DBL) < 0|| vo.getHoldmoeny().compareTo(UFDouble.ZERO_DBL) <= 0) {
+					throw new BusinessException("持有金额小于赎回金额，您当前的持有金额为："
+							+ vo.getHoldmoeny() + "");
+			}
+				
+			}
 			// 根据是否有主键信息判断是新增保存还是修改保存
 			if (StringUtils.isBlank(vo.getPk_redeem())) {
 				// 设置单据默认值
@@ -168,12 +173,7 @@ public class RedeemSaveSubmitAction implements ICommonAction {
 				Integer billstatus = (Integer) RedeemStatusEnum.待审核.value();// 待审核
 				// vo.setAttributeValue("vbillstatus", vbillstatus);
 				vo.setAttributeValue("billstatus", billstatus);
-				if (vo.getHoldmoeny().sub(vo.getRedeemmoney())
-						.compareTo(UFDouble.ZERO_DBL) < 0
-						|| vo.getHoldmoeny().compareTo(UFDouble.ZERO_DBL) <= 0) {
-					throw new BusinessException("持有金额小于赎回金额，您当前的持有金额为："
-							+ vo.getHoldmoeny() + "");
-				}
+			
 
 				vo.setPk_group(RedeemUtil.getGroupByOrg(vo.getPk_org()));
 				vo.setPk_billtypecode(getBillTypeCode());

@@ -46,7 +46,7 @@ public  class IFMRedeemPrecisionServiceImpl implements IFMRedeemPrecisionService
 		String currtypeField = field.get(TMIFMConst.FIELD_PK_CURRTYPE);
 		// 赎回金额属性名称
 
-		String mnyField = field.get("redeemmoney");
+		String mnyField = field.get(TMIFMConst.FIELD_REDEEMMONEY);
 		// 组织本币汇率属性名称
 		String orgRateField = field.get("olcrate");
 		// 组织本币金额属性名称
