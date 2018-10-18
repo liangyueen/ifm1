@@ -131,13 +131,15 @@ productname varchar(50) null
 /*产品名称*/,
 redeemnumber integer null 
 /*赎回份数*/,
+applynumber integer null 
+/*申购份数*/,
 redeemid varchar(50) null 
 /*赎回编码*/,
 vbilldate char(19) null 
 /*申购日期*/,
 unitnetvalue decimal(28,8) null 
 /*单位净值*/,
-capitalproject varchar(50) null 
+capitalproject varchar(20) null default '~' 
 /*资金计划项目*/,
 realreaning decimal(28,8) null 
 /*实际收益*/,
@@ -147,6 +149,16 @@ enddate char(19) null
 /*到期日期*/,
 holdmoney decimal(28,8) null 
 /*持有金额*/,
+investvariety varchar(20) null default '~' 
+/*投资品种*/,
+pk_srcbill varchar(50) null 
+/*来源单据ID*/,
+pk_srcbilltype varchar(20) null default '~' 
+/*来源单据类型*/,
+srcbilltypecode varchar(50) null default '~' 
+/*来源单据类型编码*/,
+srcbillno varchar(50) null 
+/*来源单据号*/,
  constraint pk_ifm_redeem primary key (pk_redeem),
  ts char(19) null,
 dr smallint null default 0

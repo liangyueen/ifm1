@@ -103,11 +103,11 @@ issuebank varchar(20) null default '~'
 /*发行银行*/,
 billstatus varchar(50) null 
 /*单据状态*/,
-settleaccount varchar(20) null default '~' 
+gathering varchar(20) null default '~' 
 /*收款银行账户*/,
-invest varchar(20) null default '~' 
+investaccount varchar(20) null default '~' 
 /*理财账户*/,
-interestday int(10) null 
+interestday integer null 
 /*利息天数*/,
 expectedrate decimal(28,8) null 
 /*预期收益率*/,
@@ -123,14 +123,22 @@ incomemoney decimal(28,8) null
 /*收益税额*/,
 source integer null 
 /*来源*/,
-incomefundplanpro varchar(40) null default '~' 
+incomefundplanpro varchar(20) null default '~' 
 /*收益资金计划项目*/,
-taxfundplanpro varchar(40) null default '~' 
+taxfundplanpro varchar(20) null default '~' 
 /*税额资金计划项目*/,
 investvariety varchar(20) null default '~' 
 /*投资品种*/,
-incomedate char(19) null 
+gatheringdate char(19) null 
 /*到账日期*/,
+pk_srcbill varchar(50) null 
+/*来源单据ID*/,
+pk_srcbilltype varchar(20) null default '~' 
+/*来源单据类型*/,
+srcbilltypecode varchar(50) null default '~' 
+/*来源单据类型编码*/,
+srcbillno varchar(50) null 
+/*来源单据号*/,
  constraint pk_ifm_income primary key (pk_income),
  ts char(19) null,
 dr smallint null default 0
