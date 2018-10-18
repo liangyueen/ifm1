@@ -140,12 +140,16 @@ applynumber int null
 /*申购份数*/,
 unitnetvalue decimal(28,8) null 
 /*单位净值*/,
-capitalproject nvarchar(50) null 
+capitalproject nvarchar(20) null default '~' 
 /*资金计划项目*/,
 investvariety nvarchar(20) null default '~' 
 /*投资品种*/,
-limitday nvarchar(50) null 
+limitday int null 
 /*期限*/,
+holdmoney decimal(28,8) null 
+/*持有金额*/,
+holdnumber int null 
+/*持有份数*/,
  constraint pk_ifm_apply primary key (pk_apply),
  ts char(19) null default convert(char(19),getdate(),20),
 dr smallint null default 0

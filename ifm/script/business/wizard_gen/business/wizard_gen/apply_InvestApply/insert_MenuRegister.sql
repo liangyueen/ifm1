@@ -1,1 +1,0 @@
-INSERT INTO sm_menuitemreg ( nodeorder, pk_menu, menuitemname, iconpath, resid, pk_menuitem, ismenutype, menudes, funcode, menuitemcode, dr ) VALUES ( null, '1004ZZ10000000000FFL', '理财申购', null, 'D36670101', '0001Z61000000002M4W3', 'N', null, '36670AP', '36670101', 0 );
