@@ -78,7 +78,7 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 	  public static final String UNITNETVALUE = "unitnetvalue";
 	  public static final String REALREANING = "realreaning";
 	  public static final String PK_OLCCURR = " pk_olccurr";
-	//来源单据四个字段
+	//来源单据四个字段 
 	  public static final String PK_SRCBILL = "pk_srcbill";
 	  public static final String PK_SRCBILLTYPE = "pk_srcbilltype";
 	  public static final String SRCBILLTYPECODE = "srcbilltypecode";
