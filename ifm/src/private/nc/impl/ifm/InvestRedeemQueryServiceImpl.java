@@ -74,6 +74,16 @@ public class InvestRedeemQueryServiceImpl implements IInvestRedeemQueryService{
 		}
 		return null;
 	}
+
+//	@Override
+//	public String getDefaultOrgUnit() {
+//		try {
+//			return OrgSettingAccessor.getDefaultOrgUnit();
+//		} catch (Exception e) {
+//			ExceptionUtils.wrappBusinessException(e.getMessage());
+//		}
+//		return null;
+//	}
 	
 
 }

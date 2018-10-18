@@ -40,5 +40,6 @@ public interface IInvestRedeemQueryService {
 	 * @throws BusinessException
 	 */
 	public AggInvestRedeemVO[] getAggVOsByPKs(String... pks) throws BusinessException ;
+	String getDefaultOrgUnit();
 	
 }

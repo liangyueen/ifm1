@@ -168,20 +168,20 @@ public class Redeem2TbbQueryVO extends IFMToTbbQueryVO{
 	 * 方法功能描述：返回单据日期字段名。
 	 */
 	public String getDateKeyName() {
-		if(getDateType().equals(IIFM4TbbConst.RedeemAccountDateFiled)){//到账日期
-			return getHeadTableName() + DISPOINT + InvestRedeemVO.INCOMEDATE;
-		}
-		else{
-			return getHeadTableName() + DISPOINT + getDateType();
-		}
-		
+//		if(getDateType().equals(IIFM4TbbConst.RedeemAccountDateFiled)){//到账日期
+//			return getHeadTableName() + DISPOINT + InvestRedeemVO.INCOMEDATE;
+//		}
+//		else{
+//			return getHeadTableName() + DISPOINT + getDateType();
+//		}
+		return null;
 	}
 
 	@Override
 	public String changeAttrToBillItemName(String attr) {
 		if(StringUtil.isNotNull(attr)){
 			if( attr.equals(IIFM4TbbConst.PK_FUNDPLAN_3642)){
-				return getBodyTableName() + DISPOINT + InvestRedeemVO.CAPITALPROJECT;//收益资金计划项目
+//				return getBodyTableName() + DISPOINT + InvestRedeemVO.CAPITALPROJECT;//收益资金计划项目
 			}
 			else if(attr.equals(IIFM4TbbConst.PK_BANKACC_P_3642)){
 				return getBodyTableName() + DISPOINT + InvestRedeemVO.ISSUEBANK;

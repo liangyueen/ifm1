@@ -40,9 +40,9 @@ public class Redeem2TbbAccessableBusiVO extends IFMToTbbAccessableBusiVO{
 		else if(name.equals(IIFM4TbbConst.PK_CURRTYPE_3642)){
 			return ((InvestRedeemVO)getParentVO()).getPk_currtype();
 		}
-		else if(name.equals(IIFM4TbbConst.PK_FUNDPLAN_3642)){
-			return ((InvestRedeemVO)getParentVO()).getCapitalproject();//资金计划项目
-		}
+//		else if(name.equals(IIFM4TbbConst.PK_FUNDPLAN_3642)){
+//			return ((InvestRedeemVO)getParentVO()).getCapitalproject();//资金计划项目
+//		}
 		else if(name.equals(IIFM4TbbConst.PK_BANKACC_P_3642)){
 			return ((InvestRedeemVO)getParentVO()).getIssuebank();
 		}

@@ -144,7 +144,7 @@ public class RedeemUtil {
 		// 全局本币金额属性名称
 		field.put(TMIFMConst.FIELD_GLOBALMNYFIELD, InvestRedeemVO.GLLCMNY);
 		// 赎回金额
-		field.put(TMIFMConst.FIELD_REDEEMMONEY, InvestRedeemVO.REDEEMMONEY);
+		field.put("redeemmoney", InvestRedeemVO.REDEEMMONEY);
 		
 		field.put(TMIFMConst.FIELD_PK_ORG, InvestRedeemVO.PK_ORG);
 		field.put(TMIFMConst.FIELD_PK_GROUP, InvestRedeemVO.PK_GROUP);

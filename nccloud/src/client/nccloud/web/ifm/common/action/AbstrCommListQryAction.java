@@ -4,6 +4,7 @@ import nc.bs.logging.Logger;
 import nc.ui.querytemplate.querytree.IQueryScheme;
 import nc.vo.fts.pub.bean.ListQryParam;
 import nc.vo.fts.pub.bean.ListQryResult;
+import nc.vo.ifm.TMGrid;
 import nc.vo.pub.BusinessException;
 import nc.vo.pubapp.pattern.model.entity.bill.AbstractBill;
 import nc.vo.tmpub.util.ArrayUtil;
@@ -20,7 +21,6 @@ import nccloud.framework.web.json.JsonFactory;
 import nccloud.framework.web.ui.model.PageInfo;
 import nccloud.framework.web.ui.pattern.grid.Grid;
 import nccloud.pubitf.platform.query.INCCloudQueryService;
-import nccloud.web.fts.ui.pattern.grid.TMGrid;
 
 /**
  * 列表查询公共动作
