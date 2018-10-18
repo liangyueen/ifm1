@@ -9,8 +9,6 @@
 	<classpathentry kind="src" output="nccloud/classes" path="nccloud/src/test"/>
 	<classpathentry kind="src" output="nccloud/classes" path="nccloud/resources"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/TM_TMPUB"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/TM_CMP"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/TM_FTS"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="com.yonyou.ria.g2.container/Ant_Library"/>
 	<classpathentry kind="con" path="com.yonyou.ria.g2.container/Product_Common_Library"/>
@@ -21,5 +19,6 @@
 	<classpathentry kind="con" path="com.yonyou.ria.g2.container/Module_Private_Library"/>
 	<classpathentry kind="con" path="com.yonyou.ria.g2.container/Module_Lang_Library"/>
 	<classpathentry kind="con" path="com.yonyou.ria.g2.container/Generated_EJB"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/TM_CMP"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
