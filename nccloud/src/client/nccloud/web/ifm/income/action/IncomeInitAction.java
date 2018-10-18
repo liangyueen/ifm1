@@ -103,6 +103,10 @@ public class IncomeInitAction  implements ICommonAction {
 		String billmaker = SessionContext.getInstance().getClientInfo().getUserid();
 		
 		parentVO.setAttributeValue("pk_group", pk_group);
+		parentVO.setAttributeValue("pk_srcbill", resultVOs[0].getParentVO().getPk_apply());
+		parentVO.setAttributeValue("pk_srcbilltype", resultVOs[0].getParentVO().getPk_billtypeid());
+		parentVO.setAttributeValue("srcbilltypecode", resultVOs[0].getParentVO().getPk_billtypecode());
+		parentVO.setAttributeValue("srcbillno", resultVOs[0].getParentVO().getVbillno());
 		parentVO.setAttributeValue(InvestIncomeVO.VBILLSTATUS, vbillstatus);
 		parentVO.setAttributeValue("billstatus", billstatus);
 		parentVO.setAttributeValue(InvestIncomeVO.BILLMAKEDATE, billmakedate);
@@ -144,6 +148,7 @@ public class IncomeInitAction  implements ICommonAction {
 		headVO.setPk_currtype(IncomeUtil.getOrgStandardCurrtype(pk_org));
 		headVO = (InvestIncomeVO) IncomeUtil.processPrecision(headVO, true,
 				getBusiDate());//处理原币本币金额及精度
+		headVO.setGatheringdate(getBusiDate());//到账日期默认值
 		vo.setParentVO(headVO);
 	}
 	/**

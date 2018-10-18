@@ -25,6 +25,11 @@ public class InvestIncomeVO extends SuperVO {
 *ifm_income表主键
 */
 public static final String PK_INCOME = "pk_income";
+//来源单据四个字段
+public static final String PK_SRCBILL = "pk_srcbill";
+public static final String PK_SRCBILLTYPE = "pk_srcbilltype";
+public static final String SRCBILLTYPECODE = "srcbilltypecode";
+public static final String SRCBILLNO = "srcbillno";
 /**
 *申购编号
 */
@@ -475,6 +480,35 @@ public String getPk_income() {
  */
 public void setPk_income ( String pk_income) {
 	this.setAttributeValue( InvestIncomeVO.PK_INCOME,pk_income);
+} 
+
+public String getPk_srcbill() {
+	return (String) this.getAttributeValue( InvestIncomeVO.PK_SRCBILL);
+} 
+
+public void setPk_srcbill ( String pk_srcbill) {
+	this.setAttributeValue( InvestIncomeVO.PK_SRCBILL,pk_srcbill);
+} 
+public String getPk_srcbilltype() {
+	return (String) this.getAttributeValue( InvestIncomeVO.PK_SRCBILLTYPE);
+} 
+
+public void setPk_srcbilltype ( String pk_srcbilltype) {
+	this.setAttributeValue( InvestIncomeVO.PK_SRCBILLTYPE,pk_srcbilltype);
+} 
+public String getSrcbilltypecode() {
+	return (String) this.getAttributeValue( InvestIncomeVO.SRCBILLTYPECODE);
+} 
+
+public void setSrcbilltypecode ( String srcbilltypecode) {
+	this.setAttributeValue( InvestIncomeVO.SRCBILLTYPECODE,srcbilltypecode);
+} 
+public String getSrcbillno() {
+	return (String) this.getAttributeValue( InvestIncomeVO.SRCBILLNO);
+} 
+
+public void setSrcbillno ( String srcbillno) {
+	this.setAttributeValue( InvestIncomeVO.SRCBILLNO,srcbillno);
 } 
  
 /**

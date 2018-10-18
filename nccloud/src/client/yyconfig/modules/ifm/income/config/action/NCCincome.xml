@@ -62,8 +62,8 @@
 		<clazz>nccloud.web.ifm.income.action.IncomeLinkNtbPlanAction</clazz>
 	</action>
 	<action>
-		<name>ifm.income.appregisterurlquery</name>
-		<label>查询小应用URL</label>
-		<clazz>nccloud.web.ifm.income.action.AppregisterUrlQueryAction</clazz>
+		<name>ifm.income.afteredit</name>
+		<label>编辑后事件</label>
+		<clazz>nccloud.web.ifm.income.action.IncomeCardAfterEditAction</clazz>
 	</action>
 </actions>

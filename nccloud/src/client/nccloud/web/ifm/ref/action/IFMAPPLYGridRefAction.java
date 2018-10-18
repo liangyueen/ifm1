@@ -64,15 +64,15 @@ public class IFMAPPLYGridRefAction extends DefaultGridRefAction {
 		StringBuffer wheresql = new StringBuffer("");
 		//根据单据类型判断参照过滤条件
 		//参照对应财务组织购买过的状态为购买成功的产品，未全部赎回的
-		if(!StringUtil.isNull(billtype) && "3643".equals(billtype)){
-			wheresql.append(
-				" and exists(SELECT * from" +
-					" ifm_redeem b  " +
-					" WHERE ifm_apply.productcode = b.productcode" +
-					" and ifm_apply.pk_org = b.pk_org " +
-					" and b.billstatus =3" +
-					" and b.dr=0)" );
-		}
+//		if(!StringUtil.isNull(billtype) && "3643".equals(billtype)){
+//			wheresql.append(
+//				" and exists(SELECT * from" +
+//					" ifm_redeem b  " +
+//					" WHERE ifm_apply.productcode = b.productcode" +
+//					" and ifm_apply.pk_org = b.pk_org " +
+//					" and b.billstatus =3" +
+//					" and b.dr=0)" );
+//		}
 		// 组织
 		if (!StringUtil.isNull(pk_org)) {
 			String[] pk_orgs = pk_org.split(",");

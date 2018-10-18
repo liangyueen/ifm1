@@ -1,5 +1,6 @@
 package nc.itf.ifm;
 
+import nc.vo.ifm.apply.InvestApplyVO;
 import nc.vo.ifm.redeem.InvestRedeemVO;
 
 public interface IIncomeCtrlService {
@@ -15,5 +16,10 @@ public interface IIncomeCtrlService {
 	 * @param redeemVO
 	 */
 	public void RewriteIncomeBill(InvestRedeemVO redeemVO);
-	
+	/**
+	 * 根据传入的申购编号判断是否可以对申购的单子进行弃审
+	 * @param apply_vbillno
+	 * @return
+	 */
+	public boolean isSaved(String apply_vbillno);
 }

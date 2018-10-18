@@ -1,20 +1,18 @@
 package nc.impl.ifm;
 
-import java.util.Collection;
-
-import nc.bs.dao.BaseDAO;
 import nc.bs.ifm.redeem.ace.bp.AceInvestRedeemQueryBP;
 import nc.impl.pubapp.pattern.data.bill.BillQuery;
 import nc.impl.pubapp.pattern.database.DataAccessUtils;
 import nc.itf.ifm.IInvestRedeemQueryService;
+import nc.pubitf.setting.defaultdata.OrgSettingAccessor;
 import nc.ui.querytemplate.querytree.IQueryScheme;
 import nc.vo.ifm.redeem.AggInvestRedeemVO;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.SuperVO;
 import nc.vo.pubapp.bill.pagination.util.PaginationUtils;
 import nc.vo.pubapp.pattern.data.IRowSet;
+import nc.vo.pubapp.pattern.exception.ExceptionUtils;
 import nc.vo.pubapp.query2.sql.process.QuerySchemeProcessor;
-import nc.vo.tmpub.util.TmpubQueryUtil;
 
 public class InvestRedeemQueryServiceImpl implements IInvestRedeemQueryService{
 	
@@ -65,6 +63,16 @@ public class InvestRedeemQueryServiceImpl implements IInvestRedeemQueryService{
 	public AggInvestRedeemVO[] getAggVOsByPKs(String... pks)
 			throws BusinessException {
 		return aceInvestRedeemQueryBP.getAggVOsByPKs(pks);
+	}
+
+	@Override
+	public String getDefaultOrgUnit() {
+		try {
+			return OrgSettingAccessor.getDefaultOrgUnit();
+		} catch (Exception e) {
+			ExceptionUtils.wrappBusinessException(e.getMessage());
+		}
+		return null;
 	}
 	
 

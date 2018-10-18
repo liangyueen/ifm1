@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <authorizes>
 	<authorize>
-	<!--投资赎回-->
-		<appcode>36670RED</appcode>
+	<!--投资收益-->
+		<appcode>36670IPR</appcode>
 		<actions>
 			<action>ifm.income.init</action>
 		    <action>ifm.income.save</action>
@@ -16,7 +16,7 @@
 		    <action>ifm.income.print</action>
 			<action>ifm.income.linkntb</action>
 			<action>ifm.income.voucherbill</action>
-			<action>ifm.income.appregisterurlquery</action>
+			<action>ifm.income.afteredit</action>
 		</actions>
 	</authorize>
 </authorizes>
