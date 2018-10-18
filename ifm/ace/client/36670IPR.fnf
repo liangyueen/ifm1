@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="gbk"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="general" class="nc.pubapp.pade.code.funnode.FunNodePara">
+    	<property name="moduleName" value="ifm" />
+	    <property name="bpfPath" value="test.bpf"/>
+	    <property name="funcode" value="36670IPR"/>
+	    <property name="clientPackName" value="nc.ui.ifm.income"/>
+			    	<property name="dbilldDate" value="Billmakedate"/>
+			    <property name="metaData" value="ifm\METADATA\InvestIncome.bmf"/>
+	    <property name="xmlPath" value="ifm\src\client\nc\ui\ifm\income\ace\view\InvestIncome_config.xml"/>
+		<property name="metaDataType" value="singleMulti" />
+	    <property name="funcregispath" value="ifm/funcmodel/investIncome/funcregis/36670IPR.func" />
+	    <property name="quetempath" value="ifm/templet/investIncome/querytemplet/36670IPR.qtf" />
+	    <property name="printtempath" value="ifm/templet/investIncome/outtemplet/36670IPR.otf" />
+	    <property name="systembasepath" value="ifm/systemplatebase/investIncome/36670IPR/36670IPR.stb" />
+	    <property name="extendSuffix" value=""/>
+	    <property name="uif2ModelFilePath" value="ifm\ace\uif2model\36670IPR.umf"/>
+	    <property name="busiCompName" value="ifm"/>
+	    <property name="metaDataId" value="a86c8a04-f050-4cf0-afdb-daa6c6548b60"/>
+</bean>
+
+	<bean id="templet" class="nc.pubapp.pade.code.funnode.Templet">
+	    <property name="tempStyle" value="0" />
+	    <property name="nodeKey" value="" />
+	    <property name="templetPath" value="ifm/templet/investIncome/billtemplet/36670IPR.btf" />
+	</bean>
+
+	<bean id="HTBEHpara" class="nc.pubapp.pade.code.funnode.HeadTailBeforeEditHandlerPara">
+	</bean>
+	
+	<bean id="HTAEHpara" class="nc.pubapp.pade.code.funnode.HeadTailAfterEditHandlerPara">
+	</bean>
+	
+	<bean id="SerPropara" class="nc.pubapp.pade.code.funnode.ServiceProxyPara">
+									<property name="queryByQueryScheme">
+				<bean class="nc.pubapp.pade.code.funnode.ServiceProxyItemPara">
+					<property name="fullClassName" value="nc.itf.ifm.IInvestIncomeMaintain" />
+					<property name="itmClassName" value=".IInvestIncomeMaintain" />
+					<property name="methodName" value="query" />
+				</bean>
+			</property>
+							</bean>
+	
+	<bean id="FilePackNameBean" class="nc.pubapp.pade.code.engine.FilePackNamePara">
+    	<property name="filePackNameList">
+			<list>
+						      			        	            <value>nc.ui.ifm.income.handler.OrgChangedHandler.java</value>
+		        <value>nc.ui.ifm.income.ace.handler.AceAddHandler.java</value>
+		        <value>nc.ui.ifm.income.ace.handler.AceHeadTailAfterEditHandler.java</value>
+		        <value>nc.ui.ifm.income.ace.handler.AceHeadTailBeforeEditHandler.java</value>
+		        <value>nc.ui.ifm.income.ace.handler.AceOrgChangedHandler.java</value>
+		        <value>nc.ui.ifm.income.ace.serviceproxy.AceInvestIncomeMaintainProxy.java</value>
+		        <value>nc.ui.ifm.income.action.InvestIncomeAddAction.java</value>
+		        <value>nc.ui.ifm.income.action.InvestIncomeDeleteAction.java</value>
+		        <value>nc.ui.ifm.income.action.InvestIncomeEditAction.java</value>
+		        <value>nc.ui.ifm.income.action.CopyActionProcessor.java</value>
+		        <value>nc.ui.ifm.income.query.InvestIncomeQueryConditionInitializer.java</value>
+	     	</list>
+	    </property>
+	</bean>
+
+</beans>

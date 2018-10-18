@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="gbk"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<bean id="funcregister" class="nc.pubapp.pade.funcmodel.vo.FuncRegister"><property name="bmf_path" value="ifm\METADATA\InvestApply.bmf"/>
+<property name="busiActiveList">
+<list></list>
+</property>
+<property name="cfunid" value="0001Z61000000002M4W1"/>
+<property name="class_name" value="nc.ui.pubapp.uif2app.ToftPanelAdaptorEx"/>
+<property name="dr" value="0"/>
+<property name="fun_name" value="理财申购"/>
+<property name="fun_property" value="0"/>
+<property name="funcRegisterButtonList">
+<list></list>
+</property>
+<property name="funcRegisterParamList">
+<list><bean class="nc.pubapp.pade.funcmodel.vo.FuncRegisterParam"><property name="dr" value="0"/>
+<property name="paramname" value="BeanConfigFilePath"/>
+<property name="paramvalue" value="nc/ui/ifm/apply/ace/view/Apply_config.xml"/>
+<property name="parentid" value="0001Z61000000002M4W1"/>
+<property name="pk_param" value="0001Z61000000002M4W2"/>
+<property name="ts" value="2018-09-01 22:30:46"/>
+</bean>
+</list>
+</property>
+<property name="funcode" value="36670AP"/>
+<property name="funnode_path" value="ifm\ace\client\36670AP.fnf"/>
+<property name="funtype" value="0"/>
+<property name="isbuttonpower" value="false"/>
+<property name="isenable" value="true"/>
+<property name="isfunctype" value="false"/>
+<property name="menuModelFilePath" value="ifm/funcmodel/apply/menuitemregis/36670101.menu"/>
+<property name="metaDataID" value="ff9b46f3-1ba0-4e2d-b7dd-8fb1466c7075"/>
+<property name="moduleName" value="ifm"/>
+<property name="orgtypecode" value="FINANCEORGTYPE000000"/>
+<property name="own_module" value="3667"/>
+<property name="pageList">
+<list></list>
+</property>
+<property name="parent_id" value="1001Z61000000000RPP1"/>
+<property name="pk_group" value="~"/>
+<property name="ts" value="2018-09-01 22:30:46"/>
+<property name="uif2model_path" value="ifm\ace\uif2model\36670AP.umf"/>
+</bean>
+
+</beans>
