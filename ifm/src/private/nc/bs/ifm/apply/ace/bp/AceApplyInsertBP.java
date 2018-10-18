@@ -1,6 +1,11 @@
 package nc.bs.ifm.apply.ace.bp;
 
+
 import nc.bs.ifm.apply.plugin.bpplugin.ApplyPluginPoint;
+import nc.bs.ifm.apply.rule.ApplyCheckRule;
+import nc.bs.ifm.apply.rule.CheckOrgInitDateRule;
+import nc.bs.pub.rule.IFMBillOrgVRule;
+import nc.bs.pubapp.pub.rule.FieldLengthCheckRule;
 import nc.impl.pubapp.pattern.data.bill.template.InsertBPTemplate;
 import nc.impl.pubapp.pattern.rule.IRule;
 import nc.impl.pubapp.pattern.rule.processer.AroundProcesser;
@@ -55,16 +60,20 @@ public class AceApplyInsertBP {
 		((nc.bs.pubapp.pub.rule.CreateBillCodeRule) rule).setOrgItem("pk_org");
 		processer.addBeforeRule(rule);
 		
-//		// 补充默认值的规则
-//		IRule<AggInvestApplyVO> fillRule = new IFMFillInsertDataRule();
-//		processer.addBeforeRule(fillRule);
-//
-//		// 组织多版本
-//		IRule<AggInvestApplyVO> orgRule = new IFMBillOrgVRule();
-//		processer.addBeforeRule(orgRule);	
-//		
-//		rule = new nc.bs.pubapp.pub.rule.FillInsertDataRule();
-//		processer.addBeforeRule(rule);
-//		rule = new nc.bs.pubapp.pub.rule.CreateBillCodeRule();
+		// 单据字段长度检查规则
+		IRule<AggInvestApplyVO> lengthCheckRule = new FieldLengthCheckRule();
+		processer.addBeforeRule(lengthCheckRule);
+		
+		// 新增业务启用规则
+		IRule<AggInvestApplyVO> orgInitRule = new CheckOrgInitDateRule();
+		processer.addBeforeRule(orgInitRule);
+		
+		// 保存业务校验
+		IRule<AggInvestApplyVO> checkRule = new ApplyCheckRule();
+		processer.addBeforeRule(checkRule);
+		
+		// 组织多版本
+		IRule<AggInvestApplyVO> orgRule = new IFMBillOrgVRule();
+		processer.addBeforeRule(orgRule);
 	}
 }

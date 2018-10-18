@@ -1,13 +1,10 @@
 package nc.bs.ifm.redeem.ace.bp;
 
 
-import nc.bs.ifm.pub.rule.CCCFillInsertDataRule;
 import nc.bs.ifm.redeem.plugin.bpplugin.InvestRedeemPluginPoint;
-import nc.bs.pub.rule.CCBillOrgVRule;
-import nc.bs.pubapp.pub.rule.FieldLengthCheckRule;
 import nc.impl.pubapp.pattern.data.bill.template.InsertBPTemplate;
-import nc.impl.pubapp.pattern.rule.processer.AroundProcesser;
 import nc.impl.pubapp.pattern.rule.IRule;
+import nc.impl.pubapp.pattern.rule.processer.AroundProcesser;
 import nc.vo.ifm.redeem.AggInvestRedeemVO;
 
 /**

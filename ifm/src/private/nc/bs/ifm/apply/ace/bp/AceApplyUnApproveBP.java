@@ -1,7 +1,8 @@
 package nc.bs.ifm.apply.ace.bp;
 
 import nc.bs.ifm.apply.plugin.bpplugin.ApplyPluginPoint;
-import nc.bs.ifm.apply.rule.InvestApplyUnApproveTbbRule;
+import nc.bs.ifm.pub.rule.RegisterUnWriteBankAccAfterRule;
+import nc.bs.ifm.pub.rule.RegisterWriteBankAccAfterRule;
 import nc.impl.pubapp.pattern.data.bill.BillUpdate;
 import nc.impl.pubapp.pattern.data.bill.template.UpdateBPTemplate;
 import nc.impl.pubapp.pattern.rule.IRule;
@@ -16,27 +17,31 @@ public class AceApplyUnApproveBP {
 
 	public AggInvestApplyVO[] unApprove(AggInvestApplyVO[] clientBills,
 			AggInvestApplyVO[] originBills) {
-		for (AggInvestApplyVO clientBill : clientBills) {
-			clientBill.getParentVO().setStatus(VOStatus.UPDATED);
-		}
-		BillUpdate<AggInvestApplyVO> update = new BillUpdate<AggInvestApplyVO>();
-		AggInvestApplyVO[] returnVos = update.update(clientBills, originBills);
 		UpdateBPTemplate<AggInvestApplyVO> bp = new UpdateBPTemplate<AggInvestApplyVO>(
-				ApplyPluginPoint.APPROVE);
-		this.addBeforeRule(bp.getAroundProcesser());
+				ApplyPluginPoint.UNAPPROVE);
+		for (AggInvestApplyVO clientBill : clientBills) {
+			clientBill.getParentVO().setBillstatus(VOStatus.UPDATED);
+		}
+		
+		// 执行后规则
+		this.addAfterRule(bp.getAroundProcesser());
+		AggInvestApplyVO[] returnVos =bp.update(clientBills, originBills);
 		return returnVos;
 	}
+	
+	
 	/**
-	 * 执行前规则
+	 * 新增后规则
 	 * 
-	 * @param aroundProcesser
+	 * @param processor
 	 */
-	private void addBeforeRule(
+
+	private void addAfterRule(
 			CompareAroundProcesser<AggInvestApplyVO> aroundProcesser) {
-		/** 进行预算控制，释放预占数,进行预算控制，回写登记单执行数 **/
-		IRule<AggInvestApplyVO> tbbRule = new InvestApplyUnApproveTbbRule();
-		aroundProcesser.addBeforeRule(tbbRule);
-	
-	
+		IRule<AggInvestApplyVO> rwRule = new RegisterUnWriteBankAccAfterRule();
+		aroundProcesser.addAfterRule(rwRule);
 	}
 }
+
+
+
