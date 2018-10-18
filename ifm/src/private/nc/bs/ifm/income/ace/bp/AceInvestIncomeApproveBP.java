@@ -10,6 +10,7 @@ import nc.impl.pubapp.pattern.rule.processer.CompareAroundProcesser;
 import nc.vo.ifm.IncomeBillStatusEnum;
 import nc.vo.ifm.income.AggInvestIncomeVO;
 import nc.vo.pub.VOStatus;
+import nc.vo.pub.pf.BillStatusEnum;
 
 /**
  * 标准单据审核的BP
@@ -30,9 +31,9 @@ public class AceInvestIncomeApproveBP {
 		for (AggInvestIncomeVO clientBill : clientBills) {	
 			clientBill.getParentVO().setAttributeValue("billstatus",
 					IncomeBillStatusEnum.FINISHED.value());//已完成
-			/*clientBill.getParentVO().setAttributeValue("vbillstatus",
+			clientBill.getParentVO().setAttributeValue("vbillstatus",
 					BillStatusEnum.APPROVED.value());//已审批
-*/			clientBill.getParentVO().setBillstatus(VOStatus.NEW);
+//			clientBill.getParentVO().setBillstatus(VOStatus.NEW);
 		}
 //		BillUpdate<AggInvestIncomeVO> update = new BillUpdate<AggInvestIncomeVO>();
 //		AggInvestIncomeVO[] returnVos = update.update(clientBills, originBills);

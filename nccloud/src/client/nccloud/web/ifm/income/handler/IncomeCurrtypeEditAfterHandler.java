@@ -11,15 +11,10 @@ import nccloud.framework.web.ui.pattern.billcard.BillCard;
 import nccloud.framework.web.ui.pattern.billcard.BillCardFormulaHandler;
 import nccloud.framework.web.ui.pattern.billcard.CardHeadAfterEditEvent;
 import nccloud.web.ifm.util.IncomeUtil;
+import nccloud.web.ifm.util.RedeemUtil;
 import nccloud.web.tmpub.afteredit.bean.UIProp;
 import nccloud.web.tmpub.handler.AbstractCommonAfterEditHandler;
 
-/**  
- * @Description: 申购执行调整-币种编辑后事件
- * @author wangjias 
- * @date 2018-09-14
- * @version V1.0  
- */ 
 public class IncomeCurrtypeEditAfterHandler extends AbstractCommonAfterEditHandler<CardHeadAfterEditEvent, BillCard>{
 
 	@Override
@@ -33,10 +28,20 @@ public class IncomeCurrtypeEditAfterHandler extends AbstractCommonAfterEditHandl
 		// 处理精度
 		InvestIncomeVO pvo = (InvestIncomeVO) IncomeUtil.processPrecision(vo.getParentVO(), true, getBusiDate());
 		vo.setParentVO(pvo);
+		setExecAdjForIncome(vo);
 		card = doReturn(vo);
 		return card;
 	}
-	
+	private void setExecAdjForIncome(AggInvestIncomeVO vo) throws BusinessException {
+		InvestIncomeVO revo = vo.getParentVO();
+		String pk_olccurr = RedeemUtil.getOrgStandardCurrtype(revo.getPk_org());
+		revo.setPk_olccurr(pk_olccurr);
+		if(revo.getActualmoeny()!=null && revo.getOlcrate()!=null){
+			//组织的组织本位币
+			revo.setOlcmoeny(revo.getActualmoeny().multiply(revo.getOlcrate()));
+		}
+		vo.setParentVO(revo);
+	}
 	
 	/**
 	 * 处理返回值
