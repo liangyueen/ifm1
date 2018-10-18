@@ -2,6 +2,7 @@ package nc.bs.ifm.redeem.ace.bp;
 
 
 import nc.bs.ifm.redeem.plugin.bpplugin.InvestRedeemPluginPoint;
+import nc.bs.pub.rule.CCBillOrgVRule;
 import nc.impl.pubapp.pattern.data.bill.template.InsertBPTemplate;
 import nc.impl.pubapp.pattern.rule.IRule;
 import nc.impl.pubapp.pattern.rule.processer.AroundProcesser;
@@ -74,5 +75,9 @@ public class AceInvestRedeemInsertBP {
 		IRule<AggInvestRedeemVO> orgRule = new CCBillOrgVRule();
 		processer.addBeforeRule(orgRule);
 		processer.addBeforeRule(rule);*/
+		// 组织多版本
+		IRule<AggInvestRedeemVO> orgRule = new CCBillOrgVRule();
+		processer.addBeforeRule(orgRule);		
+
 	}
 }

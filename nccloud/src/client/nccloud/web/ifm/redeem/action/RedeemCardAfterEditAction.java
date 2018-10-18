@@ -1,8 +1,8 @@
-/*package nccloud.web.ifm.redeem.action;
+package nccloud.web.ifm.redeem.action;
 
 import nc.bs.logging.Logger;
 import nc.lightapp.pubapp.web.template.ref.util.StringUtils;
-import nc.vo.cc.execadj.ExecAdjVO;
+import nc.vo.ifm.redeem.InvestRedeemVO;
 import nc.vo.pub.BusinessException;
 import nccloud.base.exception.ExceptionUtils;
 import nccloud.framework.core.json.IJson;
@@ -10,48 +10,50 @@ import nccloud.framework.web.container.IRequest;
 import nccloud.framework.web.json.JsonFactory;
 import nccloud.framework.web.ui.pattern.billcard.BillCard;
 import nccloud.framework.web.ui.pattern.billcard.CardHeadAfterEditEvent;
+import nccloud.web.ifm.redeem.handler.RedeemCurrtypeEditAfterHandler;
+import nccloud.web.ifm.redeem.handler.RedeemOrgChangeEditAfterHandler;
+import nccloud.web.ifm.redeem.handler.RedeemProChangeEditAfterHandler;
 import nccloud.web.tmpub.action.CommonAfterEditAction;
 import nccloud.web.tmpub.afteredit.bean.UIProp;
 import nccloud.web.tmpub.handler.AbstractCommonAfterEditHandler;
 
-*//**  
- * @Description: 授信执行调整-卡片编辑后事件
- * @author wangjias 
- * @date 2018-09-13
- * @version V1.0  
- *//* 
+
 public class RedeemCardAfterEditAction extends CommonAfterEditAction {
 	
-	*//**
+	/**
 	 * 保存新增事件
-	 *//*
+	 */
 	private final String EVENT_SAVEADD = "saveadd";
 
 	protected Object handleBillCardAfterEditEvent(CardHeadAfterEditEvent event, UIProp uiProp) throws BusinessException {
 		AbstractCommonAfterEditHandler<CardHeadAfterEditEvent, BillCard> handler = null;
 		switch (event.getAttrcode()) {
 		// 财务组织
-//		case ExecAdjVO.PK_ORG:
-//			handler = new ExecAdjOrgChangeEditAfterHandler();
-//			break;
-//		// 币种
-//		case ExecAdjVO.PK_CCCURRTYPE:
-//			handler = new ExecAdjCurrtypeEditAfterHandler();
-//			break;
-//		// 金额
-//		case ExecAdjVO.CCAMOUNT:
-//			handler = new ExecAdjAmountAfterEditHandler();
-//			break;
-//		// 授信协议
-//		case ExecAdjVO.PK_PROTOCOL:
-//			handler = new ExecAdjProtocolEditAfterHandler();
-//			break;
-//		//保存新增
-//		case EVENT_SAVEADD:
-//			handler = new ExecAdjOrgChangeEditAfterHandler();
-//			break;
-//		default:
-//			break;
+		case InvestRedeemVO.PK_ORG:
+			handler = new RedeemOrgChangeEditAfterHandler();
+			break;
+//		组织本币汇率
+		case InvestRedeemVO.OLCRATE:
+			handler = new RedeemCurrtypeEditAfterHandler();
+			break;
+		// 金额
+		case InvestRedeemVO.REDEEMMONEY:
+			handler = new RedeemCurrtypeEditAfterHandler();
+			break;
+		// 单位净值
+		case InvestRedeemVO.UNITNETVALUE:
+			handler = new RedeemCurrtypeEditAfterHandler();
+			break;
+		//产品代码	
+		case InvestRedeemVO.PRODUCTCODE:
+			handler = new RedeemProChangeEditAfterHandler();
+			break;
+		//赎回份数
+		case InvestRedeemVO.REDEEMNUMBER:
+			handler = new RedeemCurrtypeEditAfterHandler();
+			break;
+		default:
+			break;
 		}
 		if(handler == null){
 			return event.getCard();
@@ -72,14 +74,14 @@ public class RedeemCardAfterEditAction extends CommonAfterEditAction {
 		return null;
 	}
 	
-	*//**
+	/**
 	 * 获取请求参数
 	 * 
 	 * @param request
 	 *            请求对象
 	 * @return 请求参数
 	 * @throws BusinessException
-	 *//*
+	 */
 	private CardHeadAfterEditEvent getReqParam(IRequest request) throws BusinessException {
 		String read = request.read();
 		if (StringUtils.isEmpty(read)) {
@@ -94,14 +96,14 @@ public class RedeemCardAfterEditAction extends CommonAfterEditAction {
 		return reqParam;
 	}
 	
-	*//**
+	/**
 	 * 处理编辑后事件
 	 * 
 	 * @param reqParam
 	 *            前端请求数据
 	 * @return 处理结果
 	 * @throws BusinessException
-	 *//*
+	 */
 	private Object handleAfterEditEvent(CardHeadAfterEditEvent reqParam) throws BusinessException {
 		UIProp uiProp = new UIProp();
 		Logger.debug("编辑后事件[" + reqParam + "]");
@@ -111,4 +113,3 @@ public class RedeemCardAfterEditAction extends CommonAfterEditAction {
 	}
 
 }
-*/

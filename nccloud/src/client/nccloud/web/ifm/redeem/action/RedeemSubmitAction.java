@@ -4,18 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import nccloud.base.exception.ExceptionUtils;
-import nccloud.ifm.vo.OperatorParam;
 import nc.bs.logging.Logger;
 import nc.vo.ifm.RedeemStatusEnum;
 import nc.vo.ifm.constants.TMIFMConst;
-import nc.vo.ifm.income.AggInvestIncomeVO;
 import nc.vo.ifm.redeem.AggInvestRedeemVO;
 import nc.vo.ifm.redeem.InvestRedeemVO;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.lang.UFDateTime;
 import nc.vo.pub.lang.UFDouble;
-import nc.vo.pub.pf.BillStatusEnum;
+import nccloud.base.exception.ExceptionUtils;
+import nccloud.ifm.vo.OperatorParam;
 import nccloud.web.ifm.common.action.CommonCommitAction;
 import nccloud.web.ifm.util.RedeemUtil;
 
@@ -102,11 +100,20 @@ public class RedeemSubmitAction extends CommonCommitAction<AggInvestRedeemVO> {
 			// head.setAttributeValue("vbillstatus", vbillstatus);
 			// head.setAttributeValue("billstatus", billstatus);
 			// head.setAttributeValue("vbillno", getActionCode());
-			if (head.getHoldmoeny().sub(head.getRedeemmoney()).compareTo(UFDouble.ZERO_DBL) <0
-					|| head.getHoldmoeny().compareTo(UFDouble.ZERO_DBL) <= 0) {
+			if(head.getHoldmoeny()!=null){
+				if (head.getHoldmoeny().sub(head.getRedeemmoney()).compareTo(UFDouble.ZERO_DBL) <0
+						|| head.getHoldmoeny().compareTo(UFDouble.ZERO_DBL) <= 0) {
 
-				throw new BusinessException("持有金额小于赎回金额，您当前的持有金额为："
-						+ head.getHoldmoeny() + "");
+					throw new BusinessException("持有金额小于赎回金额，您当前的持有金额为："
+							+ head.getHoldmoeny() + "");
+				}
+			}else if(head.getRedeemnumber()!=null){
+				Integer lastNum =head.getApplynumber()-head.getRedeemnumber();
+				if(lastNum<0){
+					throw new BusinessException("赎回份数大于您的申购份数，您当前的持有份数为为："+head.getApplynumber()+"");
+				}
+				UFDouble UFlastNum = new UFDouble(head.getRedeemmoney());
+				head.setRedeemmoney(UFlastNum.multiply(head.getUnitnetvalue()).toString());
 			}
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
