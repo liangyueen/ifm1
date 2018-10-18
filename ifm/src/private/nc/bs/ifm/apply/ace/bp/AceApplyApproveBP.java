@@ -54,6 +54,7 @@ public class AceApplyApproveBP {
 	}
 
 	private void addAfterRule(AggInvestApplyVO[] vos) {
+
 		IRule<AggInvestApplyVO> rule = null;
 		rule = new TallySendApplyProcessVoucherRule();
 		rule.process(vos);
