@@ -78,6 +78,40 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 	  public static final String UNITNETVALUE = "unitnetvalue";
 	  public static final String REALREANING = "realreaning";
 	  public static final String PK_OLCCURR = " pk_olccurr";
+	//来源单据四个字段
+	  public static final String PK_SRCBILL = "pk_srcbill";
+	  public static final String PK_SRCBILLTYPE = "pk_srcbilltype";
+	  public static final String SRCBILLTYPECODE = "srcbilltypecode";
+	  public static final String SRCBILLNO = "srcbillno";
+	  
+	  public String getPk_srcbill() {
+			return (String) this.getAttributeValue( InvestRedeemVO.PK_SRCBILL);
+		} 
+
+		public void setPk_srcbill ( String pk_srcbill) {
+			this.setAttributeValue( InvestRedeemVO.PK_SRCBILL,pk_srcbill);
+		} 
+		public String getPk_srcbilltype() {
+			return (String) this.getAttributeValue( InvestRedeemVO.PK_SRCBILLTYPE);
+		} 
+
+		public void setPk_srcbilltype ( String pk_srcbilltype) {
+			this.setAttributeValue( InvestRedeemVO.PK_SRCBILLTYPE,pk_srcbilltype);
+		} 
+		public String getSrcbilltypecode() {
+			return (String) this.getAttributeValue( InvestRedeemVO.SRCBILLTYPECODE);
+		} 
+
+		public void setSrcbilltypecode ( String srcbilltypecode) {
+			this.setAttributeValue( InvestRedeemVO.SRCBILLTYPECODE,srcbilltypecode);
+		} 
+		public String getSrcbillno() {
+			return (String) this.getAttributeValue( InvestRedeemVO.SRCBILLNO);
+		} 
+
+		public void setSrcbillno ( String srcbillno) {
+			this.setAttributeValue( InvestRedeemVO.SRCBILLNO,srcbillno);
+		} 
 	  
 	  public java.lang.String getPk_olccurr() {
 			return (java.lang.String) getAttributeValue(PK_OLCCURR);
