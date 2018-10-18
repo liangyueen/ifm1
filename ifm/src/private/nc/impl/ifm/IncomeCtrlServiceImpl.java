@@ -48,7 +48,7 @@ public class IncomeCtrlServiceImpl implements IIncomeCtrlService {
 	public boolean isSaved(String apply_vbillno) {
 		//根据传入的pk_apply查询所有符合条件的incomeVOs
 		DataAccessUtils dao = new DataAccessUtils();
-		IRowSet rowset = dao.query("select pk_income from ifm_income where srcbilltypecode='3641' and srcbillno ='"+apply_vbillno+"'");
+		IRowSet rowset = dao.query("select pk_income from ifm_income where dr = 0 and srcbilltypecode='3641' and srcbillno ='"+apply_vbillno+"'");
 		//不存在记录，返回true
 		if(null == rowset || rowset.size() == 0){
 			return true;

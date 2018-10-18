@@ -12,6 +12,7 @@ import nccloud.framework.web.ui.pattern.billcard.BillCard;
 import nccloud.framework.web.ui.pattern.billcard.CardHeadAfterEditEvent;
 import nccloud.web.ifm.income.handler.IncomeCurrtypeEditAfterHandler;
 import nccloud.web.ifm.income.handler.IncomeOrgChangeEditAfterHandler;
+import nccloud.web.ifm.income.handler.IncomeProChangeEditAfterHandler;
 import nccloud.web.tmpub.action.CommonAfterEditAction;
 import nccloud.web.tmpub.afteredit.bean.UIProp;
 import nccloud.web.tmpub.handler.AbstractCommonAfterEditHandler;
@@ -29,6 +30,18 @@ public class IncomeCardAfterEditAction extends CommonAfterEditAction {
 		// 币种
 		case InvestIncomeVO.PK_CURRTYPE:
 			handler = new IncomeCurrtypeEditAfterHandler();
+			break;
+		// 组织本币汇率
+		case InvestIncomeVO.OLCRATE:
+			handler = new IncomeCurrtypeEditAfterHandler();
+			break;
+		// 金额（实际收益）
+		case InvestIncomeVO.ACTUALMOENY:
+			handler = new IncomeCurrtypeEditAfterHandler();
+			break;
+		//产品代码	
+		case InvestIncomeVO.PRODUCTCODE:
+			handler = new IncomeProChangeEditAfterHandler();
 			break;
 		default:
 			break;

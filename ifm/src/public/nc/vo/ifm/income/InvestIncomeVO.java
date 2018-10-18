@@ -340,7 +340,6 @@ public static final String SOURCE = "source";
 public static final String INCOMEFUNDPLANPRO = "incomefundplanpro";
 public static final String TAXFUNDPLANPRO = "taxfundplanpro";
 public static final String INVESTVARIETY = "Investvariety";
-public static final String PK_REDEEM = "pk_redeem";//赎回主键，接口用
 
 /**
 *时间戳
@@ -984,8 +983,8 @@ this.setAttributeValue( InvestIncomeVO.VDEF20,vdef20);
 *  创建日期:2018-9-6
 * @return nc.vo.pub.lang.UFDouble
 */
-public String getOlcrate() {
-return (String) this.getAttributeValue( InvestIncomeVO.OLCRATE);
+public UFDouble getOlcrate() {
+return (UFDouble) this.getAttributeValue( InvestIncomeVO.OLCRATE);
 } 
 
 /**
@@ -993,7 +992,7 @@ return (String) this.getAttributeValue( InvestIncomeVO.OLCRATE);
 * 创建日期:2018-9-6
 * @param newOlcrate nc.vo.pub.lang.UFDouble
 */
-public void setOlcrate ( String olcrate) {
+public void setOlcrate ( UFDouble olcrate) {
 this.setAttributeValue( InvestIncomeVO.OLCRATE,olcrate);
 } 
  
@@ -1011,7 +1010,7 @@ public UFDouble getOlcmoeny() {
 * 创建日期:2018-9-6
 * @param newOlcmoeny nc.vo.pub.lang.UFDouble
 */
-public void setOlcmoeny ( String olcmoeny) {
+public void setOlcmoeny ( UFDouble olcmoeny) {
 this.setAttributeValue( InvestIncomeVO.OLCMOENY,olcmoeny);
 } 
  
@@ -1020,8 +1019,8 @@ this.setAttributeValue( InvestIncomeVO.OLCMOENY,olcmoeny);
 *  创建日期:2018-9-6
 * @return nc.vo.pub.lang.UFDouble
 */
-public String getGlcrate() {
-return (String) this.getAttributeValue( InvestIncomeVO.GLCRATE);
+public UFDouble getGlcrate() {
+return (UFDouble) this.getAttributeValue( InvestIncomeVO.GLCRATE);
 } 
 
 /**
@@ -1029,7 +1028,7 @@ return (String) this.getAttributeValue( InvestIncomeVO.GLCRATE);
 * 创建日期:2018-9-6
 * @param newGlcrate nc.vo.pub.lang.UFDouble
 */
-public void setGlcrate ( String glcrate) {
+public void setGlcrate ( UFDouble glcrate) {
 this.setAttributeValue( InvestIncomeVO.GLCRATE,glcrate);
 } 
  
@@ -1047,7 +1046,7 @@ public UFDouble getGlcmoeny() {
 * 创建日期:2018-9-6
 * @param newGlcmoeny nc.vo.pub.lang.UFDouble
 */
-public void setGlcmoeny ( String glcmoeny) {
+public void setGlcmoeny ( UFDouble glcmoeny) {
 this.setAttributeValue( InvestIncomeVO.GLCMOENY,glcmoeny);
 } 
  
@@ -1056,8 +1055,8 @@ this.setAttributeValue( InvestIncomeVO.GLCMOENY,glcmoeny);
 *  创建日期:2018-9-6
 * @return nc.vo.pub.lang.UFDouble
 */
-public String getGllcrate() {
-return (String) this.getAttributeValue( InvestIncomeVO.GLLCRATE);
+public UFDouble getGllcrate() {
+return (UFDouble) this.getAttributeValue( InvestIncomeVO.GLLCRATE);
 } 
 
 /**
@@ -1065,7 +1064,7 @@ return (String) this.getAttributeValue( InvestIncomeVO.GLLCRATE);
 * 创建日期:2018-9-6
 * @param newGllcrate nc.vo.pub.lang.UFDouble
 */
-public void setGllcrate ( String gllcrate) {
+public void setGllcrate ( UFDouble gllcrate) {
 this.setAttributeValue( InvestIncomeVO.GLLCRATE,gllcrate);
 } 
  
@@ -1083,7 +1082,7 @@ return (UFDouble) this.getAttributeValue( InvestIncomeVO.GLLMOENY);
 * 创建日期:2018-9-6
 * @param newGllmoeny nc.vo.pub.lang.UFDouble
 */
-public void setGllmoeny ( String gllmoeny) {
+public void setGllmoeny ( UFDouble gllmoeny) {
 this.setAttributeValue( InvestIncomeVO.GLLMOENY,gllmoeny);
 } 
  
@@ -1459,8 +1458,8 @@ this.setAttributeValue( InvestIncomeVO.INTERESTDAY,interestday);
 *  创建日期:2018-9-6
 * @return nc.vo.pub.lang.UFDouble
 */
-public String getExpectedrate() {
-return (String) this.getAttributeValue( InvestIncomeVO.EXPECTEDRATE);
+public UFDouble getExpectedrate() {
+return (UFDouble) this.getAttributeValue( InvestIncomeVO.EXPECTEDRATE);
 } 
 
 /**
@@ -1468,7 +1467,7 @@ return (String) this.getAttributeValue( InvestIncomeVO.EXPECTEDRATE);
 * 创建日期:2018-9-6
 * @param newExpectedrate nc.vo.pub.lang.UFDouble
 */
-public void setExpectedrate ( String expectedrate) {
+public void setExpectedrate ( UFDouble expectedrate) {
 this.setAttributeValue( InvestIncomeVO.EXPECTEDRATE,expectedrate);
 } 
  
@@ -1477,8 +1476,8 @@ this.setAttributeValue( InvestIncomeVO.EXPECTEDRATE,expectedrate);
 *  创建日期:2018-9-6
 * @return nc.vo.pub.lang.UFDouble
 */
-public String getExpectedmoney() {
-return (String) this.getAttributeValue( InvestIncomeVO.EXPECTEDMONEY);
+public UFDouble getExpectedmoney() {
+return (UFDouble) this.getAttributeValue( InvestIncomeVO.EXPECTEDMONEY);
 } 
 
 /**
@@ -1486,7 +1485,7 @@ return (String) this.getAttributeValue( InvestIncomeVO.EXPECTEDMONEY);
 * 创建日期:2018-9-6
 * @param newExpectedmoney nc.vo.pub.lang.UFDouble
 */
-public void setExpectedmoney ( String expectedmoney) {
+public void setExpectedmoney ( UFDouble expectedmoney) {
 this.setAttributeValue( InvestIncomeVO.EXPECTEDMONEY,expectedmoney);
 } 
  
@@ -1522,7 +1521,7 @@ return (nc.vo.pub.lang.UFDouble) this.getAttributeValue( InvestIncomeVO.ACTUALMO
 * 创建日期:2018-9-6
 * @param newActualmoeny nc.vo.pub.lang.UFDouble
 */
-public void setActualmoeny ( String actualmoeny) {
+public void setActualmoeny ( UFDouble actualmoeny) {
 this.setAttributeValue( InvestIncomeVO.ACTUALMOENY,actualmoeny);
 } 
  
@@ -1531,8 +1530,8 @@ this.setAttributeValue( InvestIncomeVO.ACTUALMOENY,actualmoeny);
 *  创建日期:2018-9-6
 * @return nc.vo.pub.lang.UFDouble
 */
-public String getIncomerate() {
-return (String) this.getAttributeValue( InvestIncomeVO.INCOMERATE);
+public UFDouble getIncomerate() {
+return (UFDouble) this.getAttributeValue( InvestIncomeVO.INCOMERATE);
 } 
 
 /**
@@ -1540,7 +1539,7 @@ return (String) this.getAttributeValue( InvestIncomeVO.INCOMERATE);
 * 创建日期:2018-9-6
 * @param newIncomerate nc.vo.pub.lang.UFDouble
 */
-public void setIncomerate ( String incomerate) {
+public void setIncomerate ( UFDouble incomerate) {
 this.setAttributeValue( InvestIncomeVO.INCOMERATE,incomerate);
 } 
  
@@ -1549,8 +1548,8 @@ this.setAttributeValue( InvestIncomeVO.INCOMERATE,incomerate);
 *  创建日期:2018-9-6
 * @return nc.vo.pub.lang.UFDouble
 */
-public String getIncomemoney() {
-return (String) this.getAttributeValue( InvestIncomeVO.INCOMEMONEY);
+public UFDouble getIncomemoney() {
+return (UFDouble) this.getAttributeValue( InvestIncomeVO.INCOMEMONEY);
 } 
 
 /**
@@ -1558,7 +1557,7 @@ return (String) this.getAttributeValue( InvestIncomeVO.INCOMEMONEY);
 * 创建日期:2018-9-6
 * @param newIncomemoney nc.vo.pub.lang.UFDouble
 */
-public void setIncomemoney ( String incomemoney) {
+public void setIncomemoney ( UFDouble incomemoney) {
 this.setAttributeValue( InvestIncomeVO.INCOMEMONEY,incomemoney);
 } 
 /**
@@ -1588,16 +1587,6 @@ public String getInvestvariety() {
 public void setInvestvariety ( String investvariety) {
 	this.setAttributeValue( InvestIncomeVO.INVESTVARIETY,investvariety);
 } 
-/**
- * 赎回主键
- */
-public String getk_redeem() {
-	return (java.lang.String) this.getAttributeValue( InvestIncomeVO.PK_REDEEM);
-} 
-public void setk_redeem ( String pk_redeem) {
-	this.setAttributeValue( InvestIncomeVO.PK_REDEEM,pk_redeem);
-} 
-
 
 public static final String TBBMESSAGE = "tbbmessage";
 /**

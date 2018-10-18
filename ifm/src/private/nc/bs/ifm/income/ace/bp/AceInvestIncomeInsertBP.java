@@ -64,12 +64,12 @@ public class AceInvestIncomeInsertBP {
 
 		// 单据字段长度检查规则
 		@SuppressWarnings("unchecked")
-		IRule<AggInvestIncomeVO> lengthCheckRule = new FieldLengthCheckRule();
-		processer.addBeforeRule(lengthCheckRule);
+//		IRule<AggInvestIncomeVO> lengthCheckRule = new FieldLengthCheckRule();
+//		processer.addBeforeRule(lengthCheckRule);
 
 		// 新增业务启用规则
-		IRule<AggInvestIncomeVO> orgInitRule = new IncomeCheckOrgInitDateRule();
-		processer.addBeforeRule(orgInitRule);
+//		IRule<AggInvestIncomeVO> orgInitRule = new IncomeCheckOrgInitDateRule();
+//		processer.addBeforeRule(orgInitRule);
 
 		// 保存业务校验
 		IRule<AggInvestIncomeVO> checkRule = new IncomeCheckRule();
