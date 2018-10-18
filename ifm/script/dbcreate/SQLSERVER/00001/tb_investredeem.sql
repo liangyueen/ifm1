@@ -132,13 +132,15 @@ productname nvarchar(50) null
 /*产品名称*/,
 redeemnumber int null 
 /*赎回份数*/,
+applynumber int null 
+/*申购份数*/,
 redeemid nvarchar(50) null 
 /*赎回编码*/,
 vbilldate nchar(19) null 
 /*申购日期*/,
 unitnetvalue decimal(28,8) null 
 /*单位净值*/,
-capitalproject nvarchar(50) null 
+capitalproject nvarchar(20) null default '~' 
 /*资金计划项目*/,
 realreaning decimal(28,8) null 
 /*实际收益*/,
@@ -148,6 +150,16 @@ enddate nchar(19) null
 /*到期日期*/,
 holdmoney decimal(28,8) null 
 /*持有金额*/,
+investvariety nvarchar(20) null default '~' 
+/*投资品种*/,
+pk_srcbill nvarchar(50) null 
+/*来源单据ID*/,
+pk_srcbilltype nvarchar(20) null default '~' 
+/*来源单据类型*/,
+srcbilltypecode nvarchar(50) null default '~' 
+/*来源单据类型编码*/,
+srcbillno nvarchar(50) null 
+/*来源单据号*/,
  constraint pk_ifm_redeem primary key (pk_redeem),
  ts char(19) null default convert(char(19),getdate(),20),
 dr smallint null default 0
