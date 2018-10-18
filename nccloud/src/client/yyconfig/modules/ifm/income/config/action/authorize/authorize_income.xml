@@ -12,10 +12,8 @@
 		    <action>ifm.income.submit</action>
 		    <action>ifm.income.unsubmit</action>
 		    <action>ifm.income.delete</action>
-		    <action>ifm.refer.IFMRedeemGridRef</action>
 		    <action>ifm.income.print</action>
 			<action>ifm.income.linkntb</action>
-			<action>ifm.income.voucherbill</action>
 			<action>ifm.income.afteredit</action>
 		</actions>
 	</authorize>

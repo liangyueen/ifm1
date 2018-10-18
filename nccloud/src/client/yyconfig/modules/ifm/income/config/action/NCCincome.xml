@@ -42,11 +42,6 @@
 	  <clazz>nccloud.web.ifm.income.action.IncomeDeleteAction</clazz>
 	</action>
 	<action>
-	  <name>ifm.refer.IFMRedeemGridRef</name>
-	  <label>投资收益参照赎回</label>
-	  <clazz>nccloud.web.ifm.ref.action.IFMRedeemGridRefAction</clazz>
-	</action>
-	<action>
 	  <name>ifm.income.print</name>
 	  <label>投资收益打印</label>
 	  <clazz>nccloud.web.ifm.income.action.IncomePrintAction</clazz>
