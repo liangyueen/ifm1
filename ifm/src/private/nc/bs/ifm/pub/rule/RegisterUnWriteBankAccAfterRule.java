@@ -1,7 +1,6 @@
 package nc.bs.ifm.pub.rule;
 
 import java.util.ArrayList;
-
 import nc.impl.pubapp.pattern.rule.IRule;
 import nc.itf.cm.prv.CmpConst;
 import nc.vo.ifm.apply.AggInvestApplyVO;
@@ -20,6 +19,13 @@ IRule<AggInvestApplyVO> {
 	
 		for (AggInvestApplyVO vo : vos) {
 			InvestApplyVO parentVO = (InvestApplyVO) vo.getParent();
+			if(parentVO.getHoldmoney().equals(parentVO.getMoney()) ){
+				try {
+					throw new BusinessException("单据"+ parentVO.getVbillno() +"正在被使用，不能取消审批！");
+				} catch (BusinessException e) {
+					e.printStackTrace();
+				}
+			}
 			if (parentVO.getBillstatus() == 3) {
 				try {
 					super.delBankAcc(vo, new UFDate(parentVO.getPurchasedate().toLocalString()));

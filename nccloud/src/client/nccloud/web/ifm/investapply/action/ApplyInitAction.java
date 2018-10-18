@@ -62,7 +62,6 @@ public class ApplyInitAction implements ICommonAction{
 				.getPk_group();
 		// 设置单据状态、日期默认值、制单人
 		Integer vbillstatus = (Integer) BillStatusEnum.FREE.value();
-		//String protocolstatus =  (String) ProtocolStatusEnum.NOCOMMIT.value();
 		UFDate billmakedate = new UFDate(SessionContext.getInstance()
 				.getClientInfo().getBizDateTime());
 		String billmaker = SessionContext.getInstance().getClientInfo()
@@ -71,25 +70,11 @@ public class ApplyInitAction implements ICommonAction{
 		parentVO.setBillstatus(0);
 		parentVO.setPaytype(1);
 		parentVO.setAttributeValue("pk_group", pk_group);
+		parentVO.setPk_olccurr(ApplyQueryUtil.getOrgStandardCurrtype(pk_group));
 		parentVO.setAttributeValue("protocoltype", 1);
-		parentVO.setAttributeValue("pk_group", pk_group);
 		parentVO.setAttributeValue("vbillstatus", vbillstatus);
 		parentVO.setAttributeValue("billmakedate", billmakedate);
 		parentVO.setAttributeValue("billmaker", billmaker);
-//		//期间单位，授信期间
-//		parentVO.setAttributeValue("periodcount", 1);
-//		parentVO.setAttributeValue("periodunit", "YEAR");
-//		
-//		//控制方式，协议类型
-//		parentVO.setAttributeValue("controlmethod", "CONTROL");
-//		parentVO.setAttributeValue("protocoltype", 1);
-//		parentVO.setAttributeValue("creditunitcontral", true);
-//		
-//		//版本
-//		parentVO.setAttributeValue("versionno", 0);
-//		
-//		//协议占用方式
-//		parentVO.setAttributeValue("usetype", 0);
 		aggVO.setParentVO(parentVO);
 		return aggVO;
 	}

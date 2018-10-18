@@ -106,10 +106,6 @@ public class TMIFMConst {
 	public static Integer BS_INCOME_WAITAPPROVE = 2; // 待审批
 	public static Integer BS_INCOME_FINSHED = 3; // 全部赎回
 	
-	/**
-	 * 出盘报错补全字段
-	 */
-	public static String FIELD_REDEEMMONEY="";
 	
 	
 	

@@ -6,6 +6,7 @@ import nc.lightapp.pubapp.web.template.ref.util.StringUtils;
 import nccloud.web.ifm.apply.handler.ApplyAmountAfterEditHandler;
 import nccloud.web.ifm.apply.handler.ApplyCurrtypeEditAfterHandler;
 import nccloud.web.ifm.apply.handler.ApplyOrgChangeEditAfterHandler;
+import nccloud.web.ifm.apply.handler.ApplyUnitnetvalueAfterEditHandler;
 import nccloud.web.tmpub.action.CommonAfterEditAction;
 import nccloud.web.tmpub.afteredit.bean.UIProp;
 import nccloud.web.tmpub.handler.AbstractCommonAfterEditHandler;
@@ -37,6 +38,14 @@ public class ApplyCardAfterAction extends CommonAfterEditAction{
 			break;
 		// 金额
 		case InvestApplyVO.MONEY:
+			handler = new ApplyAmountAfterEditHandler();
+			break;
+		// 单位净值
+		case InvestApplyVO.UNITNETVALUE:
+			handler = new ApplyUnitnetvalueAfterEditHandler();
+			break;
+		//组织本币汇率
+		case InvestApplyVO.OLCRATE:
 			handler = new ApplyAmountAfterEditHandler();
 			break;
 		//保存新增

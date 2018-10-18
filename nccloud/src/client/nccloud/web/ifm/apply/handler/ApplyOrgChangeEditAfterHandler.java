@@ -12,7 +12,6 @@ import nc.vo.ifm.apply.InvestApplyVO;
 import nc.vo.imf.constants.TMIMFConst;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.lang.UFDate;
-
 import org.apache.commons.lang.StringUtils;
 import nccloud.framework.web.convert.translate.Translator;
 import nccloud.framework.web.container.SessionContext;
@@ -69,6 +68,7 @@ public class ApplyOrgChangeEditAfterHandler extends AbstractCommonAfterEditHandl
 		newvo.setBillstatus(0);
 		newvo.setPaytype(1);
 		newvo.setPk_group(ApplyQueryUtil.getGroupByOrg(pvo.getPk_org()));//pk_currtype
+		newvo.setPk_olccurr(ApplyQueryUtil.getOrgStandardCurrtype(pvo.getPk_org()));
 		newvo.setPk_currtype(ApplyQueryUtil.getOrgStandardCurrtype(pvo.getPk_org()));
 		newvo = (InvestApplyVO) ApplyQueryUtil.processPrecision(newvo, true, getBusiDate());
 		vo.setParentVO(newvo);

@@ -13,21 +13,15 @@ import nccloud.framework.web.ui.pattern.billcard.CardHeadAfterEditEvent;
 import nccloud.web.tmpub.afteredit.bean.UIProp;
 import nccloud.web.tmpub.handler.AbstractCommonAfterEditHandler;
 
-public class ApplyAmountAfterEditHandler extends AbstractCommonAfterEditHandler<CardHeadAfterEditEvent, BillCard>{
-
+public class ApplyUnitnetvalueAfterEditHandler extends AbstractCommonAfterEditHandler<CardHeadAfterEditEvent, BillCard>{
 	@Override
 	protected BillCard processAfterEdit(CardHeadAfterEditEvent event,
 			UIProp uiProp) throws BusinessException {
 		BillCard card = event.getCard();
 		BillCardConvertProcessor processor = new BillCardConvertProcessor();
 		AggInvestApplyVO vo = processor.fromBillCard(card);
-		if(vo.getParentVO().getMoney() != null && vo.getParentVO().getOlcrate() != null){
-			vo.getParentVO().setOlcmoney(vo.getParentVO().getMoney().multiply(vo.getParentVO().getOlcrate()));
-		}
-		if(vo.getParentVO().getApplynumber() != null && vo.getParentVO().getApplynumber() != null){
-			vo.getParentVO().setUnitnetvalue(vo.getParentVO().getMoney().div(vo.getParentVO().getApplynumber()));
-		}
-		if(vo.getParentVO().getMoney() != null && vo.getParentVO().getOlcrate() != null){
+		if(vo.getParentVO().getUnitnetvalue() != null && vo.getParentVO().getOlcrate() != null && vo.getParentVO().getApplynumber() != null){
+			vo.getParentVO().setMoney(vo.getParentVO().getUnitnetvalue().multiply(vo.getParentVO().getApplynumber()));
 			vo.getParentVO().setOlcmoney(vo.getParentVO().getMoney().multiply(vo.getParentVO().getOlcrate()));
 		}
 		card = doReturn(vo);
@@ -68,5 +62,4 @@ public class ApplyAmountAfterEditHandler extends AbstractCommonAfterEditHandler<
 	private UFDate getBusiDate() {
 		return new UFDate(SessionContext.getInstance().getClientInfo().getBizDateTime());
 	}
-	
 }
