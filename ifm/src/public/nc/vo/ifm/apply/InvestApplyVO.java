@@ -84,30 +84,22 @@ public class InvestApplyVO extends nc.vo.pub.SuperVO{
     public static final String PAYTYPE = "paytype";
     public static final String PAYPERIOD = "payperiod";
     public static final String SETTLEDATE = "settledate";
-    
     public static final String APPLYNUMBER = "applynumber";
 	public static final String UNITNETVALUE = "unitnetvalue";
     public static final String CAPITALPROJECT = "capitalproject";
     public static final String INVESTVARIETY = "investvariety";
     public static final String LIMITDAY = "limitday";
-	
+    public static final String HOLDNUMBER = "holdnumber";
+    public static final String HOLDMONEY = "holdmoney";
     
-    public static String getApplynumber() {
-		return APPLYNUMBER;
-	}
-	public static String getUnitnetvalue() {
-		return UNITNETVALUE;
-	}
+    
 	public static String getCapitalproject() {
 		return CAPITALPROJECT;
 	}
 	public static String getInvestvariety() {
 		return INVESTVARIETY;
 	}
-	public static String getLimitday() {
-		return LIMITDAY;
-	}
-  
+	
 	public static String getPkApply() {
 		return PK_APPLY;
 	}
@@ -135,6 +127,72 @@ public class InvestApplyVO extends nc.vo.pub.SuperVO{
 	public static String getPkBilltypecode() {
 		return PK_BILLTYPECODE;
 	}
+	
+	
+	/**
+	 * 属性applynumber的Getter方法.属性名：期间
+	 *  创建日期:2018-9-2
+	 * @return java.lang.String
+	 */
+	public java.lang.Integer getLimitday () {
+		return (java.lang.Integer) getAttributeValue(LIMITDAY);
+	}   
+	public void setLimitday (java.lang.Integer newLimitday ) {
+		setAttributeValue(LIMITDAY, newLimitday);
+	}
+	
+
+	/**
+	 * 属性applynumber的Getter方法.属性名：持有金额
+	 *  创建日期:2018-9-2
+	 * @return java.lang.String
+	 */
+	public nc.vo.pub.lang.UFDouble getHoldmoney () {
+		return (nc.vo.pub.lang.UFDouble) getAttributeValue(HOLDMONEY);
+	}   
+	public void setHoldmoney (nc.vo.pub.lang.UFDouble newHoldmoney ) {
+		setAttributeValue(HOLDMONEY, newHoldmoney);
+	}
+
+	/**
+	 * 属性applynumber的Getter方法.属性名：持有份数
+	 *  创建日期:2018-9-2
+	 * @return java.lang.String
+	 */
+	public java.lang.Integer getHoldnumber () {
+		return (java.lang.Integer) getAttributeValue(HOLDNUMBER);
+	}   
+	public void setHoldnumber (java.lang.Integer newHoldnumber ) {
+		setAttributeValue(HOLDNUMBER, newHoldnumber);
+	}
+	
+	
+	/**
+	 * 属性applynumber的Getter方法.属性名：申购份数
+	 *  创建日期:2018-9-2
+	 * @return java.lang.String
+	 */
+	public java.lang.Integer getApplynumber () {
+		return (java.lang.Integer) getAttributeValue(APPLYNUMBER);
+	}   
+	public void setApplynumber (java.lang.Integer newApplynumber ) {
+		setAttributeValue(APPLYNUMBER, newApplynumber);
+	}
+	
+	
+	
+	/**
+	 * 属性 unitnetvalue的Getter方法.属性名：单位净值
+	 *  创建日期:2018-9-2
+	 * @return nc.vo.pub.lang.UFDouble
+	 */
+	public nc.vo.pub.lang.UFDouble getUnitnetvalue () {
+		return (nc.vo.pub.lang.UFDouble) getAttributeValue(UNITNETVALUE);
+	}   
+	public void setUnitnetvalue (nc.vo.pub.lang.UFDouble newUnitnetvalue ) {
+		setAttributeValue(UNITNETVALUE, newUnitnetvalue);
+	}
+	
 
 	/**
 	 * 属性 pk_apply的Getter方法.属性名：主键
@@ -965,23 +1023,5 @@ public class InvestApplyVO extends nc.vo.pub.SuperVO{
 		return VOMetaFactory.getInstance().getVOMeta("ifm.InvestApplyVO");
 		
    	}
-	public static final String TBBMESSAGE = "tbbmessage";
-	/**
-	 * 获取预算提示信息
-	 * 
-	 * @return 预算提示信息
-	 */
-	public String getTbbmessage() {
-		return (String) this.getAttributeValue("tbbmessage");
-	}
-
-	/**
-	 * 设置预算提示信息
-	 * 
-	 * @param tbbmessage
-	 *            预算提示信息
-	 */
-	public void setTbbmessage(String tbbmessage) {
-		this.setAttributeValue("tbbmessage", tbbmessage);
-	}
+     
 }
