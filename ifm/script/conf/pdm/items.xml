@@ -101,9 +101,17 @@
 		<sysField></sysField>
 		<corpField></corpField>
 		<grpField></grpField>
-		<fixedWhere>tempcode like '364%' and pk_temptype like '____4%'
+		<fixedWhere>item like '364%' and pk_workitemconfig  like '____Z6%'
 		</fixedWhere>
 	</item>
-
+	<item>
+		<itemKey>pub_ncc_queryscheme</itemKey>
+		<itemName>¿ìËÙ²éÑ¯ </itemName>
+		<itemRule>pub_ncc_queryscheme</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>pk_ncc_queryscheme in('1001Z610000000025VC7','1001Z6100000000268D9','1001Z610000000025IXY')</fixedWhere>
+	</item>
 
 </items>
