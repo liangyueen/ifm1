@@ -48,10 +48,6 @@ public class ApplyCardAfterAction extends CommonAfterEditAction{
 		case InvestApplyVO.OLCRATE:
 			handler = new ApplyAmountAfterEditHandler();
 			break;
-		//±£´æÐÂÔö
-		case EVENT_SAVEADD:
-			handler = new ApplyOrgChangeEditAfterHandler();
-			break;
 		default:
 			break;
 		}

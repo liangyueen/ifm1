@@ -23,7 +23,6 @@ public class AceApplyApproveBP {
 	 */
 	public AggInvestApplyVO[] approve(AggInvestApplyVO[] clientBills,
 			AggInvestApplyVO[] originBills) {
-		
 		UpdateBPTemplate<AggInvestApplyVO> bp = new UpdateBPTemplate<AggInvestApplyVO>(
 				ApplyPluginPoint.APPROVE);
 		for (AggInvestApplyVO clientBill : clientBills) {

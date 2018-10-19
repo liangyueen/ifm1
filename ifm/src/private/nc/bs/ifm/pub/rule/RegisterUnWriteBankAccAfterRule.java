@@ -3,6 +3,8 @@ package nc.bs.ifm.pub.rule;
 import java.util.ArrayList;
 import nc.impl.pubapp.pattern.rule.IRule;
 import nc.itf.cm.prv.CmpConst;
+import nc.itf.ifm.IIncomeCtrlService;
+import nc.itf.ifm.IInvestRedeemQueryService;
 import nc.vo.ifm.apply.AggInvestApplyVO;
 import nc.vo.ifm.apply.IFACIFMAccSuper;
 import nc.vo.ifm.apply.InvestApplyVO;
@@ -10,23 +12,24 @@ import nc.vo.pub.AggregatedValueObject;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.lang.UFDate;
 import nc.vo.pubapp.pattern.exception.ExceptionUtils;
+import nccloud.framework.service.ServiceLocator;
 
 public class RegisterUnWriteBankAccAfterRule extends IFACIFMAccSuper implements
 IRule<AggInvestApplyVO> {
 
 	@Override
-	public void process(AggInvestApplyVO[] vos) {
-	
+	public void process(AggInvestApplyVO[] vos){
+		IIncomeCtrlService ctrlService = ServiceLocator.find(IIncomeCtrlService.class);//IInvestRedeemQueryService
+		IInvestRedeemQueryService queryService = ServiceLocator.find(IInvestRedeemQueryService.class);
 		for (AggInvestApplyVO vo : vos) {
 			InvestApplyVO parentVO = (InvestApplyVO) vo.getParent();
-			if(parentVO.getHoldmoney().equals(parentVO.getMoney()) ){
-				try {
-					throw new BusinessException("单据"+ parentVO.getVbillno() +"正在被使用，不能取消审批！");
-				} catch (BusinessException e) {
-					e.printStackTrace();
-				}
-			}
-			if (parentVO.getBillstatus() == 3) {
+			//判断投资收益是否在使用当前单据()
+			boolean flag = ctrlService.isSaved(parentVO.getVbillno());
+			//判断投资赎回是否在使用当前单据
+			boolean mark = queryService.ifCanDelete(parentVO.getVbillno());
+			if(!flag || !mark){
+				ExceptionUtils.wrappBusinessException("单据"+ parentVO.getVbillno() +"正在被使用，不能取消审批！");		
+			}else if(parentVO.getBillstatus() == 3) {
 				try {
 					super.delBankAcc(vo, new UFDate(parentVO.getPurchasedate().toLocalString()));
 				} catch (BusinessException e) {
