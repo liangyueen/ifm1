@@ -1,5 +1,4 @@
 package nc.bs.ifm.redeem.rule;
-
 import nc.bs.dao.BaseDAO;
 import nc.impl.pubapp.pattern.rule.IRule;
 import nc.itf.ifm.IIFMApplyQueryService;
