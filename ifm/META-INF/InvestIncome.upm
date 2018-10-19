@@ -21,5 +21,9 @@
 	  <interface>nc.itf.ifm.IIFMPrecisionService</interface>
 	  <implementation>nc.impl.ifm.IFMPrecisionServiceImpl</implementation>
 	</component>
+	<component remote="true" singleton="true" supportAlias="false" tx="CMT">
+	  <interface>nc.itf.ifm.IIncomeCtrlService</interface>
+	  <implementation>nc.impl.ifm.IncomeCtrlServiceImpl</implementation>
+	</component>
   </public> 
 </module> 
