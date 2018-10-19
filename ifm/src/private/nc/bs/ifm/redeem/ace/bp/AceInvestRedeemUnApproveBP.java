@@ -41,11 +41,6 @@ public class AceInvestRedeemUnApproveBP {
 		return returnVos;
 	}
 	
-	/**
-	 * 修改后规则
-	 * 
-	 * @param processor
-	 */
 	private void addAfterRule(AggInvestRedeemVO[] vos) {
 		IRule<AggInvestRedeemVO> rule = null;
 		rule = new TallyUnSendRedeemProcessVoucherRule();
@@ -67,8 +62,6 @@ public class AceInvestRedeemUnApproveBP {
 		aroundProcesser.addBeforeRule(deleteRedeemRule);
 		
 	}
-	
-	
 	/**
 	 * 新增后规则
 	 * 
