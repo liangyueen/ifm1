@@ -81,16 +81,5 @@ public class UpdateIFMApplyRule implements IRule<AggInvestRedeemVO> {
 		} catch (BusinessException e) {
 			throw new BusinessRuntimeException(e.getMessage(), e);
 		}
-		
-		
-		
-	}
-	public static void main(String[] args) {
-		Double a =10.00;
-		Double b=2.00;
-		Double c =10.00;
-		a.compareTo(b);//大于返回1 
-		a.compareTo(c);//相等返回0
-		b.compareTo(c);//小于返回-1
 	}
 }
