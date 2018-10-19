@@ -11,6 +11,7 @@ import nc.vo.ifm.IncomeBillStatusEnum;
 import nc.vo.ifm.income.AggInvestIncomeVO;
 import nc.vo.ifm.income.InvestIncomeVO;
 import nc.vo.pub.VOStatus;
+import nc.vo.pub.pf.BillStatusEnum;
 
 /**
  * 标准单据弃审的BP
@@ -25,10 +26,10 @@ public class AceInvestIncomeUnApproveBP {
 		for (AggInvestIncomeVO clientBill : clientBills) {
 			clientBill.getParentVO().setAttributeValue("billstatus",
 					IncomeBillStatusEnum.NOAUDIT.value());//未审批
-//			clientBill.getParentVO().setAttributeValue("vbillstatus",
-//					BillStatusEnum.APPROVING.value());//正在审批
+			clientBill.getParentVO().setAttributeValue("vbillstatus",
+					BillStatusEnum.APPROVING.value());//正在审批
 //			clientBill.getParentVO().setStatus(VOStatus.UPDATED);
-			clientBill.getParentVO().setBillstatus(VOStatus.DELETED);
+//			clientBill.getParentVO().setBillstatus(VOStatus.DELETED);
 		}
 //		BillUpdate<AggInvestIncomeVO> update = new BillUpdate<AggInvestIncomeVO>();
 //		AggInvestIncomeVO[] returnVos = update.update(clientBills, originBills);
