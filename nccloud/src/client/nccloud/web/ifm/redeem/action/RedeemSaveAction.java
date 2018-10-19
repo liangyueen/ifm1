@@ -69,12 +69,12 @@ public class RedeemSaveAction extends CommonSaveAction<AggInvestRedeemVO> {
 		InvestRedeemVO vo=operaVO.getParentVO();
 		// 校验赎回金额是否超过持有金额,若有赎回份数，判断赎回份数是否大于持有份数
 		AggInvestApplyVO[] resultVOs = null;
-		if(vo.getRedeemnumber()!=null){
-			Integer lastNum =vo.getApplynumber()-vo.getRedeemnumber();
+		/*if(vo.getHoldnumber()!=null){
+			Integer lastNum =vo.getHoldnumber()-vo.getRedeemnumber();
 			if(lastNum<0){
-				throw new BusinessException("赎回份数大于您的申购份数，您当前的持有份数为为："+vo.getApplynumber()+"");
+				throw new BusinessException("赎回份数大于您的申购份数，您当前的持有份数为为："+vo.getHoldnumber()+"");
 			}
-			
+			vo.setHoldnumber(lastNum);
 			UFDouble UFlastNum = new UFDouble(vo.getRedeemmoney());
 			if(vo.getRedeemmoney()==null){
 				vo.setRedeemmoney(UFlastNum.multiply(vo.getUnitnetvalue()).toString());
@@ -84,8 +84,9 @@ public class RedeemSaveAction extends CommonSaveAction<AggInvestRedeemVO> {
 			if(vo.getHoldmoeny().sub(vo.getRedeemmoney()).compareTo(UFDouble.ZERO_DBL)<0){
 				throw new BusinessException("持有金额小于赎回金额，您当前的持有金额为："+vo.getHoldmoeny()+"");
 			}
+			vo.setHoldmoeny(vo.getHoldmoeny().sub(vo.getRedeemmoney()).toString());
 			
-		}
+		}*/
 		ClientInfo clientInfo = SessionContext.getInstance().getClientInfo();
 		// 根据是否有主键信息判断是新增保存还是修改保存
 		if (StringUtils.isBlank(vo.getPk_redeem())) {

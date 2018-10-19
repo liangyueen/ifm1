@@ -23,12 +23,7 @@ import nc.vo.pub.lang.UFDouble;
 import nccloud.framework.web.convert.translate.Translator;
 import nccloud.framework.web.container.SessionContext;
 
-/**  
- * @Description: 申购执行调整-币种编辑后事件
- * @author wangjias 
- * @date 2018-09-14
- * @version V1.0  
- */ 
+
 public class RedeemCurrtypeEditAfterHandler extends AbstractCommonAfterEditHandler<CardHeadAfterEditEvent, BillCard>{
 
 	@Override
@@ -44,11 +39,7 @@ public class RedeemCurrtypeEditAfterHandler extends AbstractCommonAfterEditHandl
 		return card;
 	}
 	
-	/**
-	 * 将授信协议上的字段带至调整单上
-	 * @param vo
-	 * @throws BusinessException
-	 */
+	
 	private void setExecAdjForRedeem(AggInvestRedeemVO vo) throws BusinessException {
 		InvestRedeemVO revo = vo.getParentVO();
 		/*if (StringUtils.isBlank(revo.getPk_redeem())) {
