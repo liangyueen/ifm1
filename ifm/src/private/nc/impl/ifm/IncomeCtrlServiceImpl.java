@@ -9,13 +9,14 @@ import nc.vo.ifm.income.InvestIncomeVO;
 import nc.vo.ifm.redeem.InvestRedeemVO;
 import nc.vo.pubapp.pattern.data.IRowSet;
 import nc.vo.uapec.uapecpub.util.BeanUtils;
+import nccloud.web.ifm.util.IncomeUtil;
 
 public class IncomeCtrlServiceImpl implements IIncomeCtrlService {
-
 	@Override
 	public boolean WriteIncomeBill(InvestRedeemVO redeemVO) {
 		InvestIncomeVO incomeVO = new InvestIncomeVO();
-		BeanUtils.copyProperties(redeemVO, incomeVO);
+//		BeanUtils.copyProperties(redeemVO, incomeVO);
+		incomeVO = IncomeUtil.convertRedeemVO2IncomeVO(redeemVO, incomeVO);
 		
 		AggInvestIncomeVO aggIncomeVO = new AggInvestIncomeVO();
 		aggIncomeVO.setParent(incomeVO);
@@ -33,7 +34,8 @@ public class IncomeCtrlServiceImpl implements IIncomeCtrlService {
 	@Override
 	public void RewriteIncomeBill(InvestRedeemVO redeemVO) {
 		InvestIncomeVO incomeVO = new InvestIncomeVO();
-		BeanUtils.copyProperties(redeemVO, incomeVO);
+//		BeanUtils.copyProperties(redeemVO, incomeVO);
+		incomeVO = IncomeUtil.convertRedeemVO2IncomeVO(redeemVO, incomeVO);
 		
 		AggInvestIncomeVO aggIncomeVO = new AggInvestIncomeVO();
 		aggIncomeVO.setParent(incomeVO);
