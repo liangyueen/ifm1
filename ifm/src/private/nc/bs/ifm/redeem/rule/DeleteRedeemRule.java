@@ -27,7 +27,6 @@ public class DeleteRedeemRule implements IRule<AggInvestRedeemVO> {
 			return;
 		}
 		if(checkIncome(vos)){
-			
 				if(checkRedeemLastDate(vos)){
 					
 				}
@@ -89,5 +88,6 @@ public class DeleteRedeemRule implements IRule<AggInvestRedeemVO> {
 		a.compareTo(b);//大于返回1 
 		a.compareTo(c);//相等返回0
 		b.compareTo(c);//小于返回-1
+		
 	}
 }

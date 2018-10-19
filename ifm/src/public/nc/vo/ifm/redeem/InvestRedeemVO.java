@@ -24,7 +24,12 @@ import nc.vo.trade.pub.IExAggVO;
  */
 
 public class InvestRedeemVO extends SuperVO implements IExAggVO {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8598162369826740590L;
 	public static final String PK_ORG = "pk_org";
+	public static final String PK_ORG_V = "pk_org_v";
 	public static final String PK_GROUP = "pk_group";
 	public static final String PK_REDEEM = "pk_redeem";
 	public static final String PK_APPLY = "pk_apply";
@@ -55,9 +60,6 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 	public static final String OLCRATE = "olcrate";
 	public static final String GLCRATE = "glcrate";
 	public static final String GLLCRATE = "gllcrate";
-	public static final String OLCMNY = "olcmny";
-	public static final String GLCMNY = "glcmny";
-	public static final String GLLCMNY = "gllcmny";
 	public static final String BILLMAKER = "billmaker";
 	public static final String BILLMAKEDATE = "billmakedate";
 	public static final String BILLMAKETIME = "billmaketime";
@@ -126,32 +128,52 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 		public void setPk_olccurr(java.lang.String newPk_olccurr) {
 			setAttributeValue(PK_OLCCURR, newPk_olccurr);
 		}
-	  public  String getRealreaning() {
-		return REALREANING;
-	}
 	public UFDouble getUnitnetvalue()
 	   {
 	      return (UFDouble)getAttributeValue("unitnetvalue");
 	    }
+	
+	public void setGlcrate(UFDouble glcrate) {
+		setAttributeValue(GLCRATE, glcrate);
+	}
+	public UFDouble getGlcrate() {
+		return (UFDouble)getAttributeValue("glcrate");
+	}
+	public void setGllcrate(UFDouble gllcrate) {
+		setAttributeValue(GLLCRATE, gllcrate);
+	}
+	public UFDouble getGllcrate() {
+		return (UFDouble)getAttributeValue("gllcrate");
+	}
+	
+	//pk_currtype
+	 public static final String PK_CURRTYPE = "pk_currtype";
+	 public void setPk_currtype(java.lang.String newPk_currtype) {
+			setAttributeValue("pk_currtype", newPk_currtype);
+		}
+	public static final String INVESTVARIETY = "investvariety";
+	 
+	 
 	public UFDouble getOlcrate() {
 		 return (UFDouble)getAttributeValue("olcrate");
+	}
+	public void setOlcrate(UFDouble olcrate) {
+		setAttributeValue(OLCRATE, olcrate);
+	}
+	public void setRealreaning(UFDouble realreaning) {
+		setAttributeValue(REALREANING, realreaning);
+	}
+	public UFDouble getRealreaning() {
+		return (UFDouble)getAttributeValue(REALREANING);
 	}
 	
 	 public java.lang.Integer getRedeemnumber () {
 			return (java.lang.Integer) getAttributeValue(REDEEMNUMBER);
 		}   
 	//pk_currtype
-	 public static final String PK_CURRTYPE = "pk_currtype";
 	 public static String getPkCurrtype() {
 		return PK_CURRTYPE;
 	}
-	 public void setPk_currtype(java.lang.String newPk_currtype) {
-			setAttributeValue("pk_currtype", newPk_currtype);
-		}
-	public static String getInvestvariety() {
-		return INVESTVARIETY;
-	}
-	public static final String INVESTVARIETY = "investvariety";
 	 
 	 
 	 
@@ -166,9 +188,6 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 	}
 	public static String getPkApply() {
 		return PK_APPLY;
-	}
-	public static String getHoldmoney() {
-		return HOLDMONEY;
 	}
 	public static String getVdef1() {
 		return VDEF1;
@@ -224,27 +243,6 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 	public static String getVdef20() {
 		return VDEF20;
 	}
-//	public static String getOlcrate() {
-//		return OLCRATE;
-//	}
-	public static String getGlcrate() {
-		return GLCRATE;
-	}
-	public static String getGllcrate() {
-		return GLLCRATE;
-	}
-	public static String getOlcmny() {
-		return OLCMNY;
-	}
-	public static String getGlcmny() {
-		return GLCMNY;
-	}
-	public static String getGllcmny() {
-		return GLLCMNY;
-	}
-	public static String getBillmaker() {
-		return BILLMAKER;
-	}
 	
 	public static String getPkBusitype() {
 		return PK_BUSITYPE;
@@ -293,6 +291,13 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 	public void setBillmaketime (nc.vo.pub.lang.UFDateTime newBillmaketime ) {
 	 	setAttributeValue("billmaketime", newBillmaketime);
 	} 	  
+	
+	public String getBillmaker () {
+		return (String)getAttributeValue(BILLMAKER);
+	}   
+	public void setBillmaker (String billmaker ) {
+		setAttributeValue(BILLMAKER, billmaker);
+	} 	  
 	/**
 	 * 属性approver的Getter方法.属性名：审批人
 	 * 创建日期:
@@ -308,6 +313,13 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 	 */
 	public void setApprover (java.lang.String newApprover ) {
 		setAttributeValue("approver", newApprover);
+	} 	  
+	
+	public java.lang.String getPk_billtypeid () {
+		return (java.lang.String)getAttributeValue("pk_billtypeid");
+	}   
+	public void setPk_billtypeid (java.lang.String pk_billtypeid ) {
+		setAttributeValue("pk_billtypeid", pk_billtypeid);
 	} 	  
 	/**
 	 * 属性approver的Setter方法.属性名：审批人
@@ -552,13 +564,13 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 	}
 	
 	
-	public java.lang.String getEnddate() {
-		return (java.lang.String) getAttributeValue("enddate");
+	public UFDate getEnddate() {
+		return (UFDate) getAttributeValue(ENDDATE);
 	}
 
 	
-	public void setEnddate(java.lang.String newEnddate) {
-		setAttributeValue("enddate", newEnddate);
+	public void setEnddate(UFDate enddate) {
+		setAttributeValue(ENDDATE, enddate);
 	}
 
 	/**
@@ -578,6 +590,14 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 	 */
 	public void setProductname(java.lang.String newProductname) {
 		setAttributeValue("productname", newProductname);
+	}
+	
+	public java.lang.String getInvestvariety() {
+		return (java.lang.String) getAttributeValue(INVESTVARIETY);
+	}
+	
+	public void setInvestvariety(java.lang.String investvariety) {
+		setAttributeValue(INVESTVARIETY, investvariety);
 	}
 	
 	/**
@@ -665,7 +685,7 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 	 * 
 	 * @return nc.vo.pub.lang.UFDouble
 	 */
-	public UFDouble getHoldmoeny() {
+	public UFDouble getHoldmoney() {
 		return (nc.vo.pub.lang.UFDouble) this
 				.getAttributeValue(InvestRedeemVO.HOLDMONEY);
 	}
@@ -676,7 +696,7 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 	 * @param newGlcmoeny
 	 *            nc.vo.pub.lang.UFDouble
 	 */
-	public void setHoldmoeny(String holdmoney) {
+	public void setHoldmoney(String holdmoney) {
 		this.setAttributeValue(InvestRedeemVO.HOLDMONEY, holdmoney);
 	}
 
@@ -705,8 +725,8 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 	 * 
 	 * @return java.lang.String
 	 */
-	public String getGllmoeny() {
-		return (java.lang.String) this
+	public UFDouble getGllmoeny() {
+		return (UFDouble) this
 				.getAttributeValue(InvestRedeemVO.GLLMOENY);
 	}
 
@@ -716,7 +736,7 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 	 * @param newGllmoeny
 	 *            java.lang.String
 	 */
-	public void setGllmoeny(String gllmoeny) {
+	public void setGllmoeny(UFDouble gllmoeny) {
 		this.setAttributeValue(InvestRedeemVO.GLLMOENY, gllmoeny);
 	}
 
@@ -1033,6 +1053,13 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 
 	public void setPk_org(java.lang.String newPk_org) {
 		setAttributeValue(PK_ORG, newPk_org);
+	}
+	public java.lang.String getPk_org_v() {
+		return (java.lang.String) getAttributeValue(PK_ORG_V);
+	}
+	
+	public void setPk_org_v(java.lang.String newPk_org_v) {
+		setAttributeValue(PK_ORG_V, newPk_org_v);
 	}
 
 	/**
