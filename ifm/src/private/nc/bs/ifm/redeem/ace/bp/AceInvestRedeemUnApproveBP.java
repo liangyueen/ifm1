@@ -37,6 +37,13 @@ public class AceInvestRedeemUnApproveBP {
 		this.addAfterRule(clientBills);
 		return returnVos;
 	}
+	
+	/**
+	 * 新增后规则
+	 * 
+	 * @param processor
+	 */
+
 	private void addBeforeRule(
 			CompareAroundProcesser<AggInvestRedeemVO> aroundProcesser) {
 		IRule<AggInvestRedeemVO> deleteRedeemRule = new DeleteRedeemRule();
@@ -56,7 +63,6 @@ public class AceInvestRedeemUnApproveBP {
 			rule.process(vos);
 		}
 	}
-	
 	/**
 	 * 新增后规则
 	 * 

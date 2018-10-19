@@ -156,7 +156,7 @@ public class RegisterWriteBankAccAfterRule extends IFACIFMAccSuper implements
 		// 单据主键
 		vos.setPk_bill(headvo.getPrimaryKey());
 		// 单据类型ID
-		vos.setBilltypecode((String) headvo.getAttributeValue("pk_billtypeid"));
+		vos.setBilltypecode("3641");
 		// 主组织
 		vos.setPk_org((String) headvo.getAttributeValue("pk_org"));
 		// 主组织版本

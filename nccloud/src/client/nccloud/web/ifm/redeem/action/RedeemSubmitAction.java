@@ -110,8 +110,16 @@ public class RedeemSubmitAction extends CommonCommitAction<AggInvestRedeemVO> {
 			if (head.getHoldmoeny().sub(head.getRedeemmoney()).compareTo(UFDouble.ZERO_DBL) <0
 					|| head.getHoldmoeny().compareTo(UFDouble.ZERO_DBL) <= 0) {
 
-				throw new BusinessException("持有金额小于赎回金额，您当前的持有金额为："
-						+ head.getHoldmoeny() + "");
+					throw new BusinessException("持有金额小于赎回金额，您当前的持有金额为："
+							+ head.getHoldmoeny() + "");
+				}
+			}else if(head.getRedeemnumber()!=null){
+				Integer lastNum =head.getApplynumber()-head.getRedeemnumber();
+				if(lastNum<0){
+					throw new BusinessException("赎回份数大于您的申购份数，您当前的持有份数为为："+head.getApplynumber()+"");
+				}
+				UFDouble UFlastNum = new UFDouble(head.getRedeemmoney());
+				head.setRedeemmoney(UFlastNum.multiply(head.getUnitnetvalue()).toString());
 			}
 		}*/
 		return true;
