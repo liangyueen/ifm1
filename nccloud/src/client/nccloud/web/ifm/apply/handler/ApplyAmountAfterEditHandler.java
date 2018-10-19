@@ -1,9 +1,11 @@
 package nccloud.web.ifm.apply.handler;
 
 import nc.vo.ifm.apply.AggInvestApplyVO;
+import nc.vo.ifm.apply.InvestApplyVO;
 import nc.vo.imf.constants.TMIMFConst;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.lang.UFDate;
+import nc.vo.pub.lang.UFDouble;
 import nccloud.framework.web.container.SessionContext;
 import nccloud.framework.web.convert.translate.Translator;
 import nccloud.framework.web.processor.template.BillCardConvertProcessor;
@@ -21,17 +23,25 @@ public class ApplyAmountAfterEditHandler extends AbstractCommonAfterEditHandler<
 		BillCard card = event.getCard();
 		BillCardConvertProcessor processor = new BillCardConvertProcessor();
 		AggInvestApplyVO vo = processor.fromBillCard(card);
-		if(vo.getParentVO().getMoney() != null && vo.getParentVO().getOlcrate() != null){
-			vo.getParentVO().setOlcmoney(vo.getParentVO().getMoney().multiply(vo.getParentVO().getOlcrate()));
-		}
-		if(vo.getParentVO().getApplynumber() != null && vo.getParentVO().getApplynumber() != null){
-			vo.getParentVO().setUnitnetvalue(vo.getParentVO().getMoney().div(vo.getParentVO().getApplynumber()));
-		}
-		if(vo.getParentVO().getMoney() != null && vo.getParentVO().getOlcrate() != null){
-			vo.getParentVO().setOlcmoney(vo.getParentVO().getMoney().multiply(vo.getParentVO().getOlcrate()));
-		}
+		loadBaseInfor(vo);
 		card = doReturn(vo);
 		return card;
+	}
+	
+	protected void loadBaseInfor(AggInvestApplyVO vo){
+		InvestApplyVO pvo = vo.getParentVO();
+		UFDouble money = pvo.getMoney();
+		UFDouble olcrate = pvo.getOlcrate();
+		Integer applynumber = pvo.getApplynumber();
+		if(money != null && olcrate != null){
+			pvo.setOlcmoney(money.multiply(olcrate));
+		}
+		if(money != null && applynumber != null){
+			pvo.setUnitnetvalue(money.div(applynumber));
+		}
+		if(money != null && olcrate != null){
+			pvo.setOlcmoney(money.multiply(olcrate));
+		}	
 	}
 
 	/**

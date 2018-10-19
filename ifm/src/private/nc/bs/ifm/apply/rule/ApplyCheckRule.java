@@ -1,8 +1,5 @@
 package nc.bs.ifm.apply.rule;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import nc.impl.pubapp.pattern.rule.IRule;
 import nc.vo.ifm.apply.AggInvestApplyVO;
 import nc.vo.ifm.apply.InvestApplyVO;
