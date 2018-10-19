@@ -17,8 +17,13 @@
 	  <clazz>nccloud.web.ifm.income.action.IncomeQueryAction</clazz>
 	</action>
 	<action>
+	  <name>ifm.income.savecommit</name>
+	  <label>投资收益保存提交</label>
+	  <clazz>nccloud.web.ifm.income.action.IncomeSaveSubmitAction</clazz>
+	</action>
+	<action>
 	  <name>ifm.income.cardquery</name>
-	  <label>投资收益查询</label>
+	  <label>投资收益卡片查询</label>
 	  <clazz>nccloud.web.ifm.income.action.IncomeCardQueryAction</clazz>
 	</action>
 	<action>

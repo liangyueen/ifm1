@@ -10,6 +10,7 @@ import nc.pubitf.org.cache.IOrgUnitPubService_C;
 import nc.ui.querytemplate.querytree.IQueryScheme;
 import nc.vo.ifm.income.AggInvestIncomeVO;
 import nc.vo.ifm.income.InvestIncomeVO;
+import nc.vo.ifm.redeem.InvestRedeemVO;
 import nc.vo.imf.constants.IncomeConst;
 import nc.vo.org.OrgVO;
 import nc.vo.pub.BusinessException;
@@ -176,5 +177,46 @@ public class IncomeUtil {
 	public static String getUserDefaultOrgUnit() throws BusinessException {
 		return ServiceLocator.find(IInvestIncomeQueryService.class)
 				.getDefaultOrgUnit();
+	}
+	
+	//复制RedeemVO同名属性值到IncomeVO
+	public static InvestIncomeVO convertRedeemVO2IncomeVO(InvestRedeemVO redeemVO, InvestIncomeVO incomeVO){
+		
+		incomeVO.setPk_srcbill(redeemVO.getPk_redeem());
+		incomeVO.setPk_srcbilltype(redeemVO.getPk_billtypeid());
+		incomeVO.setSrcbillno(redeemVO.getVbillno());
+		incomeVO.setSrcbilltypecode(redeemVO.getPk_billtypecode());
+		incomeVO.setPk_group(redeemVO.getPk_group());
+		incomeVO.setPk_org(redeemVO.getPk_org());
+		incomeVO.setPk_org_v(redeemVO.getPk_org_v());
+		incomeVO.setPk_currtype(redeemVO.getPk_currtype());
+		incomeVO.setPk_olccurr(redeemVO.getPk_olccurr());
+		incomeVO.setRemark(redeemVO.getRemark());
+		incomeVO.setOlcrate(redeemVO.getOlcrate());
+		incomeVO.setOlcmoeny(redeemVO.getOlcmoney());
+		incomeVO.setGlcrate(redeemVO.getGlcrate());
+		incomeVO.setGlcmoeny(redeemVO.getGlcmoeny());
+		incomeVO.setGllcrate(redeemVO.getGllcrate());
+		incomeVO.setGllmoeny(redeemVO.getGllmoeny());
+		incomeVO.setBillmaker(redeemVO.getBillmaker());
+		incomeVO.setBillmakedate(redeemVO.getBillmakedate());
+		incomeVO.setBillmaketime(redeemVO.getBillmaketime());
+		incomeVO.setCreator(redeemVO.getCreator());
+		incomeVO.setCreationtime(redeemVO.getCreationtime());
+		incomeVO.setIssuebank(redeemVO.getIssuebank());
+		incomeVO.setGathering(redeemVO.getGatheringaccount());
+		incomeVO.setInvestaccount(redeemVO.getInvestaccount());
+		incomeVO.setInterestday(redeemVO.getInterestday());
+		incomeVO.setExpectedrate(redeemVO.getExpectedrate());
+		incomeVO.setGatheringdate(redeemVO.getIncomedate());
+		incomeVO.setIncomerate(redeemVO.getIncomerate());
+		incomeVO.setIncomemoney(redeemVO.getIncomemoney());
+		incomeVO.setProductcode(redeemVO.getProductcode());
+		incomeVO.setProductname(redeemVO.getProductname());
+		incomeVO.setActualmoeny(redeemVO.getRealreaning());
+		incomeVO.setEnddate(redeemVO.getEnddate());
+		incomeVO.setInvestvariety(redeemVO.getInvestvariety());
+		
+		return incomeVO;
 	}
 }
