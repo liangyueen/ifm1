@@ -10,9 +10,11 @@ import nccloud.framework.web.processor.template.BillCardConvertProcessor;
 import nccloud.framework.web.ui.pattern.billcard.BillCard;
 import nccloud.framework.web.ui.pattern.billcard.BillCardFormulaHandler;
 import nccloud.framework.web.ui.pattern.billcard.CardHeadAfterEditEvent;
+import nc.impl.pubapp.pattern.database.DataAccessUtils;
 import nc.itf.ifm.IIFMApplyQueryService;
 import nc.itf.ifm.IInvestRedeemQueryService;
 import nc.pubitf.org.cache.IOrgUnitPubService_C;
+import nc.vo.ifac.fixdepositapply.VbillStateEnum;
 import nc.vo.ifm.RedeemStatusEnum;
 import nc.vo.ifm.apply.AggInvestApplyVO;
 import nc.vo.ifm.apply.InvestApplyVO;
@@ -26,6 +28,7 @@ import nc.vo.pub.SuperVO;
 import nc.vo.pub.lang.UFDate;
 import nc.vo.pub.lang.UFDouble;
 import nc.vo.pub.pf.BillStatusEnum;
+import nc.vo.pubapp.pattern.data.IRowSet;
 
 import org.apache.commons.lang.StringUtils;
 import nccloud.framework.web.convert.translate.Translator;
@@ -82,6 +85,8 @@ public class RedeemProChangeEditAfterHandler extends AbstractCommonAfterEditHand
 		UFDate billmakedate = new UFDate(SessionContext.getInstance().getClientInfo().getBizDateTime());
 	
 		String billmaker = SessionContext.getInstance().getClientInfo().getUserid();
+		String pk_olccurr = RedeemUtil.getOrgStandardCurrtype(pvo.getPk_org());
+		pvo.setAttributeValue("pk_olccurr",pk_olccurr);
 		pvo.setAttributeValue("pk_org", pvo.getPk_org());
 		pvo.setAttributeValue("pk_group", getGroupByOrg(pvo.getPk_org()));
 		pvo.setAttributeValue("vbillstatus", vbillstatus);
@@ -108,11 +113,11 @@ public class RedeemProChangeEditAfterHandler extends AbstractCommonAfterEditHand
 		pvo.setAttributeValue("glcrate", resultVOs[0].getParentVO().getGlcrate());
 		pvo.setAttributeValue("gllcrate", resultVOs[0].getParentVO().getGllcrate());
 		if(resultVOs[0].getParentVO().getApplynumber()!=null && resultVOs[0].getParentVO().getApplynumber()>0){
-			Integer lastNum = isApplyNumNoExists(pvo,resultVOs[0].getParentVO().getProductcode(),resultVOs[0].getParentVO().getApplynumber());
-			pvo.setAttributeValue("applynumber", lastNum);		
+			Integer lastNum = RedeemUtil.isApplyNumNoExists(pvo,pk_apply,resultVOs[0].getParentVO().getApplynumber());
+			pvo.setAttributeValue("holdnumber", lastNum);		
 		}else{
 			//计算选择产品的持有金额(理财金额-赎回总额)
-			UFDouble holdMoney = isApplyMoneyNoExists(pvo,resultVOs[0].getParentVO().getProductcode(),resultVOs[0].getParentVO().getMoney());
+			UFDouble holdMoney = RedeemUtil.isApplyMoneyNoExists(pvo,pk_apply,resultVOs[0].getParentVO().getMoney());
 			pvo.setAttributeValue("holdmoney", holdMoney);
 		}
 		pvo.setAttributeValue("redeemdate", getBusiDate());
@@ -177,70 +182,5 @@ public class RedeemProChangeEditAfterHandler extends AbstractCommonAfterEditHand
 		return pk_group;
 	}
 
-	/**
-	 * 验证赎回金额是否大于持有金额，返回持有金额
-	 * @param parentVO
-	 * @param applycode
-	 * @param money
-	 * @return
-	 * @throws BusinessException
-	 */
-
-	private UFDouble isApplyMoneyNoExists(InvestRedeemVO parentVO,String applycode, UFDouble money) throws BusinessException {
-	
-		IInvestRedeemQueryService serviceRedeem=ServiceLocator.find(IInvestRedeemQueryService.class);
-		String condition = "productcode = '" + applycode + "'";
-		SuperVO[] fvo = serviceRedeem.querySuperVOByCondition(condition, AggInvestRedeemVO.class);
-		UFDouble ALL_DBL = new UFDouble(0.0D);
-		 UFDouble holdMoney = UFDouble.ZERO_DBL;
-		 UFDouble allmoney = money == null ? UFDouble.ZERO_DBL : money;
-		if (fvo != null && fvo.length > 0) {
-			for(SuperVO svo:fvo){
-				InvestRedeemVO vo =	(InvestRedeemVO) svo;
-				if(vo.getRedeemmoney()!=null){
-					ALL_DBL=vo.getRedeemmoney().add(ALL_DBL);
-				}
-				parentVO.setAttributeValue("lastdate",vo.getRedeemdate());
-			}
-			if(money.sub(ALL_DBL) != null){
-				holdMoney =allmoney.sub(ALL_DBL);
-			}
-			return holdMoney;
-		} else {
-			return	holdMoney =allmoney.sub(ALL_DBL);
-		}
-	}
-	/**
-	 * 验证赎回份数是否大于持有份数，返回持有份数
-	 * @param parentVO
-	 * @param applycode
-	 * @param applyNum
-	 * @return
-	 * @throws BusinessException
-	 */
-	private Integer isApplyNumNoExists(InvestRedeemVO parentVO,String applycode,Integer applyNum) throws BusinessException {
-		
-		IInvestRedeemQueryService serviceRedeem=ServiceLocator.find(IInvestRedeemQueryService.class);
-		String condition = "productcode = '" + applycode + "'";
-		SuperVO[] fvo = serviceRedeem.querySuperVOByCondition(condition, AggInvestRedeemVO.class);
-		Integer lastNum =0;
-		Integer redeemSum=0;
-		if (fvo != null && fvo.length > 0) {
-			for(SuperVO svo:fvo){
-				InvestRedeemVO vo =	(InvestRedeemVO) svo;
-				if(vo.getRedeemnumber()!=null){
-					redeemSum=redeemSum+vo.getRedeemnumber();
-				}
-				
-				parentVO.setAttributeValue("lastdate",vo.getRedeemdate());
-			}
-			lastNum = applyNum-redeemSum;
-			
-			return lastNum;
-		}else{
-			return applyNum;
-		}
-		
-	}
 	
 }
