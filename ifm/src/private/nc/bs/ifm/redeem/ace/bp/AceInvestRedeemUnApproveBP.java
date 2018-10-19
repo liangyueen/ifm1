@@ -4,6 +4,11 @@ import nc.bs.ifm.apply.plugin.bpplugin.ApplyPluginPoint;
 import nc.bs.ifm.redeem.rule.RegisterUnWriteBankAccAfterRule;
 import nc.bs.ifm.redeem.rule.TallySendRedeemProcessVoucherRule;
 import nc.bs.ifm.redeem.rule.TallyUnSendRedeemProcessVoucherRule;
+import nc.bs.ifm.redeem.rule.DeleteRedeemRule;
+import nc.bs.ifm.redeem.rule.RegisterUnWriteBankAccAfterRule;
+import nc.bs.ifm.redeem.rule.TallySendRedeemProcessVoucherRule;
+import nc.bs.ifm.redeem.rule.TallyUnSendRedeemProcessVoucherRule;
+import nc.bs.ifm.redeem.rule.UpdateIFMApplyRule;
 import nc.impl.pubapp.pattern.data.bill.BillUpdate;
 import nc.impl.pubapp.pattern.data.bill.template.UpdateBPTemplate;
 import nc.impl.pubapp.pattern.rule.IRule;
@@ -29,17 +34,13 @@ public class AceInvestRedeemUnApproveBP {
 		}
 //		BillUpdate<AggInvestRedeemVO> update = new BillUpdate<AggInvestRedeemVO>();
 //		AggInvestRedeemVO[] returnVos = update.update(clientBills, originBills);
+		this.addBeforeRule(bp.getAroundProcesser());
 		this.addAfterRule(bp.getAroundProcesser());
 		AggInvestRedeemVO[] returnVos =bp.update(clientBills, originBills);
 		this.addAfterRule(clientBills);
 		return returnVos;
 	}
 	
-	/**
-	 * 修改后规则
-	 * 
-	 * @param processor
-	 */
 	private void addAfterRule(AggInvestRedeemVO[] vos) {
 		IRule<AggInvestRedeemVO> rule = null;
 		rule = new TallyUnSendRedeemProcessVoucherRule();
@@ -49,6 +50,18 @@ public class AceInvestRedeemUnApproveBP {
 		}
 	}
 	
+	/**
+	 * 新增后规则
+	 * 
+	 * @param processor
+	 */
+
+	private void addBeforeRule(
+			CompareAroundProcesser<AggInvestRedeemVO> aroundProcesser) {
+		IRule<AggInvestRedeemVO> deleteRedeemRule = new DeleteRedeemRule();
+		aroundProcesser.addBeforeRule(deleteRedeemRule);
+		
+	}
 	/**
 	 * 新增后规则
 	 * 

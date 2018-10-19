@@ -3,7 +3,6 @@ package nc.bs.ifm.apply.rule;
 import nc.bs.ifm.redeem.process.RedeemProcessVoucherBS;
 import nc.impl.pubapp.pattern.rule.IRule;
 import nc.vo.ifm.apply.AggInvestApplyVO;
-import nc.vo.ifm.income.AggInvestIncomeVO;
 import nc.vo.pub.AggregatedValueObject;
 
 public class TallySendApplyProcessVoucherRule implements

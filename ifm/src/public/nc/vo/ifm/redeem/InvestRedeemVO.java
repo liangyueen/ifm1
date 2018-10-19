@@ -33,6 +33,7 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 	public static final String VBILLTYPE = "vbilltype";
 	public static final String VBILLNO = "vbillno";
 	public static final String HOLDMONEY = "holdmoney";
+	public static final String HOLDNUMBER = "holdnumber";
 	public static final String VDEF1 = "vdef1";
 	public static final String VDEF2 = "vdef2";
 	public static final String VDEF3 = "vdef3";
@@ -74,7 +75,6 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 	public static final String REMARK = "remark";
 	 public static final String VBILLSTATUS = "vbillstatus";
 	 public static final String REDEEMNUMBER = "redeemnumber";
-	  public static final String APPLYNUMBER = "applynumber";
 	  public static final String UNITNETVALUE = "unitnetvalue";
 	  public static final String REALREANING = "realreaning";
 	  public static final String PK_OLCCURR = " pk_olccurr";
@@ -83,7 +83,13 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 	  public static final String PK_SRCBILLTYPE = "pk_srcbilltype";
 	  public static final String SRCBILLTYPECODE = "srcbilltypecode";
 	  public static final String SRCBILLNO = "srcbillno";
-	  
+	  public Integer getHoldnumber() {
+			return (Integer) this.getAttributeValue( InvestRedeemVO.HOLDNUMBER);
+		} 
+
+		public void setHoldnumber ( Integer holdnumber) {
+			this.setAttributeValue( InvestRedeemVO.HOLDNUMBER,holdnumber);
+		} 
 	  public String getPk_srcbill() {
 			return (String) this.getAttributeValue( InvestRedeemVO.PK_SRCBILL);
 		} 
@@ -131,12 +137,6 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 		 return (UFDouble)getAttributeValue("olcrate");
 	}
 	
-	 public java.lang.Integer getApplynumber () {
-			return (java.lang.Integer) getAttributeValue(APPLYNUMBER);
-		}  
-	 public void setApplynumber(java.lang.Integer newApplynumber) {
-			setAttributeValue("applynumber", newApplynumber);
-		}
 	 public java.lang.Integer getRedeemnumber () {
 			return (java.lang.Integer) getAttributeValue(REDEEMNUMBER);
 		}   

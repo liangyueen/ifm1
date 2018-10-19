@@ -88,21 +88,27 @@ public class RedeemSubmitAction extends CommonCommitAction<AggInvestRedeemVO> {
 
 	private boolean doBefore(AggInvestRedeemVO vo) {
 		InvestRedeemVO head = vo.getParentVO();
-		try {
-			if (!head.getBillstatus().equals(RedeemStatusEnum.待提交.value())) {
-				errList.add("协议编号：" + head.getVbillno() + "，不可以进行提交操作！");
-				return false;
-			}
-			// Integer vbillstatus = (Integer)
-			// BillStatusEnum.COMMIT.value();//提交
-			// Integer billstatus = (Integer) RedeemStatusEnum.待审核.value();//待审核
-			// 如果没有审批流的话，状态为审核通过
-			// head.setAttributeValue("vbillstatus", vbillstatus);
-			// head.setAttributeValue("billstatus", billstatus);
-			// head.setAttributeValue("vbillno", getActionCode());
-			if(head.getHoldmoeny()!=null){
-				if (head.getHoldmoeny().sub(head.getRedeemmoney()).compareTo(UFDouble.ZERO_DBL) <0
-						|| head.getHoldmoeny().compareTo(UFDouble.ZERO_DBL) <= 0) {
+		if (!head.getBillstatus().equals(RedeemStatusEnum.待提交.value())) {
+			errList.add("协议编号：" + head.getVbillno() + "，不可以进行提交操作！");
+			return false;
+		}
+		// Integer vbillstatus = (Integer)
+		// BillStatusEnum.COMMIT.value();//提交
+		// Integer billstatus = (Integer) RedeemStatusEnum.待审核.value();//待审核
+		// 如果没有审批流的话，状态为审核通过
+		// head.setAttributeValue("vbillstatus", vbillstatus);
+		// head.setAttributeValue("billstatus", billstatus);
+		// head.setAttributeValue("vbillno", getActionCode());
+		 /*if(head.getHoldnumber()!=null){
+				Integer lastNum =head.getHoldnumber()-head.getRedeemnumber();
+				if(lastNum<0){
+					throw new BusinessException("赎回份数大于您的申购份数，您当前的持有份数为为："+head.getHoldnumber()+"");
+				}
+				//UFDouble UFlastNum = new UFDouble(head.getRedeemmoney());
+				//head.setRedeemmoney(UFlastNum.multiply(head.getUnitnetvalue()).toString());
+			}else if(head.getHoldmoeny()!=null){
+			if (head.getHoldmoeny().sub(head.getRedeemmoney()).compareTo(UFDouble.ZERO_DBL) <0
+					|| head.getHoldmoeny().compareTo(UFDouble.ZERO_DBL) <= 0) {
 
 					throw new BusinessException("持有金额小于赎回金额，您当前的持有金额为："
 							+ head.getHoldmoeny() + "");
@@ -115,11 +121,7 @@ public class RedeemSubmitAction extends CommonCommitAction<AggInvestRedeemVO> {
 				UFDouble UFlastNum = new UFDouble(head.getRedeemmoney());
 				head.setRedeemmoney(UFlastNum.multiply(head.getUnitnetvalue()).toString());
 			}
-		} catch (BusinessException e) {
-			// TODO Auto-generated catch block
-			Logger.error(e.getMessage(), e);
-			ExceptionUtils.wrapBusinessException(e.getMessage(), e);
-		}
+		}*/
 		return true;
 	}
 
@@ -127,13 +129,6 @@ public class RedeemSubmitAction extends CommonCommitAction<AggInvestRedeemVO> {
 	protected String getBillTypeCode() {
 		return TMIFMConst.CONST_BILLTYPE_REDEEM;
 	}
-	public static void main(String[] args) {
-		Double a =10.00;
-		Double b=2.00;
-		Double c =10.00;
-		a.compareTo(b);
-		a.compareTo(c);
-		b.compareTo(c);
-	}
+	
 
 }

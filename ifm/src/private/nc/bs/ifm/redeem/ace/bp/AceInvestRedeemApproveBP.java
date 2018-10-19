@@ -39,7 +39,7 @@ public class AceInvestRedeemApproveBP {
 	public AggInvestRedeemVO[] approve(AggInvestRedeemVO[] clientBills,
 			AggInvestRedeemVO[] originBills) {
 		UpdateBPTemplate<AggInvestRedeemVO> bp = new UpdateBPTemplate<AggInvestRedeemVO>(InvestRedeemPluginPoint.APPROVE);
-		for (AggInvestRedeemVO clientBill : clientBills) {
+	/*	for (AggInvestRedeemVO clientBill : clientBills) {
 			InvestRedeemVO vo = clientBill.getParentVO();
 			Integer billstatus =   (Integer) RedeemStatusEnum.部分赎回.value();//待审核
 			if(vo.getHoldmoeny()!=null){
@@ -47,7 +47,7 @@ public class AceInvestRedeemApproveBP {
 					billstatus = (Integer) RedeemStatusEnum.全部赎回.value();
 				}
 			}else if(vo.getRedeemnumber()!=null){
-				Integer lastNum = vo.getApplynumber()-vo.getRedeemnumber();
+				Integer lastNum = vo.getHoldnumber()-vo.getRedeemnumber();
 				if(lastNum==0){
 					billstatus = (Integer) RedeemStatusEnum.全部赎回.value();
 				}
@@ -59,7 +59,7 @@ public class AceInvestRedeemApproveBP {
 			if(vo.getRealreaning()!= null){
 				
 			}
-		}
+		}*/
 		this.addBeforeRule(bp.getAroundProcesser());
 //		BillUpdate<AggInvestRedeemVO> update = new BillUpdate<AggInvestRedeemVO>();
 //		AggInvestRedeemVO[] returnVos = update.update(clientBills, originBills);

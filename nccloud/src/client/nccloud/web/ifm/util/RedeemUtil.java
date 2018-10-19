@@ -14,7 +14,9 @@ import nc.vo.ifm.redeem.InvestRedeemVO;
 import nc.vo.org.OrgVO;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.ISuperVO;
+import nc.vo.pub.SuperVO;
 import nc.vo.pub.lang.UFDate;
+import nc.vo.pub.lang.UFDouble;
 import nccloud.dto.baseapp.querytree.dataformat.QueryTreeFormatVO;
 import nccloud.framework.core.exception.ExceptionUtils;
 import nccloud.framework.core.json.IJson;
@@ -172,5 +174,64 @@ public class RedeemUtil {
 			throws BusinessException {
 		String pk_currtype = getEPrecService().getOrgStandardCurrtype(pk_org);
 		return pk_currtype;
+	}
+	
+	public static UFDouble isApplyMoneyNoExists(InvestRedeemVO parentVO,String applycode, UFDouble money) throws BusinessException {
+		
+		IInvestRedeemQueryService serviceRedeem=ServiceLocator.find(IInvestRedeemQueryService.class);
+		String condition = "pk_srcbill = '" + applycode + "' and vbillstatus =1 ";
+		SuperVO[] fvo = serviceRedeem.querySuperVOByCondition(condition, AggInvestRedeemVO.class);
+		UFDouble ALL_DBL = new UFDouble(0.0D);
+		 UFDouble holdMoney = UFDouble.ZERO_DBL;
+		 UFDouble allmoney = money == null ? UFDouble.ZERO_DBL : money;
+		
+		if (fvo != null && fvo.length > 0) {
+			for(SuperVO svo:fvo){
+				InvestRedeemVO vo =	(InvestRedeemVO) svo;
+				if(vo.getRedeemmoney()!=null){
+					ALL_DBL=vo.getRedeemmoney().add(ALL_DBL);
+				}
+				parentVO.setAttributeValue("lastdate",vo.getRedeemdate());
+			}
+			if(money.sub(ALL_DBL) != null){
+				holdMoney =allmoney.sub(ALL_DBL);
+			}
+			return holdMoney;
+		} else {
+			return	holdMoney =allmoney.sub(ALL_DBL);
+		}
+	}
+	/**
+	 * 验证赎回份数是否大于持有份数，返回持有份数
+	 * @param parentVO
+	 * @param applycode
+	 * @param applyNum
+	 * @return
+	 * @throws BusinessException
+	 */
+	public static Integer isApplyNumNoExists(InvestRedeemVO parentVO,String applycode,Integer applyNum) throws BusinessException {
+		
+		IInvestRedeemQueryService serviceRedeem=ServiceLocator.find(IInvestRedeemQueryService.class);
+		String condition = "pk_srcbill = '" + applycode + "' and vbillstatus =1 ";
+		SuperVO[] fvo = serviceRedeem.querySuperVOByCondition(condition, AggInvestRedeemVO.class);
+		Integer lastNum =0;
+		Integer redeemSum=0;
+		
+		if (fvo != null && fvo.length > 0) {
+			for(SuperVO svo:fvo){
+				InvestRedeemVO vo =	(InvestRedeemVO) svo;
+				if(vo.getRedeemnumber()!=null){
+					redeemSum=redeemSum+vo.getRedeemnumber();
+				}
+				
+				parentVO.setAttributeValue("lastdate",vo.getRedeemdate());
+			}
+			lastNum = applyNum-redeemSum;
+			
+			return lastNum;
+		}else{
+			return applyNum;
+		}
+		
 	}
 }

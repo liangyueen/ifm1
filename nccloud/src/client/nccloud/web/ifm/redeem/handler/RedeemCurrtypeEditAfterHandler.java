@@ -44,11 +44,6 @@ public class RedeemCurrtypeEditAfterHandler extends AbstractCommonAfterEditHandl
 		return card;
 	}
 	
-	/**
-	 * 将授信协议上的字段带至调整单上
-	 * @param vo
-	 * @throws BusinessException
-	 */
 	private void setExecAdjForRedeem(AggInvestRedeemVO vo) throws BusinessException {
 		InvestRedeemVO revo = vo.getParentVO();
 		/*if (StringUtils.isBlank(revo.getPk_redeem())) {
