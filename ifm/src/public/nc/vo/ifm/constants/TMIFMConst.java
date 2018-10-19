@@ -1,33 +1,24 @@
 package nc.vo.ifm.constants;
 
 /**
- * 投融资类
- * @author wuzhwa
+ * 投融资常量
  * @version ncc1.0
  */
 public class TMIFMConst {
 	/**
 	 * 模块
 	 */
-	public static String CONST_MODULE="TMCFM";
-	public static String CONST_MODULE_CODE="3661";
+	public static String CONST_MODULE="TMIFM";
+	public static String CONST_MODULE_CODE="3667";
 	
-	// 资金管理
-	public static final String TM_FUNCODE = "36"; // 资金管理
-	public static final String TM_CMP_FUNCODE = "3607";// 现金管理
-	public static final String TM_FTS_FUNCODE = "3630";// 资金结算
-	public static final String FI_FIP_FUNCODE = "1017";// 会计平台
-	public static final String TBB_FUNCODE = "1050";// 预算
-
 	/**
 	 * 单据类型常量
 	 */
-	
 	public static String CONST_BILLTYPE_REDEEM="3642";
 	public static String CONST_BILLTYPE_APPLY="3641";
 	public static String CONST_BILLTYPE_INCOME="3643";
 	/**
-	 * 资金赎回常用动作
+	 * 常用动作
 	 */
 	public static String CONST_ACTION_SAVEBASE="SAVEBASE"; // 保存
 	public static String CONST_ACTION_DELETE="DELETE"; // 删除
@@ -57,9 +48,8 @@ public class TMIFMConst {
 	public static String CONST_AREACODE_INCOME_LIST_TABLE = "table";
 	// 投资收益列表页面区域编码
 	public static String CONST_AREACODE_INCOME_LIST_SEARCH = "search";
-	/**
-	 * 常用属性名称
-	 */
+	
+	//赎回常用属性名称
 	public static String FIELD_PK_ORG = "pk_org";
 	public static String FIELD_PK_GROUP = "pk_group";
 	public static String FIELD_PK_CURRTYPE = "pk_currtype";
