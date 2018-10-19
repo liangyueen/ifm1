@@ -1,9 +1,11 @@
 package nc.itf.ifm;
 
 
+import nc.impl.pubapp.pattern.database.DataAccessUtils;
 import nc.vo.ifm.redeem.AggInvestRedeemVO;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.SuperVO;
+import nc.vo.pubapp.pattern.data.IRowSet;
 
 public interface IInvestRedeemQueryService {
 	/**
@@ -40,6 +42,13 @@ public interface IInvestRedeemQueryService {
 	 * @throws BusinessException
 	 */
 	public AggInvestRedeemVO[] getAggVOsByPKs(String... pks) throws BusinessException ;
-	String getDefaultOrgUnit();
+	
+	/**
+	 * 用户默认组织
+	 * @return
+	 */
+	public abstract String getDefaultOrgUnit();
+	
+	public boolean ifCanDelete(String apply_vbillno);
 	
 }
