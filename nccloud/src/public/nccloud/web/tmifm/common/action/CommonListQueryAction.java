@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import nc.bs.ifm.pub.util.QueryUtil;
 import nc.ui.querytemplate.querytree.IQueryScheme;
 import nc.vo.pub.BusinessException;
