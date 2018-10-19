@@ -39,7 +39,7 @@ public class InvestRedeemQueryServiceImpl implements IInvestRedeemQueryService{
 		sql.append(" select  ");
 		sql.append(mainAlias);
 		sql.append(".");
-		sql.append("vbillstatus");
+		sql.append("billstatus");
 		sql.append(processor.getFinalFromWhere());
 		DataAccessUtils dao = new DataAccessUtils();
 		IRowSet rowset = dao.query(sql.toString());
@@ -74,6 +74,20 @@ public class InvestRedeemQueryServiceImpl implements IInvestRedeemQueryService{
 		}
 		return null;
 	}
+
+	@Override
+	public boolean ifCanDelete(String apply_vbillno) {
+			//根据传入的pk_apply查询所有符合条件的incomeVOs
+			DataAccessUtils dao = new DataAccessUtils();
+			IRowSet rowset = dao.query("select pk_redeem from ifm_redeem where srcbilltypecode='3641' and srcbillno ='"+apply_vbillno+"'");
+			//不存在记录，返回true
+			if(null == rowset || rowset.size() == 0){
+				return true;
+			}
+			//否则返回false
+			return false;
+	}
+	
 
 //	@Override
 //	public String getDefaultOrgUnit() {
