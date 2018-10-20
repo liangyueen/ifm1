@@ -541,6 +541,9 @@ public class InvestRedeemVO extends SuperVO implements IExAggVO {
 	 */
 	public static final String BALANCE = "balance";
 	public static final String ISINITIAL = "isinitial";
+	public static final String OLCMNY = "olcmny";
+	public static final String GLCMNY = "glcmny";
+	public static final String GLLCMNY = "gllcmny";
 	/**
 	 * Ê±¼ä´Á
 	 */
