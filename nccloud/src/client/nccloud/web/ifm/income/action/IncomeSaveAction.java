@@ -56,8 +56,9 @@ public class IncomeSaveAction extends CommonSaveAction<AggInvestIncomeVO> {
 		//设置审计信息
 //		vo.setPk_group(getGroupByOrg(vo.getPk_org()));
 //		暂时写为固定值，之后更改
-		vo.setAttributeValue("pk_group","0001A110000000000EQ8" );
+//		vo.setAttributeValue("pk_group","0001A110000000000EQ8" );
 		vo.setPk_billtypecode("3643");
+		vo.setAttributeValue(InvestIncomeVO.PK_BILLTYPEID,"0001Z61000000002M5PM");
 		vo.setAttributeValue("creator",SessionContext.getInstance().getClientInfo().getUserid());
 		vo.setAttributeValue("creationtime",new UFDate(SessionContext.getInstance().getClientInfo().getBizDateTime()) );
 

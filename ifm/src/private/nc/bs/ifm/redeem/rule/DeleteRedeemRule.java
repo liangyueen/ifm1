@@ -62,8 +62,9 @@ public class DeleteRedeemRule implements IRule<AggInvestRedeemVO> {
 	 * 检查此数据是否生成了收益
 	 * @param vos
 	 * @return
+	 * @throws BusinessException 
 	 */
-	private boolean checkIncome(AggInvestRedeemVO[] vos) {
+	private boolean checkIncome(AggInvestRedeemVO[] vos) throws BusinessException {
 		// TODO Auto-generated method stub
 		IIncomeCtrlService incomeService = ServiceLocator
 				.find(IIncomeCtrlService.class);

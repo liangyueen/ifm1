@@ -2,6 +2,7 @@ package nc.itf.ifm;
 
 import nc.vo.ifm.apply.InvestApplyVO;
 import nc.vo.ifm.redeem.InvestRedeemVO;
+import nc.vo.pub.BusinessException;
 
 public interface IIncomeCtrlService {
 	/**
@@ -14,8 +15,9 @@ public interface IIncomeCtrlService {
 	/**
 	 * 赎回撤销后，同步删除写入的收益数据，前提是收益处于可删除状态
 	 * @param redeemVO
+	 * @throws BusinessException 
 	 */
-	public void RewriteIncomeBill(InvestRedeemVO redeemVO);
+	public void RewriteIncomeBill(InvestRedeemVO redeemVO) throws BusinessException;
 	/**
 	 * 根据传入的申购编号判断是否可以对申购的单子进行弃审
 	 * @param apply_vbillno
