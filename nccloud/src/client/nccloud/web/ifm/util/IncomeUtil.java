@@ -16,6 +16,7 @@ import nc.vo.org.OrgVO;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.ISuperVO;
 import nc.vo.pub.lang.UFDate;
+import nc.vo.pub.pf.BillStatusEnum;
 import nccloud.dto.baseapp.querytree.dataformat.QueryTreeFormatVO;
 import nccloud.framework.core.exception.ExceptionUtils;
 import nccloud.framework.core.json.IJson;
@@ -179,7 +180,12 @@ public class IncomeUtil {
 				.getDefaultOrgUnit();
 	}
 	
-	//复制RedeemVO同名属性值到IncomeVO
+	/**
+	 * 复制RedeemVO同名属性值到IncomeVO
+	 * @param redeemVO
+	 * @param incomeVO
+	 * @return
+	 */
 	public static InvestIncomeVO convertRedeemVO2IncomeVO(InvestRedeemVO redeemVO, InvestIncomeVO incomeVO){
 		
 		incomeVO.setPk_srcbill(redeemVO.getPk_redeem());
@@ -208,6 +214,7 @@ public class IncomeUtil {
 		incomeVO.setInvestaccount(redeemVO.getInvestaccount());
 		incomeVO.setInterestday(redeemVO.getInterestday());
 		incomeVO.setExpectedrate(redeemVO.getExpectedrate());
+//		incomeVO.setAttributeValue("expectedmoney", redeemVO.getExpectedmoney());//预期收益金额
 		incomeVO.setGatheringdate(redeemVO.getIncomedate());
 		incomeVO.setIncomerate(redeemVO.getIncomerate());
 		incomeVO.setIncomemoney(redeemVO.getIncomemoney());
@@ -217,6 +224,15 @@ public class IncomeUtil {
 		incomeVO.setEnddate(redeemVO.getEnddate());
 		incomeVO.setInvestvariety(redeemVO.getInvestvariety());
 		
+		// 设置本地默认值:审批状态、单据状态
+		Integer vbillstatus = (Integer) BillStatusEnum.FREE.value();
+		Integer billstatus =   (Integer) nc.vo.ifm.IncomeBillStatusEnum.NOSUB.value();
+		incomeVO.setBillstatus(billstatus);
+		incomeVO.setVbillstatus(vbillstatus);
+		incomeVO.setSource(1);
+		incomeVO.setPk_billtypeid("0001Z61000000002M5PM");
+		incomeVO.setPk_billtypecode("3643");
+				
 		return incomeVO;
 	}
 }
