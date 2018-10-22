@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import nc.bs.dao.BaseDAO;
 import nc.bs.framework.common.NCLocator;
+import nc.bs.ifm.income.ace.bp.AceInvestIncomeQueryBP;
 import nc.impl.pubapp.pattern.data.bill.BillQuery;
 import nc.impl.pubapp.pattern.database.DataAccessUtils;
 import nc.itf.ifm.IInvestIncomeQueryService;
@@ -33,6 +34,7 @@ import com.alibaba.fastjson.JSONObject;
 
 public class InvestIncomeQueryServiceImpl implements IInvestIncomeQueryService{
 
+	private AceInvestIncomeQueryBP aceInvestIncomeQueryBP = new AceInvestIncomeQueryBP();
 	@Override
 	public AggInvestIncomeVO[] queryIncomeByPks(String[] pks)
 			throws BusinessException {
@@ -154,5 +156,11 @@ public class InvestIncomeQueryServiceImpl implements IInvestIncomeQueryService{
 			ExceptionUtils.wrappBusinessException(e.getMessage());
 		}
 		return null;
+	}
+
+	@Override
+	public SuperVO[] querySuperVOByCondition(String condition, Class voClass)
+			throws BusinessException {
+		return aceInvestIncomeQueryBP.querySuperVOByCondition(condition, voClass);
 	}
 }

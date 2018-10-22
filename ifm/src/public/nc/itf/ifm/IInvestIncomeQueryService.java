@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 
 import nc.vo.ifm.income.AggInvestIncomeVO;
 import nc.vo.pub.BusinessException;
+import nc.vo.pub.SuperVO;
 
 public interface IInvestIncomeQueryService {
 	/**
@@ -25,6 +26,12 @@ public interface IInvestIncomeQueryService {
 	 * @throws BusinessException
 	 */
 	Boolean isBillNoDuplicate(String[] pk_income, String[] vbillno) throws BusinessException;
+	/**
+	 * 查询单个实体信息
+	 * @return
+	 * @throws BusinessException
+	 */
+	public SuperVO[] querySuperVOByCondition(String condition, Class voClass) throws BusinessException ;
 	/**
 	 * 联查计划预算
 	 * @param paramString
