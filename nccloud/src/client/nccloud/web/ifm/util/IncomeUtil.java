@@ -227,11 +227,11 @@ public class IncomeUtil {
 		// 设置本地默认值:审批状态、单据状态
 		Integer vbillstatus = (Integer) BillStatusEnum.FREE.value();
 		Integer billstatus =   (Integer) nc.vo.ifm.IncomeBillStatusEnum.NOSUB.value();
-		incomeVO.setAttributeValue(InvestIncomeVO.VBILLSTATUS, vbillstatus);
-		incomeVO.setAttributeValue("billstatus", billstatus);
-		incomeVO.setAttributeValue(InvestIncomeVO.SOURCE, 1);
-		incomeVO.setAttributeValue(InvestIncomeVO.PK_BILLTYPEID,"0001Z61000000002M5PM");
-		incomeVO.setAttributeValue(InvestIncomeVO.PK_BILLTYPECODE, "3643");
+		incomeVO.setBillstatus(billstatus);
+		incomeVO.setVbillstatus(vbillstatus);
+		incomeVO.setSource(1);
+		incomeVO.setPk_billtypeid("0001Z61000000002M5PM");
+		incomeVO.setPk_billtypecode("3643");
 				
 		return incomeVO;
 	}
