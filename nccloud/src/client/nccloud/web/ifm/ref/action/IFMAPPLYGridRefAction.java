@@ -32,7 +32,7 @@ public class IFMAPPLYGridRefAction extends DefaultGridRefAction {
 		StringBuffer sql = new StringBuffer();
 		sql.append("((");
 		// –≠“È±‡∫≈
-		sql.append(" select a.pk_apply as PK_APPLY ,a.pk_org as PK_ORG, a.productcode as PRODUCTCODE,a.productname as  PRODUCTNAME,a.enddate as ENDDATE from  ifm_apply a " +
+		sql.append(" select a.productcode as PRODUCTCODE,a.pk_apply as PK_APPLY ,a.pk_org as PK_ORG, a.productname as  PRODUCTNAME,a.enddate as ENDDATE from  ifm_apply a " +
 				" where a.billstatus=2" +
 				" and a.productcode is not null" +
 				" and a.dr = 0 ");
