@@ -69,12 +69,12 @@ public class UpdateIFMApplyRule implements IRule<AggInvestRedeemVO> {
 			
 			//若有收益金额，则调用收益接口添加赎回收益
 			if(vo.getRealreaning()!= null){
-				/*IIncomeCtrlService incomeService = ServiceLocator
+				IIncomeCtrlService incomeService = ServiceLocator
 						.find(IIncomeCtrlService.class);
 				boolean save = incomeService.WriteIncomeBill(vo);
 				if(!save){
 					throw new BusinessException("写入收益失败");
-				}*/
+				}
 			}
 		}
 		} catch (BusinessException e) {

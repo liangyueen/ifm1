@@ -109,7 +109,7 @@ public class RedeemProChangeEditAfterHandler extends AbstractCommonAfterEditHand
 		pvo.setAttributeValue("gatheringaccount", resultVOs[0].getParentVO().getSettleaccount());
 		pvo.setAttributeValue("pk_currtype", resultVOs[0].getParentVO().getPk_currtype());
 		pvo.setAttributeValue("olcrate", resultVOs[0].getParentVO().getOlcrate());
-		//pvo.setAttributeValue("olcmoney", resultVOs[0].getParentVO().getOlcmoney());
+		pvo.setAttributeValue("enddate", resultVOs[0].getParentVO().getEnddate());
 		pvo.setAttributeValue("glcrate", resultVOs[0].getParentVO().getGlcrate());
 		pvo.setAttributeValue("gllcrate", resultVOs[0].getParentVO().getGllcrate());
 		if(resultVOs[0].getParentVO().getApplynumber()!=null && resultVOs[0].getParentVO().getApplynumber()>0){

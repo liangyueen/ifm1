@@ -1,22 +1,13 @@
 package nc.bs.ifm.redeem.rule;
 
-import nc.bs.dao.BaseDAO;
+import nc.impl.pubapp.pattern.database.DataAccessUtils;
 import nc.impl.pubapp.pattern.rule.IRule;
-import nc.itf.ifm.IIFMApplyQueryService;
 import nc.itf.ifm.IIncomeCtrlService;
-import nc.itf.ifm.IInvestRedeemQueryService;
-import nc.vo.ifm.RedeemStatusEnum;
-import nc.vo.ifm.apply.AggInvestApplyVO;
 import nc.vo.ifm.redeem.AggInvestRedeemVO;
 import nc.vo.ifm.redeem.InvestRedeemVO;
 import nc.vo.pub.BusinessException;
-import nc.vo.pub.BusinessRuntimeException;
-import nc.vo.pub.SuperVO;
-import nc.vo.pub.VOStatus;
-import nc.vo.pub.lang.UFDate;
-import nc.vo.pub.lang.UFDouble;
+import nc.vo.pubapp.pattern.data.IRowSet;
 import nccloud.framework.service.ServiceLocator;
-import nccloud.web.ifm.util.RedeemUtil;
 
 public class DeleteRedeemRule implements IRule<AggInvestRedeemVO> {
 
@@ -27,8 +18,8 @@ public class DeleteRedeemRule implements IRule<AggInvestRedeemVO> {
 			return;
 		}
 		if(checkIncome(vos)){
-				if(checkRedeemLastDate(vos)){
-					
+				if(!checkRedeemLastDate(vos)){
+					throw new BusinessException("删除失败，此数据不是最新一条");
 				}
 			} 
 		}
@@ -38,7 +29,7 @@ public class DeleteRedeemRule implements IRule<AggInvestRedeemVO> {
 		}
 	}
 	/**
-	 * 检查此数据是否为最后一次提交一条
+	 * 检查此数据是否为最后一次提交一条(只记审批通过的数据)
 	 * @param vos
 	 * @return
 	 */
@@ -47,17 +38,21 @@ public class DeleteRedeemRule implements IRule<AggInvestRedeemVO> {
 		for (AggInvestRedeemVO clientBill : vos) {
 			InvestRedeemVO vo = clientBill.getParentVO();
 			
-			IInvestRedeemQueryService serviceRedeem=ServiceLocator.find(IInvestRedeemQueryService.class);
-			String condition = "pk_srcbill = '" + vo.getPk_srcbill() + "' ";
+			/*IInvestRedeemQueryService serviceRedeem=ServiceLocator.find(IInvestRedeemQueryService.class);
+			String condition = "pk_srcbill = '" + vo.getPk_srcbill() + "' and vbillstatus ='1' ";
 			SuperVO[] fvo = serviceRedeem.querySuperVOByCondition(condition, AggInvestRedeemVO.class);
-			UFDate lastDate= new UFDate();
-			if (fvo != null && fvo.length > 0) {
-				for(SuperVO svo:fvo){
-					InvestRedeemVO vor =	(InvestRedeemVO) svo;
-					 lastDate = vor.getLastdate();
-				}
+*/			
+			
+			DataAccessUtils dao = new DataAccessUtils();
+			IRowSet rowset = dao.query("select max(redeemdate)  from IFM_REDEEM where  pk_srcbill ='"+ vo.getPk_srcbill()+"' ");
+			String[] keys = rowset.toOneDimensionStringArray();
+			//不存在记录，返回true
+			if(null == keys || keys.length == 0){
+				return true;
 			}
-			if(vo.getLastdate()==lastDate){
+			
+			String lastDate = keys[0];
+			if(vo.getLastdate().toString()==lastDate){
 				return true;
 			}
 		}
