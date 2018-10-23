@@ -41,7 +41,7 @@ public class AceInvestIncomeApproveBP {
 		this.addBeforeRule(bp.getAroundProcesser());
 		this.addAfterRule(bp.getAroundProcesser());
 		AggInvestIncomeVO[] returnVos = bp.update(clientBills, originBills);
-		this.addAfterRule(returnVos);
+		//this.addAfterRule(returnVos);
 		return returnVos;
 	}
 	
@@ -65,14 +65,16 @@ public class AceInvestIncomeApproveBP {
 	private void addAfterRule(
 			CompareAroundProcesser<AggInvestIncomeVO> aroundProcesser) {
 		IRule<AggInvestIncomeVO> rwRule = new RegisterWriteBankAccAfterRule();
+		IRule<AggInvestIncomeVO> rule = new TallySendIncomeProcessVoucherRule();
 		aroundProcesser.addAfterRule(rwRule);
+		aroundProcesser.addAfterRule(rule);
 	}
 	
-	private void addAfterRule(AggInvestIncomeVO[] vos) {
+	/*private void addAfterRule(AggInvestIncomeVO[] vos) {
 		IRule<AggInvestIncomeVO> rule = null;
 		rule = new TallySendIncomeProcessVoucherRule();
 		rule.process(vos);
 		
-	}
+	}*/
 
 }

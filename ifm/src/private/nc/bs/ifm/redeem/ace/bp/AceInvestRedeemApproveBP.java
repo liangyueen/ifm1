@@ -65,7 +65,7 @@ public class AceInvestRedeemApproveBP {
 //		AggInvestRedeemVO[] returnVos = update.update(clientBills, originBills);
 		this.addAfterRule(bp.getAroundProcesser());
 		AggInvestRedeemVO[] returnVos =bp.update(clientBills, originBills);
-		this.addAfterRule(clientBills);
+		//this.addAfterRule(clientBills);
 		return returnVos;
 	}
 	
@@ -74,7 +74,9 @@ public class AceInvestRedeemApproveBP {
 	private void addAfterRule(
 			CompareAroundProcesser<AggInvestRedeemVO> aroundProcesser) {
 		IRule<AggInvestRedeemVO> rwRule = new RegisterWriteBankAccAfterRule();
+		IRule<AggInvestRedeemVO> rule = new TallySendRedeemProcessVoucherRule();
 		aroundProcesser.addAfterRule(rwRule);
+		aroundProcesser.addAfterRule(rule);
 		
 	}
 	
@@ -92,12 +94,12 @@ public class AceInvestRedeemApproveBP {
 	 * 
 	 * @param processor
 	 */
-	private void addAfterRule(AggInvestRedeemVO[] vos) {
+	/*private void addAfterRule(AggInvestRedeemVO[] vos) {
 		IRule<AggInvestRedeemVO> rule = null;
 		rule = new TallySendRedeemProcessVoucherRule();
 		rule.process(vos);
 		
-	}
+	}*/
 	/*private void addAfterRule(CompareAroundProcesser<AggInvestRedeemVO> processer) {
 		
 		IRule<AggInvestRedeemVO> terminateRule = new TallySendRedeemProcessVoucherRule();
