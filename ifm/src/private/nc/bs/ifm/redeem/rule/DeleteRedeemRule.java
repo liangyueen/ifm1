@@ -38,18 +38,13 @@ public class DeleteRedeemRule implements IRule<AggInvestRedeemVO> {
 		for (AggInvestRedeemVO clientBill : vos) {
 			InvestRedeemVO vo = clientBill.getParentVO();
 			
-			/*IInvestRedeemQueryService serviceRedeem=ServiceLocator.find(IInvestRedeemQueryService.class);
-			String condition = "pk_srcbill = '" + vo.getPk_srcbill() + "' and vbillstatus ='1' ";
-			SuperVO[] fvo = serviceRedeem.querySuperVOByCondition(condition, AggInvestRedeemVO.class);
-*/			
-			
 			DataAccessUtils dao = new DataAccessUtils();
 			IRowSet rowset = dao.query("select max(redeemdate)  from IFM_REDEEM where  pk_srcbill ='"+ vo.getPk_srcbill()+"' ");
 			String[] keys = rowset.toOneDimensionStringArray();
 			//不存在记录，返回true
 			if(null == keys || keys.length == 0){
 				return true;
-			}
+			} 
 			
 			String lastDate = keys[0];
 			if(vo.getLastdate().toString()==lastDate){
@@ -70,6 +65,7 @@ public class DeleteRedeemRule implements IRule<AggInvestRedeemVO> {
 				.find(IIncomeCtrlService.class);
 		for (AggInvestRedeemVO clientBill : vos) {
 			InvestRedeemVO vo = clientBill.getParentVO();
+			if(vo.getRealreaning()!=null)
 			incomeService.RewriteIncomeBill(vo);
 		}
 		
