@@ -45,8 +45,7 @@ public class ApplyDeleteAction extends CommonOperatorAction<AggInvestApplyVO>{
 				}
 			}
 		}
-		return (AggInvestApplyVO[]) list.toArray(new AggInvestApplyVO[0]);
-
+		return (AggInvestApplyVO[]) list.toArray(new AggInvestApplyVO[0]); 
 	}
 
 	@Override

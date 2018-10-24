@@ -1,35 +1,50 @@
 package nccloud.web.ifm.redeem.action;
 
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import nc.bs.framework.common.NCLocator;
 import nc.itf.ifm.IIFMApplyQueryService;
 import nc.itf.ifm.IInvestRedeemQueryService;
-import nc.pubitf.org.cache.IOrgUnitPubService_C;
+import nc.md.persist.framework.IMDPersistenceQueryService;
+import nc.ui.querytemplate.querytree.IQueryScheme;
+import nccloud.ifm.vo.OperatorParam;
 import nc.vo.ifm.RedeemStatusEnum;
 import nc.vo.ifm.apply.AggInvestApplyVO;
-import nc.vo.ifm.constants.TMIFMConst;
+import nc.vo.ifm.apply.InvestApplyVO;
 import nc.vo.ifm.redeem.AggInvestRedeemVO;
 import nc.vo.ifm.redeem.InvestRedeemVO;
-import nc.vo.org.OrgVO;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.SuperVO;
 import nc.vo.pub.lang.UFDate;
 import nc.vo.pub.lang.UFDouble;
 import nc.vo.pub.pf.BillStatusEnum;
+import nc.vo.pubapp.pattern.model.entity.bill.AbstractBill;
+import nccloud.dto.baseapp.querytree.dataformat.QueryTreeFormatVO;
 import nccloud.framework.core.exception.ExceptionUtils;
 import nccloud.framework.core.json.IJson;
 import nccloud.framework.service.ServiceLocator;
 import nccloud.framework.web.action.itf.ICommonAction;
+import nccloud.framework.web.container.ClientInfo;
 import nccloud.framework.web.container.IRequest;
 import nccloud.framework.web.container.SessionContext;
 import nccloud.framework.web.convert.translate.Translator;
 import nccloud.framework.web.json.JsonFactory;
 import nccloud.framework.web.processor.template.BillCardConvertProcessor;
+import nccloud.framework.web.processor.template.ExtBillCardConvertProcessor;
 import nccloud.framework.web.ui.pattern.billcard.BillCard;
-import nccloud.ifm.vo.OperatorParam;
+import nccloud.framework.web.ui.pattern.billcard.BillCardFormulaHandler;
+import nccloud.pubitf.platform.query.INCCloudQueryService;
+import nccloud.web.common.bean.CardOperatorParam;
+import nccloud.web.ifm.common.action.CommonQueryCardAction;
 import nccloud.web.ifm.util.RedeemUtil;
+import nccloud.framework.web.ui.pattern.billcard.CardHeadAfterEditEvent;
+import nccloud.framework.web.ui.pattern.extbillcard.ExtBillCard;
+import nccloud.framework.web.ui.pattern.form.Form;
+import nccloud.framework.web.ui.pattern.grid.Grid;
 public class RedeemInitAction  implements ICommonAction {
 
 	@Override
@@ -48,12 +63,15 @@ public class RedeemInitAction  implements ICommonAction {
 			// info经过转变成为service可用的QueryScheme
 			//IQueryScheme scheme = qservice.convertCondition(operaParam);
 			Map map = json.fromJson(read,HashMap.class);
-			if (map.get("id") != null) {
-				String pk_apply = map.get("id").toString();
+			if (map.get("newvalue") != null) {
+				String pk_apply = map.get("newvalue").toString();
+				Map page_id = (Map) map.get("form");
+				Map pk_org = (Map) map.get("pkorg");
+				String pkorg = pk_org.get("value").toString();
+				pageId = page_id.get("pageid").toString();
 				IIFMApplyQueryService service = ServiceLocator
 						.find(IIFMApplyQueryService.class);
 				resultVOs = service.queryApplyByPks(new String[] { pk_apply });
-			
 				vo = setDefautValue(resultVOs);
 			}else{
 				InvestRedeemVO parentVO = new InvestRedeemVO();
@@ -63,13 +81,15 @@ public class RedeemInitAction  implements ICommonAction {
 				Integer billstatus =   (Integer) RedeemStatusEnum.待提交.value();
 				parentVO.setAttributeValue("vbillstatus", vbillstatus);
 				parentVO.setAttributeValue("billstatus", billstatus);
+				ClientInfo clientInfo = SessionContext.getInstance().getClientInfo();
+				//parentVO.setAttributeValue("pk_org", "0001A110000000003BSM");
 				vo.setParentVO(parentVO);
-				String defaultOrgUnit = RedeemUtil.getUserDefaultOrgUnit();
-				if (defaultOrgUnit != null) {
-					setOrgRelatedValue(vo, defaultOrgUnit);
-				}	
+				
 			}
-			
+			String defaultOrgUnit = RedeemUtil.getUserDefaultOrgUnit();
+			if (defaultOrgUnit != null) {
+				setOrgRelatedValue(vo, defaultOrgUnit);
+			}	
 			//vos = new AggInvestRedeemVO[]{vo};
 			BillCardConvertProcessor processor = new BillCardConvertProcessor();
 			billCard = new BillCard();
@@ -98,16 +118,13 @@ public class RedeemInitAction  implements ICommonAction {
 		Integer vbillstatus = (Integer) BillStatusEnum.FREE.value();
 		//需要改一下
 		
-		String pkorg = resultVOs[0].getParentVO().getPk_org();
+		//String issuebank = resultVOs[0].getParentVO().getIssuebank();
 		
 		Integer billstatus =   (Integer) RedeemStatusEnum.待提交.value();
 		UFDate billmakedate = new UFDate(SessionContext.getInstance().getClientInfo().getBizDateTime());
 	
 		String billmaker = SessionContext.getInstance().getClientInfo().getUserid();
-		String pk_olccurr = RedeemUtil.getOrgStandardCurrtype(pkorg);
-		parentVO.setAttributeValue("pk_olccurr",pk_olccurr);
-		parentVO.setAttributeValue("pk_org", pkorg);
-		parentVO.setAttributeValue("pk_group", getGroupByOrg(pkorg));
+		parentVO.setAttributeValue("pk_org", resultVOs[0].getParentVO().getPk_org());
 		parentVO.setAttributeValue("vbillstatus", vbillstatus);
 		parentVO.setAttributeValue("billstatus", billstatus);
 		parentVO.setAttributeValue("billmakedate", billmakedate);
@@ -130,51 +147,23 @@ public class RedeemInitAction  implements ICommonAction {
 		parentVO.setAttributeValue("olcmoney", resultVOs[0].getParentVO().getOlcmoney());
 		parentVO.setAttributeValue("glcrate", resultVOs[0].getParentVO().getGlcrate());
 		parentVO.setAttributeValue("gllcrate", resultVOs[0].getParentVO().getGllcrate());
-		if(resultVOs[0].getParentVO().getApplynumber()!=null && resultVOs[0].getParentVO().getApplynumber()>0){
-			Integer lastNum = isApplyNumNoExists(parentVO,resultVOs[0].getParentVO().getProductcode(),resultVOs[0].getParentVO().getApplynumber());
-			parentVO.setAttributeValue("holdnumber", lastNum);		
-		}else{
-			//计算选择产品的持有金额(理财金额-赎回总额)
-			UFDouble holdMoney = isApplyMoneyNoExists(parentVO,resultVOs[0].getParentVO().getProductcode(),resultVOs[0].getParentVO().getMoney());
-			parentVO.setAttributeValue("holdmoney", holdMoney);
-		}
-		parentVO.setAttributeValue("redeemdate", getBusiDate());
-		parentVO.setAttributeValue("incomedate", getBusiDate());
-		parentVO.setAttributeValue("pk_srcbill", resultVOs[0].getParentVO().getPk_apply());
-		parentVO.setAttributeValue("pk_srcbilltype", resultVOs[0].getParentVO().getPk_billtypeid());
-		parentVO.setAttributeValue("srcbilltypecode", resultVOs[0].getParentVO().getPk_billtypecode());
-		parentVO.setAttributeValue("srcbillno", resultVOs[0].getParentVO().getVbillno());
-		parentVO.setAttributeValue("gatheringaccount", resultVOs[0].getParentVO().getSettleaccount());
-		parentVO.setAttributeValue("enddate", resultVOs[0].getParentVO().getEnddate());
+		//计算选择产品的持有金额(理财金额-赎回总额)
+		UFDouble holdMoney = isApplyNoExists(parentVO,resultVOs[0].getParentVO().getProductcode(),resultVOs[0].getParentVO().getMoney());
+		parentVO.setAttributeValue("holdmoney", holdMoney);
+		
 		aggVO.setParentVO(parentVO);
 		return aggVO;
 	}
-	/**
-	 * 查询财务组织所在集团
-	 * @param pk_org
-	 * @return
-	 */
-	public static String getGroupByOrg(String pk_org) throws BusinessException {
-		IOrgUnitPubService_C orgUnitQryService = ServiceLocator.find(IOrgUnitPubService_C.class);
-		String pk_group = null;
-		OrgVO[] orgVOs = orgUnitQryService.getOrgs(new String[] { pk_org }, new String[] { TMIFMConst.FIELD_PK_GROUP });
-		if(orgVOs == null || orgVOs.length <= 0){
-			ExceptionUtils.wrapBusinessException("获取财务组织对应的集团失败。");
-		}
-		pk_group = (String) orgVOs[0].getAttributeValue(TMIFMConst.FIELD_PK_GROUP);
-		return pk_group;
-	}
 
+	
 	/**
-	 * 验证赎回金额是否大于持有金额，返回持有金额
-	 * @param parentVO
+	 * 判断申请编号是否可用
 	 * @param applycode
-	 * @param money
+	 * @param money 
 	 * @return
 	 * @throws BusinessException
 	 */
-
-	private UFDouble isApplyMoneyNoExists(InvestRedeemVO parentVO,String applycode, UFDouble money) throws BusinessException {
+	private UFDouble isApplyNoExists(InvestRedeemVO parentVO,String applycode, UFDouble money) throws BusinessException {
 	
 		IInvestRedeemQueryService serviceRedeem=ServiceLocator.find(IInvestRedeemQueryService.class);
 		String condition = "productcode = '" + applycode + "'";
@@ -197,38 +186,6 @@ public class RedeemInitAction  implements ICommonAction {
 		} else {
 			return	holdMoney =allmoney.sub(ALL_DBL);
 		}
-	}
-	/**
-	 * 验证赎回份数是否大于持有份数，返回持有份数
-	 * @param parentVO
-	 * @param applycode
-	 * @param applyNum
-	 * @return
-	 * @throws BusinessException
-	 */
-	private Integer isApplyNumNoExists(InvestRedeemVO parentVO,String applycode,Integer applyNum) throws BusinessException {
-		
-		IInvestRedeemQueryService serviceRedeem=ServiceLocator.find(IInvestRedeemQueryService.class);
-		String condition = "productcode = '" + applycode + "'";
-		SuperVO[] fvo = serviceRedeem.querySuperVOByCondition(condition, AggInvestRedeemVO.class);
-		Integer lastNum =0;
-		Integer redeemSum=0;
-		if (fvo != null && fvo.length > 0) {
-			for(SuperVO svo:fvo){
-				InvestRedeemVO vo =	(InvestRedeemVO) svo;
-				if(vo.getRedeemnumber()!=null){
-					redeemSum=redeemSum+vo.getRedeemnumber();
-				}
-				
-				parentVO.setAttributeValue("lastdate",vo.getRedeemdate());
-			}
-			lastNum = applyNum-redeemSum;
-			
-			return lastNum;
-		}else{
-			return applyNum;
-		}
-		
 	}
 	/**
 	 * 设置默认组织相关字段

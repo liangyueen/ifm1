@@ -29,7 +29,7 @@ IRule<AggInvestApplyVO> {
 			boolean mark = queryService.ifCanDelete(parentVO.getVbillno());
 			if(!flag || !mark){
 				ExceptionUtils.wrappBusinessException("单据"+ parentVO.getVbillno() +"正在被使用，不能取消审批！");		
-			}else if(parentVO.getBillstatus() == 3) {
+			}else if(parentVO.getVbillstatus() == 3) {
 				try {
 					super.delBankAcc(vo, new UFDate(parentVO.getPurchasedate().toLocalString()));
 				} catch (BusinessException e) {
@@ -44,7 +44,7 @@ IRule<AggInvestApplyVO> {
 			throws BusinessException {
 		InvestApplyVO headvo = (InvestApplyVO) aggvo.getParentVO();
 		ArrayList<String> serialnos = new ArrayList<String>();
-			if (headvo.getBillstatus() == 3) {
+			if (headvo.getVbillstatus()== 3) {
 				if (null != headvo.getSettleaccount()) {
 					serialnos.add(headvo.getVbillno()
 							+ headvo.getPk_apply()
