@@ -1,0 +1,3 @@
+insert into sm_appregister(pk_appregister,app_desc,apptype,code,creationtime,creator,dr,fun_property,funtype,height,help_name,image_src,iscauserusable,iscopypage,isenable,mdid,modifiedtime,modifier,mountid,name,orgtypecode,own_module,parent_id,pk_group,resid,source_app_code,target_path,ts,uselicense_load,width) values('1001Z61000000000SUL0','赎回',1,'36670RED','2018-09-03 13:41:39','1001A11000000000037O',0,0,0,1,null,'jiaqin','N','N','Y','~','2018-09-04 13:49:02','1001A11000000000037O',null,'投资赎回','FINANCEORGTYPE000000','3667','1001Z61000000000SI8M','~',null,'36670RED','1001Z61000000000SUNG','2018-09-07 18:21:35','Y',1)
+go
+
