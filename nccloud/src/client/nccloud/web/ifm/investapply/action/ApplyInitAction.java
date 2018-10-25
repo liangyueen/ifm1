@@ -29,8 +29,9 @@ public class ApplyInitAction implements ICommonAction{
 			AggInvestApplyVO aggVO = setDefautValue();
 			
 			// 判断登录用户是否有默认组织
+			String pk_group = SessionContext.getInstance().getClientInfo().getPk_group();
 			String defaultOrgUnit = ApplyQueryUtil.getUserDefaultOrgUnit();
-			if (defaultOrgUnit != null) {
+			if (defaultOrgUnit != null && !pk_group.equals(defaultOrgUnit)) {
 				setOrgRelatedValue(aggVO, defaultOrgUnit);
 			}
 
@@ -68,10 +69,8 @@ public class ApplyInitAction implements ICommonAction{
 				.getUserid();
 		parentVO.setPk_billtypecode(getBillTypeCode());
 		parentVO.setBillstatus(0);
-		parentVO.setPaytype(1);
 		parentVO.setAttributeValue("pk_group", pk_group);
 		parentVO.setPk_olccurr(ApplyQueryUtil.getOrgStandardCurrtype(pk_group));
-		parentVO.setAttributeValue("protocoltype", 1);
 		parentVO.setAttributeValue("vbillstatus", vbillstatus);
 		parentVO.setAttributeValue("billmakedate", billmakedate);
 		parentVO.setAttributeValue("billmaker", billmaker);

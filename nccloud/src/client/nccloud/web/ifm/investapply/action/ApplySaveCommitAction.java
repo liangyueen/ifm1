@@ -26,10 +26,6 @@ public class ApplySaveCommitAction extends CommonSaveAction<AggInvestApplyVO> {
 	protected AggInvestApplyVO doBusinessSave(AggInvestApplyVO operaVO) {
 		try {
 			this.doBefore(operaVO);
-		} catch (BusinessException e1) {
-			e1.printStackTrace();
-		}
-		try {
 			// 调用动作脚本，执行保存
 			operaVO = (AggInvestApplyVO) callActionScript(
 					TMIMFConst.CONST_ACTION_SAVEBASE,
@@ -80,6 +76,10 @@ public class ApplySaveCommitAction extends CommonSaveAction<AggInvestApplyVO> {
 			headVO.setAttributeValue("version", 1);
 			headVO.setAttributeValue("versiontime", new UFDate(SessionContext
 					.getInstance().getClientInfo().getBizDateTime()));
+			headVO.setAttributeValue("holdmoney", headVO.getMoney());
+			if(headVO.getUnitnetvalue() != null && headVO.getApplynumber() != null){
+				headVO.setAttributeValue("holdnumber", headVO.getApplynumber());
+			}
 			headVO.setPk_group(getGroupByOrg(headVO.getPk_org()));
 		}
 	}
