@@ -23,9 +23,9 @@ IRule<AggInvestApplyVO> {
 		IInvestRedeemQueryService queryService = ServiceLocator.find(IInvestRedeemQueryService.class);
 		for (AggInvestApplyVO vo : vos) {
 			InvestApplyVO parentVO = (InvestApplyVO) vo.getParent();
-			//判断投资收益是否在使用当前单据()
+			//判断投资收益是否在使用当前单据(),true可以取消，false不可以取消
 			boolean flag = ctrlService.isSaved(parentVO.getVbillno());
-			//判断投资赎回是否在使用当前单据
+			//判断投资赎回是否在使用当前单据，true可以取消，false不可以取消
 			boolean mark = queryService.ifCanDelete(parentVO.getVbillno());
 			if(!flag || !mark){
 				ExceptionUtils.wrappBusinessException("单据"+ parentVO.getVbillno() +"正在被使用，不能取消审批！");		

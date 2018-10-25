@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import nc.vo.ifm.apply.AggInvestApplyVO;
+import nc.vo.ifm.apply.InvestApplyVO;
 import nc.vo.imf.constants.TMIMFConst;
 import nc.vo.pub.BusinessException;
 import nccloud.ifm.vo.OperatorParam;
 import nccloud.web.ifm.investapply.util.ApplyQueryUtil;
 import nccloud.web.tmifm.common.action.CommonOperatorAction;
-
 public class ApplyDeleteAction extends CommonOperatorAction<AggInvestApplyVO>{
 	
 	private List<String> errList;
 
 	@Override
-	protected String[] getErrormessage() {//AggInvestApplyVO
+	protected String[] getErrormessage() {
 		return (String[]) errList.toArray(new String[0]);
 	}
 
@@ -63,18 +63,15 @@ public class ApplyDeleteAction extends CommonOperatorAction<AggInvestApplyVO>{
 		return vos;
 	}
 	
-	
-
 	private boolean doBefore(AggInvestApplyVO vo) {
+		InvestApplyVO head = vo.getParentVO();
+		if (!(head.getBillstatus() == 0)) {
+			errList.add("申购编号：" + head.getVbillno() + "，不可以进行删除操作！");
+			return false;
+		}
 		return true;
-//		InvestApplyVO head = vo.getParentVO();
-//		if (!head.getBillstatus().equals(ProtocolStatusEnum.SUBMIT.value())) {
-//			errList.add("协议编号：" + head.getProtocolcode() + "，只有协议状态为待提交的单据才可以进行删除操作！");
-//		}
-//		
-//		return true;
 	}
-
+	
 	@Override
 	protected String getActionCode() {
 		return TMIMFConst.CONST_ACTION_DELETE;
