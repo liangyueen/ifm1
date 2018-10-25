@@ -64,8 +64,10 @@ public class RedeemInitAction  implements ICommonAction {
 				parentVO.setAttributeValue("vbillstatus", vbillstatus);
 				parentVO.setAttributeValue("billstatus", billstatus);
 				vo.setParentVO(parentVO);
+				// 判断登录用户是否有默认组织
+				String pk_group = SessionContext.getInstance().getClientInfo().getPk_group();
 				String defaultOrgUnit = RedeemUtil.getUserDefaultOrgUnit();
-				if (defaultOrgUnit != null) {
+				if (defaultOrgUnit != null  && !pk_group.equals(defaultOrgUnit)) {
 					setOrgRelatedValue(vo, defaultOrgUnit);
 				}	
 			}
