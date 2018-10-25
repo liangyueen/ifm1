@@ -15,7 +15,7 @@ import nc.vo.pub.BusinessException;
 import nc.vo.tmpub.util.SqlUtil;
 
 @SuppressWarnings({"unchecked","rawtypes"})
-public abstract class IfmAbstractReflector <T> implements IBillReflectorService{
+public abstract class IfmAbstractReflector <T  extends AggregatedValueObject> implements IBillReflectorService{
 	
 	@Override
 	public Collection<FipExtendAggVO> queryBillByRelations(
@@ -35,21 +35,14 @@ public abstract class IfmAbstractReflector <T> implements IBillReflectorService{
 		List<FipExtendAggVO> ret = new ArrayList<FipExtendAggVO>(aggvos.length);
 		for(AggregatedValueObject aggvo : aggvos){
 			FipExtendAggVO vo = new FipExtendAggVO();
-			vo.setBillVO(getVoucherBill((T)aggvo.getParentVO()));		
+			vo.setBillVO(getVoucherBill((T)aggvo));		
 			vo.setRelationID(aggvo.getParentVO().getPrimaryKey());			
 			ret.add(vo);			
 		}
 		return ret;		
 	}
 	
-	/**
-	 * 得到送会计平台的VO（一般都是单据VO直接送）
-	 * @param billVO
-	 * @return
-	 */
-	public T getVoucherBill(T billVO) {
-		return billVO;
-	}
+	
 	
 	public AggregatedValueObject[] getBusiBill(String[] keys) throws BusinessException {
 		if(null == keys || keys.length == 0) return null;
@@ -69,6 +62,15 @@ public abstract class IfmAbstractReflector <T> implements IBillReflectorService{
 	
 	public static IMDPersistenceQueryService getMDQueryService() {
 		return NCLocator.getInstance().lookup(IMDPersistenceQueryService.class);
+	}
+	
+	/**
+	 * 得到送会计平台的VO（一般都是单据VO直接送）
+	 * @param billVO
+	 * @return
+	 */
+	public AggregatedValueObject getVoucherBill(T billVO) {
+		return billVO;
 	}
 
 }

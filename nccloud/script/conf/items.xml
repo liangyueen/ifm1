@@ -49,4 +49,14 @@
 		<grpField>funnode</grpField>
 		<fixedWhere>templateid in (select ctemplateid from pub_print_template  where vtemplatecode like '%3667%' and appcode is not null) </fixedWhere>
 	</item>	
+	<item>
+		<itemKey>bd_userdefrule</itemKey>
+		<itemName>自定义项</itemName>
+		<itemRule>bd_userdefrule</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere> code like ('cdmc%')</fixedWhere>
+	</item>
+	
 </items>

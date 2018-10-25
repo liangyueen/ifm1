@@ -18,6 +18,7 @@
 			<action>ifm.redeem.redeemcardafter</action>
 			<action>ifm.redeem.print</action>
 			<action>ifm.cash.appregisterurlquery</action>
+			<action>ifm.redeem.redeemvoucherlinkbill</action>
 		</actions>
 	</authorize>
 </authorizes>

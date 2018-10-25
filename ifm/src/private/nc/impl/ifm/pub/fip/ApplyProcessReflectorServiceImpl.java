@@ -3,19 +3,26 @@ package nc.impl.ifm.pub.fip;
 import nc.vo.fac.fixdepositprocess.FixDepositProcessVO;
 import nc.vo.fac.pub.IFACConst;
 import nc.vo.fip.service.FipRelationInfoVO;
+import nc.vo.ifm.apply.AggInvestApplyVO;
+import nc.vo.ifm.apply.InvestApplyVO;
 import nc.vo.ifm.constants.TMIFMConst;
+import nc.vo.ifm.redeem.AggInvestRedeemVO;
+import nc.vo.pub.AggregatedValueObject;
 
 
-public class ApplyProcessReflectorServiceImpl  extends IfmAbstractReflector<FixDepositProcessVO> {
-	public static final String PK_DEPOSIT="pk_apply";
+public class ApplyProcessReflectorServiceImpl  extends IfmAbstractReflector<AggInvestApplyVO> {
 	@Override
 	public String getPKFieldName() {
-		return PK_DEPOSIT;
+		return InvestApplyVO.PK_APPLY;
 	}
 
 	@Override
-	public Class<FixDepositProcessVO> getBillClass() {
-		return FixDepositProcessVO.class;
+	public Class<AggInvestApplyVO> getBillClass() {
+		return AggInvestApplyVO.class;
+	}
+	@Override
+	public AggregatedValueObject getVoucherBill(AggInvestApplyVO billVO) {
+		return billVO;
 	}
 
 	@Override

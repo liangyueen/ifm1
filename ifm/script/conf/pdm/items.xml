@@ -113,5 +113,15 @@
 		<grpField></grpField>
 		<fixedWhere>pk_ncc_queryscheme in('1001Z610000000025VC7','1001Z6100000000268D9','1001Z610000000025IXY')</fixedWhere>
 	</item>
+	<item>
+		<itemKey>bd_userdefrule</itemKey>
+		<itemName>自定义项</itemName>
+		<itemRule>bd_userdefrule</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere> code like ('ifm%')</fixedWhere>
+	</item>
+	
 
 </items>

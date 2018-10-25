@@ -72,4 +72,9 @@
 		<label>查询小应用URL</label>
 		<clazz>nccloud.web.ifm.redeem.action.AppregisterUrlQueryAction</clazz>
 	</action>
+		<action>
+		<name>ifm.redeem.redeemvoucherlinkbill</name>
+		<label>凭证联查单据特转付款</label>
+		<clazz>nccloud.web.ifm.redeem.action.RedeemLinkBillAction</clazz>
+	</action>
 </actions>
