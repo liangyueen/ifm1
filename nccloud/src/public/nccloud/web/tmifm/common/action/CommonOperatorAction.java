@@ -1,6 +1,5 @@
 package nccloud.web.tmifm.common.action;
 
-import nc.vo.imf.constants.TMIMFConst;
 import nc.vo.pubapp.pattern.model.entity.bill.AbstractBill;
 import nccloud.framework.core.exception.ExceptionUtils;
 import nccloud.framework.web.container.IRequest;
@@ -144,10 +143,7 @@ public abstract class CommonOperatorAction<T extends AbstractBill> extends
 		String[] error = this.getErrormessage();
 		result = OperatorResult.buildResult(operaVOs == null ? 0
 				: operaVOs.length, resultVOs == null ? 0 : resultVOs.length);
-		// 删除操作直接返回null
-		if (!TMIMFConst.CONST_ACTION_DELETE.equals(this.getActionCode())) {
-			result.setBillCards(billCards);
-		}
+		result.setBillCards(billCards);
 		result.setErrormessages(error);
 	}
 

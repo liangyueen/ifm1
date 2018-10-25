@@ -31,7 +31,7 @@ public class AceApplyApproveBP {
 		}
 		// 执行后规则
 		this.addAfterRule(bp.getAroundProcesser());
-		//this.addAfterRule(clientBills);
+		this.addAfterRule(clientBills);
 		AggInvestApplyVO[] returnVos =bp.update(clientBills, originBills);
 		return returnVos;
 	}
@@ -49,11 +49,11 @@ public class AceApplyApproveBP {
 		aroundProcesser.addAfterRule(rwRule);
 		aroundProcesser.addAfterRule(rule);
 	}
-
-	/*private void addAfterRule(AggInvestApplyVO[] vos) {
+	
+	private void addAfterRule(AggInvestApplyVO[] vos) {
 		IRule<AggInvestApplyVO> rule = null;
 		rule = new TallySendApplyProcessVoucherRule();
 		rule.process(vos);
 		
-	}*/
+	}
 }

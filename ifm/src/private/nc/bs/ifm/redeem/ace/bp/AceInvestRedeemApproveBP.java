@@ -39,11 +39,11 @@ public class AceInvestRedeemApproveBP {
 	public AggInvestRedeemVO[] approve(AggInvestRedeemVO[] clientBills,
 			AggInvestRedeemVO[] originBills) {
 		UpdateBPTemplate<AggInvestRedeemVO> bp = new UpdateBPTemplate<AggInvestRedeemVO>(InvestRedeemPluginPoint.APPROVE);
-	/*	for (AggInvestRedeemVO clientBill : clientBills) {
+		for (AggInvestRedeemVO clientBill : clientBills) {
 			InvestRedeemVO vo = clientBill.getParentVO();
 			Integer billstatus =   (Integer) RedeemStatusEnum.部分赎回.value();//待审核
-			if(vo.getHoldmoeny()!=null){
-				if ((vo.getHoldmoeny()).compareTo(UFDouble.ZERO_DBL)<1 ) {
+			if(vo.getHoldmoney()!=null){
+				if ((vo.getHoldmoney()).compareTo(UFDouble.ZERO_DBL)<1 ) {
 					billstatus = (Integer) RedeemStatusEnum.全部赎回.value();
 				}
 			}else if(vo.getRedeemnumber()!=null){
@@ -59,13 +59,13 @@ public class AceInvestRedeemApproveBP {
 			if(vo.getRealreaning()!= null){
 				
 			}
-		}*/
+		}
 		this.addBeforeRule(bp.getAroundProcesser());
 //		BillUpdate<AggInvestRedeemVO> update = new BillUpdate<AggInvestRedeemVO>();
 //		AggInvestRedeemVO[] returnVos = update.update(clientBills, originBills);
 		this.addAfterRule(bp.getAroundProcesser());
 		AggInvestRedeemVO[] returnVos =bp.update(clientBills, originBills);
-		//this.addAfterRule(clientBills);
+		this.addAfterRule(clientBills);
 		return returnVos;
 	}
 	
@@ -74,9 +74,7 @@ public class AceInvestRedeemApproveBP {
 	private void addAfterRule(
 			CompareAroundProcesser<AggInvestRedeemVO> aroundProcesser) {
 		IRule<AggInvestRedeemVO> rwRule = new RegisterWriteBankAccAfterRule();
-		IRule<AggInvestRedeemVO> rule = new TallySendRedeemProcessVoucherRule();
 		aroundProcesser.addAfterRule(rwRule);
-		aroundProcesser.addAfterRule(rule);
 		
 	}
 	
@@ -94,12 +92,12 @@ public class AceInvestRedeemApproveBP {
 	 * 
 	 * @param processor
 	 */
-	/*private void addAfterRule(AggInvestRedeemVO[] vos) {
+	private void addAfterRule(AggInvestRedeemVO[] vos) {
 		IRule<AggInvestRedeemVO> rule = null;
 		rule = new TallySendRedeemProcessVoucherRule();
 		rule.process(vos);
 		
-	}*/
+	}
 	/*private void addAfterRule(CompareAroundProcesser<AggInvestRedeemVO> processer) {
 		
 		IRule<AggInvestRedeemVO> terminateRule = new TallySendRedeemProcessVoucherRule();

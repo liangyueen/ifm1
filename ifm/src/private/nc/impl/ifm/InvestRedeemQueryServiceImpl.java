@@ -77,7 +77,6 @@ public class InvestRedeemQueryServiceImpl implements IInvestRedeemQueryService{
 
 	@Override
 	public boolean ifCanDelete(String apply_vbillno) {
-			//根据传入的pk_apply查询所有符合条件的redeem
 			DataAccessUtils dao = new DataAccessUtils();
 			IRowSet rowset = dao.query("select pk_redeem from ifm_redeem where srcbilltypecode='3641' and srcbillno ='"+apply_vbillno+"'");
 			//不存在记录，返回true

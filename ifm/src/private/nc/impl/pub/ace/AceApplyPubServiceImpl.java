@@ -27,7 +27,8 @@ public abstract class AceApplyPubServiceImpl {
 			AceApplyInsertBP action = new AceApplyInsertBP();
 			AggInvestApplyVO[] retvos = action.insert(clientFullVOs);
 			// 构造返回数据
-			return transferTool.getBillForToClient(retvos);
+//			return transferTool.getBillForToClient(retvos);
+			return retvos;
 		} catch (Exception e) {
 			ExceptionUtils.marsh(e);
 		}

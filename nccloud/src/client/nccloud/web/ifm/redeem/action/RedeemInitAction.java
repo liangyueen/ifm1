@@ -48,13 +48,17 @@ public class RedeemInitAction  implements ICommonAction {
 			// info经过转变成为service可用的QueryScheme
 			//IQueryScheme scheme = qservice.convertCondition(operaParam);
 			Map map = json.fromJson(read,HashMap.class);
-			if (map.get("id") != null) {
-				String pk_apply = map.get("id").toString();
+			if (map.get("newvalue") != null) {
+				String pk_apply = map.get("newvalue").toString();
+				Map page_id = (Map) map.get("form");
+				Map pk_org = (Map) map.get("pkorg");
+				String pkorg = pk_org.get("value").toString();
+				pageId = page_id.get("pageid").toString();
 				IIFMApplyQueryService service = ServiceLocator
 						.find(IIFMApplyQueryService.class);
 				resultVOs = service.queryApplyByPks(new String[] { pk_apply });
 			
-				vo = setDefautValue(resultVOs);
+				vo = setDefautValue(resultVOs,pkorg);
 			}else{
 				InvestRedeemVO parentVO = new InvestRedeemVO();
 				OperatorParam operaParam  = json.fromJson(read, OperatorParam.class);
@@ -90,7 +94,7 @@ public class RedeemInitAction  implements ICommonAction {
 		return billCard;
 	}
 
-	private AggInvestRedeemVO setDefautValue(AggInvestApplyVO[] resultVOs)  throws BusinessException{
+	private AggInvestRedeemVO setDefautValue(AggInvestApplyVO[] resultVOs,String pkorg)  throws BusinessException{
 		AggInvestRedeemVO aggVO = new AggInvestRedeemVO();
 		InvestRedeemVO parentVO = new InvestRedeemVO();
 		String pk_group = SessionContext.getInstance().getClientInfo()
@@ -100,14 +104,12 @@ public class RedeemInitAction  implements ICommonAction {
 		Integer vbillstatus = (Integer) BillStatusEnum.FREE.value();
 		//需要改一下
 		
-		String pkorg = resultVOs[0].getParentVO().getPk_org();
+		//String issuebank = resultVOs[0].getParentVO().getIssuebank();
 		
 		Integer billstatus =   (Integer) RedeemStatusEnum.待提交.value();
 		UFDate billmakedate = new UFDate(SessionContext.getInstance().getClientInfo().getBizDateTime());
 	
 		String billmaker = SessionContext.getInstance().getClientInfo().getUserid();
-		String pk_olccurr = RedeemUtil.getOrgStandardCurrtype(pkorg);
-		parentVO.setAttributeValue("pk_olccurr",pk_olccurr);
 		parentVO.setAttributeValue("pk_org", pkorg);
 		parentVO.setAttributeValue("pk_group", getGroupByOrg(pkorg));
 		parentVO.setAttributeValue("vbillstatus", vbillstatus);
@@ -134,7 +136,7 @@ public class RedeemInitAction  implements ICommonAction {
 		parentVO.setAttributeValue("gllcrate", resultVOs[0].getParentVO().getGllcrate());
 		if(resultVOs[0].getParentVO().getApplynumber()!=null && resultVOs[0].getParentVO().getApplynumber()>0){
 			Integer lastNum = isApplyNumNoExists(parentVO,resultVOs[0].getParentVO().getProductcode(),resultVOs[0].getParentVO().getApplynumber());
-			parentVO.setAttributeValue("holdnumber", lastNum);		
+			parentVO.setAttributeValue("applynumber", lastNum);		
 		}else{
 			//计算选择产品的持有金额(理财金额-赎回总额)
 			UFDouble holdMoney = isApplyMoneyNoExists(parentVO,resultVOs[0].getParentVO().getProductcode(),resultVOs[0].getParentVO().getMoney());
@@ -142,12 +144,6 @@ public class RedeemInitAction  implements ICommonAction {
 		}
 		parentVO.setAttributeValue("redeemdate", getBusiDate());
 		parentVO.setAttributeValue("incomedate", getBusiDate());
-		parentVO.setAttributeValue("pk_srcbill", resultVOs[0].getParentVO().getPk_apply());
-		parentVO.setAttributeValue("pk_srcbilltype", resultVOs[0].getParentVO().getPk_billtypeid());
-		parentVO.setAttributeValue("srcbilltypecode", resultVOs[0].getParentVO().getPk_billtypecode());
-		parentVO.setAttributeValue("srcbillno", resultVOs[0].getParentVO().getVbillno());
-		parentVO.setAttributeValue("gatheringaccount", resultVOs[0].getParentVO().getSettleaccount());
-		parentVO.setAttributeValue("enddate", resultVOs[0].getParentVO().getEnddate());
 		aggVO.setParentVO(parentVO);
 		return aggVO;
 	}
