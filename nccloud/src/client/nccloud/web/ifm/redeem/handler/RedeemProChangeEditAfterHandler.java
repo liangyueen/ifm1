@@ -1,6 +1,6 @@
 package nccloud.web.ifm.redeem.handler;
 
-import nc.itf.ifm.IIFMApplyQueryService;
+import nc.itf.ifm.IInvestApplyQueryService;
 import nc.pubitf.org.cache.IOrgUnitPubService_C;
 import nc.vo.ifm.RedeemStatusEnum;
 import nc.vo.ifm.apply.AggInvestApplyVO;
@@ -66,8 +66,8 @@ public class RedeemProChangeEditAfterHandler extends AbstractCommonAfterEditHand
 	protected void setRedeemDefaultValue(CardHeadAfterEditEvent event,AggInvestRedeemVO vo) throws BusinessException {
 		InvestRedeemVO pvo = vo.getParentVO();
 		String pk_apply = event.getNewvalue().getValue().toString();
-		IIFMApplyQueryService service = ServiceLocator
-				.find(IIFMApplyQueryService.class);
+		IInvestApplyQueryService service = ServiceLocator
+				.find(IInvestApplyQueryService.class);
 		AggInvestApplyVO[] resultVOs = null;
 		resultVOs = service.queryApplyByPks(new String[] { pk_apply });
 		

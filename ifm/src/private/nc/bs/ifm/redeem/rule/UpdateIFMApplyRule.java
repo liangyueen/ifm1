@@ -1,8 +1,8 @@
 package nc.bs.ifm.redeem.rule;
 import nc.bs.dao.BaseDAO;
 import nc.impl.pubapp.pattern.rule.IRule;
-import nc.itf.ifm.IIFMApplyQueryService;
 import nc.itf.ifm.IIncomeCtrlService;
+import nc.itf.ifm.IInvestApplyQueryService;
 import nc.vo.ifm.RedeemStatusEnum;
 import nc.vo.ifm.apply.AggInvestApplyVO;
 import nc.vo.ifm.redeem.AggInvestRedeemVO;
@@ -29,10 +29,13 @@ public class UpdateIFMApplyRule implements IRule<AggInvestRedeemVO> {
 		for (AggInvestRedeemVO clientBill : vos) {
 			InvestRedeemVO vo = clientBill.getParentVO();
 			Integer billstatus =   (Integer) RedeemStatusEnum.部分赎回.value();//待审核
-			IIFMApplyQueryService service = ServiceLocator
-					.find(IIFMApplyQueryService.class);
+			IInvestApplyQueryService service = ServiceLocator
+					.find(IInvestApplyQueryService.class);
 			AggInvestApplyVO[] resultVOs = null;
 			resultVOs = service.queryApplyByPks(new String[] { vo.getPk_srcbill() });
+			if(resultVOs.length==0){
+				throw new BusinessException("数据有误");
+			}
 			if(vo.getRedeemnumber()!=null){
 				Integer lastNum = RedeemUtil.isApplyNumNoExists(vo,vo.getPk_srcbill(),resultVOs[0].getParentVO().getApplynumber());
 				Integer holdNum =lastNum-vo.getRedeemnumber();

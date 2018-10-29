@@ -4,7 +4,7 @@ package nccloud.web.ifm.redeem.action;
 import java.util.HashMap;
 import java.util.Map;
 
-import nc.itf.ifm.IIFMApplyQueryService;
+import nc.itf.ifm.IInvestApplyQueryService;
 import nc.itf.ifm.IInvestRedeemQueryService;
 import nc.pubitf.org.cache.IOrgUnitPubService_C;
 import nc.vo.ifm.RedeemStatusEnum;
@@ -50,8 +50,8 @@ public class RedeemInitAction  implements ICommonAction {
 			Map map = json.fromJson(read,HashMap.class);
 			if (map.get("id") != null) {
 				String pk_apply = map.get("id").toString();
-				IIFMApplyQueryService service = ServiceLocator
-						.find(IIFMApplyQueryService.class);
+				IInvestApplyQueryService service = ServiceLocator
+						.find(IInvestApplyQueryService.class);
 				resultVOs = service.queryApplyByPks(new String[] { pk_apply });
 			
 				vo = setDefautValue(resultVOs);

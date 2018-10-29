@@ -2,7 +2,7 @@
 <authorizes>
 	<authorize>
 	<!--投资赎回-->
-		<appcode>36670RED</appcode>
+		<appcode>36670RED,36670AP,36670IPR</appcode>
 		<actions>
 			<action>ifm.redeem.init</action>
 			<action>ifm.redeem.redeemsave</action>
