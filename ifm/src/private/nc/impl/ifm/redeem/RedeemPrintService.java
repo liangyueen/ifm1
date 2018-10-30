@@ -1,6 +1,8 @@
 package nc.impl.ifm.redeem;
 
 import nc.ui.pub.print.IDataSource;
+import nc.ui.pub.print.IMetaDataDataSource;
+import nccloud.pubitf.cmp.common.PrintDataSourceFactory;
 import nccloud.pubitf.platform.print.AbstractPrintService;
 import nccloud.pubitf.platform.print.IPrintInfo;
 import nccloud.pubitf.platform.print.vo.PrintInfo;
@@ -9,10 +11,12 @@ public class RedeemPrintService extends AbstractPrintService {
 	@Override
 	public IDataSource[] getDataSources(IPrintInfo info) {
 		PrintInfo printinfo = (PrintInfo) info;
-
-		RedeemPrintDataSource ds = new RedeemPrintDataSource(
-				printinfo.getIds());
-		return new IDataSource[] { ds };
+		String[] ids = printinfo.getIds();
+		RedeemPrintDataSource[] ds = new RedeemPrintDataSource[ids.length];
+		for (int i = 0; i < ids.length; i++) {
+			ds[i] = new RedeemPrintDataSource(ids[i]);
+		}
+		return ds;
 
 	}
 }

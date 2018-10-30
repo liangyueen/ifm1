@@ -67,8 +67,9 @@ public class IncomeInitAction  implements ICommonAction {
 				// 设置默认值
 //				AggInvestIncomeVO aggVO = setDefautValue();
 				// 判断登录用户是否有默认组织
+				String pk_group = SessionContext.getInstance().getClientInfo().getPk_group();
 				String defaultOrgUnit = IncomeUtil.getUserDefaultOrgUnit();//查询用户默认的主组织
-				if (defaultOrgUnit != null) {
+				if (defaultOrgUnit != null && !pk_group.equals(defaultOrgUnit)) {
 					setOrgRelatedValue(vo, defaultOrgUnit);
 				}
 			}

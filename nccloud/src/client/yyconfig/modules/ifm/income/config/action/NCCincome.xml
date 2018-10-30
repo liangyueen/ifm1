@@ -66,4 +66,9 @@
 		<label>编辑后事件</label>
 		<clazz>nccloud.web.ifm.income.action.IncomeCardAfterEditAction</clazz>
 	</action>
+	<action>
+		<name>ifm.income.incomevoucherlinkbill</name>
+		<label>编辑后事件</label>
+		<clazz>nccloud.web.ifm.income.action.IncomeLinkBillAction</clazz>
+	</action>
 </actions>

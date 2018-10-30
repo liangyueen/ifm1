@@ -3,7 +3,6 @@ package nc.impl.ifm;
 import nc.bs.ifm.income.ace.bp.AceInvestIncomeDeleteBP;
 import nc.bs.ifm.income.ace.bp.AceInvestIncomeInsertBP;
 import nc.impl.pubapp.pattern.database.DataAccessUtils;
-import nc.itf.ifm.IIFMApplyQueryService;
 import nc.itf.ifm.IIncomeCtrlService;
 import nc.itf.ifm.IInvestIncomeQueryService;
 import nc.vo.ifm.income.AggInvestIncomeVO;
@@ -11,12 +10,8 @@ import nc.vo.ifm.income.InvestIncomeVO;
 import nc.vo.ifm.redeem.InvestRedeemVO;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.SuperVO;
-import nc.vo.pub.lang.UFDate;
-import nc.vo.pub.pf.BillStatusEnum;
 import nc.vo.pubapp.pattern.data.IRowSet;
-import nc.vo.uapec.uapecpub.util.BeanUtils;
 import nccloud.framework.service.ServiceLocator;
-import nccloud.framework.web.container.SessionContext;
 import nccloud.web.ifm.util.IncomeUtil;
 
 public class IncomeCtrlServiceImpl implements IIncomeCtrlService {

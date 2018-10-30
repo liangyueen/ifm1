@@ -4,6 +4,7 @@
 	<!--投资申购-->
 		<appcode>36670AP</appcode>
 		<actions>
+			<action>ifm.apply.init</action>
 			<action>ifm.apply.applysave</action>
 			<action>ifm.apply.applylistqry</action>
 			<action>ifm.apply.applydelete</action>
@@ -14,6 +15,7 @@
 			<action>ifm.apply.applyuncommit</action>
 			<action>ifm.apply.print</action>
 			<action>ifm.apply.cardeditafter</action>
+			<action>ifm.apply.applyvoucherlinkbill</action>
 		</actions>
 	</authorize>
 </authorizes>

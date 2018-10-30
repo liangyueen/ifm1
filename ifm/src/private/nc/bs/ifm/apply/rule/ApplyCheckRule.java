@@ -39,11 +39,11 @@ public class ApplyCheckRule implements IRule<AggInvestApplyVO> {
 			/** (三)付息规则校验 **/
 			if(paytype != null && payperiod != null && paytype == 1){
 				if(payperiod < 1 || payperiod > 12){
-					ExceptionUtils.wrappBusinessException("付息周期应在1~12月范围内！");
+					ExceptionUtils.wrappBusinessException("付息规则为月时，付息周期应在1~12月范围内！");
 				}
 			}else if(paytype != null && payperiod != null && paytype == 5){
 				if(payperiod < 1 || payperiod > 31){
-					ExceptionUtils.wrappBusinessException("付息周期应在1~31日范围内！");
+					ExceptionUtils.wrappBusinessException("付息规则为日时，付息周期应在1~31日范围内！");
 				}
 			}
 			/** (四)金额校验 **/

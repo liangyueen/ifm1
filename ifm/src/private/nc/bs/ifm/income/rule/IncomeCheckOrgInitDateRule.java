@@ -24,8 +24,7 @@ public class IncomeCheckOrgInitDateRule implements IRule<AggInvestIncomeVO>{
 
 	private void checkOrgInitDateRule(String pk_org) {
 		try {
-			UFDate initDate = InitDateHelper.getInitDate(pk_org,
-					"3643");
+			UFDate initDate = InitDateHelper.getInitDate(pk_org,"3667");
 			if (initDate == null) {
 				ExceptionUtils
 						.wrappBusinessException("当前财务组织未设置业务期间，单据不能保存！");

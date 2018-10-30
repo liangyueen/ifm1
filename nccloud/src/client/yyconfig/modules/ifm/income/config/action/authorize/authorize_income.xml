@@ -16,6 +16,7 @@
 		    <action>ifm.income.print</action>
 			<action>ifm.income.linkntb</action>
 			<action>ifm.income.afteredit</action>
+			<action>ifm.income.incomevoucherlinkbill</action>
 		</actions>
 	</authorize>
 </authorizes>

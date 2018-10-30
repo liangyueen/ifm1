@@ -13,14 +13,14 @@ import nccloud.base.exception.ExceptionUtils;
 public class RedeemPrintDataSource implements IMetaDataDataSource {
 
 	private static final long serialVersionUID = 1L;
-	private final String[] oids;
+	private final String oids;
 
 	/**
 	 * ¹¹Ôìº¯Êý
 	 * 
 	 * @param oids
 	 */
-	public RedeemPrintDataSource(String[] oids) {
+	public RedeemPrintDataSource(String oids) {
 		this.oids = oids;
 	}
 
@@ -52,7 +52,7 @@ public class RedeemPrintDataSource implements IMetaDataDataSource {
 			IInvestRedeemQueryService service = NCLocator.getInstance()
 					.lookup(IInvestRedeemQueryService.class);
 
-			vos = service.queryRedeemByPks(oids);
+			vos = service.getAggVOsByPKs(oids);
 			for(AggInvestRedeemVO vo:vos){
 				InvestRedeemVO headVO=vo.getParentVO();
 				/*int digit = getDigit(headVO.getPk_org());

@@ -31,7 +31,6 @@ public class AceApplyApproveBP {
 		}
 		// 执行后规则
 		this.addAfterRule(bp.getAroundProcesser());
-		//this.addAfterRule(clientBills);
 		AggInvestApplyVO[] returnVos =bp.update(clientBills, originBills);
 		return returnVos;
 	}
@@ -49,5 +48,4 @@ public class AceApplyApproveBP {
 		aroundProcesser.addAfterRule(rwRule);
 		aroundProcesser.addAfterRule(rule);
 	}
-
 }

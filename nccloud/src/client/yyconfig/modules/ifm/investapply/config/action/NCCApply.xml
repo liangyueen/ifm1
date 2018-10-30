@@ -11,7 +11,7 @@
 		<label>列表查询</label>
 		<clazz>nccloud.web.ifm.investapply.action.ApplyListQueryAction</clazz>
 	</action>
-
+	
 	<action>
 		<name>ifm.apply.applydelete</name>
 		<label>删除</label>
@@ -65,6 +65,10 @@
 		<label>初始化</label>
 		<clazz>nccloud.web.ifm.investapply.action.ApplyInitAction</clazz>
 	</action>
-	
+	<action>
+		<name>ifm.apply.applyvoucherlinkbill</name>
+		<label>凭证联查单据特转付款</label>
+		<clazz>nccloud.web.ifm.investapply.action.ApplyLinkBillAction</clazz>
+	</action>
 </actions>
 
