@@ -1,6 +1,8 @@
 package nc.impl.ifm.redeem;
 
 import nc.ui.pub.print.IDataSource;
+import nc.ui.pub.print.IMetaDataDataSource;
+import nccloud.pubitf.cmp.common.PrintDataSourceFactory;
 import nccloud.pubitf.platform.print.AbstractPrintService;
 import nccloud.pubitf.platform.print.IPrintInfo;
 import nccloud.pubitf.platform.print.vo.PrintInfo;
