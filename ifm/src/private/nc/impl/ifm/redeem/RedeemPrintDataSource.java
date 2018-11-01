@@ -8,7 +8,7 @@ import nc.vo.ifm.redeem.InvestRedeemVO;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.lang.UFDouble;
 import nc.vo.tmpub.util.TMCurrencyUtil;
-import nccloud.base.exception.ExceptionUtils;
+import nc.vo.pubapp.pattern.exception.ExceptionUtils;
 
 public class RedeemPrintDataSource implements IMetaDataDataSource {
 
@@ -62,7 +62,7 @@ public class RedeemPrintDataSource implements IMetaDataDataSource {
 			}
 
 		} catch (Exception e) {
-			ExceptionUtils.wrapException(e);
+			ExceptionUtils.wrappException(e);
 		}
 		return vos;
 	}

@@ -13,9 +13,9 @@ import nc.vo.pub.BusinessException;
 import nc.vo.pub.lang.UFDateTime;
 import nc.vo.pub.lang.UFDouble;
 import nc.vo.pub.pf.BillStatusEnum;
+import nc.voifm.ifm.util.IncomeUtil;
 import nccloud.ifm.vo.OperatorParam;
 import nccloud.web.ifm.common.action.CommonCommitAction;
-import nccloud.web.ifm.util.IncomeUtil;
 import nccloud.web.workflow.approve.util.NCCFlowUtils;
 
 public class IncomeSubmitAction extends CommonCommitAction<AggInvestIncomeVO> {

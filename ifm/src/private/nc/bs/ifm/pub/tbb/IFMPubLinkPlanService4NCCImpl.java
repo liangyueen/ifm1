@@ -26,7 +26,7 @@ import nc.vo.tb.obj.NtbParamVO;
 import nc.vo.tmpub.util.ArrayUtil;
 import nc.vo.tmpub.util.SqlUtil;
 import nc.vo.tmpub.util.StringUtil;
-import nccloud.base.exception.ExceptionUtils;
+import nc.vo.pubapp.pattern.exception.ExceptionUtils;
 import nccloud.pubitf.ifm.pub.IIFMPubLinkPlanService4NCC;
 import nccloud.pubitf.tbb.ctrl.ICtrlNccloud;
 
@@ -123,7 +123,7 @@ public class IFMPubLinkPlanService4NCCImpl implements IIFMPubLinkPlanService4NCC
 				.toArray(new IFMToTbbAccessableBusiVO[busiVOList.size()]));
 		//{"error":"√ª”–∆•≈‰µƒ‘§À„"}
 		if(jSONObject.get("hint") != null){
-			ExceptionUtils.wrapBusinessException(jSONObject.get("hint").toString());
+			ExceptionUtils.wrappBusinessException(jSONObject.get("hint").toString());
 		}
 		return jSONObject;
 	}

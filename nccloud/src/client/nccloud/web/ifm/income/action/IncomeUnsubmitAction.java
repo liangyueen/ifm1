@@ -8,9 +8,9 @@ import nc.vo.ifm.constants.TMIFMConst;
 import nc.vo.ifm.income.AggInvestIncomeVO;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.lang.UFDateTime;
+import nc.voifm.ifm.util.IncomeUtil;
 import nccloud.ifm.vo.OperatorParam;
 import nccloud.web.ifm.common.action.CommonOperatorAction;
-import nccloud.web.ifm.util.IncomeUtil;
 
 public class IncomeUnsubmitAction extends CommonOperatorAction<AggInvestIncomeVO> {
 

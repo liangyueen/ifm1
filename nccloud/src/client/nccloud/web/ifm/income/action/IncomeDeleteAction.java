@@ -9,9 +9,9 @@ import nc.vo.ifm.income.AggInvestIncomeVO;
 import nc.vo.ifm.income.InvestIncomeVO;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.lang.UFDateTime;
+import nc.voifm.ifm.util.IncomeUtil;
 import nccloud.ifm.vo.OperatorParam;
 import nccloud.web.ifm.common.action.CommonOperatorAction;
-import nccloud.web.ifm.util.IncomeUtil;
 
 
 public class IncomeDeleteAction extends CommonOperatorAction<AggInvestIncomeVO> {

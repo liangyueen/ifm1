@@ -10,10 +10,10 @@ import nccloud.dto.baseapp.querytree.dataformat.QueryTreeFormatVO;
 import nccloud.framework.core.exception.ExceptionUtils;
 import nccloud.framework.service.ServiceLocator;
 import nccloud.web.ifm.common.action.CommonListQueryAction;
-import nccloud.web.ifm.util.RedeemUtil;
 
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.SuperVO;
+import nc.voifm.ifm.util.RedeemUtil;
 
 
 

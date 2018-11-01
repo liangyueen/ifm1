@@ -8,7 +8,6 @@ import nc.vo.pub.lang.UFDate;
 import nc.vo.pub.protocol.contents.ICCConst;
 import nc.vo.pubapp.pattern.exception.ExceptionUtils;
 import nc.vo.tmpub.initdate.InitDateHelper;
-import nccloud.pubitf.ifm.pub.IFMConstInforNCC;
 
 public class IncomeCheckOrgInitDateRule implements IRule<AggInvestIncomeVO>{
 	@Override

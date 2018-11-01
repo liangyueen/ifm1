@@ -1,4 +1,4 @@
-package nccloud.web.ifm.util;
+package nc.voifm.ifm.util;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;

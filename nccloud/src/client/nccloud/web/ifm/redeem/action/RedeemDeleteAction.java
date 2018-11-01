@@ -10,9 +10,9 @@ import nc.vo.ifm.redeem.AggInvestRedeemVO;
 import nc.vo.ifm.redeem.InvestRedeemVO;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.lang.UFDateTime;
+import nc.voifm.ifm.util.RedeemUtil;
 import nccloud.ifm.vo.OperatorParam;
 import nccloud.web.ifm.common.action.CommonOperatorAction;
-import nccloud.web.ifm.util.RedeemUtil;
 
 
 public class RedeemDeleteAction extends CommonOperatorAction<AggInvestRedeemVO> {

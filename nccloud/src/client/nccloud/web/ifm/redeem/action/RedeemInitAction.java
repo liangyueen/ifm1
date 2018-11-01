@@ -18,6 +18,7 @@ import nc.vo.pub.SuperVO;
 import nc.vo.pub.lang.UFDate;
 import nc.vo.pub.lang.UFDouble;
 import nc.vo.pub.pf.BillStatusEnum;
+import nc.voifm.ifm.util.RedeemUtil;
 import nccloud.framework.core.exception.ExceptionUtils;
 import nccloud.framework.core.json.IJson;
 import nccloud.framework.service.ServiceLocator;
@@ -29,7 +30,6 @@ import nccloud.framework.web.json.JsonFactory;
 import nccloud.framework.web.processor.template.BillCardConvertProcessor;
 import nccloud.framework.web.ui.pattern.billcard.BillCard;
 import nccloud.ifm.vo.OperatorParam;
-import nccloud.web.ifm.util.RedeemUtil;
 public class RedeemInitAction  implements ICommonAction {
 
 	@Override

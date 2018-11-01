@@ -12,6 +12,7 @@ import nc.vo.ifm.income.InvestIncomeVO;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.lang.UFDate;
 import nc.vo.pub.pf.BillStatusEnum;
+import nc.voifm.ifm.util.IncomeUtil;
 import nccloud.framework.core.exception.ExceptionUtils;
 import nccloud.framework.core.json.IJson;
 import nccloud.framework.service.ServiceLocator;
@@ -23,7 +24,6 @@ import nccloud.framework.web.json.JsonFactory;
 import nccloud.framework.web.processor.template.BillCardConvertProcessor;
 import nccloud.framework.web.ui.pattern.billcard.BillCard;
 import nccloud.ifm.vo.OperatorParam;
-import nccloud.web.ifm.util.IncomeUtil;
 
 public class IncomeInitAction  implements ICommonAction {
 

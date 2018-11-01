@@ -4,14 +4,14 @@ import nc.vo.ifm.income.AggInvestIncomeVO;
 import nc.vo.ifm.income.InvestIncomeVO;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.lang.UFDate;
+import nc.voifm.ifm.util.IncomeUtil;
+import nc.voifm.ifm.util.RedeemUtil;
 import nccloud.framework.web.container.SessionContext;
 import nccloud.framework.web.convert.translate.Translator;
 import nccloud.framework.web.processor.template.BillCardConvertProcessor;
 import nccloud.framework.web.ui.pattern.billcard.BillCard;
 import nccloud.framework.web.ui.pattern.billcard.BillCardFormulaHandler;
 import nccloud.framework.web.ui.pattern.billcard.CardHeadAfterEditEvent;
-import nccloud.web.ifm.util.IncomeUtil;
-import nccloud.web.ifm.util.RedeemUtil;
 import nccloud.web.tmpub.afteredit.bean.UIProp;
 import nccloud.web.tmpub.handler.AbstractCommonAfterEditHandler;
 

@@ -8,10 +8,10 @@ import nc.vo.ifm.income.AggInvestIncomeVO;
 import nc.vo.ifm.income.InvestIncomeVO;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.SuperVO;
+import nc.voifm.ifm.util.IncomeUtil;
 import nccloud.dto.baseapp.querytree.dataformat.QueryTreeFormatVO;
 import nccloud.framework.service.ServiceLocator;
 import nccloud.web.ifm.common.action.CommonListQueryAction;
-import nccloud.web.ifm.util.IncomeUtil;
 
 public class IncomeQueryAction extends CommonListQueryAction<AggInvestIncomeVO> {
 

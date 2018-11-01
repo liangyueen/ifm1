@@ -1,6 +1,5 @@
 package nccloud.web.ifm.apply.handler;
 
-import nccloud.web.ifm.investapply.util.ApplyQueryUtil;
 import nccloud.web.tmpub.afteredit.bean.UIProp;
 import nccloud.web.tmpub.handler.AbstractCommonAfterEditHandler;
 import nccloud.framework.web.processor.template.BillCardConvertProcessor;
@@ -9,6 +8,7 @@ import nccloud.framework.web.ui.pattern.billcard.BillCardFormulaHandler;
 import nccloud.framework.web.ui.pattern.billcard.CardHeadAfterEditEvent;
 import nc.vo.ifm.apply.AggInvestApplyVO;
 import nc.vo.ifm.apply.InvestApplyVO;
+import nc.vo.ifm.investapply.util.ApplyQueryUtil;
 import nc.vo.imf.constants.TMIMFConst;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.lang.UFDate;

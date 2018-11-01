@@ -1,13 +1,14 @@
 package nccloud.web.ifm.investapply.action;
 
 import java.util.Map;
+
 import nc.vo.ifm.apply.AggInvestApplyVO;
 import nc.vo.ifm.apply.InvestApplyVO;
+import nc.vo.ifm.investapply.util.ApplyQueryUtil;
 import nc.vo.imf.constants.TMIMFConst;
 import nccloud.dto.baseapp.querytree.dataformat.QueryTreeFormatVO;
 import nccloud.framework.web.convert.precision.GridPrecisionOperator;
 import nccloud.framework.web.ui.pattern.grid.Grid;
-import nccloud.web.ifm.investapply.util.ApplyQueryUtil;
 import nccloud.web.tmifm.common.action.CommonListQueryAction;
 
 public class ApplyListQueryAction extends CommonListQueryAction{

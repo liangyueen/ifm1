@@ -1,6 +1,5 @@
 package nccloud.web.ifm.income.handler;
 
-import nccloud.web.ifm.util.IncomeUtil;
 import nccloud.web.tmpub.afteredit.bean.UIProp;
 import nccloud.web.tmpub.handler.AbstractCommonAfterEditHandler;
 import nccloud.framework.web.processor.template.BillCardConvertProcessor;
@@ -11,6 +10,7 @@ import nc.vo.ifm.income.AggInvestIncomeVO;
 import nc.vo.ifm.income.InvestIncomeVO;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.lang.UFDate;
+import nc.voifm.ifm.util.IncomeUtil;
 
 import org.apache.commons.lang.StringUtils;
 import nccloud.framework.web.convert.translate.Translator;

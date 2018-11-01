@@ -1,6 +1,8 @@
 package nc.bs.ifm.pub.rule;
 
 import java.util.ArrayList;
+
+import nc.bs.framework.common.NCLocator;
 import nc.impl.pubapp.pattern.rule.IRule;
 import nc.itf.cm.prv.CmpConst;
 import nc.itf.ifm.IIncomeCtrlService;
@@ -12,15 +14,14 @@ import nc.vo.pub.AggregatedValueObject;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.lang.UFDate;
 import nc.vo.pubapp.pattern.exception.ExceptionUtils;
-import nccloud.framework.service.ServiceLocator;
 
 public class RegisterUnWriteBankAccAfterRule extends IFACIFMAccSuper implements
 IRule<AggInvestApplyVO> {
 
 	@Override
 	public void process(AggInvestApplyVO[] vos){
-		IIncomeCtrlService ctrlService = ServiceLocator.find(IIncomeCtrlService.class);//IInvestRedeemQueryService
-		IInvestRedeemQueryService queryService = ServiceLocator.find(IInvestRedeemQueryService.class);
+		IIncomeCtrlService ctrlService = NCLocator.getInstance().lookup(IIncomeCtrlService.class);
+		IInvestRedeemQueryService queryService = NCLocator.getInstance().lookup(IInvestRedeemQueryService.class);
 		for (AggInvestApplyVO vo : vos) {
 			InvestApplyVO parentVO = (InvestApplyVO) vo.getParent();
 			//判断投资收益是否在使用当前单据(),true可以取消，false不可以取消

@@ -1,5 +1,6 @@
 package nc.bs.ifm.redeem.rule;
 import nc.bs.dao.BaseDAO;
+import nc.bs.framework.common.NCLocator;
 import nc.impl.pubapp.pattern.rule.IRule;
 import nc.itf.ifm.IIncomeCtrlService;
 import nc.itf.ifm.IInvestApplyQueryService;
@@ -11,8 +12,7 @@ import nc.vo.pub.BusinessException;
 import nc.vo.pub.BusinessRuntimeException;
 import nc.vo.pub.VOStatus;
 import nc.vo.pub.lang.UFDouble;
-import nccloud.framework.service.ServiceLocator;
-import nccloud.web.ifm.util.RedeemUtil;
+import nc.voifm.ifm.util.RedeemUtil;
 
 public class UpdateIFMApplyRule implements IRule<AggInvestRedeemVO> {
 
@@ -29,8 +29,7 @@ public class UpdateIFMApplyRule implements IRule<AggInvestRedeemVO> {
 		for (AggInvestRedeemVO clientBill : vos) {
 			InvestRedeemVO vo = clientBill.getParentVO();
 			Integer billstatus =   (Integer) RedeemStatusEnum.PARTREDEEM.value();//待审核
-			IInvestApplyQueryService service = ServiceLocator
-					.find(IInvestApplyQueryService.class);
+			IInvestApplyQueryService service = NCLocator.getInstance().lookup(IInvestApplyQueryService.class);
 			AggInvestApplyVO[] resultVOs = null;
 			resultVOs = service.queryApplyByPks(new String[] { vo.getPk_srcbill() });
 			if(resultVOs.length==0){
@@ -72,8 +71,7 @@ public class UpdateIFMApplyRule implements IRule<AggInvestRedeemVO> {
 			
 			//若有收益金额，则调用收益接口添加赎回收益
 			if(vo.getRealreaning()!= null){
-				IIncomeCtrlService incomeService = ServiceLocator
-						.find(IIncomeCtrlService.class);
+				IIncomeCtrlService incomeService = NCLocator.getInstance().lookup(IIncomeCtrlService.class);
 				boolean save = incomeService.WriteIncomeBill(vo);
 				if(!save){
 					throw new BusinessException("写入收益失败");

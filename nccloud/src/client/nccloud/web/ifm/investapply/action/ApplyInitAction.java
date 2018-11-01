@@ -2,6 +2,7 @@ package nccloud.web.ifm.investapply.action;
 
 import nc.vo.ifm.apply.AggInvestApplyVO;
 import nc.vo.ifm.apply.InvestApplyVO;
+import nc.vo.ifm.investapply.util.ApplyQueryUtil;
 import nc.vo.imf.constants.TMIMFConst;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.lang.UFDate;
@@ -15,7 +16,6 @@ import nccloud.framework.web.processor.template.BillCardConvertProcessor;
 import nccloud.framework.web.ui.pattern.billcard.BillCard;
 import nccloud.framework.web.ui.pattern.billcard.BillCardFormulaHandler;
 import nccloud.ifm.vo.OperatorParam;
-import nccloud.web.ifm.investapply.util.ApplyQueryUtil;
 
 public class ApplyInitAction implements ICommonAction{
 	

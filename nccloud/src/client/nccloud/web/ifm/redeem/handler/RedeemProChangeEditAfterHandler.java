@@ -12,6 +12,7 @@ import nc.vo.pub.BusinessException;
 import nc.vo.pub.lang.UFDate;
 import nc.vo.pub.lang.UFDouble;
 import nc.vo.pub.pf.BillStatusEnum;
+import nc.voifm.ifm.util.RedeemUtil;
 import nccloud.framework.core.exception.ExceptionUtils;
 import nccloud.framework.service.ServiceLocator;
 import nccloud.framework.web.container.SessionContext;
@@ -20,7 +21,6 @@ import nccloud.framework.web.processor.template.BillCardConvertProcessor;
 import nccloud.framework.web.ui.pattern.billcard.BillCard;
 import nccloud.framework.web.ui.pattern.billcard.BillCardFormulaHandler;
 import nccloud.framework.web.ui.pattern.billcard.CardHeadAfterEditEvent;
-import nccloud.web.ifm.util.RedeemUtil;
 import nccloud.web.tmpub.afteredit.bean.UIProp;
 import nccloud.web.tmpub.handler.AbstractCommonAfterEditHandler;
 

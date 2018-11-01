@@ -12,12 +12,12 @@ import nc.vo.pub.BusinessException;
 import nc.vo.pub.lang.UFDate;
 import nc.vo.pub.lang.UFDateTime;
 import nc.vo.pub.lang.UFDouble;
+import nc.voifm.ifm.util.RedeemUtil;
 import nccloud.framework.core.exception.ExceptionUtils;
 import nccloud.framework.service.ServiceLocator;
 import nccloud.framework.web.container.ClientInfo;
 import nccloud.framework.web.container.SessionContext;
 import nccloud.web.ifm.common.action.CommonSaveAction;
-import nccloud.web.ifm.util.RedeemUtil;
 
 import org.apache.commons.lang.StringUtils;
 /**

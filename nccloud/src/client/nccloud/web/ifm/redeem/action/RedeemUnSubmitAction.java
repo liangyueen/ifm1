@@ -12,8 +12,8 @@ import nc.vo.ifm.redeem.InvestRedeemVO;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.lang.UFDateTime;
 import nc.vo.pub.pf.BillStatusEnum;
+import nc.voifm.ifm.util.RedeemUtil;
 import nccloud.web.ifm.common.action.CommonOperatorAction;
-import nccloud.web.ifm.util.RedeemUtil;
 
 public class RedeemUnSubmitAction extends CommonOperatorAction<AggInvestRedeemVO> {
 

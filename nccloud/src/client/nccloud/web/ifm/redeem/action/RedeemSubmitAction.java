@@ -12,10 +12,10 @@ import nc.vo.ifm.redeem.InvestRedeemVO;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.lang.UFDateTime;
 import nc.vo.pub.lang.UFDouble;
+import nc.voifm.ifm.util.RedeemUtil;
 import nccloud.base.exception.ExceptionUtils;
 import nccloud.ifm.vo.OperatorParam;
 import nccloud.web.ifm.common.action.CommonCommitAction;
-import nccloud.web.ifm.util.RedeemUtil;
 
 public class RedeemSubmitAction extends CommonCommitAction<AggInvestRedeemVO> {
 

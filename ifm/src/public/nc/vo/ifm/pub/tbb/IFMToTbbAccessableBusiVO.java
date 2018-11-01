@@ -16,8 +16,7 @@ import nc.itf.tb.control.IAccessableBusiVO;
 import nc.pubitf.bd.accessor.GeneralAccessorFactory;
 import nc.vo.bd.accessor.IBDData;
 import nc.vo.pub.CircularlyAccessibleValueObject;
-import nc.vo.sf.pub.tbb.SFToTbbAccessableBusiVO;
-import nccloud.base.exception.ExceptionUtils;
+import nc.vo.pubapp.pattern.exception.ExceptionUtils;
 
 /**
  * 投资理财-预算控制VO基类
@@ -166,7 +165,7 @@ public abstract class IFMToTbbAccessableBusiVO implements Serializable, IAccessa
 			o = (IFMToTbbAccessableBusiVO) super.clone();
 		} catch (CloneNotSupportedException e) {
 			Logger.error(e);
-			ExceptionUtils.wrapException(e);
+			ExceptionUtils.wrappException(e);
 		}
 		return o;
 	}

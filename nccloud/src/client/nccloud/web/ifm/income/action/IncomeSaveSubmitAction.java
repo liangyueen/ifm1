@@ -9,10 +9,10 @@ import nc.vo.jcom.lang.StringUtil;
 import nc.vo.org.OrgVO;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.lang.UFDate;
+import nc.voifm.ifm.util.IncomeUtil;
 import nccloud.framework.core.exception.ExceptionUtils;
 import nccloud.framework.service.ServiceLocator;
 import nccloud.framework.web.container.SessionContext;
-import nccloud.web.ifm.util.IncomeUtil;
 import nccloud.web.tmifm.common.action.CommonSaveAction;
 
 public class IncomeSaveSubmitAction extends CommonSaveAction<AggInvestIncomeVO> {

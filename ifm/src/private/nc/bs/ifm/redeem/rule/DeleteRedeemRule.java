@@ -1,5 +1,6 @@
 package nc.bs.ifm.redeem.rule;
 
+import nc.bs.framework.common.NCLocator;
 import nc.impl.pubapp.pattern.database.DataAccessUtils;
 import nc.impl.pubapp.pattern.rule.IRule;
 import nc.itf.ifm.IIncomeCtrlService;
@@ -7,7 +8,6 @@ import nc.vo.ifm.redeem.AggInvestRedeemVO;
 import nc.vo.ifm.redeem.InvestRedeemVO;
 import nc.vo.pub.BusinessException;
 import nc.vo.pubapp.pattern.data.IRowSet;
-import nccloud.framework.service.ServiceLocator;
 
 public class DeleteRedeemRule implements IRule<AggInvestRedeemVO> {
 
@@ -61,8 +61,7 @@ public class DeleteRedeemRule implements IRule<AggInvestRedeemVO> {
 	 */
 	private boolean checkIncome(AggInvestRedeemVO[] vos) throws BusinessException {
 		// TODO Auto-generated method stub
-		IIncomeCtrlService incomeService = ServiceLocator
-				.find(IIncomeCtrlService.class);
+		IIncomeCtrlService incomeService = NCLocator.getInstance().lookup(IIncomeCtrlService.class);
 		for (AggInvestRedeemVO clientBill : vos) {
 			InvestRedeemVO vo = clientBill.getParentVO();
 			if(vo.getRealreaning()!=null)

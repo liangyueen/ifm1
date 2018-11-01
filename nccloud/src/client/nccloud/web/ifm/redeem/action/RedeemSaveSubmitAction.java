@@ -14,6 +14,7 @@ import nc.vo.pub.lang.UFDate;
 import nc.vo.pub.lang.UFDateTime;
 import nc.vo.pub.lang.UFDouble;
 import nc.vo.uap.pf.PfProcessBatchRetObject;
+import nc.voifm.ifm.util.RedeemUtil;
 import nccloud.base.exception.ExceptionUtils;
 import nccloud.framework.core.json.IJson;
 import nccloud.framework.service.ServiceLocator;
@@ -27,7 +28,6 @@ import nccloud.framework.web.ui.pattern.billcard.BillCard;
 import nccloud.framework.web.ui.pattern.billcard.BillCardFormulaHandler;
 import nccloud.pubitf.riart.pflow.CloudPFlowContext;
 import nccloud.pubitf.riart.pflow.ICloudScriptPFlowService;
-import nccloud.web.ifm.util.RedeemUtil;
 import nccloud.web.workflow.approve.util.NCCFlowUtils;
 
 import org.apache.commons.lang.StringUtils;

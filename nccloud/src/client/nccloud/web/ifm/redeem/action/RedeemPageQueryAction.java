@@ -12,6 +12,7 @@ import nc.vo.ifm.redeem.AggInvestRedeemVO;
 import nc.vo.pub.BusinessException;
 import nc.vo.pubapp.pattern.model.entity.bill.IBill;
 import nc.vo.scmpub.page.PageQueryVO;
+import nc.voifm.ifm.util.RedeemUtil;
 import nccloud.dto.baseapp.querytree.dataformat.QueryTreeFormatVO;
 import nccloud.framework.core.exception.ExceptionUtils;
 import nccloud.framework.core.json.IJson;
@@ -25,7 +26,6 @@ import nccloud.framework.web.ui.pattern.grid.Grid;
 import nccloud.framework.web.ui.pattern.grid.GridOperator;
 import nccloud.pubitf.platform.query.INCCloudQueryService;
 import nccloud.web.ifm.common.action.CommonQueryByPksAction;
-import nccloud.web.ifm.util.RedeemUtil;
 /**
  * ≤È—Ø
  * @author suxch

@@ -1,9 +1,9 @@
 package nccloud.web.ifm.investapply.action;
 
 import nc.vo.ifm.apply.AggInvestApplyVO;
+import nc.vo.ifm.investapply.util.ApplyQueryUtil;
 import nc.vo.imf.constants.TMIMFConst;
 import nc.vo.pubapp.pattern.model.entity.bill.AbstractBill;
-import nccloud.web.ifm.investapply.util.ApplyQueryUtil;
 import nccloud.web.tmifm.common.action.CommonQueryByPksAction;
 
 public class ApplyQueryByPksAction extends CommonQueryByPksAction{
