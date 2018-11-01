@@ -1,10 +1,10 @@
 package nc.itf.ifm;
 
-import com.alibaba.fastjson.JSONObject;
-
 import nc.vo.ifm.income.AggInvestIncomeVO;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.SuperVO;
+
+import com.alibaba.fastjson.JSONObject;
 
 public interface IInvestIncomeQueryService {
 	/**
@@ -45,4 +45,10 @@ public interface IInvestIncomeQueryService {
 	 * @return
 	 */
 	public abstract String getDefaultOrgUnit();
+	/**
+	 * 根据主键查询执行情况调整单
+	 * @return
+	 * @throws BusinessException
+	 */
+	public AggInvestIncomeVO[] getAggVOsByPKs(String... pks) throws BusinessException ;
 }

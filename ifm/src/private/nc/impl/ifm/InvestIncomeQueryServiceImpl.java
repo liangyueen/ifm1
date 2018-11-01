@@ -44,6 +44,12 @@ public class InvestIncomeQueryServiceImpl implements IInvestIncomeQueryService{
 		bills = query.query(pks);
 		return PaginationUtils.filterNotExistBills(bills, pks);
 	}
+	
+	@Override
+	public AggInvestIncomeVO[] getAggVOsByPKs(String... pks)
+			throws BusinessException {
+		return aceInvestIncomeQueryBP.getAggVOsByPKs(pks);
+	}
 
 	@Override
 	public String[] queryCCIncomeBySchema(IQueryScheme querySchema)

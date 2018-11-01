@@ -134,12 +134,10 @@ paytype int null
 /*付息规则*/,
 payperiod int null 
 /*付息周期*/,
-settledate nchar(19) null 
+settledate nvarchar(20) null default '~' 
 /*结息日*/,
 applynumber int null 
 /*申购份数*/,
-unitnetvalue decimal(28,8) null 
-/*单位净值*/,
 capitalproject nvarchar(20) null default '~' 
 /*资金计划项目*/,
 investvariety nvarchar(20) null default '~' 
@@ -150,6 +148,8 @@ holdmoney decimal(28,8) null
 /*持有金额*/,
 holdnumber int null 
 /*持有份数*/,
+unitnetvalue decimal(28,8) null 
+/*单位净值*/,
  constraint pk_ifm_apply primary key (pk_apply),
  ts char(19) null default convert(char(19),getdate(),20),
 dr smallint null default 0

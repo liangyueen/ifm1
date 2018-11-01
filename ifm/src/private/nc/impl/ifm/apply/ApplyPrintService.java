@@ -8,8 +8,12 @@ public class ApplyPrintService extends AbstractPrintService {
 	@Override
 	public IDataSource[] getDataSources(IPrintInfo info) {
 		PrintInfo printinfo = (PrintInfo) info;
-		ApplyPrintDataSource ds = new ApplyPrintDataSource(printinfo.getIds());
-		return new IDataSource[] { ds };
+		String[] ids = printinfo.getIds();
+		ApplyPrintDataSource[] ds = new ApplyPrintDataSource[ids.length];
+		for (int i = 0; i < ids.length; i++) {
+			ds[i] = new ApplyPrintDataSource(ids[i]);
+		}
+		return ds;
 
 	}
 }

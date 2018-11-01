@@ -1,8 +1,8 @@
 package nc.impl.ifm;
 
 import java.util.Collection;
-
 import nc.bs.dao.BaseDAO;
+import nc.bs.ifm.apply.ace.bp.AceInvestApplyQueryBP;
 import nc.impl.pubapp.pattern.data.bill.BillQuery;
 import nc.impl.pubapp.pattern.database.DataAccessUtils;
 import nc.itf.ifm.IInvestApplyQueryService;
@@ -10,6 +10,7 @@ import nc.pubitf.setting.defaultdata.OrgSettingAccessor;
 import nc.ui.querytemplate.querytree.IQueryScheme;
 import nc.vo.ifm.apply.AggInvestApplyVO;
 import nc.vo.ifm.apply.InvestApplyVO;
+import nc.vo.ifm.redeem.AggInvestRedeemVO;
 import nc.vo.imf.constants.TMIMFConst;
 import nc.vo.pub.BusinessException;
 import nc.vo.pubapp.bill.pagination.util.PaginationUtils;
@@ -19,6 +20,8 @@ import nc.vo.pubapp.query2.sql.process.QuerySchemeProcessor;
 import nc.vo.tmpub.util.TmpubQueryUtil;
 
 public class InvestApplyQueryServiceImpl implements IInvestApplyQueryService {
+	
+	private AceInvestApplyQueryBP aceInvestApplyQueryBP = new AceInvestApplyQueryBP();
 		
 	@Override
 	public AggInvestApplyVO[] queryApplyByPks(String[] pks)
@@ -103,4 +106,13 @@ public class InvestApplyQueryServiceImpl implements IInvestApplyQueryService {
 		}
 		return null;
 	}
+
+	@Override
+	public AggInvestApplyVO[] getAggVOsByPKs(String... pks)
+			throws BusinessException {
+		return aceInvestApplyQueryBP.getAggVOsByPKs(pks);
+	}
+
+	
+	
 }

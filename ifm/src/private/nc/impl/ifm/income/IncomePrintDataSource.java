@@ -6,21 +6,20 @@ import nc.ui.pub.print.IMetaDataDataSource;
 import nc.vo.ifm.income.AggInvestIncomeVO;
 import nc.vo.ifm.income.InvestIncomeVO;
 import nc.vo.pub.BusinessException;
-import nc.vo.pub.lang.UFDouble;
 import nc.vo.tmpub.util.TMCurrencyUtil;
 import nccloud.base.exception.ExceptionUtils;
 
 public class IncomePrintDataSource implements IMetaDataDataSource {
 
 	private static final long serialVersionUID = 1L;
-	private final String[] oids;
+	private final String oids;
 
 	/**
 	 * ¹¹Ôìº¯Êý
 	 * 
 	 * @param oids
 	 */
-	public IncomePrintDataSource(String[] oids) {
+	public IncomePrintDataSource(String oids) {
 		this.oids = oids;
 	}
 
@@ -52,7 +51,7 @@ public class IncomePrintDataSource implements IMetaDataDataSource {
 			IInvestIncomeQueryService service = NCLocator.getInstance()
 					.lookup(IInvestIncomeQueryService.class);
 
-			vos = service.queryIncomeByPks(oids);
+			vos = service.getAggVOsByPKs(oids);
 			for(AggInvestIncomeVO vo:vos){
 				InvestIncomeVO headVO=vo.getParentVO();
 //				int digit = getDigit(headVO.getPk_org());
@@ -77,11 +76,11 @@ public class IncomePrintDataSource implements IMetaDataDataSource {
 		return false;
 	}
 	
-	/*private int getDigit(String pk_org) throws BusinessException {
+	private int getDigit(String pk_org) throws BusinessException {
 		String pk_curr = TMCurrencyUtil.getOrgLocalCurrPK(pk_org);
 		int digit = TMCurrencyUtil.getCurrtypeDigit(pk_curr);
 		return digit;
 
-	}*/
+	}
 
 }

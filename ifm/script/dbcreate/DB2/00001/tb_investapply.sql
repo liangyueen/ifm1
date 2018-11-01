@@ -133,12 +133,10 @@ paytype integer null
 /*付息规则*/,
 payperiod integer null 
 /*付息周期*/,
-settledate char(19) null 
+settledate varchar(20) null default '~' 
 /*结息日*/,
 applynumber integer null 
 /*申购份数*/,
-unitnetvalue decimal(28,8) null 
-/*单位净值*/,
 capitalproject varchar(20) null default '~' 
 /*资金计划项目*/,
 investvariety varchar(20) null default '~' 
@@ -149,6 +147,8 @@ holdmoney decimal(28,8) null
 /*持有金额*/,
 holdnumber integer null 
 /*持有份数*/,
+unitnetvalue decimal(28,8) null 
+/*单位净值*/,
  constraint pk_ifm_apply primary key (pk_apply),
  ts char(19) null,
 dr smallint null default 0

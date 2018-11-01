@@ -69,6 +69,7 @@ public class ApplyInitAction implements ICommonAction{
 				.getUserid();
 		parentVO.setPk_billtypecode(getBillTypeCode());
 		parentVO.setBillstatus(0);
+		parentVO.setInterestday(2);
 		parentVO.setAttributeValue("pk_group", pk_group);
 		parentVO.setPk_olccurr(ApplyQueryUtil.getOrgStandardCurrtype(pk_group));
 		parentVO.setAttributeValue("vbillstatus", vbillstatus);

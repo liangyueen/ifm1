@@ -64,6 +64,7 @@ public class ApplyOrgChangeEditAfterHandler extends AbstractCommonAfterEditHandl
 			newvo.setBillmakedate(billmakedate);
 			newvo.setPk_billtypecode(getBillTypeCode());
 		}
+		newvo.setInterestday(2);
 		newvo.setVbillstatus(-1);
 		newvo.setBillstatus(0);
 		newvo.setPaytype(1);

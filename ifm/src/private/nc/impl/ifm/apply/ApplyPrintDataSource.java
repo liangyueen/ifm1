@@ -6,21 +6,20 @@ import nc.ui.pub.print.IMetaDataDataSource;
 import nc.vo.ifm.apply.AggInvestApplyVO;
 import nc.vo.ifm.apply.InvestApplyVO;
 import nc.vo.pub.BusinessException;
-import nc.vo.pub.lang.UFDouble;
 import nc.vo.tmpub.util.TMCurrencyUtil;
 import nccloud.base.exception.ExceptionUtils;
 
 public class ApplyPrintDataSource implements IMetaDataDataSource {
 
 	private static final long serialVersionUID = 1L;
-	private final String[] oids;
+	private final String oids;
 
 	/**
 	 * ¹¹Ôìº¯Êý
 	 * 
 	 * @param oids
 	 */
-	public ApplyPrintDataSource(String[] oids) {
+	public ApplyPrintDataSource(String oids) {
 		this.oids = oids;
 	}
 
@@ -51,15 +50,14 @@ public class ApplyPrintDataSource implements IMetaDataDataSource {
 		try {
 			IInvestApplyQueryService service = NCLocator.getInstance()
 					.lookup(IInvestApplyQueryService.class);
-
-			vos = service.queryApplyByPks(oids);
-//			for(AggInvestApplyVO vo:vos){
-//				InvestApplyVO headVO=vo.getParentVO();
-//				int digit = getDigit(headVO.getPk_org());
-//				UFDouble payLocal = vo.getParentVO().getCdtlnamt()==null?UFDouble.ZERO_DBL:headVO.getCdtlnamt();
-//				payLocal = new UFDouble(payLocal.doubleValue(),digit);
-//				headVO.setCdtlnamt(payLocal);
-//			}
+			vos = service.getAggVOsByPKs(oids);
+			for(AggInvestApplyVO vo:vos){
+				InvestApplyVO headVO=vo.getParentVO();
+				/*int digit = getDigit(headVO.getPk_org());
+				UFDouble payLocal = vo.getParentVO().getCdtlnamt()==null?UFDouble.ZERO_DBL:headVO.getCdtlnamt();
+				payLocal = new UFDouble(payLocal.doubleValue(),digit);
+				headVO.setCdtlnamt(payLocal);*/
+			}
 
 		} catch (Exception e) {
 			ExceptionUtils.wrapException(e);
@@ -83,5 +81,4 @@ public class ApplyPrintDataSource implements IMetaDataDataSource {
 		return digit;
 
 	}
-
 }

@@ -3,7 +3,7 @@ package nc.itf.ifm;
 import nc.vo.ifm.apply.AggInvestApplyVO;
 import nc.vo.pub.BusinessException;
 
-public interface IInvestApplyQueryService {	
+public interface IInvestApplyQueryService {
 	/**
 	 * 创建日期:
 	 * @return AggBankApplyVO[]
@@ -29,5 +29,12 @@ public interface IInvestApplyQueryService {
 	 * @return
 	 */
 	public abstract String getDefaultOrgUnit();
+	
+	/**
+	 * 根据主键查询执行情况调整单
+	 * @return
+	 * @throws BusinessException
+	 */
+	public AggInvestApplyVO[] getAggVOsByPKs(String... pks) throws BusinessException ;
 	
 }

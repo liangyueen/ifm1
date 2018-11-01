@@ -10,9 +10,16 @@ public class IncomePrintService extends AbstractPrintService {
 	public IDataSource[] getDataSources(IPrintInfo info) {
 		PrintInfo printinfo = (PrintInfo) info;
 
-		IncomePrintDataSource ds = new IncomePrintDataSource(
+		/*IncomePrintDataSource ds = new IncomePrintDataSource(
 				printinfo.getIds());
-		return new IDataSource[] { ds };
+		return new IDataSource[] { ds };*/
+		
+		String [] ids = printinfo.getIds();
+		IncomePrintDataSource[] ds = new IncomePrintDataSource[ids.length];
+		for (int i = 0; i < ids.length; i++) {
+			ds[i] = new IncomePrintDataSource(ids[i]);
+		}
+		return ds;
 
 	}
 }
