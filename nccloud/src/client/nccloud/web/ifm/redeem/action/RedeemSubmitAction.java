@@ -88,7 +88,7 @@ public class RedeemSubmitAction extends CommonCommitAction<AggInvestRedeemVO> {
 
 	private boolean doBefore(AggInvestRedeemVO vo) {
 		InvestRedeemVO head = vo.getParentVO();
-		if (!head.getBillstatus().equals(RedeemStatusEnum.待提交.value())) {
+		if (!head.getBillstatus().equals(RedeemStatusEnum.NOSUB.value())) {
 			errList.add("协议编号：" + head.getVbillno() + "，不可以进行提交操作！");
 			return false;
 		}

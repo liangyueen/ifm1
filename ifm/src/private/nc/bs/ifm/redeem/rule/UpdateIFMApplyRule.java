@@ -28,7 +28,7 @@ public class UpdateIFMApplyRule implements IRule<AggInvestRedeemVO> {
 		try {
 		for (AggInvestRedeemVO clientBill : vos) {
 			InvestRedeemVO vo = clientBill.getParentVO();
-			Integer billstatus =   (Integer) RedeemStatusEnum.部分赎回.value();//待审核
+			Integer billstatus =   (Integer) RedeemStatusEnum.PARTREDEEM.value();//待审核
 			IInvestApplyQueryService service = ServiceLocator
 					.find(IInvestApplyQueryService.class);
 			AggInvestApplyVO[] resultVOs = null;
@@ -43,7 +43,7 @@ public class UpdateIFMApplyRule implements IRule<AggInvestRedeemVO> {
 					throw new BusinessException("赎回份数大于持有份数，当前的持有份数为为："+lastNum+"");
 				}
 				if(holdNum==0){
-					billstatus = (Integer) RedeemStatusEnum.全部赎回.value();
+					billstatus = (Integer) RedeemStatusEnum.ALLREDEEM.value();
 				}
 				
 				BaseDAO dao = new BaseDAO();
@@ -55,7 +55,7 @@ public class UpdateIFMApplyRule implements IRule<AggInvestRedeemVO> {
 				UFDouble holdMoney = RedeemUtil.isApplyMoneyNoExists(vo,vo.getPk_srcbill(),resultVOs[0].getParentVO().getMoney());
 				UFDouble lastMoney =holdMoney.sub(vo.getRedeemmoney());
 				if (lastMoney.compareTo(UFDouble.ZERO_DBL)==0 ) {
-					billstatus = (Integer) RedeemStatusEnum.全部赎回.value();
+					billstatus = (Integer) RedeemStatusEnum.ALLREDEEM.value();
 				}
 				if(lastMoney.compareTo(UFDouble.ZERO_DBL)<0){
 					throw new BusinessException("赎回金额大于持有，当前的持有份数为为："+holdMoney+"");

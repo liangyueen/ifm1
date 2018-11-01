@@ -73,7 +73,7 @@ public class RedeemProChangeEditAfterHandler extends AbstractCommonAfterEditHand
 		
 		Integer vbillstatus = (Integer) BillStatusEnum.FREE.value();
 		
-		Integer billstatus =   (Integer) RedeemStatusEnum.´ýÌá½».value();
+		Integer billstatus =   (Integer) RedeemStatusEnum.NOSUB.value();
 		UFDate billmakedate = new UFDate(SessionContext.getInstance().getClientInfo().getBizDateTime());
 	
 		String billmaker = SessionContext.getInstance().getClientInfo().getUserid();

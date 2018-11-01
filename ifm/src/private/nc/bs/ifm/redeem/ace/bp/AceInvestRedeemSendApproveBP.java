@@ -24,7 +24,7 @@ public class AceInvestRedeemSendApproveBP {
 			AggInvestRedeemVO[] originBills) {
 		for (AggInvestRedeemVO clientFullVO : clientBills) {
 			clientFullVO.getParentVO().setAttributeValue("billstatus",
-					RedeemStatusEnum.待审核.value());
+					RedeemStatusEnum.NOAUDIT.value());
 			clientFullVO.getParentVO().setStatus(VOStatus.UPDATED);
 		}
 		// 数据持久化

@@ -173,7 +173,7 @@ public class RedeemSaveSubmitAction implements ICommonAction {
 				// vo.setVbillno(getBillTypeCode());
 				// Integer vbillstatus = (Integer)
 				// BillStatusEnum.COMMIT.value();//Ìá½»
-				Integer billstatus = (Integer) RedeemStatusEnum.´ıÉóºË.value();// ´ıÉóºË
+				Integer billstatus = (Integer) RedeemStatusEnum.NOAUDIT.value();// ´ıÉóºË
 				// vo.setAttributeValue("vbillstatus", vbillstatus);
 				vo.setAttributeValue("billstatus", billstatus);
 			

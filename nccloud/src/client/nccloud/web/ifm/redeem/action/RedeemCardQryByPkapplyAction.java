@@ -94,7 +94,7 @@ public class RedeemCardQryByPkapplyAction  implements ICommonAction {
 		
 		String issuebank = resultVOs[0].getParentVO().getIssuebank();
 		
-		Integer billstatus =   (Integer) RedeemStatusEnum.´ýÌá½».value();
+		Integer billstatus =   (Integer) RedeemStatusEnum.NOSUB.value();
 		UFDate billmakedate = new UFDate(SessionContext.getInstance().getClientInfo().getBizDateTime());
 	
 		String billmaker = SessionContext.getInstance().getClientInfo().getUserid();

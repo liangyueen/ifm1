@@ -81,7 +81,7 @@ public class RedeemUnSubmitAction extends CommonOperatorAction<AggInvestRedeemVO
 			return false;
 		}*/
 		Integer vbillstatus = (Integer) BillStatusEnum.FREE.value();//Ìá½»
-		Integer billstatus =   (Integer) RedeemStatusEnum.´ýÌá½».value();//´ýÉóºË
+		Integer billstatus =   (Integer) RedeemStatusEnum.NOSUB.value();//´ýÉóºË
 		head.setAttributeValue("vbillstatus", vbillstatus);
 		head.setAttributeValue("billstatus", billstatus);
 		head.setAttributeValue("modifier", null);

@@ -60,7 +60,7 @@ public class RedeemInitAction  implements ICommonAction {
 				OperatorParam operaParam  = json.fromJson(read, OperatorParam.class);
 				pageId = operaParam.getPageCode();
 				Integer vbillstatus = (Integer) BillStatusEnum.FREE.value();
-				Integer billstatus =   (Integer) RedeemStatusEnum.待提交.value();
+				Integer billstatus =   (Integer) RedeemStatusEnum.NOSUB.value();
 				parentVO.setAttributeValue("vbillstatus", vbillstatus);
 				parentVO.setAttributeValue("billstatus", billstatus);
 				vo.setParentVO(parentVO);
@@ -102,7 +102,7 @@ public class RedeemInitAction  implements ICommonAction {
 		
 		String pkorg = resultVOs[0].getParentVO().getPk_org();
 		
-		Integer billstatus =   (Integer) RedeemStatusEnum.待提交.value();
+		Integer billstatus =   (Integer) RedeemStatusEnum.NOSUB.value();
 		UFDate billmakedate = new UFDate(SessionContext.getInstance().getClientInfo().getBizDateTime());
 	
 		String billmaker = SessionContext.getInstance().getClientInfo().getUserid();
