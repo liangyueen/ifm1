@@ -19,16 +19,16 @@ public class BillStatusEnum extends MDEnum{
 
 	
 	
-	public static final BillStatusEnum 待提交 = MDEnum.valueOf(BillStatusEnum.class, Integer.valueOf(0));
+	/*public static final BillStatusEnum NOSUM = MDEnum.valueOf(BillStatusEnum.class, Integer.valueOf(0));
 	
 	
-	public static final BillStatusEnum 待审批 = MDEnum.valueOf(BillStatusEnum.class, Integer.valueOf(1));
+	public static final BillStatusEnum NOAUDIT = MDEnum.valueOf(BillStatusEnum.class, Integer.valueOf(1));
 	
 	
 	public static final BillStatusEnum 审批完成 = MDEnum.valueOf(BillStatusEnum.class, Integer.valueOf(2));
 	
 	
 	public static final BillStatusEnum 已撤单 = MDEnum.valueOf(BillStatusEnum.class, Integer.valueOf(3));
-	
+	*/
 
 }

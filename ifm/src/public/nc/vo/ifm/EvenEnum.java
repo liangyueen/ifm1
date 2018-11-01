@@ -19,13 +19,13 @@ public class EvenEnum extends MDEnum{
 
 	
 	
-	public static final EvenEnum 保证收益类 = MDEnum.valueOf(EvenEnum.class, Integer.valueOf(0));
+	/*public static final EvenEnum 保证收益类 = MDEnum.valueOf(EvenEnum.class, Integer.valueOf(0));
 	
 	
 	public static final EvenEnum 保本浮动收益类 = MDEnum.valueOf(EvenEnum.class, Integer.valueOf(1));
 	
 	
 	public static final EvenEnum 非保本浮动收益类 = MDEnum.valueOf(EvenEnum.class, Integer.valueOf(2));
-	
+	*/
 
 }

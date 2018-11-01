@@ -19,10 +19,10 @@ public class SourceEnum extends MDEnum{
 
 	
 	
-	public static final SourceEnum 手工录入 = MDEnum.valueOf(SourceEnum.class, String.valueOf("0"));
+	/*public static final SourceEnum 手工录入 = MDEnum.valueOf(SourceEnum.class, String.valueOf("0"));
 	
 	
 	public static final SourceEnum 赎回生成 = MDEnum.valueOf(SourceEnum.class, String.valueOf("1"));
-	
+	*/
 
 }

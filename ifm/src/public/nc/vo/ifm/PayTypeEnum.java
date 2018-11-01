@@ -19,7 +19,7 @@ public class PayTypeEnum extends MDEnum{
 
 	
 	
-	public static final PayTypeEnum 月 = MDEnum.valueOf(PayTypeEnum.class, Integer.valueOf(1));
+	/*public static final PayTypeEnum 月 = MDEnum.valueOf(PayTypeEnum.class, Integer.valueOf(1));
 	
 	
 	public static final PayTypeEnum 年 = MDEnum.valueOf(PayTypeEnum.class, Integer.valueOf(2));
@@ -32,6 +32,6 @@ public class PayTypeEnum extends MDEnum{
 	
 	
 	public static final PayTypeEnum 日 = MDEnum.valueOf(PayTypeEnum.class, Integer.valueOf(5));
-	
+	*/
 
 }

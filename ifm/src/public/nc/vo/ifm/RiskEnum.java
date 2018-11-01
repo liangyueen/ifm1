@@ -19,7 +19,7 @@ public class RiskEnum extends MDEnum{
 
 	
 	
-	public static final RiskEnum R1谨慎型 = MDEnum.valueOf(RiskEnum.class, Integer.valueOf(0));
+	/*public static final RiskEnum R1谨慎型 = MDEnum.valueOf(RiskEnum.class, Integer.valueOf(0));
 	
 	
 	public static final RiskEnum R2稳健型 = MDEnum.valueOf(RiskEnum.class, Integer.valueOf(1));
@@ -32,6 +32,6 @@ public class RiskEnum extends MDEnum{
 	
 	
 	public static final RiskEnum R5激进型 = MDEnum.valueOf(RiskEnum.class, Integer.valueOf(4));
-	
+	*/
 
 }

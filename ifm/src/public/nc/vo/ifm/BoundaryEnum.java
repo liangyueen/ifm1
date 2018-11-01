@@ -19,10 +19,10 @@ public class BoundaryEnum extends MDEnum{
 
 	
 	
-	public static final BoundaryEnum 境内 = MDEnum.valueOf(BoundaryEnum.class, Integer.valueOf(1));
+	/*public static final BoundaryEnum 境内 = MDEnum.valueOf(BoundaryEnum.class, Integer.valueOf(1));
 	
 	
 	public static final BoundaryEnum 境外 = MDEnum.valueOf(BoundaryEnum.class, Integer.valueOf(2));
-	
+	*/
 
 }

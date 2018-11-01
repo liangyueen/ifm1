@@ -19,7 +19,7 @@ public class VBillStatusEnum extends MDEnum{
 
 	
 	
-	public static final VBillStatusEnum 自由 = MDEnum.valueOf(VBillStatusEnum.class, String.valueOf("0"));
+	/*public static final VBillStatusEnum 自由 = MDEnum.valueOf(VBillStatusEnum.class, String.valueOf("0"));
 	
 	
 	public static final VBillStatusEnum 待审批 = MDEnum.valueOf(VBillStatusEnum.class, String.valueOf("1"));
@@ -29,6 +29,6 @@ public class VBillStatusEnum extends MDEnum{
 	
 	
 	public static final VBillStatusEnum 审批通过 = MDEnum.valueOf(VBillStatusEnum.class, String.valueOf("3"));
-	
+	*/
 
 }
