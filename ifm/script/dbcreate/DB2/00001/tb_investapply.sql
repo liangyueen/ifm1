@@ -96,7 +96,7 @@ pk_billtypeid varchar(50) null
 pk_billtypecode varchar(50) null 
 /*单据类型*/,
 issuebank varchar(20) null default '~' 
-/*发行银行*/,
+/*发行机构*/,
 boundary integer null 
 /*境内外*/,
 banknetwork varchar(20) null default '~' 
